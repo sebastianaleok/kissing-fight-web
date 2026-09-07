@@ -2,11 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Kissing Fight</title>
 
@@ -35,11 +31,6 @@
       --text-soft: #d8d1c4;
     }
 
-
-    /* =========================
-       RESET
-    ========================= */
-
     * {
       margin: 0;
       padding: 0;
@@ -52,60 +43,45 @@
 
     body {
       min-height: 100vh;
-
-      font-family:
-        "Nunito Sans",
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
       color: var(--ivory);
-
       overflow-x: hidden;
-
       position: relative;
 
       background:
-
         radial-gradient(
           circle at 50% 3%,
           rgba(50, 221, 183, 0.34) 0%,
           rgba(50, 221, 183, 0.10) 19%,
           transparent 38%
         ),
-
         radial-gradient(
           circle at 2% 26%,
           rgba(0, 213, 190, 0.33) 0%,
           rgba(0, 213, 190, 0.12) 20%,
           transparent 37%
         ),
-
         radial-gradient(
           circle at 99% 28%,
           rgba(255, 90, 159, 0.38) 0%,
           rgba(255, 90, 159, 0.13) 22%,
           transparent 39%
         ),
-
         radial-gradient(
           circle at 90% 68%,
           rgba(224, 184, 98, 0.22) 0%,
           transparent 30%
         ),
-
         radial-gradient(
           circle at 8% 72%,
           rgba(64, 168, 255, 0.16) 0%,
           transparent 30%
         ),
-
         radial-gradient(
           circle at 48% 86%,
           rgba(255, 90, 159, 0.15) 0%,
           transparent 32%
         ),
-
         linear-gradient(
           180deg,
           #020505 0%,
@@ -115,25 +91,17 @@
         );
     }
 
-
-    /* =========================
-       ESTRELLAS
-    ========================= */
+    /* ESTRELLAS */
 
     body::before {
       content: "";
-
       position: fixed;
       inset: 0;
-
       pointer-events: none;
-
       z-index: 0;
-
       opacity: 0.72;
 
       background-image:
-
         radial-gradient(circle at 4% 7%, rgba(247,240,214,.95) 0 1px, transparent 2px),
         radial-gradient(circle at 13% 18%, rgba(50,221,183,.9) 0 1px, transparent 2px),
         radial-gradient(circle at 22% 8%, rgba(247,240,214,.7) 0 1px, transparent 2px),
@@ -154,10 +122,7 @@
         radial-gradient(circle at 92% 81%, rgba(247,240,214,.75) 0 1px, transparent 2px);
     }
 
-
-    /* =========================
-       AURAS
-    ========================= */
+    /* AURAS */
 
     .universe-glow {
       position: fixed;
@@ -191,10 +156,7 @@
       background: rgba(224, 184, 98, 0.20);
     }
 
-
-    /* =========================
-       SENDEROS DE ENERGÍA
-    ========================= */
+    /* SENDEROS DE ENERGÍA */
 
     .energy-ring {
       position: absolute;
@@ -213,9 +175,7 @@
         translateX(-50%)
         rotate(-8deg);
 
-      border:
-        2px solid
-        rgba(255, 90, 159, 0.25);
+      border: 2px solid rgba(255, 90, 159, 0.25);
 
       box-shadow:
         0 0 22px rgba(255,90,159,.21),
@@ -232,18 +192,13 @@
         translateX(-50%)
         rotate(9deg);
 
-      border:
-        1px solid
-        rgba(50, 221, 183, 0.27);
+      border: 1px solid rgba(50, 221, 183, 0.27);
 
       box-shadow:
         0 0 25px rgba(50,221,183,.16);
     }
 
-
-    /* =========================
-       CONTENEDOR
-    ========================= */
+    /* GENERAL */
 
     .page {
       width: min(100%, 1040px);
@@ -253,10 +208,7 @@
       z-index: 2;
     }
 
-
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
       display: flex;
@@ -268,81 +220,53 @@
     }
 
     .eyebrow {
-      display: inline-block;
       position: relative;
       z-index: 6;
-
       margin-bottom: 15px;
 
       font-family: "Cinzel", serif;
-
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 6px;
 
       color: var(--gold);
-
       text-transform: uppercase;
 
       text-shadow:
-        0 0 14px
-        rgba(224,184,98,.48);
+        0 0 14px rgba(224,184,98,.48);
 
       animation:
-        eyebrowGlow
-        4s ease-in-out
-        infinite;
+        eyebrowGlow 4s ease-in-out infinite;
     }
 
     @keyframes eyebrowGlow {
-
-      0%,
-      100% {
+      0%, 100% {
         opacity: .82;
-
-        text-shadow:
-          0 0 12px
-          rgba(224,184,98,.28);
+        text-shadow: 0 0 12px rgba(224,184,98,.28);
       }
 
       50% {
         opacity: 1;
-
-        text-shadow:
-          0 0 24px
-          rgba(224,184,98,.68);
+        text-shadow: 0 0 24px rgba(224,184,98,.68);
       }
     }
 
-
-    /* =========================
-       PORTAL
-    ========================= */
+    /* PORTAL */
 
     .portal {
       position: absolute;
-
       top: 80px;
       left: 50%;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
-      width:
-        clamp(
-          330px,
-          58vw,
-          650px
-        );
-
+      width: clamp(330px, 58vw, 650px);
       aspect-ratio: 1;
-
       border-radius: 50%;
 
       pointer-events: none;
 
       background:
-
         radial-gradient(
           circle,
           rgba(247,240,214,.25) 0%,
@@ -354,23 +278,17 @@
       opacity: .88;
 
       animation:
-        portalPulse
-        5s ease-in-out
-        infinite;
+        portalPulse 5s ease-in-out infinite;
     }
 
     .portal::before {
       content: "";
-
       position: absolute;
-
       inset: 12%;
-
       border-radius: 50%;
 
       border:
-        2px solid
-        rgba(50,221,183,.22);
+        2px solid rgba(50,221,183,.22);
 
       box-shadow:
         0 0 28px rgba(50,221,183,.23),
@@ -379,145 +297,93 @@
 
     .portal::after {
       content: "";
-
       position: absolute;
-
       inset: 22%;
-
       border-radius: 50%;
 
       border:
-        1px solid
-        rgba(224,184,98,.28);
+        1px solid rgba(224,184,98,.28);
 
       box-shadow:
         0 0 38px rgba(224,184,98,.15);
     }
 
     @keyframes portalPulse {
-
-      0%,
-      100% {
-        transform:
-          translateX(-50%)
-          scale(.96);
-
+      0%, 100% {
+        transform: translateX(-50%) scale(.96);
         opacity: .60;
       }
 
       50% {
-        transform:
-          translateX(-50%)
-          scale(1.06);
-
+        transform: translateX(-50%) scale(1.06);
         opacity: 1;
       }
     }
 
-
-    /* =========================
-       LOGO
-    ========================= */
+    /* LOGO */
 
     .hero-logo-wrap {
       width: 100%;
-
       max-width: 930px;
 
       min-height:
-        clamp(
-          290px,
-          46vw,
-          470px
-        );
+        clamp(290px, 46vw, 470px);
 
       display: flex;
-
       justify-content: center;
       align-items: center;
 
       position: relative;
-
       z-index: 6;
 
       margin: 0 auto;
-
       overflow: visible;
     }
 
     .hero-logo-shadow {
       position: absolute;
-
       bottom: 28px;
       left: 50%;
 
-      transform:
-        translateX(-50%);
+      transform: translateX(-50%);
 
       width: 58%;
       height: 30px;
 
       border-radius: 50%;
+      background: rgba(0,0,0,.78);
 
-      background:
-        rgba(0,0,0,.78);
-
-      filter:
-        blur(21px);
+      filter: blur(21px);
 
       animation:
-        shadowFloat
-        4s ease-in-out
-        infinite;
+        shadowFloat 4s ease-in-out infinite;
     }
 
     .hero-logo {
       display: block;
 
       width: min(100%, 920px);
-
       height: auto;
 
       position: relative;
-
       z-index: 7;
 
       object-fit: contain;
 
       animation:
-        logoFloat
-        4s ease-in-out
-        infinite;
+        logoFloat 4s ease-in-out infinite;
 
       filter:
-
-        drop-shadow(
-          0 18px 15px
-          rgba(0,0,0,.55)
-        )
-
-        drop-shadow(
-          0 0 17px
-          rgba(255,90,159,.38)
-        )
-
-        drop-shadow(
-          0 0 27px
-          rgba(50,221,183,.34)
-        )
-
-        drop-shadow(
-          0 0 34px
-          rgba(224,184,98,.22)
-        );
+        drop-shadow(0 18px 15px rgba(0,0,0,.55))
+        drop-shadow(0 0 17px rgba(255,90,159,.38))
+        drop-shadow(0 0 27px rgba(50,221,183,.34))
+        drop-shadow(0 0 34px rgba(224,184,98,.22));
 
       will-change: transform;
     }
 
     @keyframes logoFloat {
-
-      0%,
-      100% {
+      0%, 100% {
         transform:
           translateY(0)
           scale(1);
@@ -531,9 +397,7 @@
     }
 
     @keyframes shadowFloat {
-
-      0%,
-      100% {
+      0%, 100% {
         transform:
           translateX(-50%)
           scaleX(1);
@@ -550,36 +414,25 @@
       }
     }
 
-
-    /* =========================
-       TEXTO HERO
-    ========================= */
+    /* DESCRIPCIÓN */
 
     .subtitle {
       position: relative;
-
       z-index: 6;
 
       max-width: 760px;
 
       margin: -15px auto 0;
-
       padding: 0 18px;
 
       font-size:
-        clamp(
-          16px,
-          2.2vw,
-          20px
-        );
+        clamp(16px, 2.2vw, 20px);
 
       line-height: 1.7;
-
       color: var(--text-soft);
 
       text-shadow:
-        0 3px 10px
-        rgba(0,0,0,.95);
+        0 3px 10px rgba(0,0,0,.95);
     }
 
     .subtitle strong {
@@ -587,56 +440,41 @@
       font-weight: 900;
     }
 
-
-    /* =========================
-       BOTONES PRINCIPALES
-    ========================= */
+    /* BOTONES PRINCIPALES */
 
     .main-buttons {
       width: 100%;
-
       display: grid;
-
       gap: 15px;
-
       margin-top: 44px;
 
       position: relative;
-
       z-index: 7;
     }
 
     .btn {
       width: 100%;
-
       min-height: 94px;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       gap: 18px;
 
       position: relative;
-
       overflow: hidden;
 
       padding: 19px 24px;
 
       border-radius: 20px;
-
       text-decoration: none;
-
       color: var(--ivory);
 
       border:
-        1px solid
-        rgba(224,184,98,.30);
+        1px solid rgba(224,184,98,.30);
 
       background:
-
         linear-gradient(
           110deg,
           rgba(22,20,30,.97),
@@ -644,15 +482,9 @@
         );
 
       box-shadow:
-
-        0 18px 44px
-        rgba(0,0,0,.52),
-
-        inset 0 1px 0
-        rgba(255,255,255,.055),
-
-        inset 0 -1px 0
-        rgba(0,0,0,.7);
+        0 18px 44px rgba(0,0,0,.52),
+        inset 0 1px 0 rgba(255,255,255,.055),
+        inset 0 -1px 0 rgba(0,0,0,.7);
 
       backdrop-filter: blur(14px);
 
@@ -664,23 +496,18 @@
 
     .btn::before {
       content: "";
-
       position: absolute;
-
       inset: 0;
 
       pointer-events: none;
-
       opacity: .86;
 
       background:
-
         radial-gradient(
           circle at 4% 50%,
           rgba(255,90,159,.18),
           transparent 28%
         ),
-
         radial-gradient(
           circle at 96% 50%,
           rgba(50,221,183,.17),
@@ -690,12 +517,10 @@
 
     .btn::after {
       content: "";
-
       position: absolute;
 
       top: 0;
       bottom: 0;
-
       left: -35%;
 
       width: 28%;
@@ -704,7 +529,6 @@
         skewX(-24deg);
 
       background:
-
         linear-gradient(
           90deg,
           transparent,
@@ -725,15 +549,9 @@
         rgba(224,184,98,.64);
 
       box-shadow:
-
-        0 24px 58px
-        rgba(0,0,0,.62),
-
-        0 0 28px
-        rgba(50,221,183,.14),
-
-        0 0 25px
-        rgba(255,90,159,.12);
+        0 24px 58px rgba(0,0,0,.62),
+        0 0 28px rgba(50,221,183,.14),
+        0 0 25px rgba(255,90,159,.12);
     }
 
     .btn:hover::after {
@@ -745,7 +563,6 @@
         rgba(224,184,98,.52);
 
       background:
-
         linear-gradient(
           100deg,
           rgba(255,90,159,.22),
@@ -757,13 +574,10 @@
 
     .btn-left {
       display: flex;
-
       align-items: center;
-
       gap: 17px;
 
       position: relative;
-
       z-index: 2;
     }
 
@@ -774,17 +588,14 @@
       flex-shrink: 0;
 
       display: grid;
-
       place-items: center;
 
       border-radius: 15px;
-
       color: var(--gold);
 
       font-size: 23px;
 
       background:
-
         linear-gradient(
           145deg,
           rgba(224,184,98,.20),
@@ -792,8 +603,7 @@
         );
 
       border:
-        1px solid
-        rgba(224,184,98,.31);
+        1px solid rgba(224,184,98,.31);
     }
 
     .btn-text {
@@ -802,58 +612,42 @@
 
     .btn-title {
       display: block;
-
       font-size: 16px;
-
       font-weight: 900;
-
       color: var(--ivory);
-
       letter-spacing: .4px;
     }
 
     .btn-sub {
       display: block;
-
       margin-top: 5px;
-
       font-size: 12px;
-
       color: #c9c1b3;
     }
 
     .arrow {
       position: relative;
-
       z-index: 2;
 
       font-size: 27px;
-
       color: var(--teal);
 
       text-shadow:
-        0 0 14px
-        rgba(50,221,183,.60);
+        0 0 14px rgba(50,221,183,.60);
     }
 
-
-    /* =========================
-       SECCIONES
-    ========================= */
+    /* SECCIONES */
 
     .section {
       position: relative;
-
       overflow: hidden;
 
       margin-top: 34px;
-
       padding: 32px 28px;
 
       border-radius: 23px;
 
       background:
-
         linear-gradient(
           135deg,
           rgba(17,17,24,.95),
@@ -861,35 +655,26 @@
         );
 
       border:
-        1px solid
-        rgba(224,184,98,.24);
+        1px solid rgba(224,184,98,.24);
 
       box-shadow:
-
-        0 20px 50px
-        rgba(0,0,0,.50),
-
-        inset 0 1px 0
-        rgba(255,255,255,.04);
+        0 20px 50px rgba(0,0,0,.50),
+        inset 0 1px 0 rgba(255,255,255,.04);
     }
 
     .section::before {
       content: "";
-
       position: absolute;
-
       inset: 0;
 
       pointer-events: none;
 
       background:
-
         radial-gradient(
           circle at 0% 0%,
           rgba(50,221,183,.11),
           transparent 37%
         ),
-
         radial-gradient(
           circle at 100% 100%,
           rgba(255,90,159,.10),
@@ -899,29 +684,23 @@
 
     .section-label {
       position: relative;
-
       z-index: 2;
 
       margin-bottom: 11px;
 
       font-size: 11px;
-
       font-weight: 900;
-
       letter-spacing: 4px;
 
       color: var(--teal);
-
       text-transform: uppercase;
 
       text-shadow:
-        0 0 11px
-        rgba(50,221,183,.42);
+        0 0 11px rgba(50,221,183,.42);
     }
 
     .section h2 {
       position: relative;
-
       z-index: 2;
 
       margin-bottom: 13px;
@@ -929,24 +708,18 @@
       font-family: "Cinzel", serif;
 
       font-size:
-        clamp(
-          23px,
-          4vw,
-          31px
-        );
+        clamp(23px, 4vw, 31px);
 
       line-height: 1.25;
 
       color: var(--gold);
 
       text-shadow:
-        0 2px 14px
-        rgba(0,0,0,.9);
+        0 2px 14px rgba(0,0,0,.9);
     }
 
     .section p {
       position: relative;
-
       z-index: 2;
 
       max-width: 790px;
@@ -954,29 +727,22 @@
       color: var(--text-soft);
 
       font-size: 15px;
-
       line-height: 1.75;
     }
 
-
-    /* =========================
-       FEATURES
-    ========================= */
+    /* FEATURES */
 
     .features {
       display: grid;
-
       grid-template-columns:
         repeat(3, 1fr);
 
       gap: 13px;
-
       margin-top: 24px;
     }
 
     .feature {
       position: relative;
-
       z-index: 2;
 
       padding: 20px 12px;
@@ -986,7 +752,6 @@
       border-radius: 17px;
 
       background:
-
         linear-gradient(
           145deg,
           rgba(247,240,214,.06),
@@ -994,17 +759,14 @@
         );
 
       border:
-        1px solid
-        rgba(224,184,98,.17);
+        1px solid rgba(224,184,98,.17);
     }
 
     .feature strong {
       display: block;
-
       margin-bottom: 5px;
 
       font-size: 14px;
-
       color: var(--ivory);
     }
 
@@ -1013,10 +775,7 @@
       color: #bfb6a6;
     }
 
-
-    /* =========================
-       REDES + WHATSAPP
-    ========================= */
+    /* REDES */
 
     .social-title {
       margin: 48px 0 17px;
@@ -1024,11 +783,8 @@
       text-align: center;
 
       font-family: "Cinzel", serif;
-
       font-size: 11px;
-
       font-weight: 800;
-
       letter-spacing: 4px;
 
       color: var(--gold);
@@ -1047,27 +803,23 @@
 
     .social {
       position: relative;
-
       overflow: hidden;
 
-      padding: 18px;
+      min-height: 75px;
 
-      border-radius: 16px;
+      padding: 16px 18px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 14px;
+
+      border-radius: 17px;
 
       text-decoration: none;
-
-      text-align: center;
-
       color: var(--ivory);
 
-      font-size: 13px;
-
-      font-weight: 900;
-
-      letter-spacing: .6px;
-
       background:
-
         linear-gradient(
           145deg,
           rgba(22,21,29,.94),
@@ -1075,12 +827,10 @@
         );
 
       border:
-        1px solid
-        rgba(224,184,98,.20);
+        1px solid rgba(224,184,98,.20);
 
       box-shadow:
-        0 14px 32px
-        rgba(0,0,0,.32);
+        0 14px 32px rgba(0,0,0,.32);
 
       transition:
         transform .22s ease,
@@ -1096,53 +846,114 @@
         rgba(50,221,183,.50);
 
       box-shadow:
-        0 18px 38px
-        rgba(0,0,0,.43),
-        0 0 20px
-        rgba(50,221,183,.10);
+        0 18px 38px rgba(0,0,0,.43),
+        0 0 20px rgba(50,221,183,.10);
     }
 
+    .social-icon {
+      width: 43px;
+      height: 43px;
 
-    /* CANAL WHATSAPP */
+      flex-shrink: 0;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 13px;
+
+      background:
+        rgba(255,255,255,.055);
+
+      border:
+        1px solid rgba(255,255,255,.08);
+
+      font-size: 19px;
+    }
+
+    .social-text {
+      text-align: left;
+    }
+
+    .social-name {
+      display: block;
+
+      font-size: 13px;
+
+      font-weight: 900;
+
+      letter-spacing: .5px;
+    }
+
+    .social-sub {
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: 11px;
+
+      font-weight: 500;
+
+      color: #bfb7aa;
+    }
+
+    /* INSTAGRAM INGLÉS */
+
+    .social.instagram-en {
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255,90,159,.13),
+          rgba(17,15,24,.96)
+        );
+
+      border-color:
+        rgba(255,90,159,.28);
+    }
+
+    /* INSTAGRAM ESPAÑOL */
+
+    .social.instagram-es {
+      background:
+        linear-gradient(
+          120deg,
+          rgba(224,184,98,.12),
+          rgba(17,15,24,.96)
+        );
+
+      border-color:
+        rgba(224,184,98,.29);
+    }
+
+    /* CANAL DE WHATSAPP */
 
     .social.channel {
       background:
-
         linear-gradient(
           135deg,
-          rgba(50,221,183,.08),
+          rgba(50,221,183,.10),
           rgba(15,17,22,.97)
         );
 
       border-color:
-        rgba(50,221,183,.27);
+        rgba(50,221,183,.31);
     }
 
-
-    /* CONTACTO WHATSAPP */
+    /* CONTACTO */
 
     .social.whatsapp {
       background:
-
         linear-gradient(
           110deg,
-          rgba(50,221,183,.25),
+          rgba(50,221,183,.27),
           rgba(10,18,18,.97)
         );
 
       border-color:
-        rgba(50,221,183,.52);
-
-      color:
-        var(--ivory);
+        rgba(50,221,183,.58);
 
       box-shadow:
-
-        0 15px 36px
-        rgba(0,0,0,.38),
-
-        0 0 20px
-        rgba(50,221,183,.10);
+        0 15px 36px rgba(0,0,0,.38),
+        0 0 20px rgba(50,221,183,.10);
     }
 
     .social.whatsapp:hover {
@@ -1153,22 +964,14 @@
         scale(1.01);
 
       box-shadow:
-
-        0 20px 44px
-        rgba(0,0,0,.48),
-
-        0 0 30px
-        rgba(50,221,183,.22);
+        0 20px 44px rgba(0,0,0,.48),
+        0 0 30px rgba(50,221,183,.22);
     }
 
-
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     footer {
       margin-top: 58px;
-
       padding-top: 12px;
 
       text-align: center;
@@ -1176,13 +979,11 @@
       color: #928b80;
 
       font-size: 11px;
-
       letter-spacing: 1.2px;
     }
 
     .status {
       display: inline-flex;
-
       align-items: center;
 
       gap: 8px;
@@ -1194,7 +995,6 @@
 
     .dot {
       width: 8px;
-
       height: 8px;
 
       border-radius: 50%;
@@ -1202,14 +1002,10 @@
       background: var(--teal);
 
       box-shadow:
-        0 0 15px
-        var(--teal);
+        0 0 15px var(--teal);
     }
 
-
-    /* =========================
-       CELULAR
-    ========================= */
+    /* CELULAR */
 
     @media (max-width: 700px) {
 
@@ -1288,7 +1084,6 @@
       }
     }
 
-
     @media (prefers-reduced-motion: reduce) {
 
       *,
@@ -1308,40 +1103,26 @@
   </style>
 </head>
 
-
 <body>
-
-
-  <!-- AURAS -->
 
   <div class="universe-glow teal"></div>
   <div class="universe-glow pink"></div>
   <div class="universe-glow gold"></div>
 
-
-  <!-- SENDEROS -->
-
   <div class="energy-ring one"></div>
   <div class="energy-ring two"></div>
 
-
   <main class="page">
 
-
-    <!-- =========================
-         HERO
-    ========================== -->
+    <!-- HERO -->
 
     <section class="hero">
-
 
       <div class="eyebrow">
         WELCOME TO THE UNIVERSE
       </div>
 
-
       <div class="portal"></div>
-
 
       <div class="hero-logo-wrap">
 
@@ -1354,7 +1135,6 @@
         >
 
       </div>
-
 
       <p class="subtitle">
 
@@ -1374,11 +1154,9 @@
 
       </p>
 
-
       <!-- BOTONES PRINCIPALES -->
 
       <div class="main-buttons">
-
 
         <a
           class="btn primary"
@@ -1411,8 +1189,6 @@
 
         </a>
 
-
-
         <a
           class="btn"
           href="#comunidad"
@@ -1443,8 +1219,6 @@
           </span>
 
         </a>
-
-
 
         <a
           class="btn"
@@ -1477,17 +1251,11 @@
 
         </a>
 
-
       </div>
-
 
     </section>
 
-
-
-    <!-- =========================
-         JUEGO
-    ========================== -->
+    <!-- JUEGO -->
 
     <section
       class="section"
@@ -1503,18 +1271,13 @@
       </h2>
 
       <p>
-
         Kissing Fight combina competencia,
         progresión y comunidad dentro de un
         universo en expansión.
-
         Cada mundo forma parte de algo más grande.
-
       </p>
 
-
       <div class="features">
-
 
         <div class="feature">
 
@@ -1528,7 +1291,6 @@
 
         </div>
 
-
         <div class="feature">
 
           <strong>
@@ -1540,7 +1302,6 @@
           </span>
 
         </div>
-
 
         <div class="feature">
 
@@ -1554,17 +1315,11 @@
 
         </div>
 
-
       </div>
-
 
     </section>
 
-
-
-    <!-- =========================
-         COMUNIDAD
-    ========================== -->
+    <!-- COMUNIDAD -->
 
     <section
       class="section"
@@ -1580,22 +1335,15 @@
       </h2>
 
       <p>
-
         Kissing Fight está siendo construido
         desde cero junto a su comunidad.
-
         Formar parte ahora significa entrar al
         universo desde sus primeras puertas.
-
       </p>
 
     </section>
 
-
-
-    <!-- =========================
-         INVERSORES
-    ========================== -->
+    <!-- INVERSORES -->
 
     <section
       class="section"
@@ -1611,86 +1359,134 @@
       </h2>
 
       <p>
-
         Estamos abiertos a conversar con
         colaboradores, aliados estratégicos
         e inversores interesados en formar
         parte de Kissing Fight desde sus
         primeras etapas.
-
       </p>
 
     </section>
 
-
-
-    <!-- =========================
-         REDES + WHATSAPP
-    ========================== -->
+    <!-- REDES -->
 
     <div class="social-title">
       ENTRÁ AL UNIVERSO
     </div>
 
-
     <div class="socials">
 
-
-      <!-- INSTAGRAM -->
+      <!-- INSTAGRAM INGLÉS -->
 
       <a
-        class="social"
-        href="TU_LINK_DE_INSTAGRAM"
+        class="social instagram-en"
+        href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
         target="_blank"
         rel="noopener noreferrer"
       >
-        INSTAGRAM
+
+        <div class="social-icon">
+          IG
+        </div>
+
+        <div class="social-text">
+
+          <span class="social-name">
+            INSTAGRAM — ENGLISH
+          </span>
+
+          <span class="social-sub">
+            International community
+          </span>
+
+        </div>
+
       </a>
 
-
-      <!-- TIKTOK -->
+      <!-- INSTAGRAM ESPAÑOL -->
 
       <a
-        class="social"
-        href="TU_LINK_DE_TIKTOK"
+        class="social instagram-es"
+        href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
         target="_blank"
         rel="noopener noreferrer"
       >
-        TIKTOK
+
+        <div class="social-icon">
+          IG
+        </div>
+
+        <div class="social-text">
+
+          <span class="social-name">
+            INSTAGRAM — ESPAÑOL
+          </span>
+
+          <span class="social-sub">
+            Comunidad en español
+          </span>
+
+        </div>
+
       </a>
 
-
-      <!-- CANAL DE WHATSAPP -->
+      <!-- CANAL WHATSAPP -->
 
       <a
         class="social channel"
-        href="TU_LINK_DEL_CANAL_DE_WHATSAPP"
+        href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
         target="_blank"
         rel="noopener noreferrer"
       >
-        CANAL DE WHATSAPP
+
+        <div class="social-icon">
+          WA
+        </div>
+
+        <div class="social-text">
+
+          <span class="social-name">
+            CANAL DE WHATSAPP
+          </span>
+
+          <span class="social-sub">
+            Novedades y anuncios
+          </span>
+
+        </div>
+
       </a>
 
-
-      <!-- WHATSAPP DIRECTO -->
+      <!-- CONTACTO WHATSAPP -->
 
       <a
         class="social whatsapp"
-        href="TU_LINK_DE_CONTACTO_WHATSAPP"
+        href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
         target="_blank"
         rel="noopener noreferrer"
       >
-        CONTACTANOS POR WHATSAPP
-      </a>
 
+        <div class="social-icon">
+          ✦
+        </div>
+
+        <div class="social-text">
+
+          <span class="social-name">
+            CONTACTANOS
+          </span>
+
+          <span class="social-sub">
+            Hablemos por WhatsApp
+          </span>
+
+        </div>
+
+      </a>
 
     </div>
 
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- FOOTER -->
 
     <footer>
 
@@ -1708,9 +1504,7 @@
 
     </footer>
 
-
   </main>
-
 
 </body>
 </html>
