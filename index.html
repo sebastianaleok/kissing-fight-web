@@ -3,14 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Kissing Fight</title>
-  <meta
-    name="description"
-    content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad e identidad propia."
-  >
+  <meta name="description" content="Kissing Fight - Welcome to the universe. Un Match-3 competitivo con ranking, comunidad e identidad propia.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --pink: #FF5A9F;
+      --teal: #32DDB7;
+      --gold: #E0B862;
+      --light: #F7F0D6;
+      --stroke: #1B1A25;
+      --bg: #000000;
+      --card: rgba(27, 26, 37, 0.78);
+      --card-border: rgba(224, 184, 98, 0.18);
+      --muted: #d6cfbf;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -23,13 +35,13 @@
 
     body {
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: "Nunito Sans", sans-serif;
+      color: var(--light);
       background:
-        radial-gradient(circle at 20% 15%, rgba(120, 0, 255, 0.28), transparent 32%),
-        radial-gradient(circle at 85% 25%, rgba(0, 220, 255, 0.18), transparent 30%),
-        radial-gradient(circle at 50% 90%, rgba(255, 0, 140, 0.20), transparent 35%),
-        #07030f;
-      color: white;
+        radial-gradient(circle at 50% 10%, rgba(50, 221, 183, 0.18), transparent 28%),
+        radial-gradient(circle at 20% 30%, rgba(255, 90, 159, 0.12), transparent 25%),
+        radial-gradient(circle at 85% 20%, rgba(224, 184, 98, 0.10), transparent 20%),
+        linear-gradient(180deg, #050507 0%, #000000 100%);
       overflow-x: hidden;
     }
 
@@ -38,303 +50,277 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-      background-size: 45px 45px;
+      background:
+        linear-gradient(rgba(247, 240, 214, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(247, 240, 214, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
       mask-image: linear-gradient(to bottom, black, transparent);
     }
 
     .glow {
       position: fixed;
       border-radius: 50%;
-      filter: blur(90px);
-      opacity: .28;
+      filter: blur(100px);
       pointer-events: none;
+      opacity: 0.22;
+      z-index: 0;
     }
 
     .glow.one {
-      width: 300px;
-      height: 300px;
-      background: #8a00ff;
-      top: -100px;
-      left: -100px;
+      width: 320px;
+      height: 320px;
+      background: var(--teal);
+      top: -80px;
+      left: -60px;
     }
 
     .glow.two {
-      width: 280px;
-      height: 280px;
-      background: #00d9ff;
-      right: -110px;
-      top: 25%;
+      width: 320px;
+      height: 320px;
+      background: var(--pink);
+      right: -100px;
+      top: 140px;
     }
 
     .glow.three {
-      width: 280px;
-      height: 280px;
-      background: #ff008c;
-      left: 25%;
-      bottom: -150px;
+      width: 300px;
+      height: 300px;
+      background: var(--gold);
+      bottom: -120px;
+      left: 30%;
     }
 
     .page {
-      width: min(100%, 760px);
+      width: min(100%, 860px);
       margin: 0 auto;
-      padding: 34px 20px 70px;
+      padding: 24px 18px 70px;
       position: relative;
       z-index: 2;
     }
 
     .hero {
       text-align: center;
-      padding: 55px 10px 35px;
-    }
-
-    .diamond {
-      width: 74px;
-      height: 74px;
-      margin: 0 auto 26px;
-      position: relative;
-      transform: rotate(45deg);
-      border-radius: 16px;
-      background:
-        linear-gradient(135deg, #caffff 0%, #00eaff 30%, #7e00ff 65%, #ff0099 100%);
-      box-shadow:
-        0 0 18px rgba(0, 234, 255, .7),
-        0 0 45px rgba(121, 0, 255, .55),
-        0 0 80px rgba(255, 0, 153, .3);
-      animation: float 3.5s ease-in-out infinite;
-    }
-
-    .diamond::before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(255,255,255,.6);
-      border-radius: 10px;
-    }
-
-    .diamond::after {
-      content: "";
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      top: 10px;
-      left: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.55);
-      filter: blur(7px);
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: rotate(45deg) translateY(0);
-      }
-      50% {
-        transform: rotate(45deg) translateY(-8px);
-      }
+      padding: 26px 0 14px;
     }
 
     .eyebrow {
+      display: inline-block;
       font-size: 12px;
       letter-spacing: 4px;
-      color: #70efff;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      font-size: clamp(48px, 11vw, 86px);
-      line-height: .9;
-      letter-spacing: -4px;
       text-transform: uppercase;
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        #9ef7ff,
-        #bd8cff,
-        #ff72c5
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 0 18px rgba(132, 0, 255, .25));
-    }
-
-    .hero p {
-      margin: 24px auto 0;
-      max-width: 570px;
-      color: #c8c2d3;
-      font-size: 18px;
-      line-height: 1.55;
-    }
-
-    .hero p strong {
-      color: white;
-    }
-
-    .main-buttons {
-      margin-top: 34px;
-      display: grid;
-      gap: 13px;
-    }
-
-    .btn {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      width: 100%;
-      padding: 20px 22px;
-      color: white;
-      text-decoration: none;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.055);
-      backdrop-filter: blur(14px);
       font-weight: 800;
-      letter-spacing: .5px;
-      overflow: hidden;
-      transition: .25s ease;
+      color: var(--gold);
+      margin-bottom: 18px;
+      text-shadow: 0 0 15px rgba(224, 184, 98, 0.28);
     }
 
-    .btn::before {
+    .hero-logo-wrap {
+      position: relative;
+      padding: 18px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(27,26,37,0.72), rgba(8,8,12,0.92));
+      border: 1px solid rgba(224, 184, 98, 0.18);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 20px 60px rgba(0,0,0,0.45),
+        0 0 40px rgba(50, 221, 183, 0.08);
+      overflow: hidden;
+    }
+
+    .hero-logo-wrap::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        100deg,
-        transparent,
-        rgba(255,255,255,.08),
-        transparent
-      );
-      transform: translateX(-100%);
-      transition: .5s;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(50,221,183,0.10), transparent 30%),
+        radial-gradient(circle at 25% 70%, rgba(255,90,159,0.08), transparent 28%),
+        radial-gradient(circle at 80% 75%, rgba(224,184,98,0.08), transparent 20%);
+      pointer-events: none;
     }
 
-    .btn:hover::before {
-      transform: translateX(100%);
+    .hero-logo {
+      position: relative;
+      display: block;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      border-radius: 22px;
+    }
+
+    h1 {
+      margin-top: 24px;
+      font-family: "Cinzel", serif;
+      font-size: clamp(30px, 6vw, 54px);
+      line-height: 1.05;
+      letter-spacing: 1px;
+      color: var(--light);
+      text-transform: uppercase;
+      text-shadow:
+        0 0 18px rgba(224, 184, 98, 0.12),
+        0 0 35px rgba(50, 221, 183, 0.06);
+    }
+
+    .subtitle {
+      margin: 18px auto 0;
+      max-width: 660px;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .subtitle strong {
+      color: var(--light);
+    }
+
+    .main-buttons {
+      margin-top: 30px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: var(--light);
+      border-radius: 18px;
+      border: 1px solid rgba(224, 184, 98, 0.18);
+      background:
+        linear-gradient(180deg, rgba(27, 26, 37, 0.88), rgba(12, 11, 18, 0.95));
+      box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+      transition: 0.25s ease;
     }
 
     .btn:hover {
       transform: translateY(-3px);
-      border-color: rgba(101, 235, 255, .45);
-      box-shadow: 0 12px 35px rgba(0,0,0,.28);
+      border-color: rgba(50, 221, 183, 0.4);
+      box-shadow:
+        0 18px 40px rgba(0,0,0,0.35),
+        0 0 25px rgba(50, 221, 183, 0.08);
     }
 
     .btn.primary {
       background:
-        linear-gradient(
-          100deg,
-          rgba(99, 0, 255, .75),
-          rgba(217, 0, 174, .70)
-        );
-      border-color: rgba(255,255,255,.28);
-      box-shadow: 0 0 30px rgba(126, 0, 255, .25);
+        linear-gradient(90deg, rgba(255,90,159,0.18), rgba(50,221,183,0.15)),
+        linear-gradient(180deg, rgba(27, 26, 37, 0.95), rgba(10, 10, 14, 0.98));
+      border-color: rgba(224, 184, 98, 0.26);
     }
 
     .btn-left {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 14px;
+      text-align: left;
     }
 
     .icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
       display: grid;
       place-items: center;
-      flex-shrink: 0;
       border-radius: 12px;
-      background: rgba(0,0,0,.22);
+      background: rgba(224, 184, 98, 0.10);
+      border: 1px solid rgba(224, 184, 98, 0.20);
       font-size: 20px;
-    }
-
-    .btn-text {
-      text-align: left;
+      color: var(--gold);
     }
 
     .btn-title {
       display: block;
+      font-weight: 800;
       font-size: 15px;
+      letter-spacing: 0.4px;
+      color: var(--light);
     }
 
     .btn-sub {
       display: block;
       margin-top: 4px;
-      color: rgba(255,255,255,.62);
-      font-size: 11px;
-      font-weight: normal;
+      font-size: 12px;
+      color: #c8c1b3;
     }
 
     .arrow {
       font-size: 22px;
-      color: rgba(255,255,255,.7);
+      color: var(--teal);
+      font-weight: 800;
     }
 
     .section {
-      margin-top: 35px;
-      padding: 28px 23px;
-      border: 1px solid rgba(255,255,255,.09);
+      margin-top: 30px;
+      padding: 26px 22px;
       border-radius: 22px;
-      background: rgba(255,255,255,.035);
-      backdrop-filter: blur(12px);
+      background:
+        linear-gradient(180deg, rgba(27, 26, 37, 0.78), rgba(10, 10, 14, 0.90));
+      border: 1px solid var(--card-border);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02) inset,
+        0 14px 38px rgba(0,0,0,0.24);
     }
 
     .section-label {
-      color: #9befff;
       font-size: 11px;
       letter-spacing: 3px;
-      font-weight: 800;
       text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .section h2 {
-      font-size: 27px;
+      color: var(--teal);
+      font-weight: 800;
       margin-bottom: 12px;
     }
 
+    .section h2 {
+      font-family: "Cinzel", serif;
+      font-size: 28px;
+      line-height: 1.2;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
     .section p {
-      color: #aaa3b7;
-      line-height: 1.65;
+      color: var(--muted);
+      line-height: 1.7;
       font-size: 15px;
     }
 
     .features {
+      margin-top: 20px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 22px;
+      gap: 12px;
     }
 
     .feature {
-      padding: 16px 9px;
+      padding: 18px 12px;
+      border-radius: 16px;
       text-align: center;
-      border-radius: 15px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.06);
+      background: rgba(247, 240, 214, 0.03);
+      border: 1px solid rgba(224, 184, 98, 0.12);
     }
 
     .feature strong {
       display: block;
-      margin-bottom: 5px;
+      color: var(--light);
+      margin-bottom: 6px;
       font-size: 14px;
     }
 
     .feature span {
-      color: #86808f;
-      font-size: 11px;
+      color: #bbb29f;
+      font-size: 12px;
     }
 
     .social-title {
-      margin: 42px 0 15px;
+      margin: 38px 0 14px;
       text-align: center;
-      color: #857e90;
+      color: var(--gold);
       font-size: 11px;
       letter-spacing: 3px;
       text-transform: uppercase;
+      font-weight: 800;
     }
 
     .socials {
@@ -345,71 +331,64 @@
 
     .social {
       padding: 16px;
-      border-radius: 15px;
-      text-decoration: none;
-      color: white;
       text-align: center;
-      font-weight: 700;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.07);
-      transition: .2s;
+      text-decoration: none;
+      color: var(--light);
+      font-weight: 800;
+      border-radius: 14px;
+      background: rgba(27, 26, 37, 0.72);
+      border: 1px solid rgba(224, 184, 98, 0.14);
+      transition: 0.2s ease;
     }
 
     .social:hover {
-      background: rgba(255,255,255,.09);
       transform: translateY(-2px);
+      border-color: rgba(50, 221, 183, 0.30);
+      background: rgba(35, 34, 48, 0.92);
     }
 
     footer {
+      margin-top: 48px;
       text-align: center;
-      margin-top: 55px;
-      color: #615b69;
-      font-size: 11px;
-      letter-spacing: 1px;
+      color: #a59d8c;
+      font-size: 12px;
     }
 
     .status {
       display: inline-flex;
-      gap: 8px;
       align-items: center;
-      margin-top: 14px;
-      color: #8a8393;
-      font-size: 11px;
+      gap: 8px;
+      margin-top: 12px;
+      color: #cabfa8;
     }
 
     .dot {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #45ff9a;
-      box-shadow: 0 0 12px #45ff9a;
+      background: var(--teal);
+      box-shadow: 0 0 14px var(--teal);
     }
 
-    @media (max-width: 520px) {
-      .page {
-        padding-left: 15px;
-        padding-right: 15px;
+    @media (max-width: 700px) {
+      .features {
+        grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 42px;
+      .socials {
+        grid-template-columns: 1fr;
       }
 
-      h1 {
-        letter-spacing: -2px;
-      }
-
-      .hero p {
+      .subtitle {
         font-size: 16px;
       }
 
-      .features {
-        grid-template-columns: 1fr;
+      h1 {
+        font-size: clamp(26px, 8vw, 42px);
       }
     }
   </style>
 </head>
-
 <body>
 
   <div class="glow one"></div>
@@ -419,27 +398,31 @@
   <main class="page">
 
     <section class="hero">
-
-      <div class="diamond"></div>
-
       <div class="eyebrow">WELCOME TO THE UNIVERSE</div>
 
-      <h1>Kissing<br>Fight</h1>
+      <div class="hero-logo-wrap">
+        <img
+          src="logo-kissing-fight.jpg"
+          alt="Kissing Fight logo"
+          class="hero-logo"
+        >
+      </div>
 
-      <p>
-        Un <strong>Match-3 competitivo</strong> con ranking,
-        comunidad y una identidad propia.
-        Estamos creando algo grande desde cero.
+      <h1>Kissing Fight</h1>
+
+      <p class="subtitle">
+        Un <strong>Match-3 competitivo</strong> con ranking, comunidad
+        y una identidad propia. Un universo con más de un mundo jugable,
+        construido para crecer desde el comienzo.
       </p>
 
       <div class="main-buttons">
-
         <a class="btn primary" href="#juego">
           <div class="btn-left">
             <div class="icon">◆</div>
-            <div class="btn-text">
-              <span class="btn-title">CONOCÉ KISSING FIGHT</span>
-              <span class="btn-sub">Descubrí el proyecto</span>
+            <div>
+              <span class="btn-title">CONOCÉ EL JUEGO</span>
+              <span class="btn-sub">Descubrí el universo Kissing Fight</span>
             </div>
           </div>
           <span class="arrow">→</span>
@@ -448,9 +431,9 @@
         <a class="btn" href="#comunidad">
           <div class="btn-left">
             <div class="icon">♥</div>
-            <div class="btn-text">
+            <div>
               <span class="btn-title">SUMATE A LA COMUNIDAD</span>
-              <span class="btn-sub">Formá parte desde el principio</span>
+              <span class="btn-sub">Entrá desde el principio</span>
             </div>
           </div>
           <span class="arrow">→</span>
@@ -458,74 +441,61 @@
 
         <a class="btn" href="#inversores">
           <div class="btn-left">
-            <div class="icon">$</div>
-            <div class="btn-text">
+            <div class="icon">✦</div>
+            <div>
               <span class="btn-title">INVERSORES & COLABORADORES</span>
-              <span class="btn-sub">Conocé cómo participar del proyecto</span>
+              <span class="btn-sub">Construyamos algo grande</span>
             </div>
           </div>
           <span class="arrow">→</span>
         </a>
-
       </div>
     </section>
 
-
     <section class="section" id="juego">
       <div class="section-label">The Game</div>
-
       <h2>Mucho más que un Match-3.</h2>
-
       <p>
-        Kissing Fight combina partidas rápidas, competencia,
-        progresión y comunidad dentro de un universo que seguirá
-        creciendo después del lanzamiento.
+        Kissing Fight no es solo un juego: es un universo en expansión.
+        Competencia, progresión, identidad visual y una propuesta que deja
+        en claro que hay más que un solo mundo jugable.
       </p>
 
       <div class="features">
         <div class="feature">
           <strong>COMPETÍ</strong>
-          <span>Ranking</span>
+          <span>Ranking y desafío</span>
         </div>
-
         <div class="feature">
-          <strong>PROGRESÁ</strong>
-          <span>Recompensas</span>
+          <strong>DESCUBRÍ</strong>
+          <span>Mundos y expansión</span>
         </div>
-
         <div class="feature">
           <strong>CONECTÁ</strong>
-          <span>Comunidad</span>
+          <span>Comunidad y evolución</span>
         </div>
       </div>
     </section>
 
-
     <section class="section" id="comunidad">
       <div class="section-label">Community</div>
-
       <h2>Los primeros jugadores hacen historia.</h2>
-
       <p>
-        Kissing Fight está siendo construido junto a su comunidad.
-        Seguir el proyecto desde ahora significa estar presente
-        mientras el universo empieza a tomar forma.
+        Estamos construyendo Kissing Fight junto a la comunidad.
+        Seguirlo desde ahora es entrar al universo desde sus primeras puertas
+        y formar parte de su crecimiento.
       </p>
     </section>
-
 
     <section class="section" id="inversores">
       <div class="section-label">Partners</div>
-
-      <h2>Construyamos algo grande.</h2>
-
+      <h2>Una visión con potencial real.</h2>
       <p>
-        Estamos abiertos a conversar con colaboradores,
-        socios estratégicos e inversores interesados en formar
-        parte del proyecto desde sus primeras etapas.
+        Buscamos colaboradores, aliados estratégicos e inversores que quieran
+        acompañar el desarrollo del proyecto desde una etapa temprana, con una
+        propuesta visual potente y una identidad propia.
       </p>
     </section>
-
 
     <div class="social-title">Seguinos</div>
 
@@ -536,10 +506,8 @@
       <a class="social" href="#">KICK</a>
     </div>
 
-
     <footer>
       © 2026 KISSING FIGHT
-
       <div class="status">
         <span class="dot"></span>
         Proyecto en desarrollo
