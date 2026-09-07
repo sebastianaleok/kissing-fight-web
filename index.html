@@ -25,11 +25,6 @@
 
   <style>
 
-    /* =========================================================
-       KISSING FIGHT
-       PALETA OFICIAL
-    ========================================================= */
-
     :root {
       --pink: #FF5A9F;
       --teal: #32DDB7;
@@ -37,20 +32,13 @@
       --ivory: #F7F0D6;
       --dark: #1B1A25;
       --black: #000000;
-
       --text-soft: #d8d1c4;
-
-      --panel:
-        rgba(12, 12, 18, 0.88);
-
-      --border:
-        rgba(224, 184, 98, 0.24);
     }
 
 
-    /* =========================================================
+    /* =========================
        RESET
-    ========================================================= */
+    ========================= */
 
     * {
       margin: 0;
@@ -78,56 +66,59 @@
       position: relative;
 
       background:
+
         radial-gradient(
-          circle at 50% -5%,
-          rgba(50, 221, 183, 0.32) 0%,
-          rgba(50, 221, 183, 0.08) 18%,
-          transparent 36%
+          circle at 50% 3%,
+          rgba(50, 221, 183, 0.34) 0%,
+          rgba(50, 221, 183, 0.10) 19%,
+          transparent 38%
         ),
 
         radial-gradient(
-          circle at 9% 24%,
-          rgba(50, 221, 183, 0.26) 0%,
-          transparent 31%
+          circle at 2% 26%,
+          rgba(0, 213, 190, 0.33) 0%,
+          rgba(0, 213, 190, 0.12) 20%,
+          transparent 37%
         ),
 
         radial-gradient(
-          circle at 91% 25%,
-          rgba(255, 90, 159, 0.29) 0%,
-          transparent 31%
+          circle at 99% 28%,
+          rgba(255, 90, 159, 0.38) 0%,
+          rgba(255, 90, 159, 0.13) 22%,
+          transparent 39%
         ),
 
         radial-gradient(
-          circle at 90% 64%,
-          rgba(224, 184, 98, 0.19) 0%,
-          transparent 28%
-        ),
-
-        radial-gradient(
-          circle at 10% 70%,
-          rgba(65, 171, 255, 0.13) 0%,
-          transparent 27%
-        ),
-
-        radial-gradient(
-          circle at 48% 82%,
-          rgba(255, 90, 159, 0.12) 0%,
+          circle at 90% 68%,
+          rgba(224, 184, 98, 0.22) 0%,
           transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 8% 72%,
+          rgba(64, 168, 255, 0.16) 0%,
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 48% 86%,
+          rgba(255, 90, 159, 0.15) 0%,
+          transparent 32%
         ),
 
         linear-gradient(
           180deg,
-          #020405 0%,
-          #000000 42%,
-          #030205 72%,
+          #020505 0%,
+          #000000 40%,
+          #050208 72%,
           #000000 100%
         );
     }
 
 
-    /* =========================================================
-       ESTRELLAS / POLVO ARCANO
-    ========================================================= */
+    /* =========================
+       ESTRELLAS
+    ========================= */
 
     body::before {
       content: "";
@@ -143,280 +134,150 @@
 
       background-image:
 
-        radial-gradient(
-          circle at 4% 8%,
-          rgba(247,240,214,.95) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 13% 17%,
-          rgba(50,221,183,.9) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 22% 9%,
-          rgba(247,240,214,.7) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 31% 27%,
-          rgba(255,90,159,.9) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 38% 7%,
-          rgba(247,240,214,.85) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 52% 17%,
-          rgba(50,221,183,.8) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 62% 5%,
-          rgba(247,240,214,.9) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 73% 18%,
-          rgba(255,90,159,.9) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 84% 8%,
-          rgba(247,240,214,.9) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 94% 31%,
-          rgba(224,184,98,.9) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 8% 48%,
-          rgba(247,240,214,.7) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 29% 56%,
-          rgba(50,221,183,.65) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 72% 49%,
-          rgba(247,240,214,.75) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 89% 57%,
-          rgba(255,90,159,.7) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 15% 79%,
-          rgba(224,184,98,.8) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 46% 71%,
-          rgba(247,240,214,.65) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 66% 84%,
-          rgba(50,221,183,.65) 0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 92% 81%,
-          rgba(247,240,214,.75) 0 1px,
-          transparent 2px
-        );
+        radial-gradient(circle at 4% 7%, rgba(247,240,214,.95) 0 1px, transparent 2px),
+        radial-gradient(circle at 13% 18%, rgba(50,221,183,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 22% 8%, rgba(247,240,214,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 31% 27%, rgba(255,90,159,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 38% 7%, rgba(247,240,214,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 52% 17%, rgba(50,221,183,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 62% 5%, rgba(247,240,214,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 73% 18%, rgba(255,90,159,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 84% 8%, rgba(247,240,214,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 8% 48%, rgba(247,240,214,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 29% 56%, rgba(50,221,183,.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 49%, rgba(247,240,214,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 89% 57%, rgba(255,90,159,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 15% 79%, rgba(224,184,98,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 71%, rgba(247,240,214,.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 66% 84%, rgba(50,221,183,.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 92% 81%, rgba(247,240,214,.75) 0 1px, transparent 2px);
     }
 
 
-    /* =========================================================
-       AURAS GRANDES DEL UNIVERSO
-    ========================================================= */
+    /* =========================
+       AURAS
+    ========================= */
 
     .universe-glow {
       position: fixed;
-
       border-radius: 50%;
-
       pointer-events: none;
-
-      filter: blur(120px);
-
+      filter: blur(125px);
       z-index: 0;
     }
 
     .universe-glow.teal {
-      width: 520px;
-      height: 520px;
-
+      width: 560px;
+      height: 560px;
       top: -190px;
-      left: -190px;
-
-      background:
-        rgba(50, 221, 183, 0.34);
+      left: -210px;
+      background: rgba(50, 221, 183, 0.36);
     }
 
     .universe-glow.pink {
-      width: 540px;
-      height: 540px;
-
-      top: 70px;
-      right: -230px;
-
-      background:
-        rgba(255, 90, 159, 0.30);
+      width: 580px;
+      height: 580px;
+      top: 60px;
+      right: -250px;
+      background: rgba(255, 90, 159, 0.33);
     }
 
     .universe-glow.gold {
-      width: 440px;
-      height: 440px;
-
-      bottom: -200px;
-      right: 8%;
-
-      background:
-        rgba(224, 184, 98, 0.18);
+      width: 460px;
+      height: 460px;
+      bottom: -210px;
+      right: 4%;
+      background: rgba(224, 184, 98, 0.20);
     }
 
 
-    /* =========================================================
-       ARCOS DE ENERGÍA
-    ========================================================= */
+    /* =========================
+       SENDEROS DE ENERGÍA
+    ========================= */
 
     .energy-ring {
       position: absolute;
-
       border-radius: 50%;
-
       pointer-events: none;
-
       z-index: 0;
     }
 
     .energy-ring.one {
-      width: 1150px;
+      width: 1200px;
       height: 340px;
-
-      top: 260px;
-      left: 50%;
-
-      transform:
-        translateX(-50%)
-        rotate(-7deg);
-
-      border:
-        2px solid
-        rgba(255, 90, 159, 0.24);
-
-      box-shadow:
-        0 0 18px rgba(255,90,159,.18),
-        inset 0 0 22px rgba(255,90,159,.08);
-    }
-
-    .energy-ring.two {
-      width: 980px;
-      height: 280px;
-
       top: 330px;
       left: 50%;
 
       transform:
         translateX(-50%)
-        rotate(8deg);
+        rotate(-8deg);
+
+      border:
+        2px solid
+        rgba(255, 90, 159, 0.25);
+
+      box-shadow:
+        0 0 22px rgba(255,90,159,.21),
+        inset 0 0 22px rgba(255,90,159,.07);
+    }
+
+    .energy-ring.two {
+      width: 1030px;
+      height: 300px;
+      top: 385px;
+      left: 50%;
+
+      transform:
+        translateX(-50%)
+        rotate(9deg);
 
       border:
         1px solid
-        rgba(50, 221, 183, 0.22);
+        rgba(50, 221, 183, 0.27);
 
       box-shadow:
-        0 0 22px rgba(50,221,183,.14);
+        0 0 25px rgba(50,221,183,.16);
     }
 
 
-    /* =========================================================
-       CONTENEDOR GENERAL
-    ========================================================= */
+    /* =========================
+       CONTENEDOR
+    ========================= */
 
     .page {
       width: min(100%, 1040px);
-
       margin: 0 auto;
-
-      padding:
-        40px
-        22px
-        90px;
-
+      padding: 38px 22px 90px;
       position: relative;
-
       z-index: 2;
     }
 
 
-    /* =========================================================
+    /* =========================
        HERO
-    ========================================================= */
+    ========================= */
 
     .hero {
-      min-height: 760px;
-
       display: flex;
-
       flex-direction: column;
-
       align-items: center;
-
-      justify-content: flex-start;
-
       text-align: center;
-
-      padding-top: 45px;
-
       position: relative;
+      padding-top: 35px;
     }
-
 
     .eyebrow {
       display: inline-block;
-
       position: relative;
+      z-index: 6;
 
-      z-index: 4;
+      margin-bottom: 15px;
 
-      margin-bottom: 16px;
-
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Cinzel", serif;
 
       font-size: 13px;
-
       font-weight: 800;
-
       letter-spacing: 6px;
 
       color: var(--gold);
@@ -425,14 +286,13 @@
 
       text-shadow:
         0 0 14px
-        rgba(224,184,98,.45);
+        rgba(224,184,98,.48);
 
       animation:
         eyebrowGlow
         4s ease-in-out
         infinite;
     }
-
 
     @keyframes eyebrowGlow {
 
@@ -442,27 +302,27 @@
 
         text-shadow:
           0 0 12px
-          rgba(224,184,98,.25);
+          rgba(224,184,98,.28);
       }
 
       50% {
         opacity: 1;
 
         text-shadow:
-          0 0 22px
-          rgba(224,184,98,.58);
+          0 0 24px
+          rgba(224,184,98,.68);
       }
     }
 
 
-    /* =========================================================
-       PORTAL DETRÁS DEL LOGO
-    ========================================================= */
+    /* =========================
+       PORTAL
+    ========================= */
 
     .portal {
       position: absolute;
 
-      top: 90px;
+      top: 80px;
       left: 50%;
 
       transform:
@@ -470,9 +330,9 @@
 
       width:
         clamp(
-          300px,
-          55vw,
-          600px
+          330px,
+          58vw,
+          650px
         );
 
       aspect-ratio: 1;
@@ -486,15 +346,12 @@
         radial-gradient(
           circle,
           rgba(247,240,214,.25) 0%,
-          rgba(50,221,183,.24) 8%,
-          rgba(50,221,183,.08) 25%,
-          transparent 56%
+          rgba(50,221,183,.27) 9%,
+          rgba(50,221,183,.10) 26%,
+          transparent 58%
         );
 
-      filter:
-        blur(4px);
-
-      opacity: .85;
+      opacity: .88;
 
       animation:
         portalPulse
@@ -502,30 +359,23 @@
         infinite;
     }
 
-
     .portal::before {
       content: "";
 
       position: absolute;
 
-      inset: 13%;
+      inset: 12%;
 
       border-radius: 50%;
 
       border:
         2px solid
-        rgba(50,221,183,.20);
+        rgba(50,221,183,.22);
 
       box-shadow:
-        0 0 25px rgba(50,221,183,.20),
-        inset 0 0 25px rgba(50,221,183,.13);
-
-      animation:
-        portalRotate
-        18s linear
-        infinite;
+        0 0 28px rgba(50,221,183,.23),
+        inset 0 0 28px rgba(50,221,183,.16);
     }
-
 
     .portal::after {
       content: "";
@@ -538,17 +388,11 @@
 
       border:
         1px solid
-        rgba(224,184,98,.22);
+        rgba(224,184,98,.28);
 
       box-shadow:
-        0 0 35px rgba(224,184,98,.12);
-
-      animation:
-        portalRotateReverse
-        13s linear
-        infinite;
+        0 0 38px rgba(224,184,98,.15);
     }
-
 
     @keyframes portalPulse {
 
@@ -558,104 +402,68 @@
           translateX(-50%)
           scale(.96);
 
-        opacity: .62;
+        opacity: .60;
       }
 
       50% {
         transform:
           translateX(-50%)
-          scale(1.05);
+          scale(1.06);
 
         opacity: 1;
       }
     }
 
 
-    @keyframes portalRotate {
-
-      from {
-        transform:
-          rotate(0deg);
-      }
-
-      to {
-        transform:
-          rotate(360deg);
-      }
-    }
-
-
-    @keyframes portalRotateReverse {
-
-      from {
-        transform:
-          rotate(360deg);
-      }
-
-      to {
-        transform:
-          rotate(0deg);
-      }
-    }
-
-
-    /* =========================================================
-       LOGO PRINCIPAL
-    ========================================================= */
+    /* =========================
+       LOGO
+    ========================= */
 
     .hero-logo-wrap {
       width: 100%;
 
-      max-width: 920px;
+      max-width: 930px;
 
       min-height:
         clamp(
-          260px,
-          43vw,
-          455px
+          290px,
+          46vw,
+          470px
         );
 
       display: flex;
 
       justify-content: center;
-
       align-items: center;
 
       position: relative;
 
-      z-index: 5;
+      z-index: 6;
 
-      margin:
-        0 auto
-        0;
-
-      background: transparent;
-
-      border: none;
+      margin: 0 auto;
 
       overflow: visible;
     }
 
-
     .hero-logo-shadow {
       position: absolute;
 
-      bottom: 35px;
+      bottom: 28px;
       left: 50%;
 
       transform:
         translateX(-50%);
 
       width: 58%;
-      height: 28px;
+      height: 30px;
 
       border-radius: 50%;
 
       background:
-        rgba(0,0,0,.75);
+        rgba(0,0,0,.78);
 
       filter:
-        blur(20px);
+        blur(21px);
 
       animation:
         shadowFloat
@@ -663,17 +471,16 @@
         infinite;
     }
 
-
     .hero-logo {
       display: block;
 
-      width: min(100%, 900px);
+      width: min(100%, 920px);
 
       height: auto;
 
       position: relative;
 
-      z-index: 4;
+      z-index: 7;
 
       object-fit: contain;
 
@@ -685,29 +492,27 @@
       filter:
 
         drop-shadow(
-          0 15px 12px
+          0 18px 15px
           rgba(0,0,0,.55)
         )
 
         drop-shadow(
-          0 0 16px
-          rgba(255,90,159,.34)
+          0 0 17px
+          rgba(255,90,159,.38)
         )
 
         drop-shadow(
-          0 0 24px
-          rgba(50,221,183,.30)
+          0 0 27px
+          rgba(50,221,183,.34)
         )
 
         drop-shadow(
-          0 0 32px
-          rgba(224,184,98,.18)
+          0 0 34px
+          rgba(224,184,98,.22)
         );
 
-      will-change:
-        transform;
+      will-change: transform;
     }
-
 
     @keyframes logoFloat {
 
@@ -720,11 +525,10 @@
 
       50% {
         transform:
-          translateY(-15px)
-          scale(1.018);
+          translateY(-17px)
+          scale(1.02);
       }
     }
-
 
     @keyframes shadowFloat {
 
@@ -734,36 +538,33 @@
           translateX(-50%)
           scaleX(1);
 
-        opacity: .52;
+        opacity: .56;
       }
 
       50% {
         transform:
           translateX(-50%)
-          scaleX(.82);
+          scaleX(.80);
 
-        opacity: .28;
+        opacity: .27;
       }
     }
 
 
-    /* =========================================================
+    /* =========================
        TEXTO HERO
-    ========================================================= */
+    ========================= */
 
     .subtitle {
       position: relative;
 
-      z-index: 5;
+      z-index: 6;
 
-      max-width: 730px;
+      max-width: 760px;
 
-      margin:
-        -10px auto
-        0;
+      margin: -15px auto 0;
 
-      padding:
-        0 18px;
+      padding: 0 18px;
 
       font-size:
         clamp(
@@ -774,26 +575,22 @@
 
       line-height: 1.7;
 
-      color:
-        var(--text-soft);
+      color: var(--text-soft);
 
       text-shadow:
-        0 2px 8px
-        rgba(0,0,0,.9);
+        0 3px 10px
+        rgba(0,0,0,.95);
     }
-
 
     .subtitle strong {
-      color:
-        var(--ivory);
-
-      font-weight: 800;
+      color: var(--ivory);
+      font-weight: 900;
     }
 
 
-    /* =========================================================
+    /* =========================
        BOTONES PRINCIPALES
-    ========================================================= */
+    ========================= */
 
     .main-buttons {
       width: 100%;
@@ -802,25 +599,23 @@
 
       gap: 15px;
 
-      margin-top: 42px;
+      margin-top: 44px;
 
       position: relative;
 
-      z-index: 5;
+      z-index: 7;
     }
-
 
     .btn {
       width: 100%;
 
-      min-height: 92px;
+      min-height: 94px;
 
       display: flex;
 
       align-items: center;
 
-      justify-content:
-        space-between;
+      justify-content: space-between;
 
       gap: 18px;
 
@@ -828,11 +623,9 @@
 
       overflow: hidden;
 
-      padding:
-        19px
-        24px;
+      padding: 19px 24px;
 
-      border-radius: 19px;
+      border-radius: 20px;
 
       text-decoration: none;
 
@@ -840,36 +633,34 @@
 
       border:
         1px solid
-        rgba(224,184,98,.28);
+        rgba(224,184,98,.30);
 
       background:
 
         linear-gradient(
           110deg,
           rgba(22,20,30,.97),
-          rgba(7,12,16,.96)
+          rgba(7,12,16,.97)
         );
 
       box-shadow:
 
-        0 18px 42px
-        rgba(0,0,0,.48),
+        0 18px 44px
+        rgba(0,0,0,.52),
 
         inset 0 1px 0
         rgba(255,255,255,.055),
 
         inset 0 -1px 0
-        rgba(0,0,0,.65);
+        rgba(0,0,0,.7);
 
-      backdrop-filter:
-        blur(14px);
+      backdrop-filter: blur(14px);
 
       transition:
         transform .25s ease,
         border-color .25s ease,
         box-shadow .25s ease;
     }
-
 
     .btn::before {
       content: "";
@@ -880,23 +671,22 @@
 
       pointer-events: none;
 
-      opacity: .75;
+      opacity: .86;
 
       background:
 
         radial-gradient(
-          circle at 5% 50%,
-          rgba(255,90,159,.16),
+          circle at 4% 50%,
+          rgba(255,90,159,.18),
           transparent 28%
         ),
 
         radial-gradient(
-          circle at 95% 50%,
-          rgba(50,221,183,.13),
+          circle at 96% 50%,
+          rgba(50,221,183,.17),
           transparent 30%
         );
     }
-
 
     .btn::after {
       content: "";
@@ -918,7 +708,7 @@
         linear-gradient(
           90deg,
           transparent,
-          rgba(247,240,214,.12),
+          rgba(247,240,214,.14),
           transparent
         );
 
@@ -926,59 +716,44 @@
         left .6s ease;
     }
 
-
     .btn:hover {
       transform:
         translateY(-4px)
-        scale(1.006);
+        scale(1.007);
 
       border-color:
-        rgba(224,184,98,.55);
+        rgba(224,184,98,.64);
 
       box-shadow:
 
-        0 22px 55px
-        rgba(0,0,0,.58),
+        0 24px 58px
+        rgba(0,0,0,.62),
+
+        0 0 28px
+        rgba(50,221,183,.14),
 
         0 0 25px
-        rgba(50,221,183,.11),
-
-        0 0 20px
-        rgba(255,90,159,.10);
+        rgba(255,90,159,.12);
     }
-
 
     .btn:hover::after {
       left: 115%;
     }
 
-
     .btn.primary {
       border-color:
-        rgba(224,184,98,.46);
+        rgba(224,184,98,.52);
 
       background:
 
         linear-gradient(
           100deg,
-          rgba(255,90,159,.17),
-          rgba(16,16,23,.97) 40%,
-          rgba(11,20,20,.96) 72%,
-          rgba(50,221,183,.18)
+          rgba(255,90,159,.22),
+          rgba(16,16,23,.98) 40%,
+          rgba(11,20,20,.97) 72%,
+          rgba(50,221,183,.22)
         );
-
-      box-shadow:
-
-        0 20px 52px
-        rgba(0,0,0,.52),
-
-        0 0 22px
-        rgba(255,90,159,.08),
-
-        0 0 24px
-        rgba(50,221,183,.08);
     }
-
 
     .btn-left {
       display: flex;
@@ -991,7 +766,6 @@
 
       z-index: 2;
     }
-
 
     .icon {
       width: 52px;
@@ -1013,116 +787,91 @@
 
         linear-gradient(
           145deg,
-          rgba(224,184,98,.17),
-          rgba(255,90,159,.06)
+          rgba(224,184,98,.20),
+          rgba(255,90,159,.07)
         );
 
       border:
         1px solid
-        rgba(224,184,98,.27);
-
-      box-shadow:
-
-        inset 0 0 15px
-        rgba(224,184,98,.05),
-
-        0 0 16px
-        rgba(224,184,98,.04);
+        rgba(224,184,98,.31);
     }
-
 
     .btn-text {
       text-align: left;
     }
 
-
     .btn-title {
       display: block;
 
-      font-size:
-        16px;
+      font-size: 16px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      color:
-        var(--ivory);
+      color: var(--ivory);
 
-      letter-spacing:
-        .4px;
+      letter-spacing: .4px;
     }
-
 
     .btn-sub {
       display: block;
 
-      margin-top:
-        5px;
+      margin-top: 5px;
 
-      font-size:
-        12px;
+      font-size: 12px;
 
-      color:
-        #c9c1b3;
+      color: #c9c1b3;
     }
-
 
     .arrow {
       position: relative;
 
       z-index: 2;
 
-      font-size:
-        26px;
+      font-size: 27px;
 
-      color:
-        var(--teal);
+      color: var(--teal);
 
       text-shadow:
-        0 0 12px
-        rgba(50,221,183,.5);
+        0 0 14px
+        rgba(50,221,183,.60);
     }
 
 
-    /* =========================================================
-       CONTENIDO
-    ========================================================= */
+    /* =========================
+       SECCIONES
+    ========================= */
 
     .section {
       position: relative;
 
       overflow: hidden;
 
-      margin-top: 32px;
+      margin-top: 34px;
 
-      padding:
-        32px
-        28px;
+      padding: 32px 28px;
 
-      border-radius:
-        23px;
+      border-radius: 23px;
 
       background:
 
         linear-gradient(
           135deg,
-          rgba(17,17,24,.94),
-          rgba(6,7,11,.96)
+          rgba(17,17,24,.95),
+          rgba(6,7,11,.97)
         );
 
       border:
         1px solid
-        rgba(224,184,98,.21);
+        rgba(224,184,98,.24);
 
       box-shadow:
 
-        0 20px 48px
-        rgba(0,0,0,.46),
+        0 20px 50px
+        rgba(0,0,0,.50),
 
         inset 0 1px 0
-        rgba(255,255,255,.035);
+        rgba(255,255,255,.04);
     }
-
 
     .section::before {
       content: "";
@@ -1137,17 +886,16 @@
 
         radial-gradient(
           circle at 0% 0%,
-          rgba(50,221,183,.08),
-          transparent 35%
+          rgba(50,221,183,.11),
+          transparent 37%
         ),
 
         radial-gradient(
           circle at 100% 100%,
-          rgba(255,90,159,.07),
-          transparent 32%
+          rgba(255,90,159,.10),
+          transparent 34%
         );
     }
-
 
     .section-label {
       position: relative;
@@ -1156,38 +904,29 @@
 
       margin-bottom: 11px;
 
-      font-size:
-        11px;
+      font-size: 11px;
 
-      font-weight:
-        900;
+      font-weight: 900;
 
-      letter-spacing:
-        4px;
+      letter-spacing: 4px;
 
-      color:
-        var(--teal);
+      color: var(--teal);
 
-      text-transform:
-        uppercase;
+      text-transform: uppercase;
 
       text-shadow:
-        0 0 10px
-        rgba(50,221,183,.35);
+        0 0 11px
+        rgba(50,221,183,.42);
     }
-
 
     .section h2 {
       position: relative;
 
       z-index: 2;
 
-      margin-bottom:
-        13px;
+      margin-bottom: 13px;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Cinzel", serif;
 
       font-size:
         clamp(
@@ -1196,40 +935,33 @@
           31px
         );
 
-      line-height:
-        1.25;
+      line-height: 1.25;
 
-      color:
-        var(--gold);
+      color: var(--gold);
 
       text-shadow:
         0 2px 14px
         rgba(0,0,0,.9);
     }
 
-
     .section p {
       position: relative;
 
       z-index: 2;
 
-      max-width:
-        790px;
+      max-width: 790px;
 
-      color:
-        var(--text-soft);
+      color: var(--text-soft);
 
-      font-size:
-        15px;
+      font-size: 15px;
 
-      line-height:
-        1.75;
+      line-height: 1.75;
     }
 
 
-    /* =========================================================
+    /* =========================
        FEATURES
-    ========================================================= */
+    ========================= */
 
     .features {
       display: grid;
@@ -1239,96 +971,70 @@
 
       gap: 13px;
 
-      margin-top:
-        24px;
+      margin-top: 24px;
     }
-
 
     .feature {
       position: relative;
 
       z-index: 2;
 
-      padding:
-        20px
-        12px;
+      padding: 20px 12px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      border-radius:
-        17px;
+      border-radius: 17px;
 
       background:
 
         linear-gradient(
           145deg,
-          rgba(247,240,214,.055),
-          rgba(247,240,214,.018)
+          rgba(247,240,214,.06),
+          rgba(247,240,214,.02)
         );
 
       border:
         1px solid
-        rgba(224,184,98,.14);
+        rgba(224,184,98,.17);
     }
-
 
     .feature strong {
       display: block;
 
-      margin-bottom:
-        5px;
+      margin-bottom: 5px;
 
-      font-size:
-        14px;
+      font-size: 14px;
 
-      color:
-        var(--ivory);
+      color: var(--ivory);
     }
-
 
     .feature span {
-      font-size:
-        11px;
-
-      color:
-        #bfb6a6;
+      font-size: 11px;
+      color: #bfb6a6;
     }
 
 
-    /* =========================================================
-       REDES
-    ========================================================= */
+    /* =========================
+       REDES + WHATSAPP
+    ========================= */
 
     .social-title {
-      margin:
-        44px
-        0
-        16px;
+      margin: 48px 0 17px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      font-family:
-        "Cinzel",
-        serif;
+      font-family: "Cinzel", serif;
 
-      font-size:
-        11px;
+      font-size: 11px;
 
-      font-weight:
-        800;
+      font-weight: 800;
 
-      letter-spacing:
-        4px;
+      letter-spacing: 4px;
 
-      color:
-        var(--gold);
+      color: var(--gold);
 
-      text-transform:
-        uppercase;
+      text-transform: uppercase;
     }
-
 
     .socials {
       display: grid;
@@ -1336,127 +1042,164 @@
       grid-template-columns:
         repeat(2, 1fr);
 
-      gap:
-        11px;
+      gap: 12px;
     }
 
-
     .social {
-      padding:
-        17px;
+      position: relative;
 
-      border-radius:
-        15px;
+      overflow: hidden;
 
-      text-decoration:
-        none;
+      padding: 18px;
 
-      text-align:
-        center;
+      border-radius: 16px;
 
-      color:
-        var(--ivory);
+      text-decoration: none;
 
-      font-size:
-        13px;
+      text-align: center;
 
-      font-weight:
-        900;
+      color: var(--ivory);
 
-      letter-spacing:
-        .6px;
+      font-size: 13px;
+
+      font-weight: 900;
+
+      letter-spacing: .6px;
 
       background:
 
         linear-gradient(
           145deg,
-          rgba(22,21,29,.92),
-          rgba(7,7,10,.96)
+          rgba(22,21,29,.94),
+          rgba(7,7,10,.97)
         );
 
       border:
         1px solid
-        rgba(224,184,98,.18);
+        rgba(224,184,98,.20);
 
       box-shadow:
         0 14px 32px
-        rgba(0,0,0,.28);
+        rgba(0,0,0,.32);
 
       transition:
-        .22s ease;
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
     }
-
 
     .social:hover {
       transform:
         translateY(-3px);
 
       border-color:
-        rgba(50,221,183,.45);
+        rgba(50,221,183,.50);
 
       box-shadow:
-        0 18px 36px
-        rgba(0,0,0,.4),
-        0 0 18px
-        rgba(50,221,183,.08);
+        0 18px 38px
+        rgba(0,0,0,.43),
+        0 0 20px
+        rgba(50,221,183,.10);
     }
 
 
-    /* =========================================================
+    /* CANAL WHATSAPP */
+
+    .social.channel {
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(50,221,183,.08),
+          rgba(15,17,22,.97)
+        );
+
+      border-color:
+        rgba(50,221,183,.27);
+    }
+
+
+    /* CONTACTO WHATSAPP */
+
+    .social.whatsapp {
+      background:
+
+        linear-gradient(
+          110deg,
+          rgba(50,221,183,.25),
+          rgba(10,18,18,.97)
+        );
+
+      border-color:
+        rgba(50,221,183,.52);
+
+      color:
+        var(--ivory);
+
+      box-shadow:
+
+        0 15px 36px
+        rgba(0,0,0,.38),
+
+        0 0 20px
+        rgba(50,221,183,.10);
+    }
+
+    .social.whatsapp:hover {
+      border-color: var(--teal);
+
+      transform:
+        translateY(-4px)
+        scale(1.01);
+
+      box-shadow:
+
+        0 20px 44px
+        rgba(0,0,0,.48),
+
+        0 0 30px
+        rgba(50,221,183,.22);
+    }
+
+
+    /* =========================
        FOOTER
-    ========================================================= */
+    ========================= */
 
     footer {
-      margin-top:
-        58px;
+      margin-top: 58px;
 
-      padding-top:
-        12px;
+      padding-top: 12px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      color:
-        #928b80;
+      color: #928b80;
 
-      font-size:
-        11px;
+      font-size: 11px;
 
-      letter-spacing:
-        1.2px;
+      letter-spacing: 1.2px;
     }
-
 
     .status {
-      display:
-        inline-flex;
+      display: inline-flex;
 
-      align-items:
-        center;
+      align-items: center;
 
-      gap:
-        8px;
+      gap: 8px;
 
-      margin-top:
-        12px;
+      margin-top: 12px;
 
-      color:
-        #b7ae9e;
+      color: #b7ae9e;
     }
 
-
     .dot {
-      width:
-        8px;
+      width: 8px;
 
-      height:
-        8px;
+      height: 8px;
 
-      border-radius:
-        50%;
+      border-radius: 50%;
 
-      background:
-        var(--teal);
+      background: var(--teal);
 
       box-shadow:
         0 0 15px
@@ -1464,129 +1207,84 @@
     }
 
 
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
+    /* =========================
+       CELULAR
+    ========================= */
 
     @media (max-width: 700px) {
 
       .page {
         padding:
-          24px
+          23px
           14px
           70px;
       }
 
-
       .hero {
-        min-height:
-          auto;
-
-        padding-top:
-          30px;
+        padding-top: 28px;
       }
-
 
       .eyebrow {
-        font-size:
-          10px;
-
-        letter-spacing:
-          4px;
+        font-size: 10px;
+        letter-spacing: 4px;
+        margin-bottom: 10px;
       }
-
 
       .hero-logo-wrap {
-        min-height:
-          250px;
+        min-height: 260px;
       }
-
 
       .hero-logo {
-        width:
-          110%;
-        max-width:
-          none;
+        width: 112%;
+        max-width: none;
       }
-
 
       .portal {
-        top:
-          70px;
-
-        width:
-          340px;
+        top: 58px;
+        width: 360px;
       }
-
 
       .subtitle {
-        margin-top:
-          -5px;
-
-        font-size:
-          16px;
+        margin-top: -5px;
+        font-size: 16px;
       }
-
 
       .main-buttons {
-        margin-top:
-          32px;
+        margin-top: 32px;
       }
-
 
       .btn {
-        min-height:
-          84px;
-
-        padding:
-          16px
-          17px;
+        min-height: 84px;
+        padding: 16px 17px;
       }
-
 
       .icon {
-        width:
-          46px;
-
-        height:
-          46px;
+        width: 46px;
+        height: 46px;
       }
-
 
       .btn-title {
-        font-size:
-          14px;
+        font-size: 14px;
       }
-
 
       .features {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
-
 
       .socials {
-        grid-template-columns:
-          1fr;
+        grid-template-columns: 1fr;
       }
-
 
       .section {
-        padding:
-          26px
-          20px;
+        padding: 26px 20px;
       }
-
 
       .energy-ring.one {
-        width:
-          700px;
+        width: 700px;
       }
 
-
       .energy-ring.two {
-        width:
-          600px;
+        width: 620px;
       }
     }
 
@@ -1614,14 +1312,14 @@
 <body>
 
 
-  <!-- AURAS DEL UNIVERSO -->
+  <!-- AURAS -->
 
   <div class="universe-glow teal"></div>
   <div class="universe-glow pink"></div>
   <div class="universe-glow gold"></div>
 
 
-  <!-- SENDEROS ENTRE MUNDOS -->
+  <!-- SENDEROS -->
 
   <div class="energy-ring one"></div>
   <div class="energy-ring two"></div>
@@ -1630,11 +1328,12 @@
   <main class="page">
 
 
-    <!-- =====================================================
+    <!-- =========================
          HERO
-    ====================================================== -->
+    ========================== -->
 
     <section class="hero">
+
 
       <div class="eyebrow">
         WELCOME TO THE UNIVERSE
@@ -1649,7 +1348,7 @@
         <div class="hero-logo-shadow"></div>
 
         <img
-          src="./kissing-fight-logo.png"
+          src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="hero-logo"
         >
@@ -1660,6 +1359,7 @@
       <p class="subtitle">
 
         Un
+
         <strong>
           Match-3 competitivo
         </strong>
@@ -1667,6 +1367,7 @@
         con ranking, comunidad y una identidad propia.
 
         Un universo con
+
         <strong>
           más de un mundo por descubrir.
         </strong>
@@ -1674,7 +1375,7 @@
       </p>
 
 
-      <!-- BOTONES -->
+      <!-- BOTONES PRINCIPALES -->
 
       <div class="main-buttons">
 
@@ -1711,6 +1412,7 @@
         </a>
 
 
+
         <a
           class="btn"
           href="#comunidad"
@@ -1741,6 +1443,7 @@
           </span>
 
         </a>
+
 
 
         <a
@@ -1777,13 +1480,14 @@
 
       </div>
 
+
     </section>
 
 
 
-    <!-- =====================================================
+    <!-- =========================
          JUEGO
-    ====================================================== -->
+    ========================== -->
 
     <section
       class="section"
@@ -1853,13 +1557,14 @@
 
       </div>
 
+
     </section>
 
 
 
-    <!-- =====================================================
+    <!-- =========================
          COMUNIDAD
-    ====================================================== -->
+    ========================== -->
 
     <section
       class="section"
@@ -1888,9 +1593,9 @@
 
 
 
-    <!-- =====================================================
+    <!-- =========================
          INVERSORES
-    ====================================================== -->
+    ========================== -->
 
     <section
       class="section"
@@ -1919,55 +1624,73 @@
 
 
 
-    <!-- =====================================================
-         REDES
-    ====================================================== -->
+    <!-- =========================
+         REDES + WHATSAPP
+    ========================== -->
 
     <div class="social-title">
-      SEGUÍ EL UNIVERSO
+      ENTRÁ AL UNIVERSO
     </div>
 
 
     <div class="socials">
 
+
+      <!-- INSTAGRAM -->
+
       <a
         class="social"
-        href="#"
+        href="TU_LINK_DE_INSTAGRAM"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         INSTAGRAM
       </a>
 
 
+      <!-- TIKTOK -->
+
       <a
         class="social"
-        href="#"
+        href="TU_LINK_DE_TIKTOK"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         TIKTOK
       </a>
 
 
+      <!-- CANAL DE WHATSAPP -->
+
       <a
-        class="social"
-        href="#"
+        class="social channel"
+        href="TU_LINK_DEL_CANAL_DE_WHATSAPP"
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        YOUTUBE
+        CANAL DE WHATSAPP
       </a>
 
 
+      <!-- WHATSAPP DIRECTO -->
+
       <a
-        class="social"
-        href="#"
+        class="social whatsapp"
+        href="TU_LINK_DE_CONTACTO_WHATSAPP"
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        KICK
+        CONTACTANOS POR WHATSAPP
       </a>
+
 
     </div>
 
 
 
-    <!-- =====================================================
+    <!-- =========================
          FOOTER
-    ====================================================== -->
+    ========================== -->
 
     <footer>
 
