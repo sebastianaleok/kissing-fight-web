@@ -3,22 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Kissing Fight</title>
-
-  <meta
-    name="description"
-    content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
-  />
-
+<meta
+ name="description"
+ content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
+/>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   />
-
   <style>
     :root {
       --pink: #ff5a9f;
@@ -75,6 +70,12 @@
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
+
+      /*
+        IMPORTANTE:
+        No tiene overlays, filtros, opacidad ni gradientes.
+        La imagen se muestra con sus colores originales.
+      */
     }
 
     /* =========================================================
@@ -96,10 +97,14 @@
 
     .twinkle-star {
       position: absolute;
+
       width: var(--star-size);
       height: var(--star-size);
+
       border-radius: 50%;
+
       background: rgba(255,255,255,.98);
+
       opacity: 0;
 
       box-shadow:
@@ -117,11 +122,16 @@
     .twinkle-star::before,
     .twinkle-star::after {
       content: "";
+
       position: absolute;
+
       left: 50%;
       top: 50%;
+
       transform: translate(-50%, -50%);
+
       border-radius: 999px;
+
       opacity: .7;
     }
 
@@ -182,10 +192,14 @@
 
     .shooting-star {
       position: absolute;
+
       width: 2px;
       height: 2px;
+
       border-radius: 50%;
+
       background: rgba(255,255,255,.95);
+
       opacity: 0;
 
       filter:
@@ -203,12 +217,17 @@
 
     .shooting-star::before {
       content: "";
+
       position: absolute;
+
       right: 1px;
       top: 50%;
+
       width: var(--shoot-tail);
       height: 1px;
+
       transform: translateY(-50%);
+
       border-radius: 999px;
 
       background:
@@ -323,8 +342,11 @@
 
     .portal::before {
       content: "";
+
       position: absolute;
+
       inset: 12%;
+
       border-radius: 50%;
 
       border:
@@ -338,8 +360,11 @@
 
     .portal::after {
       content: "";
+
       position: absolute;
+
       inset: 22%;
+
       border-radius: 50%;
 
       border:
@@ -467,520 +492,75 @@
     }
 
     /* =========================================================
-       TRES BOTONES PRINCIPALES — RENDER CRISTAL / REINO
+       BOTONES PRINCIPALES — IMÁGENES RENDERIZADAS
        ========================================================= */
 
-    .btn,
-    .btn-button {
-      --btn-accent: #19eaff;
-      --btn-accent-rgb: 25,234,255;
-      --btn-accent-2: #32ddb7;
-      --btn-accent-2-rgb: 50,221,183;
-      --btn-title-top: #fff8e7;
-      --btn-title-mid: #ffd995;
-      --btn-title-bottom: #b8791c;
-
+    .image-button {
       width: 100%;
-      min-height: 94px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      aspect-ratio: 7 / 1;
+      display: block;
       position: relative;
-      isolation: isolate;
       overflow: hidden;
-      padding: 19px 24px;
-      border-radius: 20px;
-      color: var(--ivory);
-      text-decoration: none;
-
-      border:
-        1px solid
-        var(--btn-accent);
-
-      clip-path:
-        polygon(
-          1.8% 0,
-          98.2% 0,
-          100% 18%,
-          100% 82%,
-          98.2% 100%,
-          1.8% 100%,
-          0 82%,
-          0 18%
-        );
-
-      background:
-        radial-gradient(
-          circle at 11% 50%,
-          rgba(var(--btn-accent-rgb),.24),
-          transparent 21%
-        ),
-        radial-gradient(
-          circle at 89% 30%,
-          rgba(var(--btn-accent-2-rgb),.12),
-          transparent 28%
-        ),
-        linear-gradient(
-          110deg,
-          rgba(2,23,29,.97),
-          rgba(4,11,17,.985) 48%,
-          rgba(3,9,15,.99)
-        );
-
-      box-shadow:
-        0 18px 44px rgba(0,0,0,.52),
-        0 0 0 2px rgba(0,0,0,.72),
-        0 0 0 4px rgba(var(--btn-accent-rgb),.16),
-        0 0 24px rgba(var(--btn-accent-rgb),.22),
-        inset 0 1px 0 rgba(255,255,255,.10),
-        inset 0 -1px 0 rgba(var(--btn-accent-rgb),.28),
-        inset 0 0 28px rgba(0,0,0,.40);
-
-      transition:
-        transform .25s ease,
-        filter .25s ease,
-        box-shadow .25s ease;
-    }
-
-    .btn-button {
-      font: inherit;
-      cursor: pointer;
-      text-align: left;
-      appearance: none;
-    }
-
-    .btn::before,
-    .btn-button::before {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      z-index: 0;
-      pointer-events: none;
-      clip-path: inherit;
-
-      border:
-        1px solid
-        rgba(var(--btn-accent-rgb),.58);
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent 0 5%,
-          rgba(255,255,255,.12) 5.2%,
-          transparent 5.5% 94%,
-          rgba(255,255,255,.10) 94.2%,
-          transparent 94.5%
-        ),
-        repeating-linear-gradient(
-          126deg,
-          transparent 0 62px,
-          rgba(var(--btn-accent-rgb),.055) 63px 65px,
-          transparent 66px 126px
-        ),
-        radial-gradient(
-          ellipse at 50% 0%,
-          rgba(255,255,255,.11),
-          transparent 32%
-        );
-
-      opacity: .95;
-    }
-
-    .btn::after,
-    .btn-button::after {
-      content: "";
-      position: absolute;
-      left: 3.5%;
-      right: 3.5%;
-      top: 4px;
-      bottom: 4px;
-      z-index: 1;
-      pointer-events: none;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,.70);
-
-      border-bottom:
-        1px solid
-        rgba(var(--btn-accent-rgb),.88);
-
-      box-shadow:
-        0 -3px 12px rgba(var(--btn-accent-rgb),.34),
-        0 3px 12px rgba(var(--btn-accent-rgb),.24);
-
-      opacity: .72;
-    }
-
-    .btn:hover,
-    .btn-button:hover,
-    .btn:focus-visible,
-    .btn-button:focus-visible {
-      transform: translateY(-4px);
-      filter: brightness(1.10) saturate(1.08);
-      outline: none;
-
-      box-shadow:
-        0 24px 58px rgba(0,0,0,.62),
-        0 0 0 2px rgba(0,0,0,.72),
-        0 0 0 4px rgba(var(--btn-accent-rgb),.26),
-        0 0 34px rgba(var(--btn-accent-rgb),.36),
-        inset 0 1px 0 rgba(255,255,255,.15),
-        inset 0 0 32px rgba(var(--btn-accent-rgb),.06);
-    }
-
-    .btn.primary {
-      --btn-accent: #19eaff;
-      --btn-accent-rgb: 25,234,255;
-      --btn-accent-2: #32ddb7;
-      --btn-accent-2-rgb: 50,221,183;
-      --btn-title-top: #fff9e8;
-      --btn-title-mid: #ffd999;
-      --btn-title-bottom: #b67618;
-
-      background:
-        radial-gradient(
-          circle at 11% 50%,
-          rgba(25,234,255,.24),
-          transparent 21%
-        ),
-        radial-gradient(
-          circle at 88% 30%,
-          rgba(50,221,183,.13),
-          transparent 29%
-        ),
-        linear-gradient(
-          110deg,
-          rgba(2,29,35,.98),
-          rgba(3,13,20,.99) 52%,
-          rgba(3,10,17,.99)
-        );
-    }
-
-    .btn-button.community-cta {
-      --btn-accent: #ff3bcf;
-      --btn-accent-rgb: 255,59,207;
-      --btn-accent-2: #ff5a9f;
-      --btn-accent-2-rgb: 255,90,159;
-      --btn-title-top: #fff3fa;
-      --btn-title-mid: #ffc6e8;
-      --btn-title-bottom: #b45b91;
-
-      background:
-        radial-gradient(
-          circle at 11% 50%,
-          rgba(255,59,207,.27),
-          transparent 22%
-        ),
-        radial-gradient(
-          circle at 88% 30%,
-          rgba(255,90,159,.16),
-          transparent 29%
-        ),
-        linear-gradient(
-          110deg,
-          rgba(54,4,47,.98),
-          rgba(29,4,32,.99) 52%,
-          rgba(20,3,26,.99)
-        );
-    }
-
-    .btn-button.investor-cta {
-      --btn-accent: #ffca45;
-      --btn-accent-rgb: 255,202,69;
-      --btn-accent-2: #e0b862;
-      --btn-accent-2-rgb: 224,184,98;
-      --btn-title-top: #fff7dc;
-      --btn-title-mid: #ffd777;
-      --btn-title-bottom: #a66a13;
-
-      background:
-        radial-gradient(
-          circle at 11% 50%,
-          rgba(255,202,69,.22),
-          transparent 22%
-        ),
-        radial-gradient(
-          circle at 88% 30%,
-          rgba(224,184,98,.14),
-          transparent 29%
-        ),
-        linear-gradient(
-          110deg,
-          rgba(43,27,5,.98),
-          rgba(18,13,6,.99) 52%,
-          rgba(14,10,5,.99)
-        );
-    }
-
-    .btn-left {
-      display: flex;
-      align-items: center;
-      gap: 17px;
-      min-width: 0;
-      position: relative;
-      z-index: 3;
-    }
-
-    .icon {
-      width: 72px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      position: relative;
-      overflow: visible;
-      color: var(--gold);
-      background: transparent;
+      padding: 0;
+      margin: 0;
       border: 0;
-    }
-
-    .icon::before {
-      content: "";
-      position: absolute;
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(var(--btn-accent-rgb),.16),
-          transparent 67%
-        );
-
-      border:
-        1px solid
-        rgba(var(--btn-accent-rgb),.42);
-
-      box-shadow:
-        0 0 12px rgba(var(--btn-accent-rgb),.45),
-        0 0 24px rgba(var(--btn-accent-rgb),.16),
-        inset 0 0 12px rgba(var(--btn-accent-rgb),.10);
-    }
-
-    .icon::after {
-      content: "";
-      position: absolute;
-      width: 86px;
-      height: 1px;
-      left: -7px;
-      top: 50%;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(var(--btn-accent-rgb),.58),
-          transparent
-        );
-
-      box-shadow:
-        0 0 7px
-        rgba(var(--btn-accent-rgb),.42);
-    }
-
-    .button-art {
-      position: relative;
-      z-index: 2;
-      width: 72px;
-      height: 58px;
-      overflow: visible;
-
-      filter:
-        drop-shadow(0 3px 3px rgba(0,0,0,.70))
-        drop-shadow(0 0 4px rgba(var(--btn-accent-rgb),.92))
-        drop-shadow(0 0 9px rgba(var(--btn-accent-rgb),.42));
-    }
-
-    .btn-text {
-      text-align: center;
-      min-width: 0;
-    }
-
-    .btn-title {
-      display: block;
-      font-family: "Cinzel", serif;
-      font-size: clamp(18px,2.25vw,25px);
-      line-height: 1.05;
-      font-weight: 800;
-      letter-spacing: .015em;
-      text-transform: uppercase;
-
-      background:
-        linear-gradient(
-          180deg,
-          var(--btn-title-top) 0%,
-          var(--btn-title-mid) 52%,
-          var(--btn-title-bottom) 100%
-        );
-
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-
-      -webkit-text-stroke:
-        .35px rgba(69,38,5,.54);
-
-      text-shadow:
-        0 1px 0 rgba(83,49,7,.58),
-        0 0 12px rgba(255,220,145,.10);
-    }
-
-    .community-cta .btn-title {
-      font-size: clamp(16px,1.85vw,22px);
-
-      -webkit-text-stroke:
-        .3px rgba(80,18,57,.42);
-
-      text-shadow:
-        0 0 13px rgba(255,59,207,.14);
-    }
-
-    .investor-cta .btn-title {
-      font-size: clamp(17px,2vw,23px);
-    }
-
-    .btn-sub {
-      display: block;
-      position: relative;
-      margin-top: 9px;
-      color: rgba(232,245,241,.94);
-      font-size: 12px;
-      letter-spacing: .02em;
-
-      text-shadow:
-        0 2px 4px rgba(0,0,0,.55);
-    }
-
-    .btn-sub::before {
-      content: "";
-      position: absolute;
-      left: 10%;
-      right: 10%;
-      top: -5px;
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(var(--btn-accent-rgb),.50),
-          transparent
-        );
-
-      box-shadow:
-        0 0 6px
-        rgba(var(--btn-accent-rgb),.24);
-    }
-
-    .arrow {
-      position: relative;
-      z-index: 3;
-      width: 50px;
-      height: 50px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      border-radius: 50%;
-      color: #fffef0;
-      font-size: 27px;
-      line-height: 1;
-
-      border:
-        2px solid
-        var(--btn-accent);
-
-      background:
-        radial-gradient(
-          circle at 42% 38%,
-          rgba(255,255,255,.10),
-          rgba(0,0,0,.82) 64%
-        );
-
-      box-shadow:
-        0 0 0 3px rgba(0,0,0,.54),
-        0 0 13px rgba(var(--btn-accent-rgb),.78),
-        0 0 24px rgba(var(--btn-accent-rgb),.22),
-        inset 0 0 12px rgba(var(--btn-accent-rgb),.13);
-
+      border-radius: 0;
+      background: transparent;
+      color: inherit;
+      text-decoration: none;
+      appearance: none;
+      cursor: pointer;
+      font: inherit;
+      line-height: 0;
       transition:
         transform .24s ease,
-        box-shadow .24s ease;
+        filter .24s ease;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .arrow::before {
-      content: "";
+    .image-button img {
       position: absolute;
-      inset: -6px;
-      border-radius: 50%;
-
-      border:
-        1px solid
-        rgba(var(--btn-accent-rgb),.36);
-
-      box-shadow:
-        0 0 10px
-        rgba(var(--btn-accent-rgb),.20);
-    }
-
-    .btn:hover .arrow,
-    .btn-button:hover .arrow,
-    .btn:focus-visible .arrow,
-    .btn-button:focus-visible .arrow {
-      transform:
-        translateX(4px)
-        scale(1.04);
-
-      box-shadow:
-        0 0 0 3px rgba(0,0,0,.54),
-        0 0 18px rgba(var(--btn-accent-rgb),.88),
-        0 0 30px rgba(var(--btn-accent-rgb),.32),
-        inset 0 0 13px rgba(var(--btn-accent-rgb),.17);
-    }
-
-    .button-gem {
-      position: absolute;
-      z-index: 2;
-      width: 9px;
-      height: 14px;
-      transform: rotate(45deg);
-      border-radius: 2px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #fff,
-          var(--btn-accent) 42%,
-          rgba(var(--btn-accent-rgb),.25)
-        );
-
-      border:
-        1px solid
-        rgba(255,255,255,.45);
-
-      box-shadow:
-        0 0 7px rgba(var(--btn-accent-rgb),.82),
-        0 0 13px rgba(var(--btn-accent-rgb),.30);
-
+      left: 0;
+      width: 100%;
+      max-width: none;
+      height: auto;
+      display: block;
       pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    .button-gem.gem-a {
-      left: 15px;
-      top: 12px;
+    /*
+      Los PNG tienen transparencia arriba y abajo.
+      Estas posiciones muestran solamente el render útil
+      sin modificar las propias imágenes.
+    */
+
+    .image-button.button-1 img {
+      top: 50%;
+      transform: translateY(-46.5%);
     }
 
-    .button-gem.gem-b {
-      right: 78px;
-      bottom: 9px;
-      width: 7px;
-      height: 11px;
-      opacity: .85;
+    .image-button.button-2 img {
+      top: 50%;
+      transform: translateY(-48.7%);
     }
 
-    /* ========================================================= */
+    .image-button.button-3 img {
+      top: 50%;
+      transform: translateY(-49.2%);
+    }
+
+    .image-button:hover,
+    .image-button:focus-visible {
+      transform: translateY(-4px) scale(1.006);
+      filter: brightness(1.08) saturate(1.06);
+      outline: none;
+    }
+
+    .image-button:active {
+      transform: translateY(-1px) scale(.998);
+    }
 
     .section {
       position: relative;
@@ -1007,8 +587,11 @@
 
     .section::before {
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
 
       background:
@@ -1088,11 +671,7 @@
       margin-top: 18px;
       padding: 10px 14px;
       border-radius: 999px;
-
-      border:
-        1px solid
-        rgba(224,184,98,.25);
-
+      border: 1px solid rgba(224,184,98,.25);
       color: var(--gold);
       font-size: 12px;
       font-weight: 900;
@@ -1400,8 +979,11 @@
 
     .donut::after {
       content: "";
+
       position: absolute;
+
       inset: 28%;
+
       border-radius: 50%;
 
       background:
@@ -1938,7 +1520,9 @@
         padding .25s ease;
 
       opacity: 0;
-      padding: 0 20px;
+
+      padding:
+        0 20px;
 
       border-top:
         1px solid
@@ -1988,53 +1572,6 @@
 
       .portal {
         width: 360px;
-      }
-
-      .icon {
-        width: 54px;
-        height: 50px;
-      }
-
-      .icon::before {
-        width: 48px;
-        height: 48px;
-      }
-
-      .icon::after {
-        width: 60px;
-        left: -3px;
-      }
-
-      .button-art {
-        width: 54px;
-        height: 50px;
-      }
-
-      .btn-title {
-        font-size: clamp(14px,4.2vw,19px);
-      }
-
-      .community-cta .btn-title {
-        font-size: clamp(12px,3.7vw,17px);
-      }
-
-      .investor-cta .btn-title {
-        font-size: clamp(13px,3.8vw,18px);
-      }
-
-      .btn-sub {
-        margin-top: 7px;
-        font-size: 10px;
-      }
-
-      .arrow {
-        width: 42px;
-        height: 42px;
-        font-size: 22px;
-      }
-
-      .button-gem.gem-b {
-        right: 64px;
       }
 
       .features,
@@ -2108,1301 +1645,845 @@
     }
   </style>
 </head>
-
 <body>
-
+  <!-- =========================================================
+       FONDO EXACTO
+       ========================================================= -->
   <div
     class="space-background"
     aria-hidden="true"
   ></div>
-
   <div
     class="star-field"
     id="starField"
     aria-hidden="true"
   ></div>
-
   <div
     class="shooting-stars"
     id="shootingStars"
     aria-hidden="true"
   ></div>
-
-
   <main class="page">
 
-    <section class="hero">
+<section class="hero">
 
-      <div class="eyebrow">
-        WELCOME TO THE UNIVERSE
-      </div>
+  <div class="eyebrow">
+    WELCOME TO THE UNIVERSE
+  </div>
 
-      <div class="portal"></div>
+  <div class="portal"></div>
 
-      <div class="hero-logo-wrap">
+  <div class="hero-logo-wrap">
 
-        <div class="hero-logo-shadow"></div>
+    <div class="hero-logo-shadow"></div>
 
-        <img
-          src="./logo-kissing-fight.jpg.png"
-          alt="Kissing Fight"
-          class="hero-logo"
-        />
+    <img
+      src="./logo-kissing-fight.jpg.png"
+      alt="Kissing Fight"
+      class="hero-logo"
+    />
 
-      </div>
+  </div>
 
-      <p class="subtitle">
+  <p class="subtitle">
 
-        Un
+    Un
 
-        <strong>
-          Match-3 competitivo
-        </strong>
+    <strong>
+      Match-3 competitivo
+    </strong>
 
-        con ranking, comunidad y una identidad propia.
+    con ranking, comunidad y una identidad propia.
 
-        Un universo con
+    Un universo con
 
-        <strong>
-          más de un mundo por descubrir.
-        </strong>
+    <strong>
+      más de un mundo por descubrir.
+    </strong>
 
-      </p>
+  </p>
 
 
-      <div class="main-buttons">
+  <div class="main-buttons">
 
-        <!-- BOTÓN 1 -->
-
-        <a
-          class="btn primary"
-          href="#juego"
-        >
-
-          <span
-            class="button-gem gem-a"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="button-gem gem-b"
-            aria-hidden="true"
-          ></span>
-
-          <div class="btn-left">
-
-            <div
-              class="icon"
-              aria-hidden="true"
-            >
-
-              <svg
-                class="button-art"
-                viewBox="0 0 120 92"
-              >
-
-                <defs>
-
-                  <linearGradient
-                    id="padBodyKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#0d2a47"/>
-                    <stop offset=".52" stop-color="#050b15"/>
-                    <stop offset="1" stop-color="#351127"/>
-                  </linearGradient>
-
-                  <linearGradient
-                    id="padEdgeKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#19eaff"/>
-                    <stop offset=".43" stop-color="#fff0a6"/>
-                    <stop offset=".68" stop-color="#ffb749"/>
-                    <stop offset="1" stop-color="#ff4db8"/>
-                  </linearGradient>
-
-                  <radialGradient id="heartGlowKF">
-                    <stop offset="0" stop-color="#fff"/>
-                    <stop offset=".20" stop-color="#ffd6e9"/>
-                    <stop offset=".48" stop-color="#ff5a9f"/>
-                    <stop offset="1" stop-color="#b82279"/>
-                  </radialGradient>
-
-                </defs>
-
-                <path
-                  d="M30 22C19 23 13 31 10 49L7 63C5 77 12 85 22 82L36 68H84L98 82C108 85 115 77 113 63L110 49C107 31 101 23 90 22C73 19 47 19 30 22Z"
-                  fill="url(#padBodyKF)"
-                  stroke="url(#padEdgeKF)"
-                  stroke-width="4"
-                />
-
-                <path
-                  d="M31 37v18M22 46h18"
-                  stroke="#ffd973"
-                  stroke-width="6"
-                  stroke-linecap="round"
-                />
-
-                <circle
-                  cx="87"
-                  cy="38"
-                  r="5"
-                  fill="#ff4fb5"
-                  stroke="#ffd6f0"
-                  stroke-width="1.5"
-                />
-
-                <circle
-                  cx="99"
-                  cy="48"
-                  r="5"
-                  fill="#24eadf"
-                  stroke="#caffff"
-                  stroke-width="1.5"
-                />
-
-                <circle
-                  cx="76"
-                  cy="50"
-                  r="5"
-                  fill="#7b63ff"
-                  stroke="#ded8ff"
-                  stroke-width="1.5"
-                />
-
-                <path
-                  d="M59 35c5-8 15-4 15 4 0 7-8 12-15 18-7-6-15-11-15-18 0-8 10-12 15-4Z"
-                  fill="url(#heartGlowKF)"
-                  stroke="#ffe69f"
-                  stroke-width="2"
-                />
-
-                <path
-                  d="M46 65c8 3 21 3 29 0"
-                  fill="none"
-                  stroke="#19eaff"
-                  stroke-width="2"
-                  opacity=".75"
-                />
-
-                <path
-                  d="M17 18l3 6-3 6-3-6zM105 16l3 6-3 6-3-6z"
-                  fill="#dffcff"
-                  stroke="#19eaff"
-                  stroke-width="1"
-                />
-
-              </svg>
-
-            </div>
-
-            <div class="btn-text">
-
-              <span class="btn-title">
-                CONOCÉ EL JUEGO
-              </span>
-
-              <span class="btn-sub">
-                Descubrí el universo Kissing Fight
-              </span>
-
-            </div>
-
-          </div>
-
-          <span class="arrow">
-            →
-          </span>
-
-        </a>
-
-
-        <!-- BOTÓN 2 -->
-
-        <button
-          type="button"
-          class="btn-button community-cta"
-          data-modal-target="communityModal"
-          aria-controls="communityModal"
-          aria-haspopup="dialog"
-        >
-
-          <span
-            class="button-gem gem-a"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="button-gem gem-b"
-            aria-hidden="true"
-          ></span>
-
-          <div class="btn-left">
-
-            <div
-              class="icon"
-              aria-hidden="true"
-            >
-
-              <svg
-                class="button-art"
-                viewBox="0 0 120 92"
-              >
-
-                <defs>
-
-                  <radialGradient
-                    id="galaxyCoreKF"
-                    cx="50%"
-                    cy="50%"
-                    r="55%"
-                  >
-                    <stop offset="0" stop-color="#fff6d7"/>
-                    <stop offset=".16" stop-color="#ffce7b"/>
-                    <stop offset=".38" stop-color="#ff5ac8"/>
-                    <stop offset=".68" stop-color="#8d3cff"/>
-                    <stop offset="1" stop-color="#18256f" stop-opacity="0"/>
-                  </radialGradient>
-
-                  <linearGradient
-                    id="galaxyRingKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#19eaff"/>
-                    <stop offset=".42" stop-color="#ff42c6"/>
-                    <stop offset=".72" stop-color="#ff74d7"/>
-                    <stop offset="1" stop-color="#ffd86e"/>
-                  </linearGradient>
-
-                  <linearGradient
-                    id="crystalPinkKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#fff"/>
-                    <stop offset=".32" stop-color="#ff91ee"/>
-                    <stop offset="1" stop-color="#8d29d7"/>
-                  </linearGradient>
-
-                </defs>
-
-                <ellipse
-                  cx="59"
-                  cy="47"
-                  rx="46"
-                  ry="16"
-                  transform="rotate(-16 59 47)"
-                  fill="none"
-                  stroke="url(#galaxyRingKF)"
-                  stroke-width="4.2"
-                />
-
-                <ellipse
-                  cx="59"
-                  cy="47"
-                  rx="36"
-                  ry="11"
-                  transform="rotate(17 59 47)"
-                  fill="none"
-                  stroke="#ae42ff"
-                  stroke-width="3.1"
-                  opacity=".95"
-                />
-
-                <ellipse
-                  cx="59"
-                  cy="47"
-                  rx="28"
-                  ry="8"
-                  transform="rotate(-34 59 47)"
-                  fill="none"
-                  stroke="#ff6ed3"
-                  stroke-width="2.7"
-                  opacity=".95"
-                />
-
-                <circle
-                  cx="59"
-                  cy="47"
-                  r="15"
-                  fill="url(#galaxyCoreKF)"
-                />
-
-                <circle
-                  cx="59"
-                  cy="47"
-                  r="4"
-                  fill="#fff6d8"
-                />
-
-                <path
-                  d="M12 23l6 10-6 10-6-10z"
-                  fill="url(#crystalPinkKF)"
-                  stroke="#ffe9ff"
-                  stroke-width="1.2"
-                />
-
-                <path
-                  d="M103 18l5 9-5 9-5-9z"
-                  fill="url(#crystalPinkKF)"
-                  stroke="#ffe9ff"
-                  stroke-width="1.2"
-                />
-
-                <path
-                  d="M102 61l7 12-7 12-7-12z"
-                  fill="url(#crystalPinkKF)"
-                  stroke="#ffe9ff"
-                  stroke-width="1.2"
-                />
-
-                <circle cx="27" cy="67" r="2" fill="#fff"/>
-                <circle cx="89" cy="30" r="2" fill="#19eaff"/>
-                <circle cx="92" cy="70" r="1.7" fill="#ffd86e"/>
-
-              </svg>
-
-            </div>
-
-            <div class="btn-text">
-
-              <span class="btn-title">
-                SUMATE AL UNIVERSO KISSING FIGHT
-              </span>
-
-              <span class="btn-sub">
-                Conocé los niveles y beneficios
-              </span>
-
-            </div>
-
-          </div>
-
-          <span class="arrow">
-            →
-          </span>
-
-        </button>
-
-
-        <!-- BOTÓN 3 -->
-
-        <button
-          type="button"
-          class="btn-button investor-cta"
-          data-modal-target="investorsModal"
-          aria-controls="investorsModal"
-          aria-haspopup="dialog"
-        >
-
-          <span
-            class="button-gem gem-a"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="button-gem gem-b"
-            aria-hidden="true"
-          ></span>
-
-          <div class="btn-left">
-
-            <div
-              class="icon"
-              aria-hidden="true"
-            >
-
-              <svg
-                class="button-art"
-                viewBox="0 0 120 92"
-              >
-
-                <defs>
-
-                  <linearGradient
-                    id="sleeveCyanKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#19eaff"/>
-                    <stop offset=".45" stop-color="#1596c7"/>
-                    <stop offset="1" stop-color="#233262"/>
-                  </linearGradient>
-
-                  <linearGradient
-                    id="sleevePinkKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#ff5ad0"/>
-                    <stop offset=".48" stop-color="#d22d91"/>
-                    <stop offset="1" stop-color="#681e6a"/>
-                  </linearGradient>
-
-                  <linearGradient
-                    id="handGoldKF"
-                    x1="0"
-                    y1="0"
-                    x2="1"
-                    y2="1"
-                  >
-                    <stop offset="0" stop-color="#fff0b0"/>
-                    <stop offset=".38" stop-color="#ffd075"/>
-                    <stop offset=".72" stop-color="#ff9d7e"/>
-                    <stop offset="1" stop-color="#ff5f9e"/>
-                  </linearGradient>
-
-                </defs>
-
-                <circle
-                  cx="60"
-                  cy="46"
-                  r="37"
-                  fill="none"
-                  stroke="#ffca45"
-                  stroke-width="2.2"
-                  opacity=".62"
-                />
-
-                <circle
-                  cx="60"
-                  cy="46"
-                  r="44"
-                  fill="none"
-                  stroke="#ffd86e"
-                  stroke-width="1"
-                  opacity=".30"
-                />
-
-                <path
-                  d="M7 31h27l15 13-10 12-12-8-20 5Z"
-                  fill="url(#sleeveCyanKF)"
-                  stroke="#8ef6ff"
-                  stroke-width="3"
-                />
-
-                <path
-                  d="M113 31H86L71 44l10 12 12-8 20 5Z"
-                  fill="url(#sleevePinkKF)"
-                  stroke="#ffc1e9"
-                  stroke-width="3"
-                />
-
-                <path
-                  d="M39 42 53 32c6-4 12-3 16 2l7 6c3 3 3 7 0 10l-5 5c-3 3-7 3-10 1l-7-5-6 6 17 13c4 3 4 8 1 11-3 4-8 4-12 1L32 66c-6-4-7-13-2-18Z"
-                  fill="url(#handGoldKF)"
-                  stroke="#fff1ba"
-                  stroke-width="2.2"
-                />
-
-                <path
-                  d="M55 58l16 13M48 65l14 11M41 71l11 9"
-                  fill="none"
-                  stroke="#fff6d0"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                />
-
-                <path
-                  d="M15 11l4 7-4 7-4-7zM101 10l4 7-4 7-4-7zM107 67l4 7-4 7-4-7z"
-                  fill="#fff2b2"
-                  stroke="#ffca45"
-                  stroke-width="1.2"
-                />
-
-              </svg>
-
-            </div>
-
-            <div class="btn-text">
-
-              <span class="btn-title">
-                INVERSORES & COLABORADORES
-              </span>
-
-              <span class="btn-sub">
-                Conocé el destino de los fondos
-              </span>
-
-            </div>
-
-          </div>
-
-          <span class="arrow">
-            →
-          </span>
-
-        </button>
-
-      </div>
-
-    </section>
-
-
-    <section
-      class="section"
-      id="juego"
+    <!-- BOTÓN 1 — CONOCÉ EL JUEGO -->
+    <a
+      class="image-button button-1"
+      href="#juego"
+      aria-label="Conocé el juego — Descubrí el universo Kissing Fight"
     >
-
-      <div class="section-label">
-        THE GAME
-      </div>
-
-      <h2>
-        Mucho más que un Match-3.
-      </h2>
-
-      <p>
-
-        Kissing Fight combina competencia, progresión y comunidad
-        dentro de un universo en expansión.
-
-        Cada mundo forma parte de algo más grande.
-
-      </p>
-
-      <div class="features">
-
-        <div class="feature">
-
-          <strong>
-            COMPETÍ
-          </strong>
-
-          <span>
-            Ranking y desafío
-          </span>
-
-        </div>
+      <img
+        src="./boton%201.png"
+        alt="Conocé el juego — Descubrí el universo Kissing Fight"
+        draggable="false"
+      />
+    </a>
 
 
-        <div class="feature">
-
-          <strong>
-            DESCUBRÍ
-          </strong>
-
-          <span>
-            Mundos y expansión
-          </span>
-
-        </div>
-
-
-        <div class="feature">
-
-          <strong>
-            CONECTÁ
-          </strong>
-
-          <span>
-            Comunidad
-          </span>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <section
-      class="section clickable-card"
-      id="comunidad"
-      role="button"
-      tabindex="0"
+    <!-- BOTÓN 2 — SUMATE AL UNIVERSO KISSING FIGHT -->
+    <button
+      type="button"
+      class="image-button button-2"
       data-modal-target="communityModal"
       aria-controls="communityModal"
       aria-haspopup="dialog"
+      aria-label="Sumate al Universo Kissing Fight — Conocé los niveles y beneficios"
     >
-
-      <div class="section-label">
-        COMMUNITY
-      </div>
-
-      <h2>
-        Kissing Fight está llegando.
-      </h2>
-
-      <p>
-
-        Ser de los primeros en la comunidad significa conocer el juego
-        antes de su lanzamiento y acceder a beneficios exclusivos desde
-        el comienzo.
-
-        <br /><br />
-
-        Contactanos y asegurá tu lugar entre los primeros en tener ventaja.
-
-      </p>
-
-      <div class="section-action">
-        Ver niveles del universo →
-      </div>
-
-    </section>
+      <img
+        src="./boton%202.png"
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+      />
+    </button>
 
 
-    <section
-      class="section clickable-card"
-      id="inversores"
-      role="button"
-      tabindex="0"
+    <!-- BOTÓN 3 — INVERSORES & COLABORADORES -->
+    <button
+      type="button"
+      class="image-button button-3"
       data-modal-target="investorsModal"
       aria-controls="investorsModal"
       aria-haspopup="dialog"
+      aria-label="Inversores y colaboradores — Conocé el destino de los fondos"
     >
+      <img
+        src="./boton%203.png"
+        alt=""
+        aria-hidden="true"
+        draggable="false"
+      />
+    </button>
 
-      <div class="section-label">
-        PARTNERS
-      </div>
+  </div>
 
-      <h2>
-        Formá parte desde el inicio
-      </h2>
-
-      <p>
-
-        <strong>
-
-          Kissing Fight está en una etapa clave de crecimiento, y queremos
-          que nuestro equipo crezca junto con el proyecto.
-
-        </strong>
-
-        <br /><br />
-
-        Abrimos la posibilidad de sumar
-
-        <strong>
-          inversores, aliados estratégicos y colaboradores
-        </strong>
-
-        que puedan aportar valor al proyecto.
-
-        <br /><br />
-
-        <strong>
-
-          ¿Querés formar parte?
-
-          Contactanos y coordinemos una reunión
-          para conocer tu propuesta.
-
-        </strong>
-
-      </p>
-
-      <div class="section-action">
-        Ver propuesta para inversores →
-      </div>
-
-    </section>
+</section>
 
 
-    <div class="social-title">
-      ENTRÁ AL UNIVERSO
-    </div>
+<section
+  class="section"
+  id="juego"
+>
 
+  <div class="section-label">
+    THE GAME
+  </div>
 
-    <div class="socials">
+  <h2>
+    Mucho más que un Match-3.
+  </h2>
 
-      <a
-        class="social"
-        href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+  <p>
 
-        <div class="social-icon">
-          IG
-        </div>
+    Kissing Fight combina competencia, progresión y comunidad
+    dentro de un universo en expansión.
 
-        <div>
+    Cada mundo forma parte de algo más grande.
 
-          <span class="social-name">
-            INSTAGRAM — ENGLISH
-          </span>
+  </p>
 
-          <span class="social-sub">
-            International community
-          </span>
+  <div class="features">
 
-        </div>
+    <div class="feature">
 
-      </a>
+      <strong>
+        COMPETÍ
+      </strong>
 
-
-      <a
-        class="social"
-        href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <div class="social-icon">
-          IG
-        </div>
-
-        <div>
-
-          <span class="social-name">
-            INSTAGRAM — ESPAÑOL
-          </span>
-
-          <span class="social-sub">
-            Comunidad en español
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <a
-        class="social"
-        href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <div class="social-icon">
-          WA
-        </div>
-
-        <div>
-
-          <span class="social-name">
-            CANAL DE WHATSAPP
-          </span>
-
-          <span class="social-sub">
-            Novedades y anuncios
-          </span>
-
-        </div>
-
-      </a>
-
-
-      <a
-        class="social whatsapp"
-        href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <div class="social-icon">
-          ✦
-        </div>
-
-        <div>
-
-          <span class="social-name">
-            CONTACTANOS
-          </span>
-
-          <span class="social-sub">
-            Hablemos por WhatsApp
-          </span>
-
-        </div>
-
-      </a>
+      <span>
+        Ranking y desafío
+      </span>
 
     </div>
 
 
-    <footer>
+    <div class="feature">
 
-      © 2026 KISSING FIGHT
+      <strong>
+        DESCUBRÍ
+      </strong>
 
-      <br />
+      <span>
+        Mundos y expansión
+      </span>
 
-      <div class="status">
+    </div>
 
-        <span class="dot"></span>
 
-        Proyecto en desarrollo
+    <div class="feature">
 
-      </div>
+      <strong>
+        CONECTÁ
+      </strong>
 
-    </footer>
+      <span>
+        Comunidad
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section clickable-card"
+  id="comunidad"
+  role="button"
+  tabindex="0"
+  data-modal-target="communityModal"
+  aria-controls="communityModal"
+  aria-haspopup="dialog"
+>
+
+  <div class="section-label">
+    COMMUNITY
+  </div>
+
+  <h2>
+    Kissing Fight está llegando.
+  </h2>
+
+  <p>
+
+    Ser de los primeros en la comunidad significa conocer el juego
+    antes de su lanzamiento y acceder a beneficios exclusivos desde
+    el comienzo.
+
+    <br /><br />
+
+    Contactanos y asegurá tu lugar entre los primeros en tener ventaja.
+
+  </p>
+
+  <div class="section-action">
+    Ver niveles del universo →
+  </div>
+
+</section>
+
+
+<section
+  class="section clickable-card"
+  id="inversores"
+  role="button"
+  tabindex="0"
+  data-modal-target="investorsModal"
+  aria-controls="investorsModal"
+  aria-haspopup="dialog"
+>
+
+  <div class="section-label">
+    PARTNERS
+  </div>
+
+  <h2>
+    Formá parte desde el inicio
+  </h2>
+
+  <p>
+
+    <strong>
+
+      Kissing Fight está en una etapa clave de crecimiento, y queremos
+      que nuestro equipo crezca junto con el proyecto.
+
+    </strong>
+
+    <br /><br />
+
+    Abrimos la posibilidad de sumar
+
+    <strong>
+      inversores, aliados estratégicos y colaboradores
+    </strong>
+
+    que puedan aportar valor al proyecto.
+
+    <br /><br />
+
+    <strong>
+
+      ¿Querés formar parte?
+
+      Contactanos y coordinemos una reunión
+      para conocer tu propuesta.
+
+    </strong>
+
+  </p>
+
+  <div class="section-action">
+    Ver propuesta para inversores →
+  </div>
+
+</section>
+
+
+<div class="social-title">
+  ENTRÁ AL UNIVERSO
+</div>
+
+
+<div class="socials">
+
+  <a
+    class="social"
+    href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    <div class="social-icon">
+      IG
+    </div>
+
+    <div>
+
+      <span class="social-name">
+        INSTAGRAM — ENGLISH
+      </span>
+
+      <span class="social-sub">
+        International community
+      </span>
+
+    </div>
+
+  </a>
+
+
+  <a
+    class="social"
+    href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    <div class="social-icon">
+      IG
+    </div>
+
+    <div>
+
+      <span class="social-name">
+        INSTAGRAM — ESPAÑOL
+      </span>
+
+      <span class="social-sub">
+        Comunidad en español
+      </span>
+
+    </div>
+
+  </a>
+
+
+  <a
+    class="social"
+    href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    <div class="social-icon">
+      WA
+    </div>
+
+    <div>
+
+      <span class="social-name">
+        CANAL DE WHATSAPP
+      </span>
+
+      <span class="social-sub">
+        Novedades y anuncios
+      </span>
+
+    </div>
+
+  </a>
+
+
+  <a
+    class="social whatsapp"
+    href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    <div class="social-icon">
+      ✦
+    </div>
+
+    <div>
+
+      <span class="social-name">
+        CONTACTANOS
+      </span>
+
+      <span class="social-sub">
+        Hablemos por WhatsApp
+      </span>
+
+    </div>
+
+  </a>
+
+</div>
+
+
+<footer>
+
+  © 2026 KISSING FIGHT
+
+  <br />
+
+  <div class="status">
+
+    <span class="dot"></span>
+
+    Proyecto en desarrollo
+
+  </div>
+
+</footer>
 
   </main>
-
-
   <!-- =========================================================
        POPUP COMUNIDAD
        ========================================================= -->
-
   <div
     class="modal-backdrop"
     id="communityModal"
     aria-hidden="true"
   >
 
-    <div
-      class="modal-panel community-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="communityTitle"
-    >
+<div
+  class="modal-panel community-panel"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="communityTitle"
+>
+
+  <button
+    type="button"
+    class="modal-close"
+    data-modal-close
+    aria-label="Cerrar"
+  >
+    ×
+  </button>
+
+
+  <div class="modal-logo-wrap">
+
+    <img
+      src="./logo-kissing-fight.jpg.png"
+      alt="Kissing Fight"
+      class="modal-logo"
+    />
+
+  </div>
+
+
+  <div class="modal-overline">
+    COMUNIDAD
+  </div>
+
+
+  <h2
+    class="community-title"
+    id="communityTitle"
+  >
+
+    Niveles del Universo Kissing Fight
+
+  </h2>
+
+
+  <p class="community-subtitle">
+
+    7 niveles para formar parte del universo Kissing Fight.
+
+  </p>
+
+
+  <div class="community-note">
+
+    Cada nivel conserva las ventajas anteriores
+    y suma nuevas recompensas.
+
+  </div>
+
+
+  <div class="levels-list">
+
+    <div class="level-card level-teal">
 
       <button
         type="button"
-        class="modal-close"
-        data-modal-close
-        aria-label="Cerrar"
+        class="level-toggle"
       >
-        ×
+
+        <div class="level-number">
+          1
+        </div>
+
+        <div class="level-text">
+
+          <span class="level-name">
+            Pueblo
+          </span>
+
+          <span class="level-tagline">
+            El comienzo de todo.
+          </span>
+
+        </div>
+
+        <div class="level-chevron">
+          +
+        </div>
+
       </button>
 
 
-      <div class="modal-logo-wrap">
+      <div class="level-body">
 
-        <img
-          src="./logo-kissing-fight.jpg.png"
-          alt="Kissing Fight"
-          class="modal-logo"
-        />
+        <p>
+
+          Todo quien se sume al Universo Kissing Fight
+          forma parte de este nivel inicial.
+
+        </p>
 
       </div>
 
-
-      <div class="modal-overline">
-        COMUNIDAD
-      </div>
+    </div>
 
 
-      <h2
-        class="community-title"
-        id="communityTitle"
+    <div class="level-card level-pink">
+
+      <button
+        type="button"
+        class="level-toggle"
       >
 
-        Niveles del Universo Kissing Fight
+        <div class="level-number">
+          2
+        </div>
 
-      </h2>
+        <div class="level-text">
+
+          <span class="level-name">
+            Pueblo Fundador
+          </span>
+
+          <span class="level-tagline">
+            Los que están desde el día 1.
+          </span>
+
+        </div>
+
+        <div class="level-chevron">
+          +
+        </div>
+
+      </button>
 
 
-      <p class="community-subtitle">
+      <div class="level-body">
 
-        7 niveles para formar parte del universo Kissing Fight.
+        <p>
 
-      </p>
+          Todo quien se sume desde el día 1 recibirá la
 
+          <strong>
+            insignia de Pueblo Fundador
+          </strong>,
 
-      <div class="community-note">
+          que le permitirá participar en las salas de chat.
 
-        Cada nivel conserva las ventajas anteriores
-        y suma nuevas recompensas.
+        </p>
 
       </div>
 
-
-      <div class="levels-list">
-
-        <div class="level-card level-teal">
-
-          <button
-            type="button"
-            class="level-toggle"
-          >
-
-            <div class="level-number">
-              1
-            </div>
-
-            <div class="level-text">
-
-              <span class="level-name">
-                Pueblo
-              </span>
-
-              <span class="level-tagline">
-                El comienzo de todo.
-              </span>
-
-            </div>
-
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
+    </div>
 
 
-          <div class="level-body">
+    <div class="level-card level-gold">
 
-            <p>
+      <button
+        type="button"
+        class="level-toggle"
+      >
 
-              Todo quien se sume al Universo Kissing Fight
-              forma parte de este nivel inicial.
+        <div class="level-number">
+          3
+        </div>
 
-            </p>
+        <div class="level-text">
 
-          </div>
+          <span class="level-name">
+            Fundador
+          </span>
+
+          <span class="level-tagline">
+            Construye el futuro.
+          </span>
 
         </div>
 
-
-        <div class="level-card level-pink">
-
-          <button
-            type="button"
-            class="level-toggle"
-          >
-
-            <div class="level-number">
-              2
-            </div>
-
-            <div class="level-text">
-
-              <span class="level-name">
-                Pueblo Fundador
-              </span>
-
-              <span class="level-tagline">
-                Los que están desde el día 1.
-              </span>
-
-            </div>
-
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
-
-
-          <div class="level-body">
-
-            <p>
-
-              Todo quien se sume desde el día 1 recibirá la
-
-              <strong>
-                insignia de Pueblo Fundador
-              </strong>,
-
-              que le permitirá participar en las salas de chat.
-
-            </p>
-
-          </div>
-
+        <div class="level-chevron">
+          +
         </div>
 
+      </button>
 
-        <div class="level-card level-gold">
 
-          <button
-            type="button"
-            class="level-toggle"
-          >
+      <div class="level-body">
 
-            <div class="level-number">
-              3
-            </div>
+        <p>
 
-            <div class="level-text">
+          Todo quien llegue a este nivel podrá competir en el
 
-              <span class="level-name">
-                Fundador
-              </span>
+          <strong>
+            ranking mundial
+          </strong>,
 
-              <span class="level-tagline">
-                Construye el futuro.
-              </span>
+          donde el
 
-            </div>
+          <strong>
+            número 1 de la semana ganará el pozo
+          </strong>.
 
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
-
-
-          <div class="level-body">
-
-            <p>
-
-              Todo quien llegue a este nivel podrá competir en el
-
-              <strong>
-                ranking mundial
-              </strong>,
-
-              donde el
-
-              <strong>
-                número 1 de la semana ganará el pozo
-              </strong>.
-
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="level-card level-teal">
-
-          <button
-            type="button"
-            class="level-toggle"
-          >
-
-            <div class="level-number">
-              4
-            </div>
-
-            <div class="level-text">
-
-              <span class="level-name">
-                Rey
-              </span>
-
-              <span class="level-tagline">
-                Impulsá tu lugar en la comunidad.
-              </span>
-
-            </div>
-
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
-
-
-          <div class="level-body">
-
-            <p>
-
-              Todo quien cuente con la suscripción
-
-              <strong>
-                BRONZE
-              </strong>,
-
-              sea competidor activo y participe en la comunidad,
-              tendrá
-
-              <strong>
-                50% de descuento en cualquier suscripción superior
-              </strong>.
-
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="level-card level-pink">
-
-          <button
-            type="button"
-            class="level-toggle"
-          >
-
-            <div class="level-number">
-              5
-            </div>
-
-            <div class="level-text">
-
-              <span class="level-name">
-                Héroe
-              </span>
-
-              <span class="level-tagline">
-                Llevá tu identidad al siguiente nivel.
-              </span>
-
-            </div>
-
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
-
-
-          <div class="level-body">
-
-            <p>
-
-              Todo quien cuente con la suscripción
-
-              <strong>
-                SILVER
-              </strong>,
-
-              sea competidor activo y participe en la comunidad,
-              podrá tener su
-
-              <strong>
-                avatar 100% personalizado
-              </strong>.
-
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="level-card level-gold">
-
-          <button
-            type="button"
-            class="level-toggle"
-          >
-
-            <div class="level-number">
-              6
-            </div>
-
-            <div class="level-text">
-
-              <span class="level-name">
-                Dios
-              </span>
-
-              <span class="level-tagline">
-                Más poder dentro del universo.
-              </span>
-
-            </div>
-
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
-
-
-          <div class="level-body">
-
-            <p>
-
-              Todo quien cuente con la suscripción
-
-              <strong>
-                Premium GOLD
-              </strong>,
-
-              sea competidor activo y participe en la comunidad,
-              podrá solicitar participar como
-
-              <strong>
-                moderador de una sala preexistente
-              </strong>
-
-              que lo requiera.
-
-            </p>
-
-          </div>
-
-        </div>
-
-
-        <div class="level-card level-ivory">
-
-          <button
-            type="button"
-            class="level-toggle"
-          >
-
-            <div class="level-number">
-              7
-            </div>
-
-            <div class="level-text">
-
-              <span class="level-name">
-                Creador
-              </span>
-
-              <span class="level-tagline">
-                Da forma a lo legendario.
-              </span>
-
-            </div>
-
-            <div class="level-chevron">
-              +
-            </div>
-
-          </button>
-
-
-          <div class="level-body">
-
-            <p>
-
-              Todo quien cuente con la suscripción
-
-              <strong>
-                Premium BLACK
-              </strong>,
-
-              sea competidor activo y participe en la comunidad,
-              podrá solicitar la
-
-              <strong>
-                creación de una sala personalizada
-              </strong>
-
-              y convertirse en su
-
-              <strong>
-                moderador
-              </strong>.
-
-            </p>
-
-          </div>
-
-        </div>
+        </p>
 
       </div>
 
+    </div>
 
-      <div class="community-contact">
 
-        <a
-          class="community-contact-button"
-          href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+    <div class="level-card level-teal">
 
-          ✦ SUMATE AL UNIVERSO KISSING FIGHT
+      <button
+        type="button"
+        class="level-toggle"
+      >
 
-        </a>
+        <div class="level-number">
+          4
+        </div>
+
+        <div class="level-text">
+
+          <span class="level-name">
+            Rey
+          </span>
+
+          <span class="level-tagline">
+            Impulsá tu lugar en la comunidad.
+          </span>
+
+        </div>
+
+        <div class="level-chevron">
+          +
+        </div>
+
+      </button>
+
+
+      <div class="level-body">
+
+        <p>
+
+          Todo quien cuente con la suscripción
+
+          <strong>
+            BRONZE
+          </strong>,
+
+          sea competidor activo y participe en la comunidad,
+          tendrá
+
+          <strong>
+            50% de descuento en cualquier suscripción superior
+          </strong>.
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="level-card level-pink">
+
+      <button
+        type="button"
+        class="level-toggle"
+      >
+
+        <div class="level-number">
+          5
+        </div>
+
+        <div class="level-text">
+
+          <span class="level-name">
+            Héroe
+          </span>
+
+          <span class="level-tagline">
+            Llevá tu identidad al siguiente nivel.
+          </span>
+
+        </div>
+
+        <div class="level-chevron">
+          +
+        </div>
+
+      </button>
+
+
+      <div class="level-body">
+
+        <p>
+
+          Todo quien cuente con la suscripción
+
+          <strong>
+            SILVER
+          </strong>,
+
+          sea competidor activo y participe en la comunidad,
+          podrá tener su
+
+          <strong>
+            avatar 100% personalizado
+          </strong>.
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="level-card level-gold">
+
+      <button
+        type="button"
+        class="level-toggle"
+      >
+
+        <div class="level-number">
+          6
+        </div>
+
+        <div class="level-text">
+
+          <span class="level-name">
+            Dios
+          </span>
+
+          <span class="level-tagline">
+            Más poder dentro del universo.
+          </span>
+
+        </div>
+
+        <div class="level-chevron">
+          +
+        </div>
+
+      </button>
+
+
+      <div class="level-body">
+
+        <p>
+
+          Todo quien cuente con la suscripción
+
+          <strong>
+            Premium GOLD
+          </strong>,
+
+          sea competidor activo y participe en la comunidad,
+          podrá solicitar participar como
+
+          <strong>
+            moderador de una sala preexistente
+          </strong>
+
+          que lo requiera.
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="level-card level-ivory">
+
+      <button
+        type="button"
+        class="level-toggle"
+      >
+
+        <div class="level-number">
+          7
+        </div>
+
+        <div class="level-text">
+
+          <span class="level-name">
+            Creador
+          </span>
+
+          <span class="level-tagline">
+            Da forma a lo legendario.
+          </span>
+
+        </div>
+
+        <div class="level-chevron">
+          +
+        </div>
+
+      </button>
+
+
+      <div class="level-body">
+
+        <p>
+
+          Todo quien cuente con la suscripción
+
+          <strong>
+            Premium BLACK
+          </strong>,
+
+          sea competidor activo y participe en la comunidad,
+          podrá solicitar la
+
+          <strong>
+            creación de una sala personalizada
+          </strong>
+
+          y convertirse en su
+
+          <strong>
+            moderador
+          </strong>.
+
+        </p>
 
       </div>
 
@@ -3410,6 +2491,25 @@
 
   </div>
 
+
+  <div class="community-contact">
+
+    <a
+      class="community-contact-button"
+      href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      ✦ SUMATE AL UNIVERSO KISSING FIGHT
+
+    </a>
+
+  </div>
+
+</div>
+
+  </div>
 
   <!-- =========================================================
        POPUP INVERSORES
@@ -3421,389 +2521,167 @@
     aria-hidden="true"
   >
 
-    <div
-      class="modal-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="investorTitle"
-    >
+<div
+  class="modal-panel"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="investorTitle"
+>
 
-      <button
-        type="button"
-        class="modal-close"
-        data-modal-close
-        aria-label="Cerrar"
-      >
-        ×
-      </button>
-
-
-      <div class="modal-logo-wrap">
-
-        <img
-          src="./logo-kissing-fight.jpg.png"
-          alt="Kissing Fight"
-          class="modal-logo"
-        />
-
-      </div>
+  <button
+    type="button"
+    class="modal-close"
+    data-modal-close
+    aria-label="Cerrar"
+  >
+    ×
+  </button>
 
 
-      <div class="modal-overline">
-        DESTINO DE LOS FONDOS
-      </div>
+  <div class="modal-logo-wrap">
+
+    <img
+      src="./logo-kissing-fight.jpg.png"
+      alt="Kissing Fight"
+      class="modal-logo"
+    />
+
+  </div>
 
 
-      <h2
-        class="modal-intro"
-        id="investorTitle"
-      >
-
-        El capital recaudado será destinado principalmente al desarrollo
-        tecnológico de Kissing Fight, infraestructura y seguridad,
-        adquisición de usuarios, estrategia de lanzamiento y estructura
-        legal necesaria para escalar el proyecto internacionalmente.
-
-      </h2>
+  <div class="modal-overline">
+    DESTINO DE LOS FONDOS
+  </div>
 
 
-      <div class="modal-subtitle">
-        Asignación estimada del capital recaudado
-      </div>
+  <h2
+    class="modal-intro"
+    id="investorTitle"
+  >
+
+    El capital recaudado será destinado principalmente al desarrollo
+    tecnológico de Kissing Fight, infraestructura y seguridad,
+    adquisición de usuarios, estrategia de lanzamiento y estructura
+    legal necesaria para escalar el proyecto internacionalmente.
+
+  </h2>
 
 
-      <div class="funds-chart-area">
-
-        <div class="donut-wrap">
-
-          <div class="donut">
-
-            <span class="donut-percent p40">
-              40%
-            </span>
-
-            <span class="donut-percent p25">
-              25%
-            </span>
-
-            <span class="donut-percent p20">
-              20%
-            </span>
-
-            <span class="donut-percent p15">
-              15%
-            </span>
+  <div class="modal-subtitle">
+    Asignación estimada del capital recaudado
+  </div>
 
 
-            <div class="donut-center">
+  <div class="funds-chart-area">
 
-              <strong>
-                100%
-              </strong>
+    <div class="donut-wrap">
 
-              <span>
-                DEL CAPITAL RECAUDADO
-              </span>
+      <div class="donut">
 
-            </div>
+        <span class="donut-percent p40">
+          40%
+        </span>
 
-          </div>
+        <span class="donut-percent p25">
+          25%
+        </span>
 
-        </div>
+        <span class="donut-percent p20">
+          20%
+        </span>
 
-
-        <div class="fund-summary">
-
-          <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#269B87"
-            ></span>
-
-            <span class="summary-number">
-              40%
-            </span>
-
-            <span class="summary-name">
-              Producto y tecnología
-            </span>
-
-          </div>
+        <span class="donut-percent p15">
+          15%
+        </span>
 
 
-          <div class="summary-row">
+        <div class="donut-center">
 
-            <span
-              class="summary-dot"
-              style="background:#B94D78"
-            ></span>
+          <strong>
+            100%
+          </strong>
 
-            <span class="summary-number">
-              25%
-            </span>
-
-            <span class="summary-name">
-              Marketing y crecimiento
-            </span>
-
-          </div>
-
-
-          <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#B38D46"
-            ></span>
-
-            <span class="summary-number">
-              20%
-            </span>
-
-            <span class="summary-name">
-              Infraestructura y seguridad
-            </span>
-
-          </div>
-
-
-          <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#B6AE91"
-            ></span>
-
-            <span class="summary-number">
-              15%
-            </span>
-
-            <span class="summary-name">
-              Legal y operaciones
-            </span>
-
-          </div>
+          <span>
+            DEL CAPITAL RECAUDADO
+          </span>
 
         </div>
 
       </div>
 
+    </div>
 
-      <div class="fund-allocation-list">
 
-        <div class="allocation teal">
+    <div class="fund-summary">
 
-          <div class="allocation-head">
+      <div class="summary-row">
 
-            <div class="allocation-color"></div>
+        <span
+          class="summary-dot"
+          style="background:#269B87"
+        ></span>
 
-            <div class="allocation-percent">
-              40%
-            </div>
+        <span class="summary-number">
+          40%
+        </span>
 
-            <div class="allocation-category">
-              Producto y tecnología
-            </div>
-
-          </div>
-
-
-          <div class="allocation-detail">
-
-            <div class="allocation-number">
-              01
-            </div>
-
-            <div class="allocation-description">
-
-              <strong>
-                Desarrollo y evolución del producto
-              </strong>
-
-              <p>
-
-                Programación, backend, sistema de cuentas,
-                ranking, salas, economía interna, UX/UI y contenido.
-
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="allocation pink">
-
-          <div class="allocation-head">
-
-            <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              25%
-            </div>
-
-            <div class="allocation-category">
-              Marketing y crecimiento
-            </div>
-
-          </div>
-
-
-          <div class="allocation-detail">
-
-            <div class="allocation-number">
-              02
-            </div>
-
-            <div class="allocation-description">
-
-              <strong>
-                Lanzamiento, marketing y adquisición de usuarios
-              </strong>
-
-              <p>
-
-                Campañas, creadores de contenido, redes sociales,
-                comunidad y expansión internacional.
-
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="allocation gold">
-
-          <div class="allocation-head">
-
-            <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              20%
-            </div>
-
-            <div class="allocation-category">
-              Infraestructura y seguridad
-            </div>
-
-          </div>
-
-
-          <div class="allocation-detail">
-
-            <div class="allocation-number">
-              03
-            </div>
-
-            <div class="allocation-description">
-
-              <strong>
-                Infraestructura, seguridad y escalabilidad
-              </strong>
-
-              <p>
-
-                Servidores, bases de datos, anti-fraude,
-                anti-cheat, protección de usuarios y capacidad para crecer.
-
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="allocation ivory">
-
-          <div class="allocation-head">
-
-            <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              15%
-            </div>
-
-            <div class="allocation-category">
-              Legal y operaciones
-            </div>
-
-          </div>
-
-
-          <div class="allocation-detail">
-
-            <div class="allocation-number">
-              04
-            </div>
-
-            <div class="allocation-description">
-
-              <strong>
-                Estructura legal, financiera y compliance
-              </strong>
-
-              <p>
-
-                Propiedad intelectual, contratos, medios de pago
-                y adecuación regulatoria del modelo económico.
-
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
+        <span class="summary-name">
+          Producto y tecnología
+        </span>
 
       </div>
 
 
-      <div class="contract-note">
+      <div class="summary-row">
 
-        <div class="contract-shield">
-          🛡
-        </div>
+        <span
+          class="summary-dot"
+          style="background:#B94D78"
+        ></span>
 
-        <div class="contract-overline">
-          RESPALDO CONTRACTUAL
-        </div>
+        <span class="summary-number">
+          25%
+        </span>
 
-        <h3 class="contract-title">
-          Inversión respaldada contractualmente
-        </h3>
-
-        <p class="contract-copy">
-
-          Cada inversor contará con un contrato individual que documentará
-          y respaldará su participación y los activos que le correspondan
-          dentro del proyecto, estableciendo de forma clara las condiciones,
-          derechos y obligaciones de las partes.
-
-        </p>
+        <span class="summary-name">
+          Marketing y crecimiento
+        </span>
 
       </div>
 
 
-      <div class="investor-contact">
+      <div class="summary-row">
 
-        <a
-          class="investor-contact-button"
-          href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <span
+          class="summary-dot"
+          style="background:#B38D46"
+        ></span>
 
-          ✦ CONTACTANOS
+        <span class="summary-number">
+          20%
+        </span>
 
-        </a>
+        <span class="summary-name">
+          Infraestructura y seguridad
+        </span>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span
+          class="summary-dot"
+          style="background:#B6AE91"
+        ></span>
+
+        <span class="summary-number">
+          15%
+        </span>
+
+        <span class="summary-name">
+          Legal y operaciones
+        </span>
 
       </div>
 
@@ -3812,7 +2690,232 @@
   </div>
 
 
+  <div class="fund-allocation-list">
+
+    <div class="allocation teal">
+
+      <div class="allocation-head">
+
+        <div class="allocation-color"></div>
+
+        <div class="allocation-percent">
+          40%
+        </div>
+
+        <div class="allocation-category">
+          Producto y tecnología
+        </div>
+
+      </div>
+
+
+      <div class="allocation-detail">
+
+        <div class="allocation-number">
+          01
+        </div>
+
+        <div class="allocation-description">
+
+          <strong>
+            Desarrollo y evolución del producto
+          </strong>
+
+          <p>
+
+            Programación, backend, sistema de cuentas,
+            ranking, salas, economía interna, UX/UI y contenido.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="allocation pink">
+
+      <div class="allocation-head">
+
+        <div class="allocation-color"></div>
+
+        <div class="allocation-percent">
+          25%
+        </div>
+
+        <div class="allocation-category">
+          Marketing y crecimiento
+        </div>
+
+      </div>
+
+
+      <div class="allocation-detail">
+
+        <div class="allocation-number">
+          02
+        </div>
+
+        <div class="allocation-description">
+
+          <strong>
+            Lanzamiento, marketing y adquisición de usuarios
+          </strong>
+
+          <p>
+
+            Campañas, creadores de contenido, redes sociales,
+            comunidad y expansión internacional.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="allocation gold">
+
+      <div class="allocation-head">
+
+        <div class="allocation-color"></div>
+
+        <div class="allocation-percent">
+          20%
+        </div>
+
+        <div class="allocation-category">
+          Infraestructura y seguridad
+        </div>
+
+      </div>
+
+
+      <div class="allocation-detail">
+
+        <div class="allocation-number">
+          03
+        </div>
+
+        <div class="allocation-description">
+
+          <strong>
+            Infraestructura, seguridad y escalabilidad
+          </strong>
+
+          <p>
+
+            Servidores, bases de datos, anti-fraude,
+            anti-cheat, protección de usuarios y capacidad para crecer.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="allocation ivory">
+
+      <div class="allocation-head">
+
+        <div class="allocation-color"></div>
+
+        <div class="allocation-percent">
+          15%
+        </div>
+
+        <div class="allocation-category">
+          Legal y operaciones
+        </div>
+
+      </div>
+
+
+      <div class="allocation-detail">
+
+        <div class="allocation-number">
+          04
+        </div>
+
+        <div class="allocation-description">
+
+          <strong>
+            Estructura legal, financiera y compliance
+          </strong>
+
+          <p>
+
+            Propiedad intelectual, contratos, medios de pago
+            y adecuación regulatoria del modelo económico.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="contract-note">
+
+    <div class="contract-shield">
+      🛡
+    </div>
+
+    <div class="contract-overline">
+      RESPALDO CONTRACTUAL
+    </div>
+
+    <h3 class="contract-title">
+      Inversión respaldada contractualmente
+    </h3>
+
+    <p class="contract-copy">
+
+      Cada inversor contará con un contrato individual que documentará
+      y respaldará su participación y los activos que le correspondan
+      dentro del proyecto, estableciendo de forma clara las condiciones,
+      derechos y obligaciones de las partes.
+
+    </p>
+
+  </div>
+
+
+  <div class="investor-contact">
+
+    <a
+      class="investor-contact-button"
+      href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      ✦ CONTACTANOS
+
+    </a>
+
+  </div>
+
+</div>
+
+  </div>
+
   <script>
+
+    /* =========================================================
+       DESTELLOS ALEATORIOS
+       ========================================================= */
 
     const starField =
       document.getElementById(
@@ -3944,6 +3047,12 @@
           spawnTwinkleStar();
 
 
+          /*
+            Muy ocasionalmente
+            aparecen dos destellos
+            cercanos.
+          */
+
           if (
             Math.random()
             < .10
@@ -3975,6 +3084,11 @@
       1800
     );
 
+
+    /* =========================================================
+       ESTRELLA FUGAZ
+       PEQUEÑA Y MUY OCASIONAL
+       ========================================================= */
 
     const shootingStars =
       document.getElementById(
@@ -4115,6 +3229,11 @@
 
     function scheduleNextShootingStar() {
 
+      /*
+        Entre 28 y 60 segundos
+        aproximadamente.
+      */
+
       const nextDelay =
         Math.random()
         * 32000
@@ -4123,6 +3242,11 @@
 
       window.setTimeout(
         () => {
+
+          /*
+            A veces se salta una aparición
+            para que realmente sea rara.
+          */
 
           if (
             Math.random()
@@ -4454,6 +3578,5 @@
     );
 
   </script>
-
 </body>
 </html>
