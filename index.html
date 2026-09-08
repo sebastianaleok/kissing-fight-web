@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Kissing Fight</title>
 
   <meta
     name="description"
     content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
-  />
+  >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
-  />
+  >
 
   <style>
     :root {
-      --pink: #ff5a9f;
-      --teal: #32ddb7;
-      --gold: #e0b862;
-      --ivory: #f7f0d6;
-      --dark: #1b1a25;
+      --pink: #FF5A9F;
+      --teal: #32DDB7;
+      --gold: #E0B862;
+      --ivory: #F7F0D6;
+      --dark: #1B1A25;
       --black: #000000;
-      --panel: rgba(14, 14, 20, 0.92);
-      --panel-2: rgba(20, 19, 28, 0.95);
+
+      /* Colores más sobrios para inversiones */
+      --fund-teal: #269B87;
+      --fund-pink: #B94D78;
+      --fund-gold: #B38D46;
+      --fund-ivory: #B6AE91;
+
       --text-soft: #d8d1c4;
-      --muted: #bfb6a6;
-      --line: rgba(224, 184, 98, 0.22);
+      --muted: #aaa295;
     }
 
     * {
@@ -50,13 +54,14 @@
       color: var(--ivory);
       overflow-x: hidden;
       position: relative;
+
       background:
-        radial-gradient(circle at 50% 3%, rgba(50, 221, 183, 0.34) 0%, rgba(50, 221, 183, 0.10) 19%, transparent 38%),
-        radial-gradient(circle at 2% 26%, rgba(0, 213, 190, 0.33) 0%, rgba(0, 213, 190, 0.12) 20%, transparent 37%),
-        radial-gradient(circle at 99% 28%, rgba(255, 90, 159, 0.38) 0%, rgba(255, 90, 159, 0.13) 22%, transparent 39%),
-        radial-gradient(circle at 90% 68%, rgba(224, 184, 98, 0.22) 0%, transparent 30%),
-        radial-gradient(circle at 8% 72%, rgba(64, 168, 255, 0.16) 0%, transparent 30%),
-        radial-gradient(circle at 48% 86%, rgba(255, 90, 159, 0.15) 0%, transparent 32%),
+        radial-gradient(circle at 50% 3%, rgba(50,221,183,.34) 0%, rgba(50,221,183,.10) 19%, transparent 38%),
+        radial-gradient(circle at 2% 26%, rgba(0,213,190,.33) 0%, rgba(0,213,190,.12) 20%, transparent 37%),
+        radial-gradient(circle at 99% 28%, rgba(255,90,159,.38) 0%, rgba(255,90,159,.13) 22%, transparent 39%),
+        radial-gradient(circle at 90% 68%, rgba(224,184,98,.22) 0%, transparent 30%),
+        radial-gradient(circle at 8% 72%, rgba(64,168,255,.16) 0%, transparent 30%),
+        radial-gradient(circle at 48% 86%, rgba(255,90,159,.15) 0%, transparent 32%),
         linear-gradient(180deg, #020505 0%, #000000 40%, #050208 72%, #000000 100%);
     }
 
@@ -70,7 +75,8 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.72;
+      opacity: .72;
+
       background-image:
         radial-gradient(circle at 4% 7%, rgba(247,240,214,.95) 0 1px, transparent 2px),
         radial-gradient(circle at 13% 18%, rgba(50,221,183,.9) 0 1px, transparent 2px),
@@ -81,16 +87,12 @@
         radial-gradient(circle at 62% 5%, rgba(247,240,214,.9) 0 1px, transparent 2px),
         radial-gradient(circle at 73% 18%, rgba(255,90,159,.9) 0 1px, transparent 2px),
         radial-gradient(circle at 84% 8%, rgba(247,240,214,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 8% 48%, rgba(247,240,214,.7) 0 1px, transparent 2px),
-        radial-gradient(circle at 29% 56%, rgba(50,221,183,.65) 0 1px, transparent 2px),
-        radial-gradient(circle at 72% 49%, rgba(247,240,214,.75) 0 1px, transparent 2px),
-        radial-gradient(circle at 89% 57%, rgba(255,90,159,.7) 0 1px, transparent 2px),
-        radial-gradient(circle at 15% 79%, rgba(224,184,98,.8) 0 1px, transparent 2px),
-        radial-gradient(circle at 46% 71%, rgba(247,240,214,.65) 0 1px, transparent 2px),
-        radial-gradient(circle at 66% 84%, rgba(50,221,183,.65) 0 1px, transparent 2px),
-        radial-gradient(circle at 92% 81%, rgba(247,240,214,.75) 0 1px, transparent 2px);
+        radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px);
     }
+
+    /* =========================================================
+       FONDO
+    ========================================================= */
 
     .universe-glow {
       position: fixed;
@@ -105,7 +107,7 @@
       height: 560px;
       top: -190px;
       left: -210px;
-      background: rgba(50, 221, 183, 0.36);
+      background: rgba(50,221,183,.36);
     }
 
     .universe-glow.pink {
@@ -113,7 +115,7 @@
       height: 580px;
       top: 60px;
       right: -250px;
-      background: rgba(255, 90, 159, 0.33);
+      background: rgba(255,90,159,.33);
     }
 
     .universe-glow.gold {
@@ -121,7 +123,7 @@
       height: 460px;
       bottom: -210px;
       right: 4%;
-      background: rgba(224, 184, 98, 0.20);
+      background: rgba(224,184,98,.20);
     }
 
     .energy-ring {
@@ -137,7 +139,7 @@
       top: 330px;
       left: 50%;
       transform: translateX(-50%) rotate(-8deg);
-      border: 2px solid rgba(255, 90, 159, 0.25);
+      border: 2px solid rgba(255,90,159,.25);
       box-shadow:
         0 0 22px rgba(255,90,159,.21),
         inset 0 0 22px rgba(255,90,159,.07);
@@ -149,9 +151,13 @@
       top: 385px;
       left: 50%;
       transform: translateX(-50%) rotate(9deg);
-      border: 1px solid rgba(50, 221, 183, 0.27);
+      border: 1px solid rgba(50,221,183,.27);
       box-shadow: 0 0 25px rgba(50,221,183,.16);
     }
+
+    /* =========================================================
+       GENERAL
+    ========================================================= */
 
     .page {
       width: min(100%, 1040px);
@@ -160,6 +166,10 @@
       position: relative;
       z-index: 2;
     }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
 
     .hero {
       display: flex;
@@ -174,24 +184,27 @@
       position: relative;
       z-index: 6;
       margin-bottom: 15px;
+
       font-family: "Cinzel", serif;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 6px;
+
       color: var(--gold);
       text-transform: uppercase;
+
       text-shadow: 0 0 14px rgba(224,184,98,.48);
+
       animation: eyebrowGlow 4s ease-in-out infinite;
     }
 
     @keyframes eyebrowGlow {
       0%, 100% {
         opacity: .82;
-        text-shadow: 0 0 12px rgba(224,184,98,.28);
       }
+
       50% {
         opacity: 1;
-        text-shadow: 0 0 24px rgba(224,184,98,.68);
       }
     }
 
@@ -199,14 +212,26 @@
       position: absolute;
       top: 80px;
       left: 50%;
+
       transform: translateX(-50%);
+
       width: clamp(330px, 58vw, 650px);
       aspect-ratio: 1;
       border-radius: 50%;
+
       pointer-events: none;
+
       background:
-        radial-gradient(circle, rgba(247,240,214,.25) 0%, rgba(50,221,183,.27) 9%, rgba(50,221,183,.10) 26%, transparent 58%);
+        radial-gradient(
+          circle,
+          rgba(247,240,214,.25) 0%,
+          rgba(50,221,183,.27) 9%,
+          rgba(50,221,183,.10) 26%,
+          transparent 58%
+        );
+
       opacity: .88;
+
       animation: portalPulse 5s ease-in-out infinite;
     }
 
@@ -215,7 +240,9 @@
       position: absolute;
       inset: 12%;
       border-radius: 50%;
+
       border: 2px solid rgba(50,221,183,.22);
+
       box-shadow:
         0 0 28px rgba(50,221,183,.23),
         inset 0 0 28px rgba(50,221,183,.16);
@@ -226,8 +253,11 @@
       position: absolute;
       inset: 22%;
       border-radius: 50%;
+
       border: 1px solid rgba(224,184,98,.28);
-      box-shadow: 0 0 38px rgba(224,184,98,.15);
+
+      box-shadow:
+        0 0 38px rgba(224,184,98,.15);
     }
 
     @keyframes portalPulse {
@@ -235,6 +265,7 @@
         transform: translateX(-50%) scale(.96);
         opacity: .60;
       }
+
       50% {
         transform: translateX(-50%) scale(1.06);
         opacity: 1;
@@ -244,49 +275,60 @@
     .hero-logo-wrap {
       width: 100%;
       max-width: 930px;
-      min-height: clamp(290px, 46vw, 470px);
+
+      min-height: clamp(290px,46vw,470px);
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       position: relative;
       z-index: 6;
+
       margin: 0 auto;
-      overflow: visible;
     }
 
     .hero-logo-shadow {
       position: absolute;
       bottom: 28px;
       left: 50%;
+
       transform: translateX(-50%);
+
       width: 58%;
       height: 30px;
+
       border-radius: 50%;
       background: rgba(0,0,0,.78);
+
       filter: blur(21px);
+
       animation: shadowFloat 4s ease-in-out infinite;
     }
 
     .hero-logo {
       display: block;
-      width: min(100%, 920px);
+
+      width: min(100%,920px);
       height: auto;
+
       position: relative;
       z-index: 7;
-      object-fit: contain;
+
       animation: logoFloat 4s ease-in-out infinite;
+
       filter:
         drop-shadow(0 18px 15px rgba(0,0,0,.55))
         drop-shadow(0 0 17px rgba(255,90,159,.38))
         drop-shadow(0 0 27px rgba(50,221,183,.34))
         drop-shadow(0 0 34px rgba(224,184,98,.22));
-      will-change: transform;
     }
 
     @keyframes logoFloat {
       0%, 100% {
         transform: translateY(0) scale(1);
       }
+
       50% {
         transform: translateY(-17px) scale(1.02);
       }
@@ -297,6 +339,7 @@
         transform: translateX(-50%) scaleX(1);
         opacity: .56;
       }
+
       50% {
         transform: translateX(-50%) scaleX(.80);
         opacity: .27;
@@ -306,13 +349,16 @@
     .subtitle {
       position: relative;
       z-index: 6;
+
       max-width: 760px;
+
       margin: -15px auto 0;
       padding: 0 18px;
-      font-size: clamp(16px, 2.2vw, 20px);
+
+      font-size: clamp(16px,2.2vw,20px);
       line-height: 1.7;
+
       color: var(--text-soft);
-      text-shadow: 0 3px 10px rgba(0,0,0,.95);
     }
 
     .subtitle strong {
@@ -320,11 +366,18 @@
       font-weight: 900;
     }
 
+    /* =========================================================
+       BOTONES
+    ========================================================= */
+
     .main-buttons {
       width: 100%;
+
       display: grid;
       gap: 15px;
+
       margin-top: 44px;
+
       position: relative;
       z-index: 7;
     }
@@ -333,78 +386,73 @@
     .btn-button {
       width: 100%;
       min-height: 94px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 18px;
+
       position: relative;
       overflow: hidden;
+
       padding: 19px 24px;
+
       border-radius: 20px;
-      text-decoration: none;
+
       color: var(--ivory);
+      text-decoration: none;
+
       border: 1px solid rgba(224,184,98,.30);
+
       background:
-        linear-gradient(110deg, rgba(22,20,30,.97), rgba(7,12,16,.97));
+        linear-gradient(
+          110deg,
+          rgba(22,20,30,.97),
+          rgba(7,12,16,.97)
+        );
+
       box-shadow:
         0 18px 44px rgba(0,0,0,.52),
-        inset 0 1px 0 rgba(255,255,255,.055),
-        inset 0 -1px 0 rgba(0,0,0,.7);
-      backdrop-filter: blur(14px);
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        inset 0 1px 0 rgba(255,255,255,.055);
+
+      transition: .25s ease;
     }
 
     .btn-button {
-      appearance: none;
       font: inherit;
       cursor: pointer;
       text-align: left;
+      appearance: none;
     }
 
     .btn::before,
     .btn-button::before {
       content: "";
+
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      opacity: .86;
-      background:
-        radial-gradient(circle at 4% 50%, rgba(255,90,159,.18), transparent 28%),
-        radial-gradient(circle at 96% 50%, rgba(50,221,183,.17), transparent 30%);
-    }
 
-    .btn::after,
-    .btn-button::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -35%;
-      width: 28%;
-      transform: skewX(-24deg);
+      pointer-events: none;
+
       background:
-        linear-gradient(90deg, transparent, rgba(247,240,214,.14), transparent);
-      transition: left .6s ease;
+        radial-gradient(circle at 4% 50%,rgba(255,90,159,.18),transparent 28%),
+        radial-gradient(circle at 96% 50%,rgba(50,221,183,.17),transparent 30%);
     }
 
     .btn:hover,
     .btn-button:hover {
-      transform: translateY(-4px) scale(1.007);
+      transform: translateY(-4px);
+
       border-color: rgba(224,184,98,.64);
+
       box-shadow:
         0 24px 58px rgba(0,0,0,.62),
-        0 0 28px rgba(50,221,183,.14),
-        0 0 25px rgba(255,90,159,.12);
+        0 0 26px rgba(50,221,183,.12),
+        0 0 22px rgba(255,90,159,.10);
     }
 
-    .btn:hover::after,
-    .btn-button:hover::after {
-      left: 115%;
-    }
-
-    .btn.primary,
-    .btn-button.primary {
-      border-color: rgba(224,184,98,.52);
+    .btn.primary {
       background:
         linear-gradient(
           100deg,
@@ -419,6 +467,7 @@
       display: flex;
       align-items: center;
       gap: 17px;
+
       position: relative;
       z-index: 2;
     }
@@ -426,13 +475,25 @@
     .icon {
       width: 52px;
       height: 52px;
-      flex-shrink: 0;
+
       display: grid;
       place-items: center;
+
+      flex-shrink: 0;
+
       border-radius: 15px;
+
       color: var(--gold);
+
       font-size: 23px;
-      background: linear-gradient(145deg, rgba(224,184,98,.20), rgba(255,90,159,.07));
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.20),
+          rgba(255,90,159,.07)
+        );
+
       border: 1px solid rgba(224,184,98,.31);
     }
 
@@ -442,36 +503,54 @@
 
     .btn-title {
       display: block;
+
+      color: var(--ivory);
+
       font-size: 16px;
       font-weight: 900;
-      color: var(--ivory);
-      letter-spacing: .4px;
     }
 
     .btn-sub {
       display: block;
+
       margin-top: 5px;
-      font-size: 12px;
+
       color: #c9c1b3;
+
+      font-size: 12px;
     }
 
     .arrow {
       position: relative;
       z-index: 2;
-      font-size: 27px;
+
       color: var(--teal);
-      text-shadow: 0 0 14px rgba(50,221,183,.60);
+
+      font-size: 27px;
     }
+
+    /* =========================================================
+       SECCIONES
+    ========================================================= */
 
     .section {
       position: relative;
       overflow: hidden;
+
       margin-top: 34px;
       padding: 32px 28px;
+
       border-radius: 23px;
+
       background:
-        linear-gradient(135deg, rgba(17,17,24,.95), rgba(6,7,11,.97));
+        linear-gradient(
+          135deg,
+          rgba(17,17,24,.95),
+          rgba(6,7,11,.97)
+        );
+
       border: 1px solid rgba(224,184,98,.24);
+
       box-shadow:
         0 20px 50px rgba(0,0,0,.50),
         inset 0 1px 0 rgba(255,255,255,.04);
@@ -479,267 +558,311 @@
 
     .section::before {
       content: "";
+
       position: absolute;
       inset: 0;
+
       pointer-events: none;
+
       background:
-        radial-gradient(circle at 0% 0%, rgba(50,221,183,.11), transparent 37%),
-        radial-gradient(circle at 100% 100%, rgba(255,90,159,.10), transparent 34%);
+        radial-gradient(circle at 0% 0%,rgba(50,221,183,.11),transparent 37%),
+        radial-gradient(circle at 100% 100%,rgba(255,90,159,.10),transparent 34%);
     }
 
     .section-label {
       position: relative;
       z-index: 2;
+
       margin-bottom: 11px;
+
+      color: var(--teal);
+
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 4px;
-      color: var(--teal);
+
       text-transform: uppercase;
-      text-shadow: 0 0 11px rgba(50,221,183,.42);
     }
 
     .section h2 {
       position: relative;
       z-index: 2;
+
       margin-bottom: 13px;
-      font-family: "Cinzel", serif;
-      font-size: clamp(23px, 4vw, 31px);
+
+      font-family: "Cinzel",serif;
+
+      font-size: clamp(23px,4vw,31px);
       line-height: 1.25;
+
       color: var(--gold);
-      text-shadow: 0 2px 14px rgba(0,0,0,.9);
     }
 
     .section p {
       position: relative;
       z-index: 2;
+
       max-width: 790px;
+
       color: var(--text-soft);
+
       font-size: 15px;
       line-height: 1.75;
+    }
+
+    .investor-card {
+      cursor: pointer;
+
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+    }
+
+    .investor-card:hover {
+      transform: translateY(-4px);
+
+      border-color: rgba(224,184,98,.48);
+
+      box-shadow:
+        0 24px 58px rgba(0,0,0,.58),
+        0 0 22px rgba(224,184,98,.10);
     }
 
     .section-action {
       position: relative;
       z-index: 2;
-      margin-top: 18px;
+
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
+
+      margin-top: 18px;
+
       padding: 10px 14px;
+
       border-radius: 999px;
+
+      border: 1px solid rgba(224,184,98,.25);
+
+      color: var(--gold);
+
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .7px;
-      color: var(--ivory);
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(224,184,98,.18);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
-    }
+      font-weight: 900;
+      letter-spacing: .6px;
 
-    .popup-trigger-card {
-      cursor: pointer;
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    }
-
-    .popup-trigger-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(224,184,98,.42);
-      box-shadow:
-        0 26px 56px rgba(0,0,0,.58),
-        0 0 24px rgba(50,221,183,.08),
-        0 0 22px rgba(255,90,159,.08);
-    }
-
-    .popup-trigger-card:focus-visible,
-    .btn-button:focus-visible,
-    .modal-close:focus-visible,
-    .social:focus-visible {
-      outline: 2px solid var(--teal);
-      outline-offset: 4px;
+      background: rgba(224,184,98,.05);
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3,1fr);
+
       gap: 13px;
+
       margin-top: 24px;
     }
 
     .feature {
       position: relative;
       z-index: 2;
+
       padding: 20px 12px;
+
       text-align: center;
+
       border-radius: 17px;
+
       background:
-        linear-gradient(145deg, rgba(247,240,214,.06), rgba(247,240,214,.02));
+        linear-gradient(
+          145deg,
+          rgba(247,240,214,.06),
+          rgba(247,240,214,.02)
+        );
+
       border: 1px solid rgba(224,184,98,.17);
     }
 
     .feature strong {
       display: block;
-      margin-bottom: 5px;
-      font-size: 14px;
+
       color: var(--ivory);
+
+      margin-bottom: 5px;
+
+      font-size: 14px;
     }
 
     .feature span {
-      font-size: 11px;
       color: #bfb6a6;
+      font-size: 11px;
     }
+
+    /* =========================================================
+       REDES
+    ========================================================= */
 
     .social-title {
       margin: 48px 0 17px;
+
       text-align: center;
-      font-family: "Cinzel", serif;
+
+      font-family: "Cinzel",serif;
+
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 4px;
+
       color: var(--gold);
+
       text-transform: uppercase;
     }
 
     .socials {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2,1fr);
+
       gap: 12px;
     }
 
     .social {
-      position: relative;
-      overflow: hidden;
       min-height: 75px;
-      padding: 16px 18px;
+
       display: flex;
       align-items: center;
+
       gap: 14px;
+
+      padding: 16px 18px;
+
       border-radius: 17px;
-      text-decoration: none;
+
       color: var(--ivory);
+
+      text-decoration: none;
+
       background:
-        linear-gradient(145deg, rgba(22,21,29,.94), rgba(7,7,10,.97));
+        linear-gradient(
+          145deg,
+          rgba(22,21,29,.94),
+          rgba(7,7,10,.97)
+        );
+
       border: 1px solid rgba(224,184,98,.20);
-      box-shadow: 0 14px 32px rgba(0,0,0,.32);
-      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+
+      transition: .22s ease;
     }
 
     .social:hover {
       transform: translateY(-3px);
       border-color: rgba(50,221,183,.50);
-      box-shadow:
-        0 18px 38px rgba(0,0,0,.43),
-        0 0 20px rgba(50,221,183,.10);
     }
 
     .social-icon {
       width: 43px;
       height: 43px;
+
       flex-shrink: 0;
+
       display: grid;
       place-items: center;
-      border-radius: 13px;
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.08);
-      font-size: 19px;
-      font-weight: 800;
-    }
 
-    .social-text {
-      text-align: left;
+      border-radius: 13px;
+
+      background: rgba(255,255,255,.055);
+
+      border: 1px solid rgba(255,255,255,.08);
+
+      font-weight: 800;
     }
 
     .social-name {
       display: block;
+
       font-size: 13px;
       font-weight: 900;
-      letter-spacing: .5px;
     }
 
     .social-sub {
       display: block;
+
       margin-top: 3px;
-      font-size: 11px;
-      font-weight: 500;
+
       color: #bfb7aa;
-    }
 
-    .social.instagram-en {
-      background:
-        linear-gradient(120deg, rgba(255,90,159,.13), rgba(17,15,24,.96));
-      border-color: rgba(255,90,159,.28);
-    }
-
-    .social.instagram-es {
-      background:
-        linear-gradient(120deg, rgba(224,184,98,.12), rgba(17,15,24,.96));
-      border-color: rgba(224,184,98,.29);
-    }
-
-    .social.channel {
-      background:
-        linear-gradient(135deg, rgba(50,221,183,.10), rgba(15,17,22,.97));
-      border-color: rgba(50,221,183,.31);
+      font-size: 11px;
     }
 
     .social.whatsapp {
       background:
-        linear-gradient(110deg, rgba(50,221,183,.27), rgba(10,18,18,.97));
+        linear-gradient(
+          110deg,
+          rgba(50,221,183,.27),
+          rgba(10,18,18,.97)
+        );
+
       border-color: rgba(50,221,183,.58);
-      box-shadow:
-        0 15px 36px rgba(0,0,0,.38),
-        0 0 20px rgba(50,221,183,.10);
     }
 
-    .social.whatsapp:hover {
-      border-color: var(--teal);
-      transform: translateY(-4px) scale(1.01);
-      box-shadow:
-        0 20px 44px rgba(0,0,0,.48),
-        0 0 30px rgba(50,221,183,.22);
-    }
+    /* =========================================================
+       FOOTER
+    ========================================================= */
 
     footer {
       margin-top: 58px;
-      padding-top: 12px;
+
       text-align: center;
+
       color: #928b80;
+
       font-size: 11px;
-      letter-spacing: 1.2px;
     }
 
     .status {
       display: inline-flex;
       align-items: center;
+
       gap: 8px;
+
       margin-top: 12px;
-      color: #b7ae9e;
     }
 
     .dot {
       width: 8px;
       height: 8px;
+
       border-radius: 50%;
+
       background: var(--teal);
+
       box-shadow: 0 0 15px var(--teal);
     }
 
-    /* MODAL */
+    /* =========================================================
+       MODAL
+    ========================================================= */
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
+
       z-index: 1000;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 22px;
-      background: rgba(0, 0, 0, 0.76);
+
+      padding: 20px;
+
+      background: rgba(0,0,0,.78);
+
       backdrop-filter: blur(9px);
+
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity .28s ease, visibility .28s ease;
+
+      transition: .28s ease;
     }
 
     .modal-backdrop.is-open {
@@ -749,412 +872,608 @@
     }
 
     .modal-panel {
-      width: min(1120px, 100%);
-      max-height: min(92vh, 980px);
-      overflow: auto;
-      position: relative;
-      border-radius: 28px;
-      padding: 28px;
-      background:
-        radial-gradient(circle at top left, rgba(50,221,183,.08), transparent 26%),
-        radial-gradient(circle at top right, rgba(255,90,159,.10), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(224,184,98,.08), transparent 30%),
-        linear-gradient(180deg, rgba(14,13,20,.98), rgba(9,9,13,.985));
-      border: 1px solid rgba(224,184,98,.26);
-      box-shadow:
-        0 32px 90px rgba(0,0,0,.68),
-        0 0 26px rgba(50,221,183,.08),
-        0 0 22px rgba(255,90,159,.08),
-        inset 0 1px 0 rgba(255,255,255,.04);
-    }
+      width: min(1080px,100%);
 
-    .modal-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
+      max-height: 92vh;
+
+      overflow-y: auto;
+
+      position: relative;
+
+      padding: 28px;
+
       border-radius: 28px;
+
       background:
-        linear-gradient(135deg, rgba(255,255,255,.02), transparent 18%, transparent 82%, rgba(255,255,255,.02));
+        radial-gradient(circle at 10% 0%,rgba(50,221,183,.07),transparent 28%),
+        radial-gradient(circle at 95% 8%,rgba(255,90,159,.07),transparent 30%),
+        linear-gradient(
+          180deg,
+          rgba(15,14,20,.99),
+          rgba(7,7,10,.99)
+        );
+
+      border: 1px solid rgba(224,184,98,.27);
+
+      box-shadow:
+        0 35px 100px rgba(0,0,0,.72),
+        0 0 24px rgba(224,184,98,.06);
     }
 
     .modal-close {
       position: absolute;
+
       top: 16px;
       right: 16px;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 1px solid rgba(224,184,98,.25);
-      background: rgba(255,255,255,.03);
-      color: var(--gold);
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
+
+      width: 46px;
+      height: 46px;
+
       display: grid;
       place-items: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,.28);
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+
+      border-radius: 50%;
+
+      cursor: pointer;
+
+      color: var(--gold);
+
+      font-size: 28px;
+
+      background: rgba(255,255,255,.03);
+
+      border: 1px solid rgba(224,184,98,.24);
     }
 
-    .modal-close:hover {
-      transform: scale(1.06);
-      border-color: rgba(224,184,98,.48);
-      box-shadow:
-        0 12px 24px rgba(0,0,0,.36),
-        0 0 16px rgba(224,184,98,.12);
-    }
+    /* MODAL LOGO */
 
     .modal-logo-wrap {
       display: flex;
       justify-content: center;
-      margin: 8px 0 18px;
-      position: relative;
-      z-index: 2;
+
+      margin: 4px 0 13px;
     }
 
     .modal-logo {
-      width: min(100%, 310px);
-      height: auto;
-      display: block;
+      width: min(280px,62vw);
+
       filter:
-        drop-shadow(0 14px 16px rgba(0,0,0,.46))
-        drop-shadow(0 0 18px rgba(255,90,159,.18))
-        drop-shadow(0 0 18px rgba(50,221,183,.15));
+        drop-shadow(0 10px 14px rgba(0,0,0,.55))
+        drop-shadow(0 0 12px rgba(224,184,98,.10));
     }
+
+    /* INTRO MÁS FORMAL */
 
     .modal-overline {
+      margin-bottom: 9px;
+
       text-align: center;
-      color: var(--teal);
-      font-size: 12px;
+
+      color: var(--gold);
+
+      font-size: 11px;
       font-weight: 900;
-      letter-spacing: 4px;
+      letter-spacing: 3.5px;
+
       text-transform: uppercase;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 2;
     }
 
-    .modal-title {
-      position: relative;
-      z-index: 2;
-      max-width: 920px;
-      margin: 0 auto 14px;
-      font-family: "Cinzel", serif;
-      font-size: clamp(24px, 3.4vw, 39px);
-      line-height: 1.25;
+    .modal-intro {
+      max-width: 850px;
+
+      margin: 0 auto 9px;
+
       text-align: center;
-      color: var(--gold);
-      text-shadow: 0 2px 18px rgba(0,0,0,.7);
+
+      font-family: "Libre Baskerville", Georgia, serif;
+
+      font-size: clamp(18px,2.3vw,27px);
+
+      font-weight: 700;
+
+      line-height: 1.47;
+
+      color: var(--ivory);
     }
 
     .modal-subtitle {
-      position: relative;
-      z-index: 2;
-      max-width: 820px;
-      margin: 0 auto 28px;
+      margin-bottom: 28px;
+
       text-align: center;
-      color: var(--text-soft);
-      font-size: 16px;
-      line-height: 1.7;
+
+      color: #aaa295;
+
+      font-size: 14px;
+      letter-spacing: .3px;
     }
 
-    .funds-top {
+    /* DONA */
+
+    .funds-chart-area {
       display: grid;
-      grid-template-columns: minmax(300px, 1fr) minmax(280px, 420px);
-      gap: 26px;
+
+      grid-template-columns:
+        minmax(280px,400px)
+        1fr;
+
+      gap: 32px;
+
       align-items: center;
-      position: relative;
-      z-index: 2;
+
+      margin-bottom: 30px;
     }
 
     .donut-wrap {
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 10px;
     }
 
-    .donut-chart {
-      width: min(100%, 410px);
+    .donut {
+      width: min(390px,80vw);
+
       aspect-ratio: 1;
-      border-radius: 50%;
+
       position: relative;
+
+      border-radius: 50%;
+
       background:
         conic-gradient(
-          var(--teal) 0% 40%,
-          var(--pink) 40% 65%,
-          var(--gold) 65% 85%,
-          rgba(247,240,214,.92) 85% 100%
+          var(--fund-teal) 0% 40%,
+          var(--fund-pink) 40% 65%,
+          var(--fund-gold) 65% 85%,
+          var(--fund-ivory) 85% 100%
         );
+
       box-shadow:
-        0 20px 46px rgba(0,0,0,.44),
-        0 0 22px rgba(50,221,183,.10),
-        0 0 18px rgba(255,90,159,.08);
+        0 20px 45px rgba(0,0,0,.40);
     }
 
-    .donut-chart::before {
+    .donut::after {
       content: "";
+
       position: absolute;
-      inset: 27%;
+
+      inset: 28%;
+
       border-radius: 50%;
+
       background:
-        radial-gradient(circle at 50% 40%, rgba(255,255,255,.04), transparent 55%),
-        linear-gradient(180deg, rgba(20,19,28,.98), rgba(10,10,14,.98));
-      border: 1px solid rgba(224,184,98,.20);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.03),
-        0 0 20px rgba(224,184,98,.05);
+        linear-gradient(
+          180deg,
+          #17161e,
+          #09090d
+        );
+
+      border: 1px solid rgba(224,184,98,.16);
     }
 
     .donut-center {
       position: absolute;
+
       inset: 0;
-      display: grid;
-      place-items: center;
+
+      z-index: 3;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
       text-align: center;
-      z-index: 2;
-      padding: 28%;
+
+      pointer-events: none;
     }
 
     .donut-center strong {
-      display: block;
-      font-family: "Cinzel", serif;
-      font-size: clamp(34px, 6vw, 68px);
-      line-height: 1;
+      font-family: "Libre Baskerville",serif;
+
+      font-size: clamp(38px,6vw,61px);
+
       color: var(--ivory);
-      text-shadow:
-        0 0 18px rgba(224,184,98,.18);
     }
 
     .donut-center span {
-      display: block;
-      margin-top: 8px;
-      color: #d3cabd;
-      font-size: clamp(12px, 1.8vw, 16px);
+      max-width: 125px;
+
+      margin-top: 5px;
+
+      color: #aaa295;
+
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1.6px;
-      line-height: 1.4;
+      letter-spacing: 1.4px;
     }
 
-    .funds-legend {
+    /* PORCENTAJES ESCRITOS SOBRE LA DONA */
+
+    .donut-percent {
+      position: absolute;
+
+      z-index: 4;
+
+      font-family: "Nunito Sans",sans-serif;
+
+      font-size: clamp(15px,2vw,21px);
+      font-weight: 900;
+
+      color: #f4eee1;
+
+      text-shadow:
+        0 2px 5px rgba(0,0,0,.75);
+    }
+
+    .donut-percent.p40 {
+      top: 28%;
+      right: 11%;
+    }
+
+    .donut-percent.p25 {
+      bottom: 15%;
+      right: 28%;
+    }
+
+    .donut-percent.p20 {
+      bottom: 26%;
+      left: 8%;
+    }
+
+    .donut-percent.p15 {
+      top: 21%;
+      left: 17%;
+    }
+
+    /* MINI RESUMEN */
+
+    .fund-summary {
       display: grid;
-      gap: 14px;
+      gap: 11px;
     }
 
-    .legend-item {
-      display: grid;
-      grid-template-columns: 18px 1fr;
-      gap: 14px;
-      align-items: start;
-      padding: 16px 18px;
-      border-radius: 18px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
-      border: 1px solid rgba(224,184,98,.12);
-      box-shadow: 0 14px 28px rgba(0,0,0,.18);
+    .summary-row {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      padding: 12px 14px;
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,.025);
+
+      border: 1px solid rgba(255,255,255,.055);
     }
 
-    .legend-dot {
-      width: 18px;
-      height: 18px;
+    .summary-dot {
+      width: 13px;
+      height: 13px;
+
+      flex-shrink: 0;
+
       border-radius: 50%;
-      margin-top: 10px;
-      box-shadow: 0 0 14px currentColor;
     }
 
-    .legend-content strong {
-      display: block;
-      font-family: "Cinzel", serif;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1;
-      margin-bottom: 6px;
+    .summary-number {
+      min-width: 58px;
+
+      font-family: "Libre Baskerville",serif;
+
+      font-size: 23px;
+      font-weight: 700;
+
       color: var(--ivory);
     }
 
-    .legend-content span {
-      display: block;
-      font-size: 15px;
-      line-height: 1.45;
-      color: var(--text-soft);
+    .summary-name {
+      color: #d4ccbf;
+
+      font-size: 14px;
       font-weight: 700;
     }
 
-    .legend-item.teal .legend-dot { color: var(--teal); background: var(--teal); }
-    .legend-item.pink .legend-dot { color: var(--pink); background: var(--pink); }
-    .legend-item.gold .legend-dot { color: var(--gold); background: var(--gold); }
-    .legend-item.ivory .legend-dot { color: #d8d0ff; background: #d8d0ff; }
+    /* =========================================================
+       ITEMS DE FONDOS AGRUPADOS
+    ========================================================= */
 
-    .funds-grid {
+    .fund-allocation-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      margin-top: 26px;
-      position: relative;
-      z-index: 2;
     }
 
-    .fund-card {
-      position: relative;
+    .allocation {
+      border-radius: 21px;
+
       overflow: hidden;
-      padding: 22px 20px 20px;
-      border-radius: 22px;
+
       background:
-        linear-gradient(155deg, rgba(27,26,37,.96), rgba(10,10,14,.98));
-      border: 1px solid rgba(224,184,98,.16);
-      box-shadow:
-        0 18px 34px rgba(0,0,0,.24),
-        inset 0 1px 0 rgba(255,255,255,.03);
+        linear-gradient(
+          145deg,
+          rgba(24,23,31,.96),
+          rgba(9,9,13,.98)
+        );
+
+      border: 1px solid rgba(224,184,98,.14);
     }
 
-    .fund-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: .9;
-      background:
-        radial-gradient(circle at top right, rgba(255,255,255,.03), transparent 28%);
+    .allocation-head {
+      display: flex;
+      align-items: center;
+
+      gap: 15px;
+
+      padding: 17px 20px;
+
+      border-bottom: 1px solid rgba(255,255,255,.055);
     }
 
-    .fund-card-header {
+    .allocation-color {
+      width: 10px;
+
+      align-self: stretch;
+
+      min-height: 48px;
+
+      border-radius: 999px;
+    }
+
+    .allocation-percent {
+      min-width: 75px;
+
+      font-family: "Libre Baskerville",serif;
+
+      font-size: 28px;
+      font-weight: 700;
+
+      color: var(--ivory);
+    }
+
+    .allocation-category {
+      font-family: "Libre Baskerville",serif;
+
+      font-size: clamp(17px,2vw,22px);
+
+      line-height: 1.35;
+
+      color: var(--ivory);
+    }
+
+    .allocation-detail {
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 14px;
-      align-items: start;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 2;
+
+      grid-template-columns:
+        55px 1fr;
+
+      gap: 15px;
+
+      padding: 18px 20px 20px;
     }
 
-    .fund-number {
-      min-width: 56px;
-      font-family: "Cinzel", serif;
-      font-size: 32px;
-      line-height: 1;
-      font-weight: 800;
-      color: var(--ivory);
-      opacity: .95;
+    .allocation-number {
+      font-family: "Libre Baskerville",serif;
+
+      font-size: 22px;
+      font-weight: 700;
+
+      opacity: .85;
     }
 
-    .fund-title {
-      font-family: "Cinzel", serif;
-      font-size: clamp(20px, 2.2vw, 28px);
-      line-height: 1.22;
-      color: var(--ivory);
-    }
+    .allocation-description strong {
+      display: block;
 
-    .fund-copy {
-      position: relative;
-      z-index: 2;
+      margin-bottom: 6px;
+
+      color: #e5ded1;
+
+      font-family: "Libre Baskerville",serif;
+
       font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-soft);
+
+      line-height: 1.45;
     }
 
-    .fund-card.teal .fund-number,
-    .fund-card.teal .fund-title {
-      color: var(--teal);
-      text-shadow: 0 0 12px rgba(50,221,183,.12);
+    .allocation-description p {
+      color: #aaa295;
+
+      font-size: 14px;
+      line-height: 1.65;
     }
 
-    .fund-card.pink .fund-number,
-    .fund-card.pink .fund-title {
-      color: var(--pink);
-      text-shadow: 0 0 12px rgba(255,90,159,.10);
+    .allocation.teal .allocation-color {
+      background: var(--fund-teal);
     }
 
-    .fund-card.gold .fund-number,
-    .fund-card.gold .fund-title {
-      color: var(--gold);
-      text-shadow: 0 0 12px rgba(224,184,98,.12);
+    .allocation.teal .allocation-number {
+      color: #54b5a2;
     }
 
-    .fund-card.ivory .fund-number,
-    .fund-card.ivory .fund-title {
-      color: #d8d0ff;
-      text-shadow: 0 0 12px rgba(216,208,255,.10);
+    .allocation.pink .allocation-color {
+      background: var(--fund-pink);
     }
+
+    .allocation.pink .allocation-number {
+      color: #cf698e;
+    }
+
+    .allocation.gold .allocation-color {
+      background: var(--fund-gold);
+    }
+
+    .allocation.gold .allocation-number {
+      color: #c5a05a;
+    }
+
+    .allocation.ivory .allocation-color {
+      background: var(--fund-ivory);
+    }
+
+    .allocation.ivory .allocation-number {
+      color: #c9c0a3;
+    }
+
+    /* =========================================================
+       RESPALDO CONTRACTUAL MÁS DESTACADO
+    ========================================================= */
 
     .contract-note {
       position: relative;
-      z-index: 2;
-      margin-top: 22px;
-      padding: 22px 22px 22px 20px;
-      border-radius: 22px;
+
+      margin-top: 25px;
+
+      padding: 28px 25px;
+
+      overflow: hidden;
+
+      border-radius: 24px;
+
+      text-align: center;
+
       background:
-        linear-gradient(135deg, rgba(224,184,98,.10), rgba(255,90,159,.08), rgba(50,221,183,.08));
-      border: 1px solid rgba(224,184,98,.26);
+        radial-gradient(circle at 50% 0%,rgba(224,184,98,.17),transparent 45%),
+        linear-gradient(
+          135deg,
+          rgba(38,31,20,.78),
+          rgba(15,13,17,.98)
+        );
+
+      border: 1px solid rgba(224,184,98,.48);
+
       box-shadow:
-        0 18px 36px rgba(0,0,0,.26),
-        0 0 20px rgba(224,184,98,.08);
+        0 22px 45px rgba(0,0,0,.40),
+        0 0 28px rgba(224,184,98,.10),
+        inset 0 1px 0 rgba(255,255,255,.05);
     }
 
-    .contract-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 2px;
+    .contract-shield {
+      width: 72px;
+      height: 72px;
+
+      display: grid;
+      place-items: center;
+
+      margin: 0 auto 14px;
+
+      border-radius: 22px;
+
+      font-size: 38px;
+
       color: var(--gold);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.20),
+          rgba(224,184,98,.05)
+        );
+
+      border: 1px solid rgba(224,184,98,.44);
+
+      box-shadow:
+        0 0 28px rgba(224,184,98,.14);
+    }
+
+    .contract-overline {
+      margin-bottom: 8px;
+
+      color: var(--gold);
+
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+
       text-transform: uppercase;
     }
 
-    .contract-icon {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(224,184,98,.20);
-      font-size: 18px;
-    }
-
     .contract-title {
-      font-family: "Cinzel", serif;
-      font-size: clamp(20px, 2.6vw, 29px);
-      line-height: 1.2;
+      max-width: 720px;
+
+      margin: 0 auto 11px;
+
+      font-family: "Libre Baskerville",serif;
+
+      font-size: clamp(22px,3vw,32px);
+
+      line-height: 1.3;
+
       color: var(--ivory);
-      margin-bottom: 10px;
     }
 
     .contract-copy {
-      color: var(--text-soft);
-      font-size: 15px;
+      max-width: 850px;
+
+      margin: 0 auto;
+
+      color: #d1c8ba;
+
+      font-size: 14px;
       line-height: 1.75;
-      max-width: 980px;
     }
 
-    @media (max-width: 900px) {
-      .funds-top {
-        grid-template-columns: 1fr;
-      }
+    /* =========================================================
+       BOTÓN CONTACTO MODAL
+    ========================================================= */
 
-      .funds-grid {
-        grid-template-columns: 1fr;
-      }
+    .investor-contact {
+      display: flex;
+      justify-content: center;
 
-      .modal-panel {
-        padding: 24px 18px 18px;
-      }
+      margin-top: 22px;
     }
 
-    @media (max-width: 700px) {
+    .investor-contact-button {
+      min-width: min(100%,390px);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 11px;
+
+      padding: 17px 28px;
+
+      border-radius: 17px;
+
+      text-decoration: none;
+
+      color: var(--ivory);
+
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: .7px;
+
+      background:
+        linear-gradient(
+          105deg,
+          rgba(50,221,183,.24),
+          rgba(13,24,22,.98)
+        );
+
+      border: 1px solid rgba(50,221,183,.54);
+
+      box-shadow:
+        0 15px 35px rgba(0,0,0,.35),
+        0 0 18px rgba(50,221,183,.10);
+
+      transition: .22s ease;
+    }
+
+    .investor-contact-button:hover {
+      transform: translateY(-3px);
+
+      border-color: var(--teal);
+
+      box-shadow:
+        0 20px 42px rgba(0,0,0,.46),
+        0 0 28px rgba(50,221,183,.18);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 760px) {
       .page {
         padding: 23px 14px 70px;
-      }
-
-      .hero {
-        padding-top: 28px;
-      }
-
-      .eyebrow {
-        font-size: 10px;
-        letter-spacing: 4px;
-        margin-bottom: 10px;
       }
 
       .hero-logo-wrap {
@@ -1163,92 +1482,46 @@
 
       .hero-logo {
         width: 112%;
-        max-width: none;
       }
 
       .portal {
-        top: 58px;
         width: 360px;
       }
 
-      .subtitle {
-        margin-top: -5px;
-        font-size: 16px;
-      }
-
-      .main-buttons {
-        margin-top: 32px;
-      }
-
-      .btn,
-      .btn-button {
-        min-height: 84px;
-        padding: 16px 17px;
-      }
-
-      .icon {
-        width: 46px;
-        height: 46px;
-      }
-
-      .btn-title {
-        font-size: 14px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
+      .features,
       .socials {
         grid-template-columns: 1fr;
       }
 
-      .section {
-        padding: 26px 20px;
+      .funds-chart-area {
+        grid-template-columns: 1fr;
       }
 
-      .energy-ring.one {
-        width: 700px;
+      .fund-summary {
+        max-width: 520px;
+        width: 100%;
+        margin: 0 auto;
       }
 
-      .energy-ring.two {
-        width: 620px;
+      .modal-panel {
+        padding: 22px 15px;
       }
 
-      .modal-backdrop {
-        padding: 12px;
+      .allocation-head {
+        align-items: flex-start;
       }
 
-      .modal-close {
-        width: 44px;
-        height: 44px;
-        top: 12px;
-        right: 12px;
+      .allocation-percent {
+        min-width: 66px;
+        font-size: 23px;
       }
 
-      .modal-title {
-        font-size: 25px;
+      .allocation-detail {
+        grid-template-columns: 42px 1fr;
       }
 
-      .modal-subtitle {
-        font-size: 15px;
-      }
-
-      .legend-content strong {
-        font-size: 34px;
-      }
-
-      .fund-number {
-        min-width: 44px;
-        font-size: 24px;
-      }
-
-      .fund-title {
-        font-size: 21px;
-      }
-
-      .contract-title {
-        font-size: 22px;
+      .contract-note {
+        padding: 24px 17px;
       }
     }
 
@@ -1256,14 +1529,16 @@
       *,
       *::before,
       *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
       }
     }
+
   </style>
 </head>
+
 <body>
+
   <div class="universe-glow teal"></div>
   <div class="universe-glow pink"></div>
   <div class="universe-glow gold"></div>
@@ -1272,7 +1547,13 @@
   <div class="energy-ring two"></div>
 
   <main class="page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
     <section class="hero">
+
       <div class="eyebrow">
         WELCOME TO THE UNIVERSE
       </div>
@@ -1280,13 +1561,15 @@
       <div class="portal"></div>
 
       <div class="hero-logo-wrap">
+
         <div class="hero-logo-shadow"></div>
 
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="hero-logo"
-        />
+        >
+
       </div>
 
       <p class="subtitle">
@@ -1297,49 +1580,109 @@
         <strong>más de un mundo por descubrir.</strong>
       </p>
 
+
       <div class="main-buttons">
-        <a class="btn primary" href="#juego">
+
+        <!-- JUEGO -->
+
+        <a
+          class="btn primary"
+          href="#juego"
+        >
+
           <div class="btn-left">
+
             <div class="icon">◆</div>
+
             <div class="btn-text">
-              <span class="btn-title">CONOCÉ EL JUEGO</span>
-              <span class="btn-sub">Descubrí el universo Kissing Fight</span>
+              <span class="btn-title">
+                CONOCÉ EL JUEGO
+              </span>
+
+              <span class="btn-sub">
+                Descubrí el universo Kissing Fight
+              </span>
             </div>
+
           </div>
+
           <span class="arrow">→</span>
+
         </a>
+
+
+        <!-- COMUNIDAD: YA NO ABRE POPUP -->
+
+        <a
+          class="btn"
+          href="#comunidad"
+        >
+
+          <div class="btn-left">
+
+            <div class="icon">♥</div>
+
+            <div class="btn-text">
+              <span class="btn-title">
+                SUMATE A LA COMUNIDAD
+              </span>
+
+              <span class="btn-sub">
+                Entrá desde el principio
+              </span>
+            </div>
+
+          </div>
+
+          <span class="arrow">→</span>
+
+        </a>
+
+
+        <!-- INVERSORES: ABRE POPUP -->
 
         <button
           type="button"
           class="btn-button"
-          data-open-funds
-          aria-controls="fundsModal"
+          data-open-investors
+          aria-controls="investorsModal"
           aria-haspopup="dialog"
         >
+
           <div class="btn-left">
-            <div class="icon">♥</div>
+
+            <div class="icon">✦</div>
+
             <div class="btn-text">
-              <span class="btn-title">SUMATE A LA COMUNIDAD</span>
-              <span class="btn-sub">Entrá desde el principio</span>
+              <span class="btn-title">
+                INVERSORES & COLABORADORES
+              </span>
+
+              <span class="btn-sub">
+                Conocé el destino de los fondos
+              </span>
             </div>
+
           </div>
+
           <span class="arrow">→</span>
+
         </button>
 
-        <a class="btn" href="#inversores">
-          <div class="btn-left">
-            <div class="icon">✦</div>
-            <div class="btn-text">
-              <span class="btn-title">INVERSORES & COLABORADORES</span>
-              <span class="btn-sub">Construyamos algo grande</span>
-            </div>
-          </div>
-          <span class="arrow">→</span>
-        </a>
       </div>
+
     </section>
 
-    <section class="section" id="juego">
+
+    <!-- =====================================================
+         JUEGO
+    ====================================================== -->
+
+    <section
+      class="section"
+      id="juego"
+    >
+
       <div class="section-label">
         THE GAME
       </div>
@@ -1349,11 +1692,13 @@
       </h2>
 
       <p>
-        Kissing Fight combina competencia, progresión y comunidad dentro de un
-        universo en expansión. Cada mundo forma parte de algo más grande.
+        Kissing Fight combina competencia, progresión y comunidad
+        dentro de un universo en expansión.
+        Cada mundo forma parte de algo más grande.
       </p>
 
       <div class="features">
+
         <div class="feature">
           <strong>COMPETÍ</strong>
           <span>Ranking y desafío</span>
@@ -1368,18 +1713,21 @@
           <strong>CONECTÁ</strong>
           <span>Comunidad</span>
         </div>
+
       </div>
+
     </section>
 
+
+    <!-- =====================================================
+         COMMUNITY
+    ====================================================== -->
+
     <section
-      class="section popup-trigger-card"
+      class="section"
       id="comunidad"
-      role="button"
-      tabindex="0"
-      data-open-funds
-      aria-controls="fundsModal"
-      aria-haspopup="dialog"
     >
+
       <div class="section-label">
         COMMUNITY
       </div>
@@ -1390,19 +1738,29 @@
 
       <p>
         Ser de los primeros en la comunidad significa conocer el juego
-        antes de su lanzamiento y acceder a beneficios exclusivos
-        desde el comienzo.
-        <br /><br />
+        antes de su lanzamiento y acceder a beneficios exclusivos desde
+        el comienzo.
+        <br><br>
         Contactanos y asegurá tu lugar entre los primeros en tener ventaja.
       </p>
 
-      <div class="section-action">
-        Ver detalle de fondos y estructura
-        <span>↗</span>
-      </div>
     </section>
 
-    <section class="section" id="inversores">
+
+    <!-- =====================================================
+         PARTNERS — ESTE ABRE EL POPUP
+    ====================================================== -->
+
+    <section
+      class="section investor-card"
+      id="inversores"
+      role="button"
+      tabindex="0"
+      data-open-investors
+      aria-controls="investorsModal"
+      aria-haspopup="dialog"
+    >
+
       <div class="section-label">
         PARTNERS
       </div>
@@ -1412,55 +1770,87 @@
       </h2>
 
       <p>
-        Estamos abiertos a conversar con colaboradores, aliados estratégicos
-        e inversores interesados en formar parte de Kissing Fight desde sus
-        primeras etapas.
+        Estamos abiertos a conversar con colaboradores,
+        aliados estratégicos e inversores interesados en formar
+        parte de Kissing Fight desde sus primeras etapas.
       </p>
+
+      <div class="section-action">
+        Ver propuesta para inversores →
+      </div>
+
     </section>
+
+
+    <!-- =====================================================
+         REDES
+    ====================================================== -->
 
     <div class="social-title">
       ENTRÁ AL UNIVERSO
     </div>
 
     <div class="socials">
+
       <a
-        class="social instagram-en"
+        class="social"
         href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
         target="_blank"
         rel="noopener noreferrer"
       >
         <div class="social-icon">IG</div>
-        <div class="social-text">
-          <span class="social-name">INSTAGRAM — ENGLISH</span>
-          <span class="social-sub">International community</span>
+
+        <div>
+          <span class="social-name">
+            INSTAGRAM — ENGLISH
+          </span>
+
+          <span class="social-sub">
+            International community
+          </span>
         </div>
       </a>
 
+
       <a
-        class="social instagram-es"
+        class="social"
         href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
         target="_blank"
         rel="noopener noreferrer"
       >
         <div class="social-icon">IG</div>
-        <div class="social-text">
-          <span class="social-name">INSTAGRAM — ESPAÑOL</span>
-          <span class="social-sub">Comunidad en español</span>
+
+        <div>
+          <span class="social-name">
+            INSTAGRAM — ESPAÑOL
+          </span>
+
+          <span class="social-sub">
+            Comunidad en español
+          </span>
         </div>
       </a>
 
+
       <a
-        class="social channel"
+        class="social"
         href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
         target="_blank"
         rel="noopener noreferrer"
       >
         <div class="social-icon">WA</div>
-        <div class="social-text">
-          <span class="social-name">CANAL DE WHATSAPP</span>
-          <span class="social-sub">Novedades y anuncios</span>
+
+        <div>
+          <span class="social-name">
+            CANAL DE WHATSAPP
+          </span>
+
+          <span class="social-sub">
+            Novedades y anuncios
+          </span>
         </div>
       </a>
+
 
       <a
         class="social whatsapp"
@@ -1469,222 +1859,577 @@
         rel="noopener noreferrer"
       >
         <div class="social-icon">✦</div>
-        <div class="social-text">
-          <span class="social-name">CONTACTANOS</span>
-          <span class="social-sub">Hablemos por WhatsApp</span>
+
+        <div>
+          <span class="social-name">
+            CONTACTANOS
+          </span>
+
+          <span class="social-sub">
+            Hablemos por WhatsApp
+          </span>
         </div>
       </a>
+
     </div>
 
+
     <footer>
+
       © 2026 KISSING FIGHT
-      <br />
+
+      <br>
+
       <div class="status">
         <span class="dot"></span>
         Proyecto en desarrollo
       </div>
+
     </footer>
+
   </main>
 
-  <!-- POPUP / MODAL -->
+
+  <!-- =====================================================
+       POPUP INVERSORES
+  ====================================================== -->
+
   <div
     class="modal-backdrop"
-    id="fundsModal"
+    id="investorsModal"
     aria-hidden="true"
   >
+
     <div
       class="modal-panel"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="fundsModalTitle"
+      aria-labelledby="investorTitle"
     >
+
       <button
         type="button"
         class="modal-close"
-        id="closeFundsModal"
+        id="closeInvestorsModal"
         aria-label="Cerrar"
       >
         ×
       </button>
 
+
+      <!-- LOGO -->
+
       <div class="modal-logo-wrap">
+
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="modal-logo"
-        />
+        >
+
       </div>
+
+
+      <!-- INTRO -->
 
       <div class="modal-overline">
         DESTINO DE LOS FONDOS
       </div>
 
-      <h2 class="modal-title" id="fundsModalTitle">
-        El capital levantado será destinado principalmente al desarrollo tecnológico de Kissing Fight, fortalecimiento de infraestructura y seguridad, adquisición de usuarios y estrategia de lanzamiento, además de la estructura legal y operativa necesaria para escalar el proyecto internacionalmente.
+      <h2
+        class="modal-intro"
+        id="investorTitle"
+      >
+        El capital levantado será destinado principalmente al desarrollo
+        tecnológico de Kissing Fight, infraestructura y seguridad,
+        adquisición de usuarios, estrategia de lanzamiento y estructura
+        legal necesaria para escalar el proyecto internacionalmente.
       </h2>
 
-      <p class="modal-subtitle">
-        Asignación estimada del capital levantado de Kissing Fight.
-      </p>
+      <div class="modal-subtitle">
+        Asignación estimada del capital levantado
+      </div>
 
-      <div class="funds-top">
+
+      <!-- ===================================================
+           DONA + RESUMEN
+      ==================================================== -->
+
+      <div class="funds-chart-area">
+
+
         <div class="donut-wrap">
-          <div class="donut-chart" aria-hidden="true">
+
+          <div class="donut">
+
+            <span class="donut-percent p40">
+              40%
+            </span>
+
+            <span class="donut-percent p25">
+              25%
+            </span>
+
+            <span class="donut-percent p20">
+              20%
+            </span>
+
+            <span class="donut-percent p15">
+              15%
+            </span>
+
             <div class="donut-center">
-              <div>
-                <strong>100%</strong>
-                <span>DEL CAPITAL LEVANTADO</span>
-              </div>
+
+              <strong>
+                100%
+              </strong>
+
+              <span>
+                DEL CAPITAL LEVANTADO
+              </span>
+
             </div>
+
           </div>
+
         </div>
 
-        <div class="funds-legend">
-          <div class="legend-item teal">
-            <div class="legend-dot"></div>
-            <div class="legend-content">
-              <strong>40%</strong>
-              <span>Producto y tecnología</span>
-            </div>
+
+        <div class="fund-summary">
+
+          <div class="summary-row">
+
+            <span
+              class="summary-dot"
+              style="background:#269B87"
+            ></span>
+
+            <span class="summary-number">
+              40%
+            </span>
+
+            <span class="summary-name">
+              Producto y tecnología
+            </span>
+
           </div>
 
-          <div class="legend-item pink">
-            <div class="legend-dot"></div>
-            <div class="legend-content">
-              <strong>25%</strong>
-              <span>Marketing y crecimiento</span>
-            </div>
+
+          <div class="summary-row">
+
+            <span
+              class="summary-dot"
+              style="background:#B94D78"
+            ></span>
+
+            <span class="summary-number">
+              25%
+            </span>
+
+            <span class="summary-name">
+              Marketing y crecimiento
+            </span>
+
           </div>
 
-          <div class="legend-item gold">
-            <div class="legend-dot"></div>
-            <div class="legend-content">
-              <strong>20%</strong>
-              <span>Infraestructura y seguridad</span>
-            </div>
+
+          <div class="summary-row">
+
+            <span
+              class="summary-dot"
+              style="background:#B38D46"
+            ></span>
+
+            <span class="summary-number">
+              20%
+            </span>
+
+            <span class="summary-name">
+              Infraestructura y seguridad
+            </span>
+
           </div>
 
-          <div class="legend-item ivory">
-            <div class="legend-dot"></div>
-            <div class="legend-content">
-              <strong>15%</strong>
-              <span>Legal y operaciones</span>
-            </div>
+
+          <div class="summary-row">
+
+            <span
+              class="summary-dot"
+              style="background:#B6AE91"
+            ></span>
+
+            <span class="summary-number">
+              15%
+            </span>
+
+            <span class="summary-name">
+              Legal y operaciones
+            </span>
+
           </div>
+
         </div>
+
       </div>
 
-      <div class="funds-grid">
-        <div class="fund-card teal">
-          <div class="fund-card-header">
-            <div class="fund-number">01</div>
-            <div class="fund-title">
-              Desarrollo y evolución del producto
+
+      <!-- ===================================================
+           DISTRIBUCIÓN + EXPLICACIÓN DIRECTA
+      ==================================================== -->
+
+      <div class="fund-allocation-list">
+
+
+        <!-- 40% -->
+
+        <div class="allocation teal">
+
+          <div class="allocation-head">
+
+            <div class="allocation-color"></div>
+
+            <div class="allocation-percent">
+              40%
             </div>
+
+            <div class="allocation-category">
+              Producto y tecnología
+            </div>
+
           </div>
-          <div class="fund-copy">
-            Programación, backend, sistema de cuentas, ranking, salas, economía interna, UX/UI y contenido.
+
+
+          <div class="allocation-detail">
+
+            <div class="allocation-number">
+              01
+            </div>
+
+            <div class="allocation-description">
+
+              <strong>
+                Desarrollo y evolución del producto
+              </strong>
+
+              <p>
+                Programación, backend, sistema de cuentas,
+                ranking, salas, economía interna, UX/UI y contenido.
+              </p>
+
+            </div>
+
           </div>
+
         </div>
 
-        <div class="fund-card gold">
-          <div class="fund-card-header">
-            <div class="fund-number">02</div>
-            <div class="fund-title">
-              Infraestructura, seguridad y escalabilidad
+
+        <!-- 25% -->
+
+        <div class="allocation pink">
+
+          <div class="allocation-head">
+
+            <div class="allocation-color"></div>
+
+            <div class="allocation-percent">
+              25%
             </div>
+
+            <div class="allocation-category">
+              Marketing y crecimiento
+            </div>
+
           </div>
-          <div class="fund-copy">
-            Servidores, bases de datos, anti-fraude, anti-cheat, protección de usuarios y capacidad para crecer.
+
+
+          <div class="allocation-detail">
+
+            <div class="allocation-number">
+              02
+            </div>
+
+            <div class="allocation-description">
+
+              <strong>
+                Lanzamiento, marketing y adquisición de usuarios
+              </strong>
+
+              <p>
+                Campañas, creadores de contenido, redes sociales,
+                comunidad y expansión internacional.
+              </p>
+
+            </div>
+
           </div>
+
         </div>
 
-        <div class="fund-card pink">
-          <div class="fund-card-header">
-            <div class="fund-number">03</div>
-            <div class="fund-title">
-              Lanzamiento, marketing y adquisición de usuarios
+
+        <!-- 20% -->
+
+        <div class="allocation gold">
+
+          <div class="allocation-head">
+
+            <div class="allocation-color"></div>
+
+            <div class="allocation-percent">
+              20%
             </div>
+
+            <div class="allocation-category">
+              Infraestructura y seguridad
+            </div>
+
           </div>
-          <div class="fund-copy">
-            Campañas, creadores de contenido, redes sociales, comunidad y expansión internacional.
+
+
+          <div class="allocation-detail">
+
+            <div class="allocation-number">
+              03
+            </div>
+
+            <div class="allocation-description">
+
+              <strong>
+                Infraestructura, seguridad y escalabilidad
+              </strong>
+
+              <p>
+                Servidores, bases de datos, anti-fraude,
+                anti-cheat, protección de usuarios y capacidad para crecer.
+              </p>
+
+            </div>
+
           </div>
+
         </div>
 
-        <div class="fund-card ivory">
-          <div class="fund-card-header">
-            <div class="fund-number">04</div>
-            <div class="fund-title">
-              Estructura legal, financiera y compliance
+
+        <!-- 15% -->
+
+        <div class="allocation ivory">
+
+          <div class="allocation-head">
+
+            <div class="allocation-color"></div>
+
+            <div class="allocation-percent">
+              15%
             </div>
+
+            <div class="allocation-category">
+              Legal y operaciones
+            </div>
+
           </div>
-          <div class="fund-copy">
-            Propiedad intelectual, contratos, medios de pago y adecuación regulatoria del modelo económico.
+
+
+          <div class="allocation-detail">
+
+            <div class="allocation-number">
+              04
+            </div>
+
+            <div class="allocation-description">
+
+              <strong>
+                Estructura legal, financiera y compliance
+              </strong>
+
+              <p>
+                Propiedad intelectual, contratos, medios de pago
+                y adecuación regulatoria del modelo económico.
+              </p>
+
+            </div>
+
           </div>
+
         </div>
+
       </div>
+
+
+      <!-- ===================================================
+           RESPALDO CONTRACTUAL
+      ==================================================== -->
 
       <div class="contract-note">
-        <div class="contract-tag">
-          <span class="contract-icon">🛡</span>
-          Respaldo contractual
+
+        <div class="contract-shield">
+          🛡
         </div>
 
-        <div class="contract-title">
+        <div class="contract-overline">
+          RESPALDO CONTRACTUAL
+        </div>
+
+        <h3 class="contract-title">
           Inversión respaldada contractualmente
-        </div>
+        </h3>
 
-        <div class="contract-copy">
-          Cada inversor contará con un contrato individual que documentará y respaldará su participación y los activos que le correspondan dentro del proyecto, estableciendo de forma clara las condiciones, derechos y obligaciones de las partes.
-        </div>
+        <p class="contract-copy">
+          Cada inversor contará con un contrato individual que documentará
+          y respaldará su participación y los activos que le correspondan
+          dentro del proyecto, estableciendo de forma clara las condiciones,
+          derechos y obligaciones de las partes.
+        </p>
+
       </div>
+
+
+      <!-- ===================================================
+           CONTACTO FINAL
+      ==================================================== -->
+
+      <div class="investor-contact">
+
+        <a
+          class="investor-contact-button"
+          href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ✦ CONTACTANOS
+        </a>
+
+      </div>
+
     </div>
+
   </div>
 
+
+  <!-- =====================================================
+       JAVASCRIPT POPUP
+  ====================================================== -->
+
   <script>
-    const fundsModal = document.getElementById("fundsModal");
-    const openFundsButtons = document.querySelectorAll("[data-open-funds]");
-    const closeFundsModal = document.getElementById("closeFundsModal");
 
-    function openModal() {
-      fundsModal.classList.add("is-open");
-      fundsModal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
+    const investorsModal =
+      document.getElementById("investorsModal");
+
+    const investorTriggers =
+      document.querySelectorAll("[data-open-investors]");
+
+    const closeInvestorsModal =
+      document.getElementById("closeInvestorsModal");
+
+
+    function openInvestorModal() {
+
+      investorsModal.classList.add("is-open");
+
+      investorsModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
     }
 
-    function closeModal() {
-      fundsModal.classList.remove("is-open");
-      fundsModal.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("modal-open");
+
+    function closeInvestorModal() {
+
+      investorsModal.classList.remove(
+        "is-open"
+      );
+
+      investorsModal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "modal-open"
+      );
+
     }
 
-    openFundsButtons.forEach((trigger) => {
-      trigger.addEventListener("click", function (e) {
-        e.preventDefault();
-        openModal();
-      });
 
-      trigger.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openModal();
+    investorTriggers.forEach((trigger) => {
+
+      trigger.addEventListener(
+        "click",
+        function(event) {
+
+          event.preventDefault();
+
+          openInvestorModal();
+
         }
-      });
+      );
+
+
+      trigger.addEventListener(
+        "keydown",
+        function(event) {
+
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+
+            event.preventDefault();
+
+            openInvestorModal();
+
+          }
+
+        }
+      );
+
     });
 
-    closeFundsModal.addEventListener("click", closeModal);
 
-    fundsModal.addEventListener("click", function (e) {
-      if (e.target === fundsModal) {
-        closeModal();
+    closeInvestorsModal.addEventListener(
+      "click",
+      closeInvestorModal
+    );
+
+
+    investorsModal.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target === investorsModal
+        ) {
+
+          closeInvestorModal();
+
+        }
+
       }
-    });
+    );
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && fundsModal.classList.contains("is-open")) {
-        closeModal();
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (
+          event.key === "Escape" &&
+          investorsModal.classList.contains(
+            "is-open"
+          )
+        ) {
+
+          closeInvestorModal();
+
+        }
+
       }
-    });
+    );
+
   </script>
+
 </body>
 </html>
