@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Kissing Fight</title>
 
   <meta
     name="description"
     content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
-  >
+  />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
     :root {
-      --pink: #FF5A9F;
-      --teal: #32DDB7;
-      --gold: #E0B862;
-      --ivory: #F7F0D6;
-      --dark: #1B1A25;
+      --pink: #ff5a9f;
+      --teal: #32ddb7;
+      --gold: #e0b862;
+      --ivory: #f7f0d6;
+      --dark: #1b1a25;
       --black: #000000;
 
-      --fund-teal: #269B87;
-      --fund-pink: #B94D78;
-      --fund-gold: #B38D46;
-      --fund-ivory: #B6AE91;
+      --fund-teal: #269b87;
+      --fund-pink: #b94d78;
+      --fund-gold: #b38d46;
+      --fund-ivory: #b6ae91;
 
       --text-soft: #d8d1c4;
       --muted: #aaa295;
@@ -53,7 +53,6 @@
       color: var(--ivory);
       overflow-x: hidden;
       position: relative;
-
       background:
         radial-gradient(circle at 50% 3%, rgba(50,221,183,.34) 0%, rgba(50,221,183,.10) 19%, transparent 38%),
         radial-gradient(circle at 2% 26%, rgba(0,213,190,.33) 0%, rgba(0,213,190,.12) 20%, transparent 37%),
@@ -75,7 +74,6 @@
       pointer-events: none;
       z-index: 0;
       opacity: .72;
-
       background-image:
         radial-gradient(circle at 4% 7%, rgba(247,240,214,.95) 0 1px, transparent 2px),
         radial-gradient(circle at 13% 18%, rgba(50,221,183,.9) 0 1px, transparent 2px),
@@ -86,10 +84,16 @@
         radial-gradient(circle at 62% 5%, rgba(247,240,214,.9) 0 1px, transparent 2px),
         radial-gradient(circle at 73% 18%, rgba(255,90,159,.9) 0 1px, transparent 2px),
         radial-gradient(circle at 84% 8%, rgba(247,240,214,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px);
+        radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px),
+        radial-gradient(circle at 8% 48%, rgba(247,240,214,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 29% 56%, rgba(50,221,183,.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 49%, rgba(247,240,214,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 89% 57%, rgba(255,90,159,.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 15% 79%, rgba(224,184,98,.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 71%, rgba(247,240,214,.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 66% 84%, rgba(50,221,183,.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 92% 81%, rgba(247,240,214,.75) 0 1px, transparent 2px);
     }
-
-    /* FONDO */
 
     .universe-glow {
       position: fixed;
@@ -137,7 +141,6 @@
       left: 50%;
       transform: translateX(-50%) rotate(-8deg);
       border: 2px solid rgba(255,90,159,.25);
-
       box-shadow:
         0 0 22px rgba(255,90,159,.21),
         inset 0 0 22px rgba(255,90,159,.07);
@@ -153,8 +156,6 @@
       box-shadow: 0 0 25px rgba(50,221,183,.16);
     }
 
-    /* GENERAL */
-
     .page {
       width: min(100%, 1040px);
       margin: 0 auto;
@@ -162,8 +163,6 @@
       position: relative;
       z-index: 2;
     }
-
-    /* HERO */
 
     .hero {
       display: flex;
@@ -178,55 +177,33 @@
       position: relative;
       z-index: 6;
       margin-bottom: 15px;
-
       font-family: "Cinzel", serif;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 6px;
-
       color: var(--gold);
       text-transform: uppercase;
-
       text-shadow: 0 0 14px rgba(224,184,98,.48);
-
       animation: eyebrowGlow 4s ease-in-out infinite;
     }
 
     @keyframes eyebrowGlow {
-      0%, 100% {
-        opacity: .82;
-      }
-
-      50% {
-        opacity: 1;
-      }
+      0%, 100% { opacity: .82; }
+      50% { opacity: 1; }
     }
 
     .portal {
       position: absolute;
       top: 80px;
       left: 50%;
-
       transform: translateX(-50%);
-
       width: clamp(330px,58vw,650px);
       aspect-ratio: 1;
-
       border-radius: 50%;
-
       pointer-events: none;
-
       background:
-        radial-gradient(
-          circle,
-          rgba(247,240,214,.25) 0%,
-          rgba(50,221,183,.27) 9%,
-          rgba(50,221,183,.10) 26%,
-          transparent 58%
-        );
-
+        radial-gradient(circle, rgba(247,240,214,.25) 0%, rgba(50,221,183,.27) 9%, rgba(50,221,183,.10) 26%, transparent 58%);
       opacity: .88;
-
       animation: portalPulse 5s ease-in-out infinite;
     }
 
@@ -235,9 +212,7 @@
       position: absolute;
       inset: 12%;
       border-radius: 50%;
-
       border: 2px solid rgba(50,221,183,.22);
-
       box-shadow:
         0 0 28px rgba(50,221,183,.23),
         inset 0 0 28px rgba(50,221,183,.16);
@@ -248,9 +223,7 @@
       position: absolute;
       inset: 22%;
       border-radius: 50%;
-
       border: 1px solid rgba(224,184,98,.28);
-
       box-shadow: 0 0 38px rgba(224,184,98,.15);
     }
 
@@ -259,7 +232,6 @@
         transform: translateX(-50%) scale(.96);
         opacity: .60;
       }
-
       50% {
         transform: translateX(-50%) scale(1.06);
         opacity: 1;
@@ -269,16 +241,12 @@
     .hero-logo-wrap {
       width: 100%;
       max-width: 930px;
-
       min-height: clamp(290px,46vw,470px);
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       position: relative;
       z-index: 6;
-
       margin: 0 auto;
     }
 
@@ -286,32 +254,22 @@
       position: absolute;
       bottom: 28px;
       left: 50%;
-
       transform: translateX(-50%);
-
       width: 58%;
       height: 30px;
-
       border-radius: 50%;
-
       background: rgba(0,0,0,.78);
-
       filter: blur(21px);
-
       animation: shadowFloat 4s ease-in-out infinite;
     }
 
     .hero-logo {
       display: block;
-
       width: min(100%,920px);
       height: auto;
-
       position: relative;
       z-index: 7;
-
       animation: logoFloat 4s ease-in-out infinite;
-
       filter:
         drop-shadow(0 18px 15px rgba(0,0,0,.55))
         drop-shadow(0 0 17px rgba(255,90,159,.38))
@@ -320,13 +278,8 @@
     }
 
     @keyframes logoFloat {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-      }
-
-      50% {
-        transform: translateY(-17px) scale(1.02);
-      }
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-17px) scale(1.02); }
     }
 
     @keyframes shadowFloat {
@@ -334,7 +287,6 @@
         transform: translateX(-50%) scaleX(1);
         opacity: .56;
       }
-
       50% {
         transform: translateX(-50%) scaleX(.80);
         opacity: .27;
@@ -344,15 +296,11 @@
     .subtitle {
       position: relative;
       z-index: 6;
-
       max-width: 760px;
-
       margin: -15px auto 0;
       padding: 0 18px;
-
       font-size: clamp(16px,2.2vw,20px);
       line-height: 1.7;
-
       color: var(--text-soft);
     }
 
@@ -361,16 +309,11 @@
       font-weight: 900;
     }
 
-    /* BOTONES */
-
     .main-buttons {
       width: 100%;
-
       display: grid;
       gap: 15px;
-
       margin-top: 44px;
-
       position: relative;
       z-index: 7;
     }
@@ -379,36 +322,22 @@
     .btn-button {
       width: 100%;
       min-height: 94px;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
       gap: 18px;
-
       position: relative;
       overflow: hidden;
-
       padding: 19px 24px;
-
       border-radius: 20px;
-
       color: var(--ivory);
       text-decoration: none;
-
       border: 1px solid rgba(224,184,98,.30);
-
       background:
-        linear-gradient(
-          110deg,
-          rgba(22,20,30,.97),
-          rgba(7,12,16,.97)
-        );
-
+        linear-gradient(110deg, rgba(22,20,30,.97), rgba(7,12,16,.97));
       box-shadow:
         0 18px 44px rgba(0,0,0,.52),
         inset 0 1px 0 rgba(255,255,255,.055);
-
       transition: .25s ease;
     }
 
@@ -422,12 +351,9 @@
     .btn::before,
     .btn-button::before {
       content: "";
-
       position: absolute;
       inset: 0;
-
       pointer-events: none;
-
       background:
         radial-gradient(circle at 4% 50%,rgba(255,90,159,.18),transparent 28%),
         radial-gradient(circle at 96% 50%,rgba(50,221,183,.17),transparent 30%);
@@ -436,9 +362,7 @@
     .btn:hover,
     .btn-button:hover {
       transform: translateY(-4px);
-
       border-color: rgba(224,184,98,.64);
-
       box-shadow:
         0 24px 58px rgba(0,0,0,.62),
         0 0 26px rgba(50,221,183,.12),
@@ -447,20 +371,18 @@
 
     .btn.primary {
       background:
-        linear-gradient(
-          100deg,
-          rgba(255,90,159,.22),
-          rgba(16,16,23,.98) 40%,
-          rgba(11,20,20,.97) 72%,
-          rgba(50,221,183,.22)
-        );
+        linear-gradient(100deg, rgba(255,90,159,.22), rgba(16,16,23,.98) 40%, rgba(11,20,20,.97) 72%, rgba(50,221,183,.22));
+    }
+
+    .btn.community-cta {
+      background:
+        linear-gradient(100deg, rgba(50,221,183,.20), rgba(16,16,23,.98) 38%, rgba(18,14,22,.97) 70%, rgba(255,90,159,.18));
     }
 
     .btn-left {
       display: flex;
       align-items: center;
       gap: 17px;
-
       position: relative;
       z-index: 2;
     }
@@ -468,25 +390,14 @@
     .icon {
       width: 52px;
       height: 52px;
-
       display: grid;
       place-items: center;
-
       flex-shrink: 0;
-
       border-radius: 15px;
-
       color: var(--gold);
-
       font-size: 23px;
-
       background:
-        linear-gradient(
-          145deg,
-          rgba(224,184,98,.20),
-          rgba(255,90,159,.07)
-        );
-
+        linear-gradient(145deg, rgba(224,184,98,.20), rgba(255,90,159,.07));
       border: 1px solid rgba(224,184,98,.31);
     }
 
@@ -496,52 +407,34 @@
 
     .btn-title {
       display: block;
-
       color: var(--ivory);
-
       font-size: 16px;
       font-weight: 900;
     }
 
     .btn-sub {
       display: block;
-
       margin-top: 5px;
-
       color: #c9c1b3;
-
       font-size: 12px;
     }
 
     .arrow {
       position: relative;
       z-index: 2;
-
       color: var(--teal);
-
       font-size: 27px;
     }
-
-    /* SECCIONES */
 
     .section {
       position: relative;
       overflow: hidden;
-
       margin-top: 34px;
       padding: 32px 28px;
-
       border-radius: 23px;
-
       background:
-        linear-gradient(
-          135deg,
-          rgba(17,17,24,.95),
-          rgba(6,7,11,.97)
-        );
-
+        linear-gradient(135deg, rgba(17,17,24,.95), rgba(6,7,11,.97));
       border: 1px solid rgba(224,184,98,.24);
-
       box-shadow:
         0 20px 50px rgba(0,0,0,.50),
         inset 0 1px 0 rgba(255,255,255,.04);
@@ -549,12 +442,9 @@
 
     .section::before {
       content: "";
-
       position: absolute;
       inset: 0;
-
       pointer-events: none;
-
       background:
         radial-gradient(circle at 0% 0%,rgba(50,221,183,.11),transparent 37%),
         radial-gradient(circle at 100% 100%,rgba(255,90,159,.10),transparent 34%);
@@ -563,40 +453,29 @@
     .section-label {
       position: relative;
       z-index: 2;
-
       margin-bottom: 11px;
-
       color: var(--teal);
-
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 4px;
-
       text-transform: uppercase;
     }
 
     .section h2 {
       position: relative;
       z-index: 2;
-
       margin-bottom: 13px;
-
       font-family: "Cinzel",serif;
-
       font-size: clamp(23px,4vw,31px);
       line-height: 1.25;
-
       color: var(--gold);
     }
 
     .section p {
       position: relative;
       z-index: 2;
-
       max-width: 900px;
-
       color: var(--text-soft);
-
       font-size: 15px;
       line-height: 1.75;
     }
@@ -606,20 +485,14 @@
       font-weight: 800;
     }
 
-    .investor-card {
+    .clickable-card {
       cursor: pointer;
-
-      transition:
-        transform .25s ease,
-        border-color .25s ease,
-        box-shadow .25s ease;
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
     }
 
-    .investor-card:hover {
+    .clickable-card:hover {
       transform: translateY(-4px);
-
       border-color: rgba(224,184,98,.48);
-
       box-shadow:
         0 24px 58px rgba(0,0,0,.58),
         0 0 22px rgba(224,184,98,.10);
@@ -628,64 +501,42 @@
     .section-action {
       position: relative;
       z-index: 2;
-
       display: inline-flex;
       align-items: center;
       gap: 9px;
-
       margin-top: 18px;
-
       padding: 10px 14px;
-
       border-radius: 999px;
-
       border: 1px solid rgba(224,184,98,.25);
-
       color: var(--gold);
-
       font-size: 12px;
       font-weight: 900;
       letter-spacing: .6px;
-
       background: rgba(224,184,98,.05);
     }
 
     .features {
       display: grid;
       grid-template-columns: repeat(3,1fr);
-
       gap: 13px;
-
       margin-top: 24px;
     }
 
     .feature {
       position: relative;
       z-index: 2;
-
       padding: 20px 12px;
-
       text-align: center;
-
       border-radius: 17px;
-
       background:
-        linear-gradient(
-          145deg,
-          rgba(247,240,214,.06),
-          rgba(247,240,214,.02)
-        );
-
+        linear-gradient(145deg, rgba(247,240,214,.06), rgba(247,240,214,.02));
       border: 1px solid rgba(224,184,98,.17);
     }
 
     .feature strong {
       display: block;
-
       color: var(--ivory);
-
       margin-bottom: 5px;
-
       font-size: 14px;
     }
 
@@ -694,56 +545,35 @@
       font-size: 11px;
     }
 
-    /* REDES */
-
     .social-title {
       margin: 48px 0 17px;
-
       text-align: center;
-
       font-family: "Cinzel",serif;
-
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 4px;
-
       color: var(--gold);
-
       text-transform: uppercase;
     }
 
     .socials {
       display: grid;
       grid-template-columns: repeat(2,1fr);
-
       gap: 12px;
     }
 
     .social {
       min-height: 75px;
-
       display: flex;
       align-items: center;
-
       gap: 14px;
-
       padding: 16px 18px;
-
       border-radius: 17px;
-
       color: var(--ivory);
-
       text-decoration: none;
-
       background:
-        linear-gradient(
-          145deg,
-          rgba(22,21,29,.94),
-          rgba(7,7,10,.97)
-        );
-
+        linear-gradient(145deg, rgba(22,21,29,.94), rgba(7,7,10,.97));
       border: 1px solid rgba(224,184,98,.20);
-
       transition: .22s ease;
     }
 
@@ -755,103 +585,69 @@
     .social-icon {
       width: 43px;
       height: 43px;
-
       flex-shrink: 0;
-
       display: grid;
       place-items: center;
-
       border-radius: 13px;
-
       background: rgba(255,255,255,.055);
-
       border: 1px solid rgba(255,255,255,.08);
-
       font-weight: 800;
     }
 
     .social-name {
       display: block;
-
       font-size: 13px;
       font-weight: 900;
     }
 
     .social-sub {
       display: block;
-
       margin-top: 3px;
-
       color: #bfb7aa;
-
       font-size: 11px;
     }
 
     .social.whatsapp {
       background:
-        linear-gradient(
-          110deg,
-          rgba(50,221,183,.27),
-          rgba(10,18,18,.97)
-        );
-
+        linear-gradient(110deg, rgba(50,221,183,.27), rgba(10,18,18,.97));
       border-color: rgba(50,221,183,.58);
     }
 
-    /* FOOTER */
-
     footer {
       margin-top: 58px;
-
       text-align: center;
-
       color: #928b80;
-
       font-size: 11px;
     }
 
     .status {
       display: inline-flex;
       align-items: center;
-
       gap: 8px;
-
       margin-top: 12px;
     }
 
     .dot {
       width: 8px;
       height: 8px;
-
       border-radius: 50%;
-
       background: var(--teal);
-
       box-shadow: 0 0 15px var(--teal);
     }
-
-    /* MODAL */
 
     .modal-backdrop {
       position: fixed;
       inset: 0;
-
       z-index: 1000;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding: 20px;
-
       background: rgba(0,0,0,.78);
-
       backdrop-filter: blur(9px);
-
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-
       transition: .28s ease;
     }
 
@@ -863,28 +659,16 @@
 
     .modal-panel {
       width: min(1080px,100%);
-
       max-height: 92vh;
-
       overflow-y: auto;
-
       position: relative;
-
       padding: 28px;
-
       border-radius: 28px;
-
       background:
         radial-gradient(circle at 10% 0%,rgba(50,221,183,.07),transparent 28%),
         radial-gradient(circle at 95% 8%,rgba(255,90,159,.07),transparent 30%),
-        linear-gradient(
-          180deg,
-          rgba(15,14,20,.99),
-          rgba(7,7,10,.99)
-        );
-
+        linear-gradient(180deg, rgba(15,14,20,.99), rgba(7,7,10,.99));
       border: 1px solid rgba(224,184,98,.27);
-
       box-shadow:
         0 35px 100px rgba(0,0,0,.72),
         0 0 24px rgba(224,184,98,.06);
@@ -892,104 +676,67 @@
 
     .modal-close {
       position: absolute;
-
       top: 16px;
       right: 16px;
-
       width: 46px;
       height: 46px;
-
       display: grid;
       place-items: center;
-
       border-radius: 50%;
-
       cursor: pointer;
-
       color: var(--gold);
-
       font-size: 28px;
-
       background: rgba(255,255,255,.03);
-
       border: 1px solid rgba(224,184,98,.24);
     }
-
-    /* MODAL LOGO */
 
     .modal-logo-wrap {
       display: flex;
       justify-content: center;
-
       margin: 4px 0 13px;
     }
 
     .modal-logo {
       width: min(280px,62vw);
-
       filter:
         drop-shadow(0 10px 14px rgba(0,0,0,.55))
         drop-shadow(0 0 12px rgba(224,184,98,.10));
     }
 
-    /* INTRO */
-
     .modal-overline {
       margin-bottom: 9px;
-
       text-align: center;
-
       color: var(--gold);
-
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 3.5px;
-
       text-transform: uppercase;
     }
 
     .modal-intro {
       max-width: 850px;
-
       margin: 0 auto 9px;
-
       text-align: center;
-
       font-family: "Libre Baskerville", Georgia, serif;
-
       font-size: clamp(18px,2.3vw,27px);
-
       font-weight: 700;
-
       line-height: 1.47;
-
       color: var(--ivory);
     }
 
     .modal-subtitle {
       margin-bottom: 28px;
-
       text-align: center;
-
       color: #aaa295;
-
       font-size: 14px;
       letter-spacing: .3px;
     }
 
-    /* DONA */
-
     .funds-chart-area {
       display: grid;
-
-      grid-template-columns:
-        minmax(280px,400px)
-        1fr;
-
+      grid-template-columns: minmax(280px,400px) 1fr;
       gap: 32px;
-
       align-items: center;
-
       margin-bottom: 30px;
     }
 
@@ -1000,13 +747,9 @@
 
     .donut {
       width: min(390px,80vw);
-
       aspect-ratio: 1;
-
       position: relative;
-
       border-radius: 50%;
-
       background:
         conic-gradient(
           var(--fund-teal) 0% 40%,
@@ -1014,106 +757,60 @@
           var(--fund-gold) 65% 85%,
           var(--fund-ivory) 85% 100%
         );
-
-      box-shadow:
-        0 20px 45px rgba(0,0,0,.40);
+      box-shadow: 0 20px 45px rgba(0,0,0,.40);
     }
 
     .donut::after {
       content: "";
-
       position: absolute;
-
       inset: 28%;
-
       border-radius: 50%;
-
       background:
-        linear-gradient(
-          180deg,
-          #17161e,
-          #09090d
-        );
-
+        linear-gradient(180deg, #17161e, #09090d);
       border: 1px solid rgba(224,184,98,.16);
     }
 
     .donut-center {
       position: absolute;
-
       inset: 0;
-
       z-index: 3;
-
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
       text-align: center;
-
       pointer-events: none;
     }
 
     .donut-center strong {
       font-family: "Libre Baskerville",serif;
-
       font-size: clamp(26px,4vw,44px);
-
       color: var(--ivory);
     }
 
     .donut-center span {
       max-width: 125px;
-
       margin-top: 5px;
-
       color: #aaa295;
-
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 1.4px;
     }
 
-    /* PORCENTAJES DONA */
-
     .donut-percent {
       position: absolute;
-
       z-index: 4;
-
       font-family: "Nunito Sans",sans-serif;
-
       font-size: clamp(15px,2vw,21px);
       font-weight: 900;
-
       color: #f4eee1;
-
-      text-shadow:
-        0 2px 5px rgba(0,0,0,.75);
+      text-shadow: 0 2px 5px rgba(0,0,0,.75);
     }
 
-    .donut-percent.p40 {
-      top: 28%;
-      right: 11%;
-    }
-
-    .donut-percent.p25 {
-      bottom: 15%;
-      right: 28%;
-    }
-
-    .donut-percent.p20 {
-      bottom: 26%;
-      left: 8%;
-    }
-
-    .donut-percent.p15 {
-      top: 21%;
-      left: 17%;
-    }
-
-    /* RESUMEN */
+    .donut-percent.p40 { top: 28%; right: 11%; }
+    .donut-percent.p25 { bottom: 15%; right: 28%; }
+    .donut-percent.p20 { bottom: 26%; left: 8%; }
+    .donut-percent.p15 { top: 21%; left: 17%; }
 
     .fund-summary {
       display: grid;
@@ -1123,46 +820,33 @@
     .summary-row {
       display: flex;
       align-items: center;
-
       gap: 13px;
-
       padding: 12px 14px;
-
       border-radius: 14px;
-
       background: rgba(255,255,255,.025);
-
       border: 1px solid rgba(255,255,255,.055);
     }
 
     .summary-dot {
       width: 13px;
       height: 13px;
-
       flex-shrink: 0;
-
       border-radius: 50%;
     }
 
     .summary-number {
       min-width: 58px;
-
       font-family: "Libre Baskerville",serif;
-
       font-size: 23px;
       font-weight: 700;
-
       color: var(--ivory);
     }
 
     .summary-name {
       color: #d4ccbf;
-
       font-size: 14px;
       font-weight: 700;
     }
-
-    /* DISTRIBUCIÓN */
 
     .fund-allocation-list {
       display: grid;
@@ -1171,159 +855,94 @@
 
     .allocation {
       border-radius: 21px;
-
       overflow: hidden;
-
       background:
-        linear-gradient(
-          145deg,
-          rgba(24,23,31,.96),
-          rgba(9,9,13,.98)
-        );
-
+        linear-gradient(145deg, rgba(24,23,31,.96), rgba(9,9,13,.98));
       border: 1px solid rgba(224,184,98,.14);
     }
 
     .allocation-head {
       display: flex;
       align-items: center;
-
       gap: 15px;
-
       padding: 17px 20px;
-
       border-bottom: 1px solid rgba(255,255,255,.055);
     }
 
     .allocation-color {
       width: 10px;
-
       align-self: stretch;
-
       min-height: 48px;
-
       border-radius: 999px;
     }
 
     .allocation-percent {
       min-width: 75px;
-
       font-family: "Libre Baskerville",serif;
-
       font-size: 28px;
       font-weight: 700;
-
       color: var(--ivory);
     }
 
     .allocation-category {
       font-family: "Libre Baskerville",serif;
-
       font-size: clamp(17px,2vw,22px);
-
       line-height: 1.35;
-
       color: var(--ivory);
     }
 
     .allocation-detail {
       display: grid;
-
-      grid-template-columns:
-        55px 1fr;
-
+      grid-template-columns: 55px 1fr;
       gap: 15px;
-
       padding: 18px 20px 20px;
     }
 
     .allocation-number {
       font-family: "Libre Baskerville",serif;
-
       font-size: 22px;
       font-weight: 700;
-
       opacity: .85;
     }
 
     .allocation-description strong {
       display: block;
-
       margin-bottom: 6px;
-
       color: #e5ded1;
-
       font-family: "Libre Baskerville",serif;
-
       font-size: 15px;
-
       line-height: 1.45;
     }
 
     .allocation-description p {
       color: #aaa295;
-
       font-size: 14px;
       line-height: 1.65;
     }
 
-    .allocation.teal .allocation-color {
-      background: var(--fund-teal);
-    }
+    .allocation.teal .allocation-color { background: var(--fund-teal); }
+    .allocation.teal .allocation-number { color: #54b5a2; }
 
-    .allocation.teal .allocation-number {
-      color: #54b5a2;
-    }
+    .allocation.pink .allocation-color { background: var(--fund-pink); }
+    .allocation.pink .allocation-number { color: #cf698e; }
 
-    .allocation.pink .allocation-color {
-      background: var(--fund-pink);
-    }
+    .allocation.gold .allocation-color { background: var(--fund-gold); }
+    .allocation.gold .allocation-number { color: #c5a05a; }
 
-    .allocation.pink .allocation-number {
-      color: #cf698e;
-    }
-
-    .allocation.gold .allocation-color {
-      background: var(--fund-gold);
-    }
-
-    .allocation.gold .allocation-number {
-      color: #c5a05a;
-    }
-
-    .allocation.ivory .allocation-color {
-      background: var(--fund-ivory);
-    }
-
-    .allocation.ivory .allocation-number {
-      color: #c9c0a3;
-    }
-
-    /* RESPALDO CONTRACTUAL */
+    .allocation.ivory .allocation-color { background: var(--fund-ivory); }
+    .allocation.ivory .allocation-number { color: #c9c0a3; }
 
     .contract-note {
       position: relative;
-
       margin-top: 25px;
-
       padding: 28px 25px;
-
       overflow: hidden;
-
       border-radius: 24px;
-
       text-align: center;
-
       background:
         radial-gradient(circle at 50% 0%,rgba(224,184,98,.17),transparent 45%),
-        linear-gradient(
-          135deg,
-          rgba(38,31,20,.78),
-          rgba(15,13,17,.98)
-        );
-
+        linear-gradient(135deg, rgba(38,31,20,.78), rgba(15,13,17,.98));
       border: 1px solid rgba(224,184,98,.48);
-
       box-shadow:
         0 22px 45px rgba(0,0,0,.40),
         0 0 28px rgba(224,184,98,.10),
@@ -1333,128 +952,248 @@
     .contract-shield {
       width: 72px;
       height: 72px;
-
       display: grid;
       place-items: center;
-
       margin: 0 auto 14px;
-
       border-radius: 22px;
-
       font-size: 38px;
-
       color: var(--gold);
-
       background:
-        linear-gradient(
-          145deg,
-          rgba(224,184,98,.20),
-          rgba(224,184,98,.05)
-        );
-
+        linear-gradient(145deg, rgba(224,184,98,.20), rgba(224,184,98,.05));
       border: 1px solid rgba(224,184,98,.44);
-
-      box-shadow:
-        0 0 28px rgba(224,184,98,.14);
+      box-shadow: 0 0 28px rgba(224,184,98,.14);
     }
 
     .contract-overline {
       margin-bottom: 8px;
-
       color: var(--gold);
-
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 3px;
-
       text-transform: uppercase;
     }
 
     .contract-title {
       max-width: 720px;
-
       margin: 0 auto 11px;
-
       font-family: "Libre Baskerville",serif;
-
       font-size: clamp(22px,3vw,32px);
-
       line-height: 1.3;
-
       color: var(--ivory);
     }
 
     .contract-copy {
       max-width: 850px;
-
       margin: 0 auto;
-
       color: #d1c8ba;
-
       font-size: 14px;
       line-height: 1.75;
     }
 
-    /* CONTACTO MODAL */
-
     .investor-contact {
       display: flex;
       justify-content: center;
-
       margin-top: 22px;
     }
 
-    .investor-contact-button {
+    .investor-contact-button,
+    .community-contact-button {
       min-width: min(100%,390px);
-
       display: inline-flex;
       align-items: center;
       justify-content: center;
-
       gap: 11px;
-
       padding: 17px 28px;
-
       border-radius: 17px;
-
       text-decoration: none;
-
       color: var(--ivory);
-
       font-size: 14px;
       font-weight: 900;
       letter-spacing: .7px;
-
       background:
-        linear-gradient(
-          105deg,
-          rgba(50,221,183,.24),
-          rgba(13,24,22,.98)
-        );
-
+        linear-gradient(105deg, rgba(50,221,183,.24), rgba(13,24,22,.98));
       border: 1px solid rgba(50,221,183,.54);
-
       box-shadow:
         0 15px 35px rgba(0,0,0,.35),
         0 0 18px rgba(50,221,183,.10);
-
       transition: .22s ease;
     }
 
-    .investor-contact-button:hover {
+    .investor-contact-button:hover,
+    .community-contact-button:hover {
       transform: translateY(-3px);
-
       border-color: var(--teal);
-
       box-shadow:
         0 20px 42px rgba(0,0,0,.46),
         0 0 28px rgba(50,221,183,.18);
     }
 
-    /* RESPONSIVE */
+    /* COMMUNITY MODAL */
+
+    .community-panel {
+      width: min(980px,100%);
+    }
+
+    .community-title {
+      max-width: 800px;
+      margin: 0 auto 8px;
+      text-align: center;
+      font-family: "Cinzel", serif;
+      font-size: clamp(24px,3.5vw,38px);
+      line-height: 1.25;
+      color: var(--gold);
+    }
+
+    .community-subtitle {
+      max-width: 720px;
+      margin: 0 auto 18px;
+      text-align: center;
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .community-note {
+      max-width: 780px;
+      margin: 0 auto 24px;
+      padding: 14px 18px;
+      text-align: center;
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(224,184,98,.10), rgba(50,221,183,.08));
+      border: 1px solid rgba(224,184,98,.28);
+      box-shadow:
+        0 14px 28px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.04);
+      color: var(--ivory);
+      font-weight: 800;
+      line-height: 1.65;
+    }
+
+    .levels-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .level-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(24,23,31,.96), rgba(9,9,13,.98));
+      border: 1px solid rgba(224,184,98,.14);
+      box-shadow:
+        0 16px 32px rgba(0,0,0,.20),
+        inset 0 1px 0 rgba(255,255,255,.03);
+      transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+    }
+
+    .level-card:hover,
+    .level-card.is-active {
+      border-color: rgba(224,184,98,.38);
+      transform: translateY(-2px);
+      box-shadow:
+        0 22px 40px rgba(0,0,0,.28),
+        0 0 22px rgba(50,221,183,.06);
+    }
+
+    .level-card.level-teal .level-number { color: var(--teal); }
+    .level-card.level-pink .level-number { color: var(--pink); }
+    .level-card.level-gold .level-number { color: var(--gold); }
+    .level-card.level-ivory .level-number { color: var(--ivory); }
+
+    .level-toggle {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 58px 1fr 34px;
+      align-items: center;
+      gap: 16px;
+      font: inherit;
+    }
+
+    .level-number {
+      font-family: "Libre Baskerville", serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .level-text {
+      min-width: 0;
+    }
+
+    .level-name {
+      display: block;
+      font-family: "Cinzel", serif;
+      font-size: clamp(18px,2.2vw,24px);
+      line-height: 1.2;
+      color: var(--ivory);
+    }
+
+    .level-tagline {
+      display: block;
+      margin-top: 5px;
+      color: #bfb7aa;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .level-chevron {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--gold);
+      text-align: center;
+      transition: transform .25s ease;
+    }
+
+    .level-card.is-active .level-chevron,
+    .level-card:hover .level-chevron {
+      transform: rotate(45deg);
+    }
+
+    .level-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
+      opacity: 0;
+      padding: 0 20px;
+      border-top: 1px solid rgba(255,255,255,0);
+    }
+
+    .level-card:hover .level-body,
+    .level-card.is-active .level-body {
+      max-height: 240px;
+      opacity: 1;
+      padding: 0 20px 20px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+
+    .level-body p {
+      padding-top: 16px;
+      color: var(--text-soft);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .community-contact {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .community-contact-button {
+      min-width: min(100%, 430px);
+    }
 
     @media (max-width: 760px) {
-
       .page {
         padding: 23px 14px 70px;
       }
@@ -1506,23 +1245,44 @@
       .contract-note {
         padding: 24px 17px;
       }
+
+      .level-toggle {
+        grid-template-columns: 44px 1fr 26px;
+        padding: 16px 16px;
+        gap: 12px;
+      }
+
+      .level-number {
+        font-size: 24px;
+      }
+
+      .level-name {
+        font-size: 19px;
+      }
+
+      .level-tagline {
+        font-size: 12px;
+      }
+
+      .community-note {
+        padding: 12px 14px;
+        font-size: 14px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-
       *,
       *::before,
       *::after {
         animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
     }
-
   </style>
 </head>
 
 <body>
-
   <div class="universe-glow teal"></div>
   <div class="universe-glow pink"></div>
   <div class="universe-glow gold"></div>
@@ -1531,11 +1291,7 @@
   <div class="energy-ring two"></div>
 
   <main class="page">
-
-    <!-- HERO -->
-
     <section class="hero">
-
       <div class="eyebrow">
         WELCOME TO THE UNIVERSE
       </div>
@@ -1543,15 +1299,13 @@
       <div class="portal"></div>
 
       <div class="hero-logo-wrap">
-
         <div class="hero-logo-shadow"></div>
 
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="hero-logo"
-        >
-
+        />
       </div>
 
       <p class="subtitle">
@@ -1563,115 +1317,63 @@
       </p>
 
       <div class="main-buttons">
-
-        <!-- JUEGO -->
-
-        <a
-          class="btn primary"
-          href="#juego"
-        >
-
+        <a class="btn primary" href="#juego">
           <div class="btn-left">
-
             <div class="icon">◆</div>
 
             <div class="btn-text">
-
-              <span class="btn-title">
-                CONOCÉ EL JUEGO
-              </span>
-
-              <span class="btn-sub">
-                Descubrí el universo Kissing Fight
-              </span>
-
+              <span class="btn-title">CONOCÉ EL JUEGO</span>
+              <span class="btn-sub">Descubrí el universo Kissing Fight</span>
             </div>
-
           </div>
 
           <span class="arrow">→</span>
-
         </a>
 
-        <!-- COMUNIDAD -->
-
-        <a
-          class="btn"
-          href="#comunidad"
+        <button
+          type="button"
+          class="btn-button community-cta"
+          data-modal-target="communityModal"
+          aria-controls="communityModal"
+          aria-haspopup="dialog"
         >
-
           <div class="btn-left">
-
             <div class="icon">♥</div>
 
             <div class="btn-text">
-
-              <span class="btn-title">
-                SUMATE A LA COMUNIDAD
-              </span>
-
-              <span class="btn-sub">
-                Entrá desde el principio
-              </span>
-
+              <span class="btn-title">SUMATE AL UNIVERSO KISSING FIGHT</span>
+              <span class="btn-sub">Conocé los niveles y beneficios</span>
             </div>
-
           </div>
 
           <span class="arrow">→</span>
-
-        </a>
-
-        <!-- INVERSORES -->
+        </button>
 
         <button
           type="button"
           class="btn-button"
-          data-open-investors
+          data-modal-target="investorsModal"
           aria-controls="investorsModal"
           aria-haspopup="dialog"
         >
-
           <div class="btn-left">
-
             <div class="icon">✦</div>
 
             <div class="btn-text">
-
-              <span class="btn-title">
-                INVERSORES & COLABORADORES
-              </span>
-
-              <span class="btn-sub">
-                Conocé el destino de los fondos
-              </span>
-
+              <span class="btn-title">INVERSORES & COLABORADORES</span>
+              <span class="btn-sub">Conocé el destino de los fondos</span>
             </div>
-
           </div>
 
           <span class="arrow">→</span>
-
         </button>
-
       </div>
-
     </section>
 
-    <!-- JUEGO -->
+    <section class="section" id="juego">
+      <div class="section-label">THE GAME</div>
 
-    <section
-      class="section"
-      id="juego"
-    >
-
-      <div class="section-label">
-        THE GAME
-      </div>
-
-      <h2>
-        Mucho más que un Match-3.
-      </h2>
+      <h2>Mucho más que un Match-3.</h2>
 
       <p>
         Kissing Fight combina competencia, progresión y comunidad
@@ -1680,7 +1382,6 @@
       </p>
 
       <div class="features">
-
         <div class="feature">
           <strong>COMPETÍ</strong>
           <span>Ranking y desafío</span>
@@ -1695,66 +1396,62 @@
           <strong>CONECTÁ</strong>
           <span>Comunidad</span>
         </div>
-
       </div>
-
     </section>
 
-    <!-- COMMUNITY -->
-
     <section
-      class="section"
+      class="section clickable-card"
       id="comunidad"
+      role="button"
+      tabindex="0"
+      data-modal-target="communityModal"
+      aria-controls="communityModal"
+      aria-haspopup="dialog"
     >
+      <div class="section-label">COMMUNITY</div>
 
-      <div class="section-label">
-        COMMUNITY
-      </div>
-
-      <h2>
-        Kissing Fight está llegando.
-      </h2>
+      <h2>Kissing Fight está llegando.</h2>
 
       <p>
         Ser de los primeros en la comunidad significa conocer el juego
         antes de su lanzamiento y acceder a beneficios exclusivos desde
         el comienzo.
-        <br><br>
+        <br /><br />
         Contactanos y asegurá tu lugar entre los primeros en tener ventaja.
       </p>
 
+      <div class="section-action">
+        Ver niveles del universo →
+      </div>
     </section>
 
-    <!-- PARTNERS -->
-
     <section
-      class="section investor-card"
+      class="section clickable-card"
       id="inversores"
       role="button"
       tabindex="0"
-      data-open-investors
+      data-modal-target="investorsModal"
       aria-controls="investorsModal"
       aria-haspopup="dialog"
     >
+      <div class="section-label">PARTNERS</div>
 
-      <div class="section-label">
-        PARTNERS
-      </div>
-
-      <h2>
-        Formá parte desde el inicio
-      </h2>
+      <h2>Formá parte desde el inicio</h2>
 
       <p>
         <strong>
           Kissing Fight está en una etapa clave de crecimiento, y queremos
           que nuestro equipo crezca junto con el proyecto.
         </strong>
+
+        <br /><br />
+
         Abrimos la posibilidad de sumar
-        <strong>
-          inversores, aliados estratégicos y colaboradores
-        </strong>
+        <strong>inversores, aliados estratégicos y colaboradores</strong>
         que puedan aportar valor al proyecto.
+
+        <br /><br />
+
         <strong>
           ¿Querés formar parte? Contactanos y coordinemos una reunión
           para conocer tu propuesta.
@@ -1764,40 +1461,23 @@
       <div class="section-action">
         Ver propuesta para inversores →
       </div>
-
     </section>
 
-    <!-- REDES -->
-
-    <div class="social-title">
-      ENTRÁ AL UNIVERSO
-    </div>
+    <div class="social-title">ENTRÁ AL UNIVERSO</div>
 
     <div class="socials">
-
       <a
         class="social"
         href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
         target="_blank"
         rel="noopener noreferrer"
       >
-
-        <div class="social-icon">
-          IG
-        </div>
+        <div class="social-icon">IG</div>
 
         <div>
-
-          <span class="social-name">
-            INSTAGRAM — ENGLISH
-          </span>
-
-          <span class="social-sub">
-            International community
-          </span>
-
+          <span class="social-name">INSTAGRAM — ENGLISH</span>
+          <span class="social-sub">International community</span>
         </div>
-
       </a>
 
       <a
@@ -1806,23 +1486,12 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-
-        <div class="social-icon">
-          IG
-        </div>
+        <div class="social-icon">IG</div>
 
         <div>
-
-          <span class="social-name">
-            INSTAGRAM — ESPAÑOL
-          </span>
-
-          <span class="social-sub">
-            Comunidad en español
-          </span>
-
+          <span class="social-name">INSTAGRAM — ESPAÑOL</span>
+          <span class="social-sub">Comunidad en español</span>
         </div>
-
       </a>
 
       <a
@@ -1831,23 +1500,12 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-
-        <div class="social-icon">
-          WA
-        </div>
+        <div class="social-icon">WA</div>
 
         <div>
-
-          <span class="social-name">
-            CANAL DE WHATSAPP
-          </span>
-
-          <span class="social-sub">
-            Novedades y anuncios
-          </span>
-
+          <span class="social-name">CANAL DE WHATSAPP</span>
+          <span class="social-sub">Novedades y anuncios</span>
         </div>
-
       </a>
 
       <a
@@ -1856,86 +1514,254 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-
-        <div class="social-icon">
-          ✦
-        </div>
+        <div class="social-icon">✦</div>
 
         <div>
-
-          <span class="social-name">
-            CONTACTANOS
-          </span>
-
-          <span class="social-sub">
-            Hablemos por WhatsApp
-          </span>
-
+          <span class="social-name">CONTACTANOS</span>
+          <span class="social-sub">Hablemos por WhatsApp</span>
         </div>
-
       </a>
-
     </div>
 
     <footer>
-
       © 2026 KISSING FIGHT
-
-      <br>
+      <br />
 
       <div class="status">
-
         <span class="dot"></span>
-
         Proyecto en desarrollo
-
       </div>
-
     </footer>
-
   </main>
 
-  <!-- POPUP INVERSORES -->
+  <!-- POPUP COMUNIDAD -->
+  <div
+    class="modal-backdrop"
+    id="communityModal"
+    aria-hidden="true"
+  >
+    <div
+      class="modal-panel community-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="communityTitle"
+    >
+      <button
+        type="button"
+        class="modal-close"
+        data-modal-close
+        aria-label="Cerrar"
+      >
+        ×
+      </button>
 
+      <div class="modal-logo-wrap">
+        <img
+          src="./logo-kissing-fight.jpg.png"
+          alt="Kissing Fight"
+          class="modal-logo"
+        />
+      </div>
+
+      <div class="modal-overline">COMUNIDAD</div>
+
+      <h2 class="community-title" id="communityTitle">
+        Niveles del Universo Kissing Fight
+      </h2>
+
+      <p class="community-subtitle">
+        7 niveles para formar parte del universo Kissing Fight.
+      </p>
+
+      <div class="community-note">
+        Cada nivel conserva las ventajas anteriores y suma nuevas recompensas.
+      </div>
+
+      <div class="levels-list">
+        <div class="level-card level-teal">
+          <button type="button" class="level-toggle">
+            <div class="level-number">1</div>
+
+            <div class="level-text">
+              <span class="level-name">Pueblo</span>
+              <span class="level-tagline">El comienzo de todo.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien se sume al Universo Kissing Fight forma parte de este nivel inicial.
+            </p>
+          </div>
+        </div>
+
+        <div class="level-card level-pink">
+          <button type="button" class="level-toggle">
+            <div class="level-number">2</div>
+
+            <div class="level-text">
+              <span class="level-name">Pueblo Fundador</span>
+              <span class="level-tagline">Los que están desde el día 1.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien se sume desde el día 1 recibirá la <strong>insignia de Pueblo Fundador</strong>,
+              que le permitirá participar en las salas de chat.
+            </p>
+          </div>
+        </div>
+
+        <div class="level-card level-gold">
+          <button type="button" class="level-toggle">
+            <div class="level-number">3</div>
+
+            <div class="level-text">
+              <span class="level-name">Fundador</span>
+              <span class="level-tagline">Construye el futuro.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien llegue a este nivel podrá competir en el <strong>ranking mundial</strong>,
+              donde el <strong>número 1 de la semana ganará el pozo</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="level-card level-teal">
+          <button type="button" class="level-toggle">
+            <div class="level-number">4</div>
+
+            <div class="level-text">
+              <span class="level-name">Rey</span>
+              <span class="level-tagline">Impulsá tu lugar en la comunidad.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien cuente con la suscripción <strong>BRONZE</strong>, sea competidor activo y participe en la
+              comunidad, tendrá <strong>50% de descuento en cualquier suscripción superior</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="level-card level-pink">
+          <button type="button" class="level-toggle">
+            <div class="level-number">5</div>
+
+            <div class="level-text">
+              <span class="level-name">Héroe</span>
+              <span class="level-tagline">Llevá tu identidad al siguiente nivel.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien cuente con la suscripción <strong>SILVER</strong>, sea competidor activo y participe en la
+              comunidad, podrá tener su <strong>avatar 100% personalizado</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="level-card level-gold">
+          <button type="button" class="level-toggle">
+            <div class="level-number">6</div>
+
+            <div class="level-text">
+              <span class="level-name">Dios</span>
+              <span class="level-tagline">Más poder dentro del universo.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien cuente con la suscripción <strong>Premium GOLD</strong>, sea competidor activo y participe en
+              la comunidad, podrá solicitar participar como <strong>moderador de una sala preexistente</strong> que lo requiera.
+            </p>
+          </div>
+        </div>
+
+        <div class="level-card level-ivory">
+          <button type="button" class="level-toggle">
+            <div class="level-number">7</div>
+
+            <div class="level-text">
+              <span class="level-name">Creador</span>
+              <span class="level-tagline">Da forma a lo legendario.</span>
+            </div>
+
+            <div class="level-chevron">+</div>
+          </button>
+
+          <div class="level-body">
+            <p>
+              Todo quien cuente con la suscripción <strong>Premium BLACK</strong>, sea competidor activo y participe en
+              la comunidad, podrá solicitar la <strong>creación de una sala personalizada</strong> y convertirse en su
+              <strong>moderador</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="community-contact">
+        <a
+          class="community-contact-button"
+          href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ✦ SUMATE AL UNIVERSO KISSING FIGHT
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP INVERSORES -->
   <div
     class="modal-backdrop"
     id="investorsModal"
     aria-hidden="true"
   >
-
     <div
       class="modal-panel"
       role="dialog"
       aria-modal="true"
       aria-labelledby="investorTitle"
     >
-
       <button
         type="button"
         class="modal-close"
-        id="closeInvestorsModal"
+        data-modal-close
         aria-label="Cerrar"
       >
         ×
       </button>
 
-      <!-- LOGO -->
-
       <div class="modal-logo-wrap">
-
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="modal-logo"
-        >
-
+        />
       </div>
 
-      <!-- INTRO -->
-
-      <div class="modal-overline">
-        DESTINO DE LOS FONDOS
-      </div>
+      <div class="modal-overline">DESTINO DE LOS FONDOS</div>
 
       <h2
         class="modal-intro"
@@ -1951,303 +1777,134 @@
         Asignación estimada del capital recaudado
       </div>
 
-      <!-- DONA -->
-
       <div class="funds-chart-area">
-
         <div class="donut-wrap">
-
           <div class="donut">
-
-            <span class="donut-percent p40">
-              40%
-            </span>
-
-            <span class="donut-percent p25">
-              25%
-            </span>
-
-            <span class="donut-percent p20">
-              20%
-            </span>
-
-            <span class="donut-percent p15">
-              15%
-            </span>
+            <span class="donut-percent p40">40%</span>
+            <span class="donut-percent p25">25%</span>
+            <span class="donut-percent p20">20%</span>
+            <span class="donut-percent p15">15%</span>
 
             <div class="donut-center">
-
-              <strong>
-                100%
-              </strong>
-
-              <span>
-                DEL CAPITAL RECAUDADO
-              </span>
-
+              <strong>100%</strong>
+              <span>DEL CAPITAL RECAUDADO</span>
             </div>
-
           </div>
-
         </div>
-
-        <!-- RESUMEN -->
 
         <div class="fund-summary">
-
           <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#269B87"
-            ></span>
-
-            <span class="summary-number">
-              40%
-            </span>
-
-            <span class="summary-name">
-              Producto y tecnología
-            </span>
-
+            <span class="summary-dot" style="background:#269B87"></span>
+            <span class="summary-number">40%</span>
+            <span class="summary-name">Producto y tecnología</span>
           </div>
 
           <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#B94D78"
-            ></span>
-
-            <span class="summary-number">
-              25%
-            </span>
-
-            <span class="summary-name">
-              Marketing y crecimiento
-            </span>
-
+            <span class="summary-dot" style="background:#B94D78"></span>
+            <span class="summary-number">25%</span>
+            <span class="summary-name">Marketing y crecimiento</span>
           </div>
 
           <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#B38D46"
-            ></span>
-
-            <span class="summary-number">
-              20%
-            </span>
-
-            <span class="summary-name">
-              Infraestructura y seguridad
-            </span>
-
+            <span class="summary-dot" style="background:#B38D46"></span>
+            <span class="summary-number">20%</span>
+            <span class="summary-name">Infraestructura y seguridad</span>
           </div>
 
           <div class="summary-row">
-
-            <span
-              class="summary-dot"
-              style="background:#B6AE91"
-            ></span>
-
-            <span class="summary-number">
-              15%
-            </span>
-
-            <span class="summary-name">
-              Legal y operaciones
-            </span>
-
+            <span class="summary-dot" style="background:#B6AE91"></span>
+            <span class="summary-number">15%</span>
+            <span class="summary-name">Legal y operaciones</span>
           </div>
-
         </div>
-
       </div>
 
-      <!-- DISTRIBUCIÓN -->
-
       <div class="fund-allocation-list">
-
-        <!-- 40% -->
-
         <div class="allocation teal">
-
           <div class="allocation-head">
-
             <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              40%
-            </div>
-
-            <div class="allocation-category">
-              Producto y tecnología
-            </div>
-
+            <div class="allocation-percent">40%</div>
+            <div class="allocation-category">Producto y tecnología</div>
           </div>
 
           <div class="allocation-detail">
-
-            <div class="allocation-number">
-              01
-            </div>
+            <div class="allocation-number">01</div>
 
             <div class="allocation-description">
-
-              <strong>
-                Desarrollo y evolución del producto
-              </strong>
-
+              <strong>Desarrollo y evolución del producto</strong>
               <p>
                 Programación, backend, sistema de cuentas,
                 ranking, salas, economía interna, UX/UI y contenido.
               </p>
-
             </div>
-
           </div>
-
         </div>
 
-        <!-- 25% -->
-
         <div class="allocation pink">
-
           <div class="allocation-head">
-
             <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              25%
-            </div>
-
-            <div class="allocation-category">
-              Marketing y crecimiento
-            </div>
-
+            <div class="allocation-percent">25%</div>
+            <div class="allocation-category">Marketing y crecimiento</div>
           </div>
 
           <div class="allocation-detail">
-
-            <div class="allocation-number">
-              02
-            </div>
+            <div class="allocation-number">02</div>
 
             <div class="allocation-description">
-
-              <strong>
-                Lanzamiento, marketing y adquisición de usuarios
-              </strong>
-
+              <strong>Lanzamiento, marketing y adquisición de usuarios</strong>
               <p>
                 Campañas, creadores de contenido, redes sociales,
                 comunidad y expansión internacional.
               </p>
-
             </div>
-
           </div>
-
         </div>
 
-        <!-- 20% -->
-
         <div class="allocation gold">
-
           <div class="allocation-head">
-
             <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              20%
-            </div>
-
-            <div class="allocation-category">
-              Infraestructura y seguridad
-            </div>
-
+            <div class="allocation-percent">20%</div>
+            <div class="allocation-category">Infraestructura y seguridad</div>
           </div>
 
           <div class="allocation-detail">
-
-            <div class="allocation-number">
-              03
-            </div>
+            <div class="allocation-number">03</div>
 
             <div class="allocation-description">
-
-              <strong>
-                Infraestructura, seguridad y escalabilidad
-              </strong>
-
+              <strong>Infraestructura, seguridad y escalabilidad</strong>
               <p>
                 Servidores, bases de datos, anti-fraude,
                 anti-cheat, protección de usuarios y capacidad para crecer.
               </p>
-
             </div>
-
           </div>
-
         </div>
 
-        <!-- 15% -->
-
         <div class="allocation ivory">
-
           <div class="allocation-head">
-
             <div class="allocation-color"></div>
-
-            <div class="allocation-percent">
-              15%
-            </div>
-
-            <div class="allocation-category">
-              Legal y operaciones
-            </div>
-
+            <div class="allocation-percent">15%</div>
+            <div class="allocation-category">Legal y operaciones</div>
           </div>
 
           <div class="allocation-detail">
-
-            <div class="allocation-number">
-              04
-            </div>
+            <div class="allocation-number">04</div>
 
             <div class="allocation-description">
-
-              <strong>
-                Estructura legal, financiera y compliance
-              </strong>
-
+              <strong>Estructura legal, financiera y compliance</strong>
               <p>
                 Propiedad intelectual, contratos, medios de pago
                 y adecuación regulatoria del modelo económico.
               </p>
-
             </div>
-
           </div>
-
         </div>
-
       </div>
 
-      <!-- RESPALDO CONTRACTUAL -->
-
       <div class="contract-note">
+        <div class="contract-shield">🛡</div>
 
-        <div class="contract-shield">
-          🛡
-        </div>
-
-        <div class="contract-overline">
-          RESPALDO CONTRACTUAL
-        </div>
+        <div class="contract-overline">RESPALDO CONTRACTUAL</div>
 
         <h3 class="contract-title">
           Inversión respaldada contractualmente
@@ -2259,13 +1916,9 @@
           dentro del proyecto, estableciendo de forma clara las condiciones,
           derechos y obligaciones de las partes.
         </p>
-
       </div>
 
-      <!-- CONTACTO -->
-
       <div class="investor-contact">
-
         <a
           class="investor-contact-button"
           href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
@@ -2274,137 +1927,95 @@
         >
           ✦ CONTACTANOS
         </a>
-
       </div>
-
     </div>
-
   </div>
 
-  <!-- JAVASCRIPT -->
-
   <script>
+    const modalTriggers = document.querySelectorAll("[data-modal-target]");
+    const modalCloseButtons = document.querySelectorAll("[data-modal-close]");
+    const modals = document.querySelectorAll(".modal-backdrop");
 
-    const investorsModal =
-      document.getElementById("investorsModal");
+    function openModalById(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
 
-    const investorTriggers =
-      document.querySelectorAll("[data-open-investors]");
+      modals.forEach((item) => {
+        item.classList.remove("is-open");
+        item.setAttribute("aria-hidden", "true");
+      });
 
-    const closeInvestorsModal =
-      document.getElementById("closeInvestorsModal");
-
-
-    function openInvestorModal() {
-
-      investorsModal.classList.add("is-open");
-
-      investorsModal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      document.body.classList.add(
-        "modal-open"
-      );
-
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
     }
 
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
 
-    function closeInvestorModal() {
-
-      investorsModal.classList.remove(
-        "is-open"
-      );
-
-      investorsModal.setAttribute(
-        "aria-hidden",
-        "true"
-      );
-
-      document.body.classList.remove(
-        "modal-open"
-      );
-
+      const someOpen = document.querySelector(".modal-backdrop.is-open");
+      if (!someOpen) {
+        document.body.classList.remove("modal-open");
+      }
     }
 
+    modalTriggers.forEach((trigger) => {
+      trigger.addEventListener("click", function (event) {
+        event.preventDefault();
+        const modalId = this.getAttribute("data-modal-target");
+        openModalById(modalId);
+      });
 
-    investorTriggers.forEach((trigger) => {
-
-      trigger.addEventListener(
-        "click",
-        function(event) {
-
+      trigger.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-
-          openInvestorModal();
-
+          const modalId = this.getAttribute("data-modal-target");
+          openModalById(modalId);
         }
-      );
-
-
-      trigger.addEventListener(
-        "keydown",
-        function(event) {
-
-          if (
-            event.key === "Enter" ||
-            event.key === " "
-          ) {
-
-            event.preventDefault();
-
-            openInvestorModal();
-
-          }
-
-        }
-      );
-
+      });
     });
 
+    modalCloseButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const modal = this.closest(".modal-backdrop");
+        closeModal(modal);
+      });
+    });
 
-    closeInvestorsModal.addEventListener(
-      "click",
-      closeInvestorModal
-    );
-
-
-    investorsModal.addEventListener(
-      "click",
-      function(event) {
-
-        if (
-          event.target === investorsModal
-        ) {
-
-          closeInvestorModal();
-
+    modals.forEach((modal) => {
+      modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          closeModal(modal);
         }
+      });
+    });
 
-      }
-    );
-
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        if (
-          event.key === "Escape" &&
-          investorsModal.classList.contains(
-            "is-open"
-          )
-        ) {
-
-          closeInvestorModal();
-
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        const openModal = document.querySelector(".modal-backdrop.is-open");
+        if (openModal) {
+          closeModal(openModal);
         }
-
       }
-    );
+    });
 
+    const levelCards = document.querySelectorAll(".level-card");
+
+    levelCards.forEach((card) => {
+      const toggle = card.querySelector(".level-toggle");
+
+      toggle.addEventListener("click", function () {
+        const isActive = card.classList.contains("is-active");
+
+        levelCards.forEach((item) => item.classList.remove("is-active"));
+
+        if (!isActive) {
+          card.classList.add("is-active");
+        }
+      });
+    });
   </script>
-
 </body>
 </html>
