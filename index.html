@@ -28,7 +28,6 @@
       --dark: #1B1A25;
       --black: #000000;
 
-      /* Colores más sobrios para inversiones */
       --fund-teal: #269B87;
       --fund-pink: #B94D78;
       --fund-gold: #B38D46;
@@ -90,9 +89,7 @@
         radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px);
     }
 
-    /* =========================================================
-       FONDO
-    ========================================================= */
+    /* FONDO */
 
     .universe-glow {
       position: fixed;
@@ -140,6 +137,7 @@
       left: 50%;
       transform: translateX(-50%) rotate(-8deg);
       border: 2px solid rgba(255,90,159,.25);
+
       box-shadow:
         0 0 22px rgba(255,90,159,.21),
         inset 0 0 22px rgba(255,90,159,.07);
@@ -155,9 +153,7 @@
       box-shadow: 0 0 25px rgba(50,221,183,.16);
     }
 
-    /* =========================================================
-       GENERAL
-    ========================================================= */
+    /* GENERAL */
 
     .page {
       width: min(100%, 1040px);
@@ -167,9 +163,7 @@
       z-index: 2;
     }
 
-    /* =========================================================
-       HERO
-    ========================================================= */
+    /* HERO */
 
     .hero {
       display: flex;
@@ -215,8 +209,9 @@
 
       transform: translateX(-50%);
 
-      width: clamp(330px, 58vw, 650px);
+      width: clamp(330px,58vw,650px);
       aspect-ratio: 1;
+
       border-radius: 50%;
 
       pointer-events: none;
@@ -256,8 +251,7 @@
 
       border: 1px solid rgba(224,184,98,.28);
 
-      box-shadow:
-        0 0 38px rgba(224,184,98,.15);
+      box-shadow: 0 0 38px rgba(224,184,98,.15);
     }
 
     @keyframes portalPulse {
@@ -299,6 +293,7 @@
       height: 30px;
 
       border-radius: 50%;
+
       background: rgba(0,0,0,.78);
 
       filter: blur(21px);
@@ -366,9 +361,7 @@
       font-weight: 900;
     }
 
-    /* =========================================================
-       BOTONES
-    ========================================================= */
+    /* BOTONES */
 
     .main-buttons {
       width: 100%;
@@ -529,9 +522,7 @@
       font-size: 27px;
     }
 
-    /* =========================================================
-       SECCIONES
-    ========================================================= */
+    /* SECCIONES */
 
     .section {
       position: relative;
@@ -602,12 +593,17 @@
       position: relative;
       z-index: 2;
 
-      max-width: 790px;
+      max-width: 900px;
 
       color: var(--text-soft);
 
       font-size: 15px;
       line-height: 1.75;
+    }
+
+    .section p strong {
+      color: var(--ivory);
+      font-weight: 800;
     }
 
     .investor-card {
@@ -698,9 +694,7 @@
       font-size: 11px;
     }
 
-    /* =========================================================
-       REDES
-    ========================================================= */
+    /* REDES */
 
     .social-title {
       margin: 48px 0 17px;
@@ -804,9 +798,7 @@
       border-color: rgba(50,221,183,.58);
     }
 
-    /* =========================================================
-       FOOTER
-    ========================================================= */
+    /* FOOTER */
 
     footer {
       margin-top: 58px;
@@ -838,9 +830,7 @@
       box-shadow: 0 0 15px var(--teal);
     }
 
-    /* =========================================================
-       MODAL
-    ========================================================= */
+    /* MODAL */
 
     .modal-backdrop {
       position: fixed;
@@ -942,7 +932,7 @@
         drop-shadow(0 0 12px rgba(224,184,98,.10));
     }
 
-    /* INTRO MÁS FORMAL */
+    /* INTRO */
 
     .modal-overline {
       margin-bottom: 9px;
@@ -1068,7 +1058,7 @@
     .donut-center strong {
       font-family: "Libre Baskerville",serif;
 
-      font-size: clamp(30px,6vw,56px);
+      font-size: clamp(26px,4vw,44px);
 
       color: var(--ivory);
     }
@@ -1085,7 +1075,7 @@
       letter-spacing: 1.4px;
     }
 
-    /* PORCENTAJES ESCRITOS SOBRE LA DONA */
+    /* PORCENTAJES DONA */
 
     .donut-percent {
       position: absolute;
@@ -1123,7 +1113,7 @@
       left: 17%;
     }
 
-    /* MINI RESUMEN */
+    /* RESUMEN */
 
     .fund-summary {
       display: grid;
@@ -1172,9 +1162,7 @@
       font-weight: 700;
     }
 
-    /* =========================================================
-       ITEMS DE FONDOS AGRUPADOS
-    ========================================================= */
+    /* DISTRIBUCIÓN */
 
     .fund-allocation-list {
       display: grid;
@@ -1311,9 +1299,7 @@
       color: #c9c0a3;
     }
 
-    /* =========================================================
-       RESPALDO CONTRACTUAL MÁS DESTACADO
-    ========================================================= */
+    /* RESPALDO CONTRACTUAL */
 
     .contract-note {
       position: relative;
@@ -1409,9 +1395,7 @@
       line-height: 1.75;
     }
 
-    /* =========================================================
-       BOTÓN CONTACTO MODAL
-    ========================================================= */
+    /* CONTACTO MODAL */
 
     .investor-contact {
       display: flex;
@@ -1467,11 +1451,10 @@
         0 0 28px rgba(50,221,183,.18);
     }
 
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
+    /* RESPONSIVE */
 
     @media (max-width: 760px) {
+
       .page {
         padding: 23px 14px 70px;
       }
@@ -1526,6 +1509,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
@@ -1548,9 +1532,7 @@
 
   <main class="page">
 
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -1580,7 +1562,6 @@
         <strong>más de un mundo por descubrir.</strong>
       </p>
 
-
       <div class="main-buttons">
 
         <!-- JUEGO -->
@@ -1595,6 +1576,7 @@
             <div class="icon">◆</div>
 
             <div class="btn-text">
+
               <span class="btn-title">
                 CONOCÉ EL JUEGO
               </span>
@@ -1602,6 +1584,7 @@
               <span class="btn-sub">
                 Descubrí el universo Kissing Fight
               </span>
+
             </div>
 
           </div>
@@ -1610,8 +1593,7 @@
 
         </a>
 
-
-        <!-- COMUNIDAD: YA NO ABRE POPUP -->
+        <!-- COMUNIDAD -->
 
         <a
           class="btn"
@@ -1623,6 +1605,7 @@
             <div class="icon">♥</div>
 
             <div class="btn-text">
+
               <span class="btn-title">
                 SUMATE A LA COMUNIDAD
               </span>
@@ -1630,6 +1613,7 @@
               <span class="btn-sub">
                 Entrá desde el principio
               </span>
+
             </div>
 
           </div>
@@ -1638,8 +1622,7 @@
 
         </a>
 
-
-        <!-- INVERSORES: ABRE POPUP -->
+        <!-- INVERSORES -->
 
         <button
           type="button"
@@ -1654,6 +1637,7 @@
             <div class="icon">✦</div>
 
             <div class="btn-text">
+
               <span class="btn-title">
                 INVERSORES & COLABORADORES
               </span>
@@ -1661,6 +1645,7 @@
               <span class="btn-sub">
                 Conocé el destino de los fondos
               </span>
+
             </div>
 
           </div>
@@ -1673,10 +1658,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         JUEGO
-    ====================================================== -->
+    <!-- JUEGO -->
 
     <section
       class="section"
@@ -1718,10 +1700,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         COMMUNITY
-    ====================================================== -->
+    <!-- COMMUNITY -->
 
     <section
       class="section"
@@ -1746,10 +1725,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         PARTNERS — ESTE ABRE EL POPUP
-    ====================================================== -->
+    <!-- PARTNERS -->
 
     <section
       class="section investor-card"
@@ -1766,13 +1742,29 @@
       </div>
 
       <h2>
-        Construyamos algo grande.
+        Formá parte desde el inicio
       </h2>
 
       <p>
-        Estamos abiertos a conversar con colaboradores,
-        aliados estratégicos e inversores interesados en formar
-        parte de Kissing Fight desde sus primeras etapas.
+        <strong>
+          Kissing Fight está en una etapa clave de crecimiento, y queremos
+          que nuestro equipo crezca junto con el proyecto.
+        </strong>
+
+        <br><br>
+
+        Abrimos la posibilidad de sumar
+        <strong>
+          inversores, aliados estratégicos y colaboradores
+        </strong>
+        que puedan aportar valor al proyecto.
+
+        <br><br>
+
+        <strong>
+          ¿Querés formar parte? Contactanos y coordinemos una reunión
+          para conocer tu propuesta.
+        </strong>
       </p>
 
       <div class="section-action">
@@ -1781,10 +1773,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         REDES
-    ====================================================== -->
+    <!-- REDES -->
 
     <div class="social-title">
       ENTRÁ AL UNIVERSO
@@ -1798,9 +1787,13 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">IG</div>
+
+        <div class="social-icon">
+          IG
+        </div>
 
         <div>
+
           <span class="social-name">
             INSTAGRAM — ENGLISH
           </span>
@@ -1808,9 +1801,10 @@
           <span class="social-sub">
             International community
           </span>
-        </div>
-      </a>
 
+        </div>
+
+      </a>
 
       <a
         class="social"
@@ -1818,9 +1812,13 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">IG</div>
+
+        <div class="social-icon">
+          IG
+        </div>
 
         <div>
+
           <span class="social-name">
             INSTAGRAM — ESPAÑOL
           </span>
@@ -1828,9 +1826,10 @@
           <span class="social-sub">
             Comunidad en español
           </span>
-        </div>
-      </a>
 
+        </div>
+
+      </a>
 
       <a
         class="social"
@@ -1838,9 +1837,13 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">WA</div>
+
+        <div class="social-icon">
+          WA
+        </div>
 
         <div>
+
           <span class="social-name">
             CANAL DE WHATSAPP
           </span>
@@ -1848,9 +1851,10 @@
           <span class="social-sub">
             Novedades y anuncios
           </span>
-        </div>
-      </a>
 
+        </div>
+
+      </a>
 
       <a
         class="social whatsapp"
@@ -1858,9 +1862,13 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">✦</div>
+
+        <div class="social-icon">
+          ✦
+        </div>
 
         <div>
+
           <span class="social-name">
             CONTACTANOS
           </span>
@@ -1868,11 +1876,12 @@
           <span class="social-sub">
             Hablemos por WhatsApp
           </span>
+
         </div>
+
       </a>
 
     </div>
-
 
     <footer>
 
@@ -1881,18 +1890,18 @@
       <br>
 
       <div class="status">
+
         <span class="dot"></span>
+
         Proyecto en desarrollo
+
       </div>
 
     </footer>
 
   </main>
 
-
-  <!-- =====================================================
-       POPUP INVERSORES
-  ====================================================== -->
+  <!-- POPUP INVERSORES -->
 
   <div
     class="modal-backdrop"
@@ -1916,7 +1925,6 @@
         ×
       </button>
 
-
       <!-- LOGO -->
 
       <div class="modal-logo-wrap">
@@ -1929,7 +1937,6 @@
 
       </div>
 
-
       <!-- INTRO -->
 
       <div class="modal-overline">
@@ -1940,7 +1947,7 @@
         class="modal-intro"
         id="investorTitle"
       >
-        El capital recaudado será destinado principalmente al desarrollo
+        El capital levantado será destinado principalmente al desarrollo
         tecnológico de Kissing Fight, infraestructura y seguridad,
         adquisición de usuarios, estrategia de lanzamiento y estructura
         legal necesaria para escalar el proyecto internacionalmente.
@@ -1950,13 +1957,9 @@
         Asignación estimada del capital levantado
       </div>
 
-
-      <!-- ===================================================
-           DONA + RESUMEN
-      ==================================================== -->
+      <!-- DONA -->
 
       <div class="funds-chart-area">
-
 
         <div class="donut-wrap">
 
@@ -1985,7 +1988,7 @@
               </strong>
 
               <span>
-                DEL CAPITAL RECAUDADO
+                DEL CAPITAL LEVANTADO
               </span>
 
             </div>
@@ -1994,6 +1997,7 @@
 
         </div>
 
+        <!-- RESUMEN -->
 
         <div class="fund-summary">
 
@@ -2014,7 +2018,6 @@
 
           </div>
 
-
           <div class="summary-row">
 
             <span
@@ -2032,7 +2035,6 @@
 
           </div>
 
-
           <div class="summary-row">
 
             <span
@@ -2049,7 +2051,6 @@
             </span>
 
           </div>
-
 
           <div class="summary-row">
 
@@ -2072,13 +2073,9 @@
 
       </div>
 
-
-      <!-- ===================================================
-           DISTRIBUCIÓN + EXPLICACIÓN DIRECTA
-      ==================================================== -->
+      <!-- DISTRIBUCIÓN -->
 
       <div class="fund-allocation-list">
-
 
         <!-- 40% -->
 
@@ -2097,7 +2094,6 @@
             </div>
 
           </div>
-
 
           <div class="allocation-detail">
 
@@ -2122,7 +2118,6 @@
 
         </div>
 
-
         <!-- 25% -->
 
         <div class="allocation pink">
@@ -2140,7 +2135,6 @@
             </div>
 
           </div>
-
 
           <div class="allocation-detail">
 
@@ -2165,7 +2159,6 @@
 
         </div>
 
-
         <!-- 20% -->
 
         <div class="allocation gold">
@@ -2183,7 +2176,6 @@
             </div>
 
           </div>
-
 
           <div class="allocation-detail">
 
@@ -2208,7 +2200,6 @@
 
         </div>
 
-
         <!-- 15% -->
 
         <div class="allocation ivory">
@@ -2226,7 +2217,6 @@
             </div>
 
           </div>
-
 
           <div class="allocation-detail">
 
@@ -2253,10 +2243,7 @@
 
       </div>
 
-
-      <!-- ===================================================
-           RESPALDO CONTRACTUAL
-      ==================================================== -->
+      <!-- RESPALDO CONTRACTUAL -->
 
       <div class="contract-note">
 
@@ -2281,10 +2268,7 @@
 
       </div>
 
-
-      <!-- ===================================================
-           CONTACTO FINAL
-      ==================================================== -->
+      <!-- CONTACTO -->
 
       <div class="investor-contact">
 
@@ -2303,10 +2287,7 @@
 
   </div>
 
-
-  <!-- =====================================================
-       JAVASCRIPT POPUP
-  ====================================================== -->
+  <!-- JAVASCRIPT -->
 
   <script>
 
