@@ -45,6 +45,7 @@
 
     html {
       scroll-behavior: smooth;
+      background: #020307;
     }
 
     body {
@@ -53,107 +54,226 @@
       color: var(--ivory);
       overflow-x: hidden;
       position: relative;
-      background:
-        radial-gradient(circle at 50% 3%, rgba(50,221,183,.34) 0%, rgba(50,221,183,.10) 19%, transparent 38%),
-        radial-gradient(circle at 2% 26%, rgba(0,213,190,.33) 0%, rgba(0,213,190,.12) 20%, transparent 37%),
-        radial-gradient(circle at 99% 28%, rgba(255,90,159,.38) 0%, rgba(255,90,159,.13) 22%, transparent 39%),
-        radial-gradient(circle at 90% 68%, rgba(224,184,98,.22) 0%, transparent 30%),
-        radial-gradient(circle at 8% 72%, rgba(64,168,255,.16) 0%, transparent 30%),
-        radial-gradient(circle at 48% 86%, rgba(255,90,159,.15) 0%, transparent 32%),
-        linear-gradient(180deg, #020505 0%, #000000 40%, #050208 72%, #000000 100%);
+      background: transparent;
     }
 
     body.modal-open {
       overflow: hidden;
     }
 
-    body::before {
-      content: "";
+    /* =========================================================
+       FONDO EXACTO DE LA IMAGEN
+       ========================================================= */
+
+    .space-background {
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: 0;
-      opacity: .72;
-      background-image:
-        radial-gradient(circle at 4% 7%, rgba(247,240,214,.95) 0 1px, transparent 2px),
-        radial-gradient(circle at 13% 18%, rgba(50,221,183,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 22% 8%, rgba(247,240,214,.7) 0 1px, transparent 2px),
-        radial-gradient(circle at 31% 27%, rgba(255,90,159,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 38% 7%, rgba(247,240,214,.85) 0 1px, transparent 2px),
-        radial-gradient(circle at 52% 17%, rgba(50,221,183,.8) 0 1px, transparent 2px),
-        radial-gradient(circle at 62% 5%, rgba(247,240,214,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 73% 18%, rgba(255,90,159,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 84% 8%, rgba(247,240,214,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 94% 31%, rgba(224,184,98,.9) 0 1px, transparent 2px),
-        radial-gradient(circle at 8% 48%, rgba(247,240,214,.7) 0 1px, transparent 2px),
-        radial-gradient(circle at 29% 56%, rgba(50,221,183,.65) 0 1px, transparent 2px),
-        radial-gradient(circle at 72% 49%, rgba(247,240,214,.75) 0 1px, transparent 2px),
-        radial-gradient(circle at 89% 57%, rgba(255,90,159,.7) 0 1px, transparent 2px),
-        radial-gradient(circle at 15% 79%, rgba(224,184,98,.8) 0 1px, transparent 2px),
-        radial-gradient(circle at 46% 71%, rgba(247,240,214,.65) 0 1px, transparent 2px),
-        radial-gradient(circle at 66% 84%, rgba(50,221,183,.65) 0 1px, transparent 2px),
-        radial-gradient(circle at 92% 81%, rgba(247,240,214,.75) 0 1px, transparent 2px);
+      pointer-events: none;
+
+      background-image: url("./fondo-universo-kf.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+
+      /*
+        IMPORTANTE:
+        No tiene overlays, filtros, opacidad ni gradientes.
+        La imagen se muestra con sus colores originales.
+      */
     }
 
-    .universe-glow {
+    /* =========================================================
+       CAPAS DE EFECTOS
+       ========================================================= */
+
+    .star-field,
+    .shooting-stars {
       position: fixed;
-      border-radius: 50%;
+      inset: 0;
+      z-index: 1;
+      overflow: hidden;
       pointer-events: none;
-      filter: blur(125px);
-      z-index: 0;
     }
 
-    .universe-glow.teal {
-      width: 560px;
-      height: 560px;
-      top: -190px;
-      left: -210px;
-      background: rgba(50,221,183,.36);
-    }
+    /* =========================================================
+       DESTELLOS DE ESTRELLAS
+       ========================================================= */
 
-    .universe-glow.pink {
-      width: 580px;
-      height: 580px;
-      top: 60px;
-      right: -250px;
-      background: rgba(255,90,159,.33);
-    }
-
-    .universe-glow.gold {
-      width: 460px;
-      height: 460px;
-      bottom: -210px;
-      right: 4%;
-      background: rgba(224,184,98,.20);
-    }
-
-    .energy-ring {
+    .twinkle-star {
       position: absolute;
+
+      width: var(--star-size);
+      height: var(--star-size);
+
       border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-    }
 
-    .energy-ring.one {
-      width: 1200px;
-      height: 340px;
-      top: 330px;
-      left: 50%;
-      transform: translateX(-50%) rotate(-8deg);
-      border: 2px solid rgba(255,90,159,.25);
+      background: rgba(255,255,255,.98);
+
+      opacity: 0;
+
       box-shadow:
-        0 0 22px rgba(255,90,159,.21),
-        inset 0 0 22px rgba(255,90,159,.07);
+        0 0 3px rgba(255,255,255,.95),
+        0 0 8px rgba(255,255,255,.58),
+        0 0 15px rgba(185,238,255,.24);
+
+      animation:
+        randomTwinkle
+        var(--twinkle-duration)
+        ease-in-out
+        forwards;
     }
 
-    .energy-ring.two {
-      width: 1030px;
-      height: 300px;
-      top: 385px;
+    .twinkle-star::before,
+    .twinkle-star::after {
+      content: "";
+
+      position: absolute;
+
       left: 50%;
-      transform: translateX(-50%) rotate(9deg);
-      border: 1px solid rgba(50,221,183,.27);
-      box-shadow: 0 0 25px rgba(50,221,183,.16);
+      top: 50%;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 999px;
+
+      opacity: .7;
+    }
+
+    .twinkle-star::before {
+      width: calc(var(--star-size) * 6);
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.92),
+          transparent
+        );
+    }
+
+    .twinkle-star::after {
+      width: 1px;
+      height: calc(var(--star-size) * 6);
+
+      background:
+        linear-gradient(
+          180deg,
+          transparent,
+          rgba(255,255,255,.92),
+          transparent
+        );
+    }
+
+    @keyframes randomTwinkle {
+      0% {
+        opacity: 0;
+        transform: scale(.55);
+      }
+
+      34% {
+        opacity: .12;
+      }
+
+      50% {
+        opacity: var(--star-opacity);
+        transform: scale(1.28);
+      }
+
+      68% {
+        opacity: .10;
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(.62);
+      }
+    }
+
+    /* =========================================================
+       ESTRELLA FUGAZ
+       ========================================================= */
+
+    .shooting-star {
+      position: absolute;
+
+      width: 2px;
+      height: 2px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.95);
+
+      opacity: 0;
+
+      filter:
+        drop-shadow(0 0 3px rgba(255,255,255,.9))
+        drop-shadow(0 0 6px rgba(185,238,255,.30));
+
+      transform: rotate(var(--shoot-angle));
+
+      animation:
+        tinyShootingStar
+        var(--shoot-duration)
+        linear
+        forwards;
+    }
+
+    .shooting-star::before {
+      content: "";
+
+      position: absolute;
+
+      right: 1px;
+      top: 50%;
+
+      width: var(--shoot-tail);
+      height: 1px;
+
+      transform: translateY(-50%);
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.12),
+          rgba(255,255,255,.75)
+        );
+
+      opacity: .45;
+    }
+
+    @keyframes tinyShootingStar {
+      0% {
+        opacity: 0;
+
+        transform:
+          translate3d(0,0,0)
+          rotate(var(--shoot-angle));
+      }
+
+      14% {
+        opacity: .48;
+      }
+
+      74% {
+        opacity: .48;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translate3d(
+            var(--shoot-x),
+            var(--shoot-y),
+            0
+          )
+          rotate(var(--shoot-angle));
+      }
     }
 
     .page {
@@ -188,8 +308,13 @@
     }
 
     @keyframes eyebrowGlow {
-      0%, 100% { opacity: .82; }
-      50% { opacity: 1; }
+      0%, 100% {
+        opacity: .82;
+      }
+
+      50% {
+        opacity: 1;
+      }
     }
 
     .portal {
@@ -201,18 +326,38 @@
       aspect-ratio: 1;
       border-radius: 50%;
       pointer-events: none;
+
       background:
-        radial-gradient(circle, rgba(247,240,214,.25) 0%, rgba(50,221,183,.27) 9%, rgba(50,221,183,.10) 26%, transparent 58%);
+        radial-gradient(
+          circle,
+          rgba(247,240,214,.25) 0%,
+          rgba(50,221,183,.27) 9%,
+          rgba(50,221,183,.10) 26%,
+          transparent 58%
+        );
+
       opacity: .88;
-      animation: portalPulse 5s ease-in-out infinite;
+
+      animation:
+        portalPulse
+        5s
+        ease-in-out
+        infinite;
     }
 
     .portal::before {
       content: "";
+
       position: absolute;
+
       inset: 12%;
+
       border-radius: 50%;
-      border: 2px solid rgba(50,221,183,.22);
+
+      border:
+        2px solid
+        rgba(50,221,183,.22);
+
       box-shadow:
         0 0 28px rgba(50,221,183,.23),
         inset 0 0 28px rgba(50,221,183,.16);
@@ -220,20 +365,36 @@
 
     .portal::after {
       content: "";
+
       position: absolute;
+
       inset: 22%;
+
       border-radius: 50%;
-      border: 1px solid rgba(224,184,98,.28);
-      box-shadow: 0 0 38px rgba(224,184,98,.15);
+
+      border:
+        1px solid
+        rgba(224,184,98,.28);
+
+      box-shadow:
+        0 0 38px
+        rgba(224,184,98,.15);
     }
 
     @keyframes portalPulse {
       0%, 100% {
-        transform: translateX(-50%) scale(.96);
+        transform:
+          translateX(-50%)
+          scale(.96);
+
         opacity: .60;
       }
+
       50% {
-        transform: translateX(-50%) scale(1.06);
+        transform:
+          translateX(-50%)
+          scale(1.06);
+
         opacity: 1;
       }
     }
@@ -270,6 +431,7 @@
       position: relative;
       z-index: 7;
       animation: logoFloat 4s ease-in-out infinite;
+
       filter:
         drop-shadow(0 18px 15px rgba(0,0,0,.55))
         drop-shadow(0 0 17px rgba(255,90,159,.38))
@@ -278,17 +440,33 @@
     }
 
     @keyframes logoFloat {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-17px) scale(1.02); }
+      0%, 100% {
+        transform:
+          translateY(0)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          translateY(-17px)
+          scale(1.02);
+      }
     }
 
     @keyframes shadowFloat {
       0%, 100% {
-        transform: translateX(-50%) scaleX(1);
+        transform:
+          translateX(-50%)
+          scaleX(1);
+
         opacity: .56;
       }
+
       50% {
-        transform: translateX(-50%) scaleX(.80);
+        transform:
+          translateX(-50%)
+          scaleX(.80);
+
         opacity: .27;
       }
     }
@@ -333,11 +511,18 @@
       color: var(--ivory);
       text-decoration: none;
       border: 1px solid rgba(224,184,98,.30);
+
       background:
-        linear-gradient(110deg, rgba(22,20,30,.97), rgba(7,12,16,.97));
+        linear-gradient(
+          110deg,
+          rgba(22,20,30,.97),
+          rgba(7,12,16,.97)
+        );
+
       box-shadow:
         0 18px 44px rgba(0,0,0,.52),
         inset 0 1px 0 rgba(255,255,255,.055);
+
       transition: .25s ease;
     }
 
@@ -351,18 +536,33 @@
     .btn::before,
     .btn-button::before {
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
+
       background:
-        radial-gradient(circle at 4% 50%,rgba(255,90,159,.18),transparent 28%),
-        radial-gradient(circle at 96% 50%,rgba(50,221,183,.17),transparent 30%);
+        radial-gradient(
+          circle at 4% 50%,
+          rgba(255,90,159,.18),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 96% 50%,
+          rgba(50,221,183,.17),
+          transparent 30%
+        );
     }
 
     .btn:hover,
     .btn-button:hover {
       transform: translateY(-4px);
-      border-color: rgba(224,184,98,.64);
+
+      border-color:
+        rgba(224,184,98,.64);
+
       box-shadow:
         0 24px 58px rgba(0,0,0,.62),
         0 0 26px rgba(50,221,183,.12),
@@ -371,12 +571,24 @@
 
     .btn.primary {
       background:
-        linear-gradient(100deg, rgba(255,90,159,.22), rgba(16,16,23,.98) 40%, rgba(11,20,20,.97) 72%, rgba(50,221,183,.22));
+        linear-gradient(
+          100deg,
+          rgba(255,90,159,.22),
+          rgba(16,16,23,.98) 40%,
+          rgba(11,20,20,.97) 72%,
+          rgba(50,221,183,.22)
+        );
     }
 
     .btn.community-cta {
       background:
-        linear-gradient(100deg, rgba(50,221,183,.20), rgba(16,16,23,.98) 38%, rgba(18,14,22,.97) 70%, rgba(255,90,159,.18));
+        linear-gradient(
+          100deg,
+          rgba(50,221,183,.20),
+          rgba(16,16,23,.98) 38%,
+          rgba(18,14,22,.97) 70%,
+          rgba(255,90,159,.18)
+        );
     }
 
     .btn-left {
@@ -396,9 +608,17 @@
       border-radius: 15px;
       color: var(--gold);
       font-size: 23px;
+
       background:
-        linear-gradient(145deg, rgba(224,184,98,.20), rgba(255,90,159,.07));
-      border: 1px solid rgba(224,184,98,.31);
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.20),
+          rgba(255,90,159,.07)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.31);
     }
 
     .btn-text {
@@ -432,9 +652,18 @@
       margin-top: 34px;
       padding: 32px 28px;
       border-radius: 23px;
+
       background:
-        linear-gradient(135deg, rgba(17,17,24,.95), rgba(6,7,11,.97));
-      border: 1px solid rgba(224,184,98,.24);
+        linear-gradient(
+          135deg,
+          rgba(17,17,24,.95),
+          rgba(6,7,11,.97)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.24);
+
       box-shadow:
         0 20px 50px rgba(0,0,0,.50),
         inset 0 1px 0 rgba(255,255,255,.04);
@@ -442,12 +671,24 @@
 
     .section::before {
       content: "";
+
       position: absolute;
+
       inset: 0;
+
       pointer-events: none;
+
       background:
-        radial-gradient(circle at 0% 0%,rgba(50,221,183,.11),transparent 37%),
-        radial-gradient(circle at 100% 100%,rgba(255,90,159,.10),transparent 34%);
+        radial-gradient(
+          circle at 0% 0%,
+          rgba(50,221,183,.11),
+          transparent 37%
+        ),
+        radial-gradient(
+          circle at 100% 100%,
+          rgba(255,90,159,.10),
+          transparent 34%
+        );
     }
 
     .section-label {
@@ -487,12 +728,19 @@
 
     .clickable-card {
       cursor: pointer;
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
     }
 
     .clickable-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(224,184,98,.48);
+
+      border-color:
+        rgba(224,184,98,.48);
+
       box-shadow:
         0 24px 58px rgba(0,0,0,.58),
         0 0 22px rgba(224,184,98,.10);
@@ -528,9 +776,17 @@
       padding: 20px 12px;
       text-align: center;
       border-radius: 17px;
+
       background:
-        linear-gradient(145deg, rgba(247,240,214,.06), rgba(247,240,214,.02));
-      border: 1px solid rgba(224,184,98,.17);
+        linear-gradient(
+          145deg,
+          rgba(247,240,214,.06),
+          rgba(247,240,214,.02)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.17);
     }
 
     .feature strong {
@@ -571,9 +827,18 @@
       border-radius: 17px;
       color: var(--ivory);
       text-decoration: none;
+
       background:
-        linear-gradient(145deg, rgba(22,21,29,.94), rgba(7,7,10,.97));
-      border: 1px solid rgba(224,184,98,.20);
+        linear-gradient(
+          145deg,
+          rgba(22,21,29,.94),
+          rgba(7,7,10,.97)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.20);
+
       transition: .22s ease;
     }
 
@@ -609,8 +874,14 @@
 
     .social.whatsapp {
       background:
-        linear-gradient(110deg, rgba(50,221,183,.27), rgba(10,18,18,.97));
-      border-color: rgba(50,221,183,.58);
+        linear-gradient(
+          110deg,
+          rgba(50,221,183,.27),
+          rgba(10,18,18,.97)
+        );
+
+      border-color:
+        rgba(50,221,183,.58);
     }
 
     footer {
@@ -634,6 +905,10 @@
       background: var(--teal);
       box-shadow: 0 0 15px var(--teal);
     }
+
+    /* =========================================================
+       MODALES
+       ========================================================= */
 
     .modal-backdrop {
       position: fixed;
@@ -664,11 +939,28 @@
       position: relative;
       padding: 28px;
       border-radius: 28px;
+
       background:
-        radial-gradient(circle at 10% 0%,rgba(50,221,183,.07),transparent 28%),
-        radial-gradient(circle at 95% 8%,rgba(255,90,159,.07),transparent 30%),
-        linear-gradient(180deg, rgba(15,14,20,.99), rgba(7,7,10,.99));
-      border: 1px solid rgba(224,184,98,.27);
+        radial-gradient(
+          circle at 10% 0%,
+          rgba(50,221,183,.07),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 95% 8%,
+          rgba(255,90,159,.07),
+          transparent 30%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(15,14,20,.99),
+          rgba(7,7,10,.99)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.27);
+
       box-shadow:
         0 35px 100px rgba(0,0,0,.72),
         0 0 24px rgba(224,184,98,.06);
@@ -698,6 +990,7 @@
 
     .modal-logo {
       width: min(280px,62vw);
+
       filter:
         drop-shadow(0 10px 14px rgba(0,0,0,.55))
         drop-shadow(0 0 12px rgba(224,184,98,.10));
@@ -732,6 +1025,10 @@
       letter-spacing: .3px;
     }
 
+    /* =========================================================
+       INVERSORES
+       ========================================================= */
+
     .funds-chart-area {
       display: grid;
       grid-template-columns: minmax(280px,400px) 1fr;
@@ -750,6 +1047,7 @@
       aspect-ratio: 1;
       position: relative;
       border-radius: 50%;
+
       background:
         conic-gradient(
           var(--fund-teal) 0% 40%,
@@ -757,17 +1055,31 @@
           var(--fund-gold) 65% 85%,
           var(--fund-ivory) 85% 100%
         );
-      box-shadow: 0 20px 45px rgba(0,0,0,.40);
+
+      box-shadow:
+        0 20px 45px
+        rgba(0,0,0,.40);
     }
 
     .donut::after {
       content: "";
+
       position: absolute;
+
       inset: 28%;
+
       border-radius: 50%;
+
       background:
-        linear-gradient(180deg, #17161e, #09090d);
-      border: 1px solid rgba(224,184,98,.16);
+        linear-gradient(
+          180deg,
+          #17161e,
+          #09090d
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.16);
     }
 
     .donut-center {
@@ -807,10 +1119,25 @@
       text-shadow: 0 2px 5px rgba(0,0,0,.75);
     }
 
-    .donut-percent.p40 { top: 28%; right: 11%; }
-    .donut-percent.p25 { bottom: 15%; right: 28%; }
-    .donut-percent.p20 { bottom: 26%; left: 8%; }
-    .donut-percent.p15 { top: 21%; left: 17%; }
+    .donut-percent.p40 {
+      top: 28%;
+      right: 11%;
+    }
+
+    .donut-percent.p25 {
+      bottom: 15%;
+      right: 28%;
+    }
+
+    .donut-percent.p20 {
+      bottom: 26%;
+      left: 8%;
+    }
+
+    .donut-percent.p15 {
+      top: 21%;
+      left: 17%;
+    }
 
     .fund-summary {
       display: grid;
@@ -856,9 +1183,17 @@
     .allocation {
       border-radius: 21px;
       overflow: hidden;
+
       background:
-        linear-gradient(145deg, rgba(24,23,31,.96), rgba(9,9,13,.98));
-      border: 1px solid rgba(224,184,98,.14);
+        linear-gradient(
+          145deg,
+          rgba(24,23,31,.96),
+          rgba(9,9,13,.98)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.14);
     }
 
     .allocation-head {
@@ -866,7 +1201,10 @@
       align-items: center;
       gap: 15px;
       padding: 17px 20px;
-      border-bottom: 1px solid rgba(255,255,255,.055);
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.055);
     }
 
     .allocation-color {
@@ -920,17 +1258,37 @@
       line-height: 1.65;
     }
 
-    .allocation.teal .allocation-color { background: var(--fund-teal); }
-    .allocation.teal .allocation-number { color: #54b5a2; }
+    .allocation.teal .allocation-color {
+      background: var(--fund-teal);
+    }
 
-    .allocation.pink .allocation-color { background: var(--fund-pink); }
-    .allocation.pink .allocation-number { color: #cf698e; }
+    .allocation.teal .allocation-number {
+      color: #54b5a2;
+    }
 
-    .allocation.gold .allocation-color { background: var(--fund-gold); }
-    .allocation.gold .allocation-number { color: #c5a05a; }
+    .allocation.pink .allocation-color {
+      background: var(--fund-pink);
+    }
 
-    .allocation.ivory .allocation-color { background: var(--fund-ivory); }
-    .allocation.ivory .allocation-number { color: #c9c0a3; }
+    .allocation.pink .allocation-number {
+      color: #cf698e;
+    }
+
+    .allocation.gold .allocation-color {
+      background: var(--fund-gold);
+    }
+
+    .allocation.gold .allocation-number {
+      color: #c5a05a;
+    }
+
+    .allocation.ivory .allocation-color {
+      background: var(--fund-ivory);
+    }
+
+    .allocation.ivory .allocation-number {
+      color: #c9c0a3;
+    }
 
     .contract-note {
       position: relative;
@@ -939,10 +1297,23 @@
       overflow: hidden;
       border-radius: 24px;
       text-align: center;
+
       background:
-        radial-gradient(circle at 50% 0%,rgba(224,184,98,.17),transparent 45%),
-        linear-gradient(135deg, rgba(38,31,20,.78), rgba(15,13,17,.98));
-      border: 1px solid rgba(224,184,98,.48);
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(224,184,98,.17),
+          transparent 45%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(38,31,20,.78),
+          rgba(15,13,17,.98)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.48);
+
       box-shadow:
         0 22px 45px rgba(0,0,0,.40),
         0 0 28px rgba(224,184,98,.10),
@@ -958,10 +1329,21 @@
       border-radius: 22px;
       font-size: 38px;
       color: var(--gold);
+
       background:
-        linear-gradient(145deg, rgba(224,184,98,.20), rgba(224,184,98,.05));
-      border: 1px solid rgba(224,184,98,.44);
-      box-shadow: 0 0 28px rgba(224,184,98,.14);
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.20),
+          rgba(224,184,98,.05)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.44);
+
+      box-shadow:
+        0 0 28px
+        rgba(224,184,98,.14);
     }
 
     .contract-overline {
@@ -1010,12 +1392,22 @@
       font-size: 14px;
       font-weight: 900;
       letter-spacing: .7px;
+
       background:
-        linear-gradient(105deg, rgba(50,221,183,.24), rgba(13,24,22,.98));
-      border: 1px solid rgba(50,221,183,.54);
+        linear-gradient(
+          105deg,
+          rgba(50,221,183,.24),
+          rgba(13,24,22,.98)
+        );
+
+      border:
+        1px solid
+        rgba(50,221,183,.54);
+
       box-shadow:
         0 15px 35px rgba(0,0,0,.35),
         0 0 18px rgba(50,221,183,.10);
+
       transition: .22s ease;
     }
 
@@ -1023,12 +1415,15 @@
     .community-contact-button:hover {
       transform: translateY(-3px);
       border-color: var(--teal);
+
       box-shadow:
         0 20px 42px rgba(0,0,0,.46),
         0 0 28px rgba(50,221,183,.18);
     }
 
-    /* COMMUNITY MODAL */
+    /* =========================================================
+       COMMUNITY
+       ========================================================= */
 
     .community-panel {
       width: min(980px,100%);
@@ -1059,12 +1454,22 @@
       padding: 14px 18px;
       text-align: center;
       border-radius: 16px;
+
       background:
-        linear-gradient(145deg, rgba(224,184,98,.10), rgba(50,221,183,.08));
-      border: 1px solid rgba(224,184,98,.28);
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.10),
+          rgba(50,221,183,.08)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.28);
+
       box-shadow:
         0 14px 28px rgba(0,0,0,.20),
         inset 0 1px 0 rgba(255,255,255,.04);
+
       color: var(--ivory);
       font-weight: 800;
       line-height: 1.65;
@@ -1079,28 +1484,56 @@
       position: relative;
       overflow: hidden;
       border-radius: 20px;
+
       background:
-        linear-gradient(145deg, rgba(24,23,31,.96), rgba(9,9,13,.98));
-      border: 1px solid rgba(224,184,98,.14);
+        linear-gradient(
+          145deg,
+          rgba(24,23,31,.96),
+          rgba(9,9,13,.98)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.14);
+
       box-shadow:
         0 16px 32px rgba(0,0,0,.20),
         inset 0 1px 0 rgba(255,255,255,.03);
-      transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
+
+      transition:
+        border-color .22s ease,
+        transform .22s ease,
+        box-shadow .22s ease;
     }
 
     .level-card:hover,
     .level-card.is-active {
-      border-color: rgba(224,184,98,.38);
-      transform: translateY(-2px);
+      border-color:
+        rgba(224,184,98,.38);
+
+      transform:
+        translateY(-2px);
+
       box-shadow:
         0 22px 40px rgba(0,0,0,.28),
         0 0 22px rgba(50,221,183,.06);
     }
 
-    .level-card.level-teal .level-number { color: var(--teal); }
-    .level-card.level-pink .level-number { color: var(--pink); }
-    .level-card.level-gold .level-number { color: var(--gold); }
-    .level-card.level-ivory .level-number { color: var(--ivory); }
+    .level-card.level-teal .level-number {
+      color: var(--teal);
+    }
+
+    .level-card.level-pink .level-number {
+      color: var(--pink);
+    }
+
+    .level-card.level-gold .level-number {
+      color: var(--gold);
+    }
+
+    .level-card.level-ivory .level-number {
+      color: var(--ivory);
+    }
 
     .level-toggle {
       width: 100%;
@@ -1151,7 +1584,9 @@
       font-weight: 900;
       color: var(--gold);
       text-align: center;
-      transition: transform .25s ease;
+
+      transition:
+        transform .25s ease;
     }
 
     .level-card.is-active .level-chevron,
@@ -1162,10 +1597,20 @@
     .level-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height .35s ease, opacity .25s ease, padding .25s ease;
+
+      transition:
+        max-height .35s ease,
+        opacity .25s ease,
+        padding .25s ease;
+
       opacity: 0;
-      padding: 0 20px;
-      border-top: 1px solid rgba(255,255,255,0);
+
+      padding:
+        0 20px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0);
     }
 
     .level-card:hover .level-body,
@@ -1173,7 +1618,10 @@
       max-height: 240px;
       opacity: 1;
       padding: 0 20px 20px;
-      border-top: 1px solid rgba(255,255,255,.06);
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.06);
     }
 
     .level-body p {
@@ -1283,15 +1731,33 @@
 </head>
 
 <body>
-  <div class="universe-glow teal"></div>
-  <div class="universe-glow pink"></div>
-  <div class="universe-glow gold"></div>
 
-  <div class="energy-ring one"></div>
-  <div class="energy-ring two"></div>
+  <!-- =========================================================
+       FONDO EXACTO
+       ========================================================= -->
+
+  <div
+    class="space-background"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="star-field"
+    id="starField"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="shooting-stars"
+    id="shootingStars"
+    aria-hidden="true"
+  ></div>
+
 
   <main class="page">
+
     <section class="hero">
+
       <div class="eyebrow">
         WELCOME TO THE UNIVERSE
       </div>
@@ -1299,6 +1765,7 @@
       <div class="portal"></div>
 
       <div class="hero-logo-wrap">
+
         <div class="hero-logo-shadow"></div>
 
         <img
@@ -1306,29 +1773,61 @@
           alt="Kissing Fight"
           class="hero-logo"
         />
+
       </div>
 
       <p class="subtitle">
+
         Un
-        <strong>Match-3 competitivo</strong>
+
+        <strong>
+          Match-3 competitivo
+        </strong>
+
         con ranking, comunidad y una identidad propia.
+
         Un universo con
-        <strong>más de un mundo por descubrir.</strong>
+
+        <strong>
+          más de un mundo por descubrir.
+        </strong>
+
       </p>
 
+
       <div class="main-buttons">
-        <a class="btn primary" href="#juego">
+
+        <a
+          class="btn primary"
+          href="#juego"
+        >
+
           <div class="btn-left">
-            <div class="icon">◆</div>
+
+            <div class="icon">
+              ◆
+            </div>
 
             <div class="btn-text">
-              <span class="btn-title">CONOCÉ EL JUEGO</span>
-              <span class="btn-sub">Descubrí el universo Kissing Fight</span>
+
+              <span class="btn-title">
+                CONOCÉ EL JUEGO
+              </span>
+
+              <span class="btn-sub">
+                Descubrí el universo Kissing Fight
+              </span>
+
             </div>
+
           </div>
 
-          <span class="arrow">→</span>
+          <span class="arrow">
+            →
+          </span>
+
         </a>
+
 
         <button
           type="button"
@@ -1337,17 +1836,33 @@
           aria-controls="communityModal"
           aria-haspopup="dialog"
         >
+
           <div class="btn-left">
-            <div class="icon">♥</div>
+
+            <div class="icon">
+              ♥
+            </div>
 
             <div class="btn-text">
-              <span class="btn-title">SUMATE AL UNIVERSO KISSING FIGHT</span>
-              <span class="btn-sub">Conocé los niveles y beneficios</span>
+
+              <span class="btn-title">
+                SUMATE AL UNIVERSO KISSING FIGHT
+              </span>
+
+              <span class="btn-sub">
+                Conocé los niveles y beneficios
+              </span>
+
             </div>
+
           </div>
 
-          <span class="arrow">→</span>
+          <span class="arrow">
+            →
+          </span>
+
         </button>
+
 
         <button
           type="button"
@@ -1356,48 +1871,104 @@
           aria-controls="investorsModal"
           aria-haspopup="dialog"
         >
+
           <div class="btn-left">
-            <div class="icon">✦</div>
+
+            <div class="icon">
+              ✦
+            </div>
 
             <div class="btn-text">
-              <span class="btn-title">INVERSORES & COLABORADORES</span>
-              <span class="btn-sub">Conocé el destino de los fondos</span>
+
+              <span class="btn-title">
+                INVERSORES & COLABORADORES
+              </span>
+
+              <span class="btn-sub">
+                Conocé el destino de los fondos
+              </span>
+
             </div>
+
           </div>
 
-          <span class="arrow">→</span>
+          <span class="arrow">
+            →
+          </span>
+
         </button>
+
       </div>
+
     </section>
 
-    <section class="section" id="juego">
-      <div class="section-label">THE GAME</div>
 
-      <h2>Mucho más que un Match-3.</h2>
+    <section
+      class="section"
+      id="juego"
+    >
+
+      <div class="section-label">
+        THE GAME
+      </div>
+
+      <h2>
+        Mucho más que un Match-3.
+      </h2>
 
       <p>
+
         Kissing Fight combina competencia, progresión y comunidad
         dentro de un universo en expansión.
+
         Cada mundo forma parte de algo más grande.
+
       </p>
 
       <div class="features">
-        <div class="feature">
-          <strong>COMPETÍ</strong>
-          <span>Ranking y desafío</span>
-        </div>
 
         <div class="feature">
-          <strong>DESCUBRÍ</strong>
-          <span>Mundos y expansión</span>
+
+          <strong>
+            COMPETÍ
+          </strong>
+
+          <span>
+            Ranking y desafío
+          </span>
+
         </div>
 
+
         <div class="feature">
-          <strong>CONECTÁ</strong>
-          <span>Comunidad</span>
+
+          <strong>
+            DESCUBRÍ
+          </strong>
+
+          <span>
+            Mundos y expansión
+          </span>
+
         </div>
+
+
+        <div class="feature">
+
+          <strong>
+            CONECTÁ
+          </strong>
+
+          <span>
+            Comunidad
+          </span>
+
+        </div>
+
       </div>
+
     </section>
+
 
     <section
       class="section clickable-card"
@@ -1408,22 +1979,33 @@
       aria-controls="communityModal"
       aria-haspopup="dialog"
     >
-      <div class="section-label">COMMUNITY</div>
 
-      <h2>Kissing Fight está llegando.</h2>
+      <div class="section-label">
+        COMMUNITY
+      </div>
+
+      <h2>
+        Kissing Fight está llegando.
+      </h2>
 
       <p>
+
         Ser de los primeros en la comunidad significa conocer el juego
         antes de su lanzamiento y acceder a beneficios exclusivos desde
         el comienzo.
+
         <br /><br />
+
         Contactanos y asegurá tu lugar entre los primeros en tener ventaja.
+
       </p>
 
       <div class="section-action">
         Ver niveles del universo →
       </div>
+
     </section>
+
 
     <section
       class="section clickable-card"
@@ -1434,51 +2016,86 @@
       aria-controls="investorsModal"
       aria-haspopup="dialog"
     >
-      <div class="section-label">PARTNERS</div>
 
-      <h2>Formá parte desde el inicio</h2>
+      <div class="section-label">
+        PARTNERS
+      </div>
+
+      <h2>
+        Formá parte desde el inicio
+      </h2>
 
       <p>
+
         <strong>
+
           Kissing Fight está en una etapa clave de crecimiento, y queremos
           que nuestro equipo crezca junto con el proyecto.
+
         </strong>
 
         <br /><br />
 
         Abrimos la posibilidad de sumar
-        <strong>inversores, aliados estratégicos y colaboradores</strong>
+
+        <strong>
+          inversores, aliados estratégicos y colaboradores
+        </strong>
+
         que puedan aportar valor al proyecto.
 
         <br /><br />
 
         <strong>
-          ¿Querés formar parte? Contactanos y coordinemos una reunión
+
+          ¿Querés formar parte?
+
+          Contactanos y coordinemos una reunión
           para conocer tu propuesta.
+
         </strong>
+
       </p>
 
       <div class="section-action">
         Ver propuesta para inversores →
       </div>
+
     </section>
 
-    <div class="social-title">ENTRÁ AL UNIVERSO</div>
+
+    <div class="social-title">
+      ENTRÁ AL UNIVERSO
+    </div>
+
 
     <div class="socials">
+
       <a
         class="social"
         href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">IG</div>
+
+        <div class="social-icon">
+          IG
+        </div>
 
         <div>
-          <span class="social-name">INSTAGRAM — ENGLISH</span>
-          <span class="social-sub">International community</span>
+
+          <span class="social-name">
+            INSTAGRAM — ENGLISH
+          </span>
+
+          <span class="social-sub">
+            International community
+          </span>
+
         </div>
+
       </a>
+
 
       <a
         class="social"
@@ -1486,13 +2103,25 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">IG</div>
+
+        <div class="social-icon">
+          IG
+        </div>
 
         <div>
-          <span class="social-name">INSTAGRAM — ESPAÑOL</span>
-          <span class="social-sub">Comunidad en español</span>
+
+          <span class="social-name">
+            INSTAGRAM — ESPAÑOL
+          </span>
+
+          <span class="social-sub">
+            Comunidad en español
+          </span>
+
         </div>
+
       </a>
+
 
       <a
         class="social"
@@ -1500,13 +2129,25 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">WA</div>
+
+        <div class="social-icon">
+          WA
+        </div>
 
         <div>
-          <span class="social-name">CANAL DE WHATSAPP</span>
-          <span class="social-sub">Novedades y anuncios</span>
+
+          <span class="social-name">
+            CANAL DE WHATSAPP
+          </span>
+
+          <span class="social-sub">
+            Novedades y anuncios
+          </span>
+
         </div>
+
       </a>
+
 
       <a
         class="social whatsapp"
@@ -1514,38 +2155,64 @@
         target="_blank"
         rel="noopener noreferrer"
       >
-        <div class="social-icon">✦</div>
+
+        <div class="social-icon">
+          ✦
+        </div>
 
         <div>
-          <span class="social-name">CONTACTANOS</span>
-          <span class="social-sub">Hablemos por WhatsApp</span>
+
+          <span class="social-name">
+            CONTACTANOS
+          </span>
+
+          <span class="social-sub">
+            Hablemos por WhatsApp
+          </span>
+
         </div>
+
       </a>
+
     </div>
 
+
     <footer>
+
       © 2026 KISSING FIGHT
+
       <br />
 
       <div class="status">
+
         <span class="dot"></span>
+
         Proyecto en desarrollo
+
       </div>
+
     </footer>
+
   </main>
 
-  <!-- POPUP COMUNIDAD -->
+
+  <!-- =========================================================
+       POPUP COMUNIDAD
+       ========================================================= -->
+
   <div
     class="modal-backdrop"
     id="communityModal"
     aria-hidden="true"
   >
+
     <div
       class="modal-panel community-panel"
       role="dialog"
       aria-modal="true"
       aria-labelledby="communityTitle"
     >
+
       <button
         type="button"
         class="modal-close"
@@ -1555,195 +2222,459 @@
         ×
       </button>
 
+
       <div class="modal-logo-wrap">
+
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="modal-logo"
         />
+
       </div>
 
-      <div class="modal-overline">COMUNIDAD</div>
 
-      <h2 class="community-title" id="communityTitle">
+      <div class="modal-overline">
+        COMUNIDAD
+      </div>
+
+
+      <h2
+        class="community-title"
+        id="communityTitle"
+      >
+
         Niveles del Universo Kissing Fight
+
       </h2>
 
+
       <p class="community-subtitle">
+
         7 niveles para formar parte del universo Kissing Fight.
+
       </p>
 
+
       <div class="community-note">
-        Cada nivel conserva las ventajas anteriores y suma nuevas recompensas.
+
+        Cada nivel conserva las ventajas anteriores
+        y suma nuevas recompensas.
+
       </div>
+
 
       <div class="levels-list">
-        <div class="level-card level-teal">
-          <button type="button" class="level-toggle">
-            <div class="level-number">1</div>
 
-            <div class="level-text">
-              <span class="level-name">Pueblo</span>
-              <span class="level-tagline">El comienzo de todo.</span>
+        <div class="level-card level-teal">
+
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              1
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Pueblo
+              </span>
+
+              <span class="level-tagline">
+                El comienzo de todo.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien se sume al Universo Kissing Fight forma parte de este nivel inicial.
+
+              Todo quien se sume al Universo Kissing Fight
+              forma parte de este nivel inicial.
+
             </p>
+
           </div>
+
         </div>
 
-        <div class="level-card level-pink">
-          <button type="button" class="level-toggle">
-            <div class="level-number">2</div>
 
-            <div class="level-text">
-              <span class="level-name">Pueblo Fundador</span>
-              <span class="level-tagline">Los que están desde el día 1.</span>
+        <div class="level-card level-pink">
+
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              2
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Pueblo Fundador
+              </span>
+
+              <span class="level-tagline">
+                Los que están desde el día 1.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien se sume desde el día 1 recibirá la <strong>insignia de Pueblo Fundador</strong>,
+
+              Todo quien se sume desde el día 1 recibirá la
+
+              <strong>
+                insignia de Pueblo Fundador
+              </strong>,
+
               que le permitirá participar en las salas de chat.
+
             </p>
+
           </div>
+
         </div>
+
 
         <div class="level-card level-gold">
-          <button type="button" class="level-toggle">
-            <div class="level-number">3</div>
 
-            <div class="level-text">
-              <span class="level-name">Fundador</span>
-              <span class="level-tagline">Construye el futuro.</span>
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              3
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Fundador
+              </span>
+
+              <span class="level-tagline">
+                Construye el futuro.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien llegue a este nivel podrá competir en el <strong>ranking mundial</strong>,
-              donde el <strong>número 1 de la semana ganará el pozo</strong>.
+
+              Todo quien llegue a este nivel podrá competir en el
+
+              <strong>
+                ranking mundial
+              </strong>,
+
+              donde el
+
+              <strong>
+                número 1 de la semana ganará el pozo
+              </strong>.
+
             </p>
+
           </div>
+
         </div>
+
 
         <div class="level-card level-teal">
-          <button type="button" class="level-toggle">
-            <div class="level-number">4</div>
 
-            <div class="level-text">
-              <span class="level-name">Rey</span>
-              <span class="level-tagline">Impulsá tu lugar en la comunidad.</span>
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              4
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Rey
+              </span>
+
+              <span class="level-tagline">
+                Impulsá tu lugar en la comunidad.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien cuente con la suscripción <strong>BRONZE</strong>, sea competidor activo y participe en la
-              comunidad, tendrá <strong>50% de descuento en cualquier suscripción superior</strong>.
+
+              Todo quien cuente con la suscripción
+
+              <strong>
+                BRONZE
+              </strong>,
+
+              sea competidor activo y participe en la comunidad,
+              tendrá
+
+              <strong>
+                50% de descuento en cualquier suscripción superior
+              </strong>.
+
             </p>
+
           </div>
+
         </div>
+
 
         <div class="level-card level-pink">
-          <button type="button" class="level-toggle">
-            <div class="level-number">5</div>
 
-            <div class="level-text">
-              <span class="level-name">Héroe</span>
-              <span class="level-tagline">Llevá tu identidad al siguiente nivel.</span>
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              5
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Héroe
+              </span>
+
+              <span class="level-tagline">
+                Llevá tu identidad al siguiente nivel.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien cuente con la suscripción <strong>SILVER</strong>, sea competidor activo y participe en la
-              comunidad, podrá tener su <strong>avatar 100% personalizado</strong>.
+
+              Todo quien cuente con la suscripción
+
+              <strong>
+                SILVER
+              </strong>,
+
+              sea competidor activo y participe en la comunidad,
+              podrá tener su
+
+              <strong>
+                avatar 100% personalizado
+              </strong>.
+
             </p>
+
           </div>
+
         </div>
+
 
         <div class="level-card level-gold">
-          <button type="button" class="level-toggle">
-            <div class="level-number">6</div>
 
-            <div class="level-text">
-              <span class="level-name">Dios</span>
-              <span class="level-tagline">Más poder dentro del universo.</span>
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              6
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Dios
+              </span>
+
+              <span class="level-tagline">
+                Más poder dentro del universo.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien cuente con la suscripción <strong>Premium GOLD</strong>, sea competidor activo y participe en
-              la comunidad, podrá solicitar participar como <strong>moderador de una sala preexistente</strong> que lo requiera.
+
+              Todo quien cuente con la suscripción
+
+              <strong>
+                Premium GOLD
+              </strong>,
+
+              sea competidor activo y participe en la comunidad,
+              podrá solicitar participar como
+
+              <strong>
+                moderador de una sala preexistente
+              </strong>
+
+              que lo requiera.
+
             </p>
+
           </div>
+
         </div>
+
 
         <div class="level-card level-ivory">
-          <button type="button" class="level-toggle">
-            <div class="level-number">7</div>
 
-            <div class="level-text">
-              <span class="level-name">Creador</span>
-              <span class="level-tagline">Da forma a lo legendario.</span>
+          <button
+            type="button"
+            class="level-toggle"
+          >
+
+            <div class="level-number">
+              7
             </div>
 
-            <div class="level-chevron">+</div>
+            <div class="level-text">
+
+              <span class="level-name">
+                Creador
+              </span>
+
+              <span class="level-tagline">
+                Da forma a lo legendario.
+              </span>
+
+            </div>
+
+            <div class="level-chevron">
+              +
+            </div>
+
           </button>
 
+
           <div class="level-body">
+
             <p>
-              Todo quien cuente con la suscripción <strong>Premium BLACK</strong>, sea competidor activo y participe en
-              la comunidad, podrá solicitar la <strong>creación de una sala personalizada</strong> y convertirse en su
-              <strong>moderador</strong>.
+
+              Todo quien cuente con la suscripción
+
+              <strong>
+                Premium BLACK
+              </strong>,
+
+              sea competidor activo y participe en la comunidad,
+              podrá solicitar la
+
+              <strong>
+                creación de una sala personalizada
+              </strong>
+
+              y convertirse en su
+
+              <strong>
+                moderador
+              </strong>.
+
             </p>
+
           </div>
+
         </div>
+
       </div>
 
+
       <div class="community-contact">
+
         <a
           class="community-contact-button"
           href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
           target="_blank"
           rel="noopener noreferrer"
         >
+
           ✦ SUMATE AL UNIVERSO KISSING FIGHT
+
         </a>
+
       </div>
+
     </div>
+
   </div>
 
-  <!-- POPUP INVERSORES -->
+
+  <!-- =========================================================
+       POPUP INVERSORES
+       ========================================================= -->
+
   <div
     class="modal-backdrop"
     id="investorsModal"
     aria-hidden="true"
   >
+
     <div
       class="modal-panel"
       role="dialog"
       aria-modal="true"
       aria-labelledby="investorTitle"
     >
+
       <button
         type="button"
         class="modal-close"
@@ -1753,269 +2684,1048 @@
         ×
       </button>
 
+
       <div class="modal-logo-wrap">
+
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="modal-logo"
         />
+
       </div>
 
-      <div class="modal-overline">DESTINO DE LOS FONDOS</div>
+
+      <div class="modal-overline">
+        DESTINO DE LOS FONDOS
+      </div>
+
 
       <h2
         class="modal-intro"
         id="investorTitle"
       >
+
         El capital recaudado será destinado principalmente al desarrollo
         tecnológico de Kissing Fight, infraestructura y seguridad,
         adquisición de usuarios, estrategia de lanzamiento y estructura
         legal necesaria para escalar el proyecto internacionalmente.
+
       </h2>
+
 
       <div class="modal-subtitle">
         Asignación estimada del capital recaudado
       </div>
 
+
       <div class="funds-chart-area">
+
         <div class="donut-wrap">
+
           <div class="donut">
-            <span class="donut-percent p40">40%</span>
-            <span class="donut-percent p25">25%</span>
-            <span class="donut-percent p20">20%</span>
-            <span class="donut-percent p15">15%</span>
+
+            <span class="donut-percent p40">
+              40%
+            </span>
+
+            <span class="donut-percent p25">
+              25%
+            </span>
+
+            <span class="donut-percent p20">
+              20%
+            </span>
+
+            <span class="donut-percent p15">
+              15%
+            </span>
+
 
             <div class="donut-center">
-              <strong>100%</strong>
-              <span>DEL CAPITAL RECAUDADO</span>
+
+              <strong>
+                100%
+              </strong>
+
+              <span>
+                DEL CAPITAL RECAUDADO
+              </span>
+
             </div>
+
           </div>
+
         </div>
+
 
         <div class="fund-summary">
-          <div class="summary-row">
-            <span class="summary-dot" style="background:#269B87"></span>
-            <span class="summary-number">40%</span>
-            <span class="summary-name">Producto y tecnología</span>
-          </div>
 
           <div class="summary-row">
-            <span class="summary-dot" style="background:#B94D78"></span>
-            <span class="summary-number">25%</span>
-            <span class="summary-name">Marketing y crecimiento</span>
+
+            <span
+              class="summary-dot"
+              style="background:#269B87"
+            ></span>
+
+            <span class="summary-number">
+              40%
+            </span>
+
+            <span class="summary-name">
+              Producto y tecnología
+            </span>
+
           </div>
 
-          <div class="summary-row">
-            <span class="summary-dot" style="background:#B38D46"></span>
-            <span class="summary-number">20%</span>
-            <span class="summary-name">Infraestructura y seguridad</span>
-          </div>
 
           <div class="summary-row">
-            <span class="summary-dot" style="background:#B6AE91"></span>
-            <span class="summary-number">15%</span>
-            <span class="summary-name">Legal y operaciones</span>
+
+            <span
+              class="summary-dot"
+              style="background:#B94D78"
+            ></span>
+
+            <span class="summary-number">
+              25%
+            </span>
+
+            <span class="summary-name">
+              Marketing y crecimiento
+            </span>
+
           </div>
+
+
+          <div class="summary-row">
+
+            <span
+              class="summary-dot"
+              style="background:#B38D46"
+            ></span>
+
+            <span class="summary-number">
+              20%
+            </span>
+
+            <span class="summary-name">
+              Infraestructura y seguridad
+            </span>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span
+              class="summary-dot"
+              style="background:#B6AE91"
+            ></span>
+
+            <span class="summary-number">
+              15%
+            </span>
+
+            <span class="summary-name">
+              Legal y operaciones
+            </span>
+
+          </div>
+
         </div>
+
       </div>
+
 
       <div class="fund-allocation-list">
+
         <div class="allocation teal">
+
           <div class="allocation-head">
+
             <div class="allocation-color"></div>
-            <div class="allocation-percent">40%</div>
-            <div class="allocation-category">Producto y tecnología</div>
+
+            <div class="allocation-percent">
+              40%
+            </div>
+
+            <div class="allocation-category">
+              Producto y tecnología
+            </div>
+
           </div>
 
+
           <div class="allocation-detail">
-            <div class="allocation-number">01</div>
+
+            <div class="allocation-number">
+              01
+            </div>
 
             <div class="allocation-description">
-              <strong>Desarrollo y evolución del producto</strong>
+
+              <strong>
+                Desarrollo y evolución del producto
+              </strong>
+
               <p>
+
                 Programación, backend, sistema de cuentas,
                 ranking, salas, economía interna, UX/UI y contenido.
+
               </p>
+
             </div>
+
           </div>
+
         </div>
+
 
         <div class="allocation pink">
+
           <div class="allocation-head">
+
             <div class="allocation-color"></div>
-            <div class="allocation-percent">25%</div>
-            <div class="allocation-category">Marketing y crecimiento</div>
+
+            <div class="allocation-percent">
+              25%
+            </div>
+
+            <div class="allocation-category">
+              Marketing y crecimiento
+            </div>
+
           </div>
 
+
           <div class="allocation-detail">
-            <div class="allocation-number">02</div>
+
+            <div class="allocation-number">
+              02
+            </div>
 
             <div class="allocation-description">
-              <strong>Lanzamiento, marketing y adquisición de usuarios</strong>
+
+              <strong>
+                Lanzamiento, marketing y adquisición de usuarios
+              </strong>
+
               <p>
+
                 Campañas, creadores de contenido, redes sociales,
                 comunidad y expansión internacional.
+
               </p>
+
             </div>
+
           </div>
+
         </div>
+
 
         <div class="allocation gold">
+
           <div class="allocation-head">
+
             <div class="allocation-color"></div>
-            <div class="allocation-percent">20%</div>
-            <div class="allocation-category">Infraestructura y seguridad</div>
+
+            <div class="allocation-percent">
+              20%
+            </div>
+
+            <div class="allocation-category">
+              Infraestructura y seguridad
+            </div>
+
           </div>
 
+
           <div class="allocation-detail">
-            <div class="allocation-number">03</div>
+
+            <div class="allocation-number">
+              03
+            </div>
 
             <div class="allocation-description">
-              <strong>Infraestructura, seguridad y escalabilidad</strong>
+
+              <strong>
+                Infraestructura, seguridad y escalabilidad
+              </strong>
+
               <p>
+
                 Servidores, bases de datos, anti-fraude,
                 anti-cheat, protección de usuarios y capacidad para crecer.
+
               </p>
+
             </div>
+
           </div>
+
         </div>
+
 
         <div class="allocation ivory">
+
           <div class="allocation-head">
+
             <div class="allocation-color"></div>
-            <div class="allocation-percent">15%</div>
-            <div class="allocation-category">Legal y operaciones</div>
+
+            <div class="allocation-percent">
+              15%
+            </div>
+
+            <div class="allocation-category">
+              Legal y operaciones
+            </div>
+
           </div>
+
 
           <div class="allocation-detail">
-            <div class="allocation-number">04</div>
+
+            <div class="allocation-number">
+              04
+            </div>
 
             <div class="allocation-description">
-              <strong>Estructura legal, financiera y compliance</strong>
+
+              <strong>
+                Estructura legal, financiera y compliance
+              </strong>
+
               <p>
+
                 Propiedad intelectual, contratos, medios de pago
                 y adecuación regulatoria del modelo económico.
+
               </p>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
 
-      <div class="contract-note">
-        <div class="contract-shield">🛡</div>
 
-        <div class="contract-overline">RESPALDO CONTRACTUAL</div>
+      <div class="contract-note">
+
+        <div class="contract-shield">
+          🛡
+        </div>
+
+        <div class="contract-overline">
+          RESPALDO CONTRACTUAL
+        </div>
 
         <h3 class="contract-title">
           Inversión respaldada contractualmente
         </h3>
 
         <p class="contract-copy">
+
           Cada inversor contará con un contrato individual que documentará
           y respaldará su participación y los activos que le correspondan
           dentro del proyecto, estableciendo de forma clara las condiciones,
           derechos y obligaciones de las partes.
+
         </p>
+
       </div>
 
+
       <div class="investor-contact">
+
         <a
           class="investor-contact-button"
           href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
           target="_blank"
           rel="noopener noreferrer"
         >
+
           ✦ CONTACTANOS
+
         </a>
+
       </div>
+
     </div>
+
   </div>
 
+
   <script>
-    const modalTriggers = document.querySelectorAll("[data-modal-target]");
-    const modalCloseButtons = document.querySelectorAll("[data-modal-close]");
-    const modals = document.querySelectorAll(".modal-backdrop");
 
-    function openModalById(modalId) {
-      const modal = document.getElementById(modalId);
-      if (!modal) return;
+    /* =========================================================
+       DESTELLOS ALEATORIOS
+       ========================================================= */
 
-      modals.forEach((item) => {
-        item.classList.remove("is-open");
-        item.setAttribute("aria-hidden", "true");
-      });
+    const starField =
+      document.getElementById(
+        "starField"
+      );
 
-      modal.classList.add("is-open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.classList.add("modal-open");
+
+    function spawnTwinkleStar() {
+
+      if (!starField) {
+        return;
+      }
+
+
+      const star =
+        document.createElement(
+          "span"
+        );
+
+
+      star.className =
+        "twinkle-star";
+
+
+      const size =
+        (
+          Math.random()
+          * 1.4
+          + .7
+        )
+        .toFixed(2);
+
+
+      const opacity =
+        (
+          Math.random()
+          * .42
+          + .28
+        )
+        .toFixed(2);
+
+
+      const duration =
+        (
+          Math.random()
+          * 1.5
+          + 1.4
+        )
+        .toFixed(2);
+
+
+      star.style.left =
+        `${
+          Math.random()
+          * 96
+          + 2
+        }%`;
+
+
+      star.style.top =
+        `${
+          Math.random()
+          * 94
+          + 3
+        }%`;
+
+
+      star.style.setProperty(
+        "--star-size",
+        `${size}px`
+      );
+
+
+      star.style.setProperty(
+        "--star-opacity",
+        opacity
+      );
+
+
+      star.style.setProperty(
+        "--twinkle-duration",
+        `${duration}s`
+      );
+
+
+      starField.appendChild(
+        star
+      );
+
+
+      window.setTimeout(
+        () => {
+
+          star.remove();
+
+        },
+
+        (
+          Number(duration)
+          + .3
+        )
+        * 1000
+      );
+
     }
 
-    function closeModal(modal) {
-      if (!modal) return;
-      modal.classList.remove("is-open");
-      modal.setAttribute("aria-hidden", "true");
 
-      const someOpen = document.querySelector(".modal-backdrop.is-open");
+    function scheduleNextTwinkle() {
+
+      const mobile =
+        window.innerWidth
+        < 700;
+
+
+      const nextDelay =
+        mobile
+          ? Math.random()
+            * 8000
+            + 5000
+
+          : Math.random()
+            * 6500
+            + 3500;
+
+
+      window.setTimeout(
+        () => {
+
+          spawnTwinkleStar();
+
+
+          /*
+            Muy ocasionalmente
+            aparecen dos destellos
+            cercanos.
+          */
+
+          if (
+            Math.random()
+            < .10
+          ) {
+
+            window.setTimeout(
+              spawnTwinkleStar,
+
+              Math.random()
+              * 600
+              + 250
+            );
+
+          }
+
+
+          scheduleNextTwinkle();
+
+        },
+
+        nextDelay
+      );
+
+    }
+
+
+    window.setTimeout(
+      scheduleNextTwinkle,
+      1800
+    );
+
+
+    /* =========================================================
+       ESTRELLA FUGAZ
+       PEQUEÑA Y MUY OCASIONAL
+       ========================================================= */
+
+    const shootingStars =
+      document.getElementById(
+        "shootingStars"
+      );
+
+
+    function spawnShootingStar() {
+
+      if (!shootingStars) {
+        return;
+      }
+
+
+      const star =
+        document.createElement(
+          "span"
+        );
+
+
+      star.className =
+        "shooting-star";
+
+
+      const fromLeft =
+        Math.random()
+        > .5;
+
+
+      const startY =
+        Math.random()
+        * 68
+        + 8;
+
+
+      const travelY =
+        Math.random()
+        * 5
+        + 2;
+
+
+      const duration =
+        Math.random()
+        * .8
+        + 1.2;
+
+
+      const tail =
+        Math.random()
+        * 20
+        + 22;
+
+
+      star.style.top =
+        `${startY}vh`;
+
+
+      star.style.left =
+        fromLeft
+          ? "-3vw"
+          : "103vw";
+
+
+      star.style.setProperty(
+        "--shoot-duration",
+        `${duration}s`
+      );
+
+
+      star.style.setProperty(
+        "--shoot-tail",
+        `${tail}px`
+      );
+
+
+      if (fromLeft) {
+
+        star.style.setProperty(
+          "--shoot-angle",
+          "17deg"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-x",
+          "24vw"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-y",
+          `${travelY}vh`
+        );
+
+      } else {
+
+        star.style.setProperty(
+          "--shoot-angle",
+          "197deg"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-x",
+          "-24vw"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-y",
+          `${travelY}vh`
+        );
+
+      }
+
+
+      shootingStars.appendChild(
+        star
+      );
+
+
+      window.setTimeout(
+        () => {
+
+          star.remove();
+
+        },
+
+        (
+          duration
+          + .4
+        )
+        * 1000
+      );
+
+    }
+
+
+    function scheduleNextShootingStar() {
+
+      /*
+        Entre 28 y 60 segundos
+        aproximadamente.
+      */
+
+      const nextDelay =
+        Math.random()
+        * 32000
+        + 28000;
+
+
+      window.setTimeout(
+        () => {
+
+          /*
+            A veces se salta una aparición
+            para que realmente sea rara.
+          */
+
+          if (
+            Math.random()
+            < .45
+          ) {
+
+            spawnShootingStar();
+
+          }
+
+
+          scheduleNextShootingStar();
+
+        },
+
+        nextDelay
+      );
+
+    }
+
+
+    window.setTimeout(
+      scheduleNextShootingStar,
+      20000
+    );
+
+
+    /* =========================================================
+       MODALES
+       ========================================================= */
+
+    const modalTriggers =
+      document.querySelectorAll(
+        "[data-modal-target]"
+      );
+
+
+    const modalCloseButtons =
+      document.querySelectorAll(
+        "[data-modal-close]"
+      );
+
+
+    const modals =
+      document.querySelectorAll(
+        ".modal-backdrop"
+      );
+
+
+    function openModalById(
+      modalId
+    ) {
+
+      const modal =
+        document.getElementById(
+          modalId
+        );
+
+
+      if (!modal) {
+        return;
+      }
+
+
+      modals.forEach(
+        (item) => {
+
+          item.classList.remove(
+            "is-open"
+          );
+
+
+          item.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+        }
+      );
+
+
+      modal.classList.add(
+        "is-open"
+      );
+
+
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+    }
+
+
+    function closeModal(
+      modal
+    ) {
+
+      if (!modal) {
+        return;
+      }
+
+
+      modal.classList.remove(
+        "is-open"
+      );
+
+
+      modal.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+
+      const someOpen =
+        document.querySelector(
+          ".modal-backdrop.is-open"
+        );
+
+
       if (!someOpen) {
-        document.body.classList.remove("modal-open");
+
+        document.body.classList.remove(
+          "modal-open"
+        );
+
       }
+
     }
 
-    modalTriggers.forEach((trigger) => {
-      trigger.addEventListener("click", function (event) {
-        event.preventDefault();
-        const modalId = this.getAttribute("data-modal-target");
-        openModalById(modalId);
-      });
 
-      trigger.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          const modalId = this.getAttribute("data-modal-target");
-          openModalById(modalId);
-        }
-      });
-    });
+    modalTriggers.forEach(
+      (trigger) => {
 
-    modalCloseButtons.forEach((button) => {
-      button.addEventListener("click", function () {
-        const modal = this.closest(".modal-backdrop");
-        closeModal(modal);
-      });
-    });
+        trigger.addEventListener(
+          "click",
 
-    modals.forEach((modal) => {
-      modal.addEventListener("click", function (event) {
-        if (event.target === modal) {
-          closeModal(modal);
-        }
-      });
-    });
+          function (event) {
 
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") {
-        const openModal = document.querySelector(".modal-backdrop.is-open");
-        if (openModal) {
-          closeModal(openModal);
-        }
+            event.preventDefault();
+
+
+            const modalId =
+              this.getAttribute(
+                "data-modal-target"
+              );
+
+
+            openModalById(
+              modalId
+            );
+
+          }
+        );
+
+
+        trigger.addEventListener(
+          "keydown",
+
+          function (event) {
+
+            if (
+              event.key === "Enter"
+              ||
+              event.key === " "
+            ) {
+
+              event.preventDefault();
+
+
+              const modalId =
+                this.getAttribute(
+                  "data-modal-target"
+                );
+
+
+              openModalById(
+                modalId
+              );
+
+            }
+
+          }
+        );
+
       }
-    });
+    );
 
-    const levelCards = document.querySelectorAll(".level-card");
 
-    levelCards.forEach((card) => {
-      const toggle = card.querySelector(".level-toggle");
+    modalCloseButtons.forEach(
+      (button) => {
 
-      toggle.addEventListener("click", function () {
-        const isActive = card.classList.contains("is-active");
+        button.addEventListener(
+          "click",
 
-        levelCards.forEach((item) => item.classList.remove("is-active"));
+          function () {
 
-        if (!isActive) {
-          card.classList.add("is-active");
+            const modal =
+              this.closest(
+                ".modal-backdrop"
+              );
+
+
+            closeModal(
+              modal
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    modals.forEach(
+      (modal) => {
+
+        modal.addEventListener(
+          "click",
+
+          function (event) {
+
+            if (
+              event.target
+              === modal
+            ) {
+
+              closeModal(
+                modal
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+
+      function (event) {
+
+        if (
+          event.key
+          === "Escape"
+        ) {
+
+          const openModal =
+            document.querySelector(
+              ".modal-backdrop.is-open"
+            );
+
+
+          if (openModal) {
+
+            closeModal(
+              openModal
+            );
+
+          }
+
         }
-      });
-    });
+
+      }
+    );
+
+
+    /* =========================================================
+       NIVELES
+       ========================================================= */
+
+    const levelCards =
+      document.querySelectorAll(
+        ".level-card"
+      );
+
+
+    levelCards.forEach(
+      (card) => {
+
+        const toggle =
+          card.querySelector(
+            ".level-toggle"
+          );
+
+
+        toggle.addEventListener(
+          "click",
+
+          function () {
+
+            const isActive =
+              card.classList.contains(
+                "is-active"
+              );
+
+
+            levelCards.forEach(
+              (item) => {
+
+                item.classList.remove(
+                  "is-active"
+                );
+
+              }
+            );
+
+
+            if (!isActive) {
+
+              card.classList.add(
+                "is-active"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
   </script>
+
 </body>
 </html>
