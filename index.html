@@ -123,14 +123,10 @@
     .twinkle-star::after {
       content: "";
       position: absolute;
-
       left: 50%;
       top: 50%;
-
       transform: translate(-50%, -50%);
-
       border-radius: 999px;
-
       opacity: .7;
     }
 
@@ -1031,23 +1027,21 @@
       display: block;
     }
 
-    .game-overview-stage {
+
+    /*
+      CONTENEDOR DE LAS DOS IMÁGENES.
+      NO HAY GAP NI MÁRGENES ENTRE ELLAS.
+    */
+
+    .game-overview-stack {
       width: 100%;
 
-      position: relative;
-
-      margin: 0 auto;
-
-      line-height: 0;
-    }
-
-    .game-overview-image {
       display: block;
 
-      width: 100%;
-      height: auto;
+      margin: 0;
+      padding: 0;
 
-      border-radius: 0;
+      line-height: 0;
 
       filter:
         drop-shadow(
@@ -1057,254 +1051,70 @@
     }
 
 
-    /* =========================================================
-       NUEVO CIERRE DESTACADO DEL POPUP
-       ========================================================= */
+    /*
+      PRIMERA IMAGEN:
+      acá están los 5 mundos y los hotspots.
+    */
 
-    .game-worlds-summary-note {
-      width: 94%;
-      max-width: 860px;
-
-      margin:
-        24px
-        auto
-        10px;
-
-      padding:
-        26px
-        30px
-        28px;
+    .game-overview-stage {
+      width: 100%;
 
       position: relative;
 
-      overflow: hidden;
+      margin: 0;
+      padding: 0;
 
-      border-radius: 24px;
-
-      background:
-        radial-gradient(
-          circle at 5% 20%,
-          rgba(255,67,180,.18),
-          transparent 31%
-        ),
-        radial-gradient(
-          circle at 95% 15%,
-          rgba(50,221,183,.16),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 50% 115%,
-          rgba(224,184,98,.15),
-          transparent 37%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(25,12,42,.94),
-          rgba(7,7,18,.97)
-        );
-
-      border:
-        1px solid
-        rgba(224,184,98,.48);
-
-      box-shadow:
-        0 0 0 1px
-        rgba(255,255,255,.035)
-        inset,
-
-        0 0 28px
-        rgba(255,90,159,.14),
-
-        0 0 44px
-        rgba(50,221,183,.08),
-
-        0 20px 50px
-        rgba(0,0,0,.48);
+      line-height: 0;
     }
 
-    .game-worlds-summary-note::before {
-      content: "";
 
-      position: absolute;
-
-      inset: 0;
-
-      pointer-events: none;
-
-      opacity: .8;
-
-      background-image:
-        radial-gradient(
-          circle at 8% 22%,
-          rgba(255,255,255,.75) 0 1px,
-          transparent 2px
-        ),
-        radial-gradient(
-          circle at 18% 78%,
-          rgba(50,221,183,.75) 0 1px,
-          transparent 2px
-        ),
-        radial-gradient(
-          circle at 68% 16%,
-          rgba(255,90,159,.75) 0 1px,
-          transparent 2px
-        ),
-        radial-gradient(
-          circle at 91% 69%,
-          rgba(224,184,98,.85) 0 1px,
-          transparent 2px
-        );
-    }
-
-    .game-worlds-summary-note::after {
-      content: "";
-
-      position: absolute;
-
-      left: 10%;
-      right: 10%;
-      top: 0;
-
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,90,159,.8),
-          rgba(224,184,98,.95),
-          rgba(50,221,183,.8),
-          transparent
-        );
-
-      box-shadow:
-        0 0 16px
-        rgba(224,184,98,.55);
-    }
-
-    .game-worlds-summary-note-title {
-      position: relative;
-
-      z-index: 2;
-
-      margin-bottom: 19px;
-
-      padding-bottom: 14px;
-
-      text-align: center;
-
-      font-family:
-        "Cinzel",
-        serif;
-
-      font-size:
-        clamp(
-          15px,
-          2vw,
-          20px
-        );
-
-      font-weight: 800;
-
-      letter-spacing: 4px;
-
-      color: var(--gold);
-
-      text-transform: uppercase;
-
-      text-shadow:
-        0 0 16px
-        rgba(224,184,98,.32);
-    }
-
-    .game-worlds-summary-note-title::after {
-      content: "✦";
-
+    .game-overview-image {
       display: block;
 
-      margin-top: 11px;
+      width: 100%;
+      height: auto;
 
-      color: var(--teal);
+      margin: 0;
+      padding: 0;
 
-      font-size: 12px;
+      border: 0;
+      border-radius: 0;
 
-      letter-spacing: 0;
-
-      text-shadow:
-        0 0 12px
-        rgba(50,221,183,.8);
-    }
-
-    .game-worlds-summary-note p {
-      position: relative;
-
-      z-index: 2;
-
-      max-width: 790px;
-
-      margin:
-        0
-        auto
-        15px;
-
-      text-align: center;
-
-      color:
-        rgba(255,248,238,.97);
-
-      font-size:
-        clamp(
-          15px,
-          1.7vw,
-          18px
-        );
-
-      line-height: 1.72;
-
-      text-shadow:
-        0 2px 10px
-        rgba(0,0,0,.5);
-    }
-
-    .game-worlds-summary-note p:last-child {
-      margin-bottom: 0;
-    }
-
-    .game-worlds-summary-note strong {
-      color: #ffd36f;
-
-      font-family:
-        "Libre Baskerville",
-        serif;
-
-      font-weight: 700;
-
-      text-shadow:
-        0 0 12px
-        rgba(224,184,98,.24);
-    }
-
-    .game-worlds-summary-note .money-highlight {
-      display: inline-block;
-
-      padding:
-        1px
-        7px;
-
-      color: #fff1a6;
-
-      font-weight: 900;
-
-      white-space: nowrap;
-
-      text-shadow:
-        0 0 12px
-        rgba(255,213,89,.5);
+      vertical-align: bottom;
     }
 
 
     /*
-       La X ya está dibujada dentro de la imagen.
+      SEGUNDA IMAGEN:
+      continuación directa de popup-juego-mundo.png
+    */
+
+    .game-announcement-image {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      margin:
+        -1px
+        0
+        0;
+
+      padding: 0;
+
+      border: 0;
+      border-radius: 0;
+
+      vertical-align: top;
+
+      user-select: none;
+
+      -webkit-user-drag: none;
+    }
+
+
+    /*
+       La X ya está dibujada dentro de popup-juego-mundo.png.
     */
 
     .game-panel.overview-mode .modal-close {
@@ -1479,7 +1289,6 @@
         0 0 90px
         rgba(var(--world-secondary-rgb),.09);
     }
-
 
     .game-panel.board-mode::before {
       content: "";
@@ -1697,9 +1506,7 @@
 
     .game-board-top {
       display: flex;
-
       justify-content: flex-start;
-
       margin-bottom: 3px;
     }
 
@@ -1761,7 +1568,6 @@
         0 0 28px
         rgba(var(--world-primary-rgb),.25);
     }
-
 
     .game-panel.board-mode .modal-close {
       border-color:
@@ -2714,39 +2520,6 @@
           );
       }
 
-
-      /* NUEVO BLOQUE FINAL EN CELULAR */
-
-      .game-worlds-summary-note {
-        width: 96%;
-
-        margin-top: 17px;
-
-        padding:
-          21px
-          16px
-          23px;
-
-        border-radius: 19px;
-      }
-
-      .game-worlds-summary-note-title {
-        margin-bottom: 15px;
-
-        font-size: 13px;
-
-        letter-spacing: 2.5px;
-      }
-
-      .game-worlds-summary-note p {
-        margin-bottom: 13px;
-
-        font-size: 14px;
-
-        line-height: 1.65;
-      }
-
-
       .game-panel.board-mode {
         width: 98vw;
 
@@ -3216,113 +2989,90 @@
 
 
 
+      <!-- =====================================================
+           VISTA GENERAL
+           popup-juego-mundo + cuadro-anuncio
+           funcionan como UNA SOLA PIEZA VISUAL
+           ===================================================== -->
+
       <div
         class="game-overview-view is-active"
         id="gameOverviewView"
       >
 
 
-        <div class="game-overview-stage">
+        <div class="game-overview-stack">
 
 
-          <img
-            src="./popup-juego-mundo.png"
-            alt="Los primeros cinco mundos del universo Kissing Fight"
-            class="game-overview-image"
-            draggable="false"
-          />
+          <!-- =================================================
+               PRIMERA PARTE
+               ================================================= -->
+
+          <div class="game-overview-stage">
 
 
-          <button
-            type="button"
-            class="world-hotspot world-1"
-            data-game-world="0"
-            aria-label="Sabana — Reino Salvaje"
-          ></button>
+            <img
+              src="./popup-juego-mundo.png"
+              alt="Los primeros cinco mundos del universo Kissing Fight"
+              class="game-overview-image"
+              draggable="false"
+            />
 
 
-          <button
-            type="button"
-            class="world-hotspot world-2"
-            data-game-world="1"
-            aria-label="Baby Room — Dulce Caos"
-          ></button>
+            <button
+              type="button"
+              class="world-hotspot world-1"
+              data-game-world="0"
+              aria-label="Sabana — Reino Salvaje"
+            ></button>
 
 
-          <button
-            type="button"
-            class="world-hotspot world-3"
-            data-game-world="2"
-            aria-label="UFO Club"
-          ></button>
+            <button
+              type="button"
+              class="world-hotspot world-2"
+              data-game-world="1"
+              aria-label="Baby Room — Dulce Caos"
+            ></button>
 
 
-          <button
-            type="button"
-            class="world-hotspot world-4"
-            data-game-world="3"
-            aria-label="Magic Club"
-          ></button>
+            <button
+              type="button"
+              class="world-hotspot world-3"
+              data-game-world="2"
+              aria-label="UFO Club"
+            ></button>
 
 
-          <button
-            type="button"
-            class="world-hotspot world-5"
-            data-game-world="4"
-            aria-label="Room 69"
-          ></button>
+            <button
+              type="button"
+              class="world-hotspot world-4"
+              data-game-world="3"
+              aria-label="Magic Club"
+            ></button>
 
 
-        </div>
+            <button
+              type="button"
+              class="world-hotspot world-5"
+              data-game-world="4"
+              aria-label="Room 69"
+            ></button>
 
-
-
-        <!-- =====================================================
-             NUEVO BLOQUE FINAL DESTACADO
-             ===================================================== -->
-
-        <div class="game-worlds-summary-note">
-
-
-          <div class="game-worlds-summary-note-title">
-
-            MÁS QUE UN JUEGO, UN UNIVERSO
 
           </div>
 
 
-          <p>
 
-            <strong>Kissing Fight</strong>
+          <!-- =================================================
+               CONTINUACIÓN DIRECTA
+               ================================================= -->
 
-            va más allá de un Match-3. Es una experiencia pensada para que los jugadores puedan
-            divertirse, competir y formar parte de una comunidad dinámica, con la posibilidad
-            de generar ingresos desde cualquier lugar.
-
-          </p>
-
-
-          <p>
-
-            Los jugadores con mejores resultados podrán alcanzar recompensas de hasta
-
-            <span class="money-highlight">
-              $100 USD diarios
-            </span>,
-
-            según su desempeño dentro del juego.
-
-          </p>
-
-
-          <p>
-
-            <strong>Kissing Fight</strong>
-
-            no busca ser únicamente entretenimiento: está diseñado para crear una economía propia
-            que también pueda beneficiar a quienes creen en el proyecto y forman parte de su crecimiento.
-
-          </p>
+          <img
+            src="./cuadro-anuncio.png"
+            alt="Kissing Fight — Más que un Match-3"
+            class="game-announcement-image"
+            draggable="false"
+          />
 
 
         </div>
