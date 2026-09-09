@@ -1171,10 +1171,13 @@
         22px;
 
       background:
-        rgba(3,4,8,.82);
+        rgba(3,4,8,.74);
 
       backdrop-filter:
-        blur(10px);
+        blur(7px);
+
+      -webkit-backdrop-filter:
+        blur(7px);
 
       overflow-y:
         auto;
@@ -1185,6 +1188,10 @@
       display: block;
     }
 
+
+    /* =========================================================
+       POPUP — NUEVO BLEND CON FONDO
+       ========================================================= */
 
     .modal-panel {
       width:
@@ -1199,35 +1206,89 @@
       padding:
         26px
         22px
-        24px;
+        30px;
 
       position:
         relative;
 
       border-radius:
-        30px;
+        34px;
 
       background:
         radial-gradient(
-          circle at 50% 0%,
-          rgba(224,184,98,.08),
-          transparent 40%
+          ellipse at 50% 32%,
+          rgba(50,221,183,.08),
+          transparent 42%
         ),
-        linear-gradient(
-          135deg,
-          rgba(20,18,28,.97),
-          rgba(7,7,11,.98)
-        );
+        radial-gradient(
+          ellipse at 70% 70%,
+          rgba(255,90,159,.07),
+          transparent 48%
+        ),
+        radial-gradient(
+          ellipse at 20% 65%,
+          rgba(120,80,255,.06),
+          transparent 42%
+        ),
+        rgba(7,7,12,.72);
 
       border:
         1px solid
-        rgba(224,184,98,.22);
+        rgba(224,184,98,.16);
 
       box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.6),
-        inset 0 1px 0
-        rgba(255,255,255,.04);
+        0 30px 90px
+        rgba(0,0,0,.38),
+        inset
+        0 0 80px
+        rgba(0,0,0,.16);
+
+      backdrop-filter:
+        blur(8px);
+
+      -webkit-backdrop-filter:
+        blur(8px);
+
+      overflow:
+        hidden;
+    }
+
+
+    .modal-panel::before {
+      content: "";
+
+      position:
+        absolute;
+
+      inset:
+        0;
+
+      pointer-events:
+        none;
+
+      background:
+        radial-gradient(
+          circle at 50% 18%,
+          rgba(224,184,98,.07),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 50% 55%,
+          rgba(50,221,183,.045),
+          transparent 46%
+        );
+
+      mix-blend-mode:
+        screen;
+    }
+
+
+    .modal-panel > * {
+      position:
+        relative;
+
+      z-index:
+        2;
     }
 
 
@@ -1418,6 +1479,10 @@
     }
 
 
+    /* =========================================================
+       IMAGEN GENERAL — BLEND
+       ========================================================= */
+
     .game-overview-stage {
       position:
         relative;
@@ -1425,16 +1490,67 @@
       width:
         min(
           100%,
-          900px
+          930px
         );
 
       margin:
         0 auto;
+
+      padding:
+        5px;
+
+      border-radius:
+        30px;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(50,221,183,.08),
+          rgba(255,90,159,.025) 50%,
+          transparent 74%
+        );
+
+      filter:
+        drop-shadow(
+          0 18px 38px
+          rgba(0,0,0,.30)
+        );
     }
 
 
-    .game-overview-image,
-    .game-board-image {
+    .game-overview-stage::before,
+    .game-board-stage::before {
+      content: "";
+
+      position:
+        absolute;
+
+      inset:
+        -8%;
+
+      z-index:
+        -1;
+
+      pointer-events:
+        none;
+
+      border-radius:
+        50%;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(50,221,183,.07),
+          rgba(255,90,159,.04) 42%,
+          transparent 70%
+        );
+
+      filter:
+        blur(30px);
+    }
+
+
+    .game-overview-image {
       display:
         block;
 
@@ -1445,13 +1561,33 @@
         auto;
 
       border-radius:
-        20px;
+        24px;
 
-      box-shadow:
-        0 22px 55px
-        rgba(0,0,0,.45),
-        0 0 24px
-        rgba(224,184,98,.08);
+      -webkit-mask-image:
+        radial-gradient(
+          ellipse 97% 97% at center,
+          #000 76%,
+          rgba(0,0,0,.92) 84%,
+          rgba(0,0,0,.55) 92%,
+          transparent 100%
+        );
+
+      mask-image:
+        radial-gradient(
+          ellipse 97% 97% at center,
+          #000 76%,
+          rgba(0,0,0,.92) 84%,
+          rgba(0,0,0,.55) 92%,
+          transparent 100%
+        );
+
+      filter:
+        saturate(1.03)
+        contrast(1.02)
+        drop-shadow(
+          0 14px 30px
+          rgba(0,0,0,.22)
+        );
     }
 
 
@@ -1516,7 +1652,7 @@
 
 
     .world-2 {
-      top: 38.0%;
+      top: 38%;
 
       height: 9.3%;
     }
@@ -1651,27 +1787,92 @@
     }
 
 
+    /* =========================================================
+       TABLERO COMPLETO — BLEND
+       ========================================================= */
+
     .game-board-stage {
       width:
         min(
           100%,
-          760px
+          780px
         );
 
       margin:
         0 auto;
+
+      position:
+        relative;
+
+      padding:
+        4px;
+
+      border-radius:
+        32px;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(80,80,180,.10),
+          rgba(255,90,159,.035) 52%,
+          transparent 76%
+        );
+
+      filter:
+        drop-shadow(
+          0 24px 55px
+          rgba(0,0,0,.28)
+        );
     }
 
 
     .game-board-image {
+      display:
+        block;
+
+      width:
+        100%;
+
+      height:
+        auto;
+
       max-height:
-        78vh;
+        80vh;
 
       object-fit:
         contain;
 
+      border-radius:
+        25px;
+
       background:
-        rgba(0,0,0,.25);
+        transparent;
+
+      -webkit-mask-image:
+        radial-gradient(
+          ellipse 96% 98% at center,
+          #000 78%,
+          rgba(0,0,0,.94) 85%,
+          rgba(0,0,0,.62) 92%,
+          transparent 100%
+        );
+
+      mask-image:
+        radial-gradient(
+          ellipse 96% 98% at center,
+          #000 78%,
+          rgba(0,0,0,.94) 85%,
+          rgba(0,0,0,.62) 92%,
+          transparent 100%
+        );
+
+      filter:
+        saturate(1.04)
+        brightness(.98)
+        drop-shadow(
+          0 18px 40px
+          rgba(0,0,0,.26)
+        );
     }
 
 
@@ -2943,10 +3144,20 @@
       }
 
 
+      .modal-backdrop {
+        padding:
+          10px;
+      }
+
+
       .modal-panel {
         padding:
           22px
-          15px;
+          12px
+          24px;
+
+        border-radius:
+          24px;
       }
 
 
@@ -3038,7 +3249,6 @@
           26px;
 
         padding:
-          16px
           16px;
 
         gap:
@@ -3086,6 +3296,18 @@
       }
 
 
+      .game-overview-stage {
+        width:
+          100%;
+      }
+
+
+      .game-board-stage {
+        width:
+          100%;
+      }
+
+
       .game-board-image {
         max-height:
           none;
@@ -3112,16 +3334,11 @@
     }
 
   </style>
-
 </head>
 
 
 <body>
 
-
-  <!-- =========================================================
-       FONDO
-       ========================================================= -->
 
   <div
     class="space-background"
@@ -3147,17 +3364,11 @@
   <main class="page">
 
 
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
-
     <section class="hero">
 
 
       <div class="eyebrow">
-
         WELCOME TO THE UNIVERSE
-
       </div>
 
 
@@ -3201,14 +3412,8 @@
 
 
 
-      <!-- =========================================================
-           BOTONES PRINCIPALES
-           ========================================================= -->
-
       <div class="main-buttons">
 
-
-        <!-- CONOCÉ EL JUEGO -->
 
         <button
           type="button"
@@ -3230,8 +3435,6 @@
 
 
 
-        <!-- COMUNIDAD -->
-
         <button
           type="button"
           class="image-button button-2"
@@ -3251,8 +3454,6 @@
         </button>
 
 
-
-        <!-- INVERSORES -->
 
         <button
           type="button"
@@ -3280,10 +3481,6 @@
 
 
 
-    <!-- =========================================================
-         CUADRO 1
-         ========================================================= -->
-
     <section
       class="rendered-section"
       id="juego"
@@ -3299,10 +3496,6 @@
     </section>
 
 
-
-    <!-- =========================================================
-         CUADRO 2
-         ========================================================= -->
 
     <section
       class="rendered-section clickable-render"
@@ -3325,10 +3518,6 @@
 
 
 
-    <!-- =========================================================
-         CUADRO 3
-         ========================================================= -->
-
     <section
       class="rendered-section clickable-render"
       id="inversores"
@@ -3350,14 +3539,8 @@
 
 
 
-    <!-- =========================================================
-         REDES
-         ========================================================= -->
-
     <div class="social-title">
-
       ENTRÁ AL UNIVERSO
-
     </div>
 
 
@@ -3370,7 +3553,6 @@
         href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Instagram English"
       >
 
         <img
@@ -3388,7 +3570,6 @@
         href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Instagram Español"
       >
 
         <img
@@ -3406,7 +3587,6 @@
         href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Canal de WhatsApp"
       >
 
         <img
@@ -3424,7 +3604,6 @@
         href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Contactanos por WhatsApp"
       >
 
         <img
@@ -3488,9 +3667,7 @@
         data-modal-close
         aria-label="Cerrar"
       >
-
         ×
-
       </button>
 
 
@@ -3508,16 +3685,10 @@
 
 
       <div class="modal-overline">
-
         CONOCÉ EL JUEGO
-
       </div>
 
 
-
-      <!-- =====================================================
-           VISTA PRINCIPAL — LOS 5 MUNDOS
-           ===================================================== -->
 
       <div
         class="game-overview-view is-active"
@@ -3556,29 +3727,23 @@
 
 
 
-          <!-- SABANA -->
-
           <button
             type="button"
             class="world-hotspot world-1"
             data-game-world="0"
-            aria-label="Abrir tablero completo de Sabana — Reino Salvaje"
+            aria-label="Abrir tablero completo de Sabana"
           ></button>
 
 
-
-          <!-- BEBÉ -->
 
           <button
             type="button"
             class="world-hotspot world-2"
             data-game-world="1"
-            aria-label="Abrir tablero completo de Baby Room — Dulce Caos"
+            aria-label="Abrir tablero completo de Baby Room"
           ></button>
 
 
-
-          <!-- ALIEN -->
 
           <button
             type="button"
@@ -3589,8 +3754,6 @@
 
 
 
-          <!-- CLASSIC -->
-
           <button
             type="button"
             class="world-hotspot world-4"
@@ -3599,8 +3762,6 @@
           ></button>
 
 
-
-          <!-- SEXY -->
 
           <button
             type="button"
@@ -3616,10 +3777,6 @@
       </div>
 
 
-
-      <!-- =====================================================
-           VISTA TABLERO COMPLETO
-           ===================================================== -->
 
       <div
         class="game-board-view"
@@ -3710,9 +3867,7 @@
         data-modal-close
         aria-label="Cerrar"
       >
-
         ×
-
       </button>
 
 
@@ -3732,9 +3887,7 @@
 
 
       <div class="modal-overline">
-
         COMUNIDAD
-
       </div>
 
 
@@ -3760,8 +3913,7 @@
 
       <div class="community-note">
 
-        Cada nivel conserva las ventajas anteriores
-        y suma nuevas recompensas.
+        Cada nivel conserva las ventajas anteriores y suma nuevas recompensas.
 
       </div>
 
@@ -3770,8 +3922,6 @@
       <div class="levels-list">
 
 
-
-        <!-- NIVEL 1 -->
 
         <div class="level-card level-teal">
 
@@ -3824,8 +3974,6 @@
         </div>
 
 
-
-        <!-- NIVEL 2 -->
 
         <div class="level-card level-pink">
 
@@ -3883,8 +4031,6 @@
         </div>
 
 
-
-        <!-- NIVEL 3 -->
 
         <div class="level-card level-gold">
 
@@ -3946,8 +4092,6 @@
         </div>
 
 
-
-        <!-- NIVEL 4 -->
 
         <div class="level-card level-teal">
 
@@ -4012,8 +4156,6 @@
 
 
 
-        <!-- NIVEL 5 -->
-
         <div class="level-card level-pink">
 
 
@@ -4076,8 +4218,6 @@
         </div>
 
 
-
-        <!-- NIVEL 6 -->
 
         <div class="level-card level-gold">
 
@@ -4143,8 +4283,6 @@
         </div>
 
 
-
-        <!-- NIVEL 7 -->
 
         <div class="level-card level-ivory">
 
@@ -4268,9 +4406,7 @@
         data-modal-close
         aria-label="Cerrar"
       >
-
         ×
-
       </button>
 
 
@@ -4290,9 +4426,7 @@
 
 
       <div class="modal-overline">
-
         DESTINO DE LOS FONDOS
-
       </div>
 
 
@@ -4736,7 +4870,6 @@
 
     function spawnTwinkleStar() {
 
-
       if (!starField) {
         return;
       }
@@ -4777,7 +4910,6 @@
           + 1.4
         )
         .toFixed(2);
-
 
 
       star.style.left =
@@ -4822,9 +4954,7 @@
       window.setTimeout(
 
         () => {
-
           star.remove();
-
         },
 
         (
@@ -4835,13 +4965,11 @@
 
       );
 
-
     }
 
 
 
     function scheduleNextTwinkle() {
-
 
       const mobile =
         window.innerWidth
@@ -4873,7 +5001,6 @@
             < .10
           ) {
 
-
             window.setTimeout(
 
               spawnTwinkleStar,
@@ -4883,7 +5010,6 @@
               + 250
 
             );
-
 
           }
 
@@ -4896,7 +5022,6 @@
         nextDelay
 
       );
-
 
     }
 
@@ -4919,7 +5044,6 @@
 
 
     function spawnShootingStar() {
-
 
       if (!shootingStars) {
         return;
@@ -4989,7 +5113,6 @@
 
       if (fromLeft) {
 
-
         star.style.setProperty(
           "--shoot-angle",
           "17deg"
@@ -5007,9 +5130,7 @@
           `${travelY}vh`
         );
 
-
       } else {
-
 
         star.style.setProperty(
           "--shoot-angle",
@@ -5028,7 +5149,6 @@
           `${travelY}vh`
         );
 
-
       }
 
 
@@ -5040,9 +5160,7 @@
       window.setTimeout(
 
         () => {
-
           star.remove();
-
         },
 
         (
@@ -5053,13 +5171,11 @@
 
       );
 
-
     }
 
 
 
     function scheduleNextShootingStar() {
-
 
       const nextDelay =
         Math.random()
@@ -5090,7 +5206,6 @@
         nextDelay
 
       );
-
 
     }
 
@@ -5128,7 +5243,6 @@
     function openModalById(
       modalId
     ) {
-
 
       const modal =
         document.getElementById(
@@ -5187,7 +5301,6 @@
 
       }
 
-
     }
 
 
@@ -5195,7 +5308,6 @@
     function closeModal(
       modal
     ) {
-
 
       if (!modal) {
         return;
@@ -5231,14 +5343,11 @@
 
       if (!someOpen) {
 
-
         document.body.classList.remove(
           "modal-open"
         );
 
-
       }
-
 
     }
 
@@ -5409,11 +5518,9 @@
 
           if (openModal) {
 
-
             closeModal(
               openModal
             );
-
 
           }
 
@@ -5466,11 +5573,9 @@
 
               item => {
 
-
                 item.classList.remove(
                   "is-active"
                 );
-
 
               }
 
@@ -5479,11 +5584,9 @@
 
             if (!isActive) {
 
-
               card.classList.add(
                 "is-active"
               );
-
 
             }
 
@@ -5539,16 +5642,6 @@
       );
 
 
-
-    /*
-      ORDEN EXACTO:
-
-      1 - SABANA
-      2 - BEBÉ
-      3 - ALIEN
-      4 - CLASSIC
-      5 - SEXY
-    */
 
     const gameWorlds = [
 
@@ -5745,5 +5838,4 @@
 
 
 </body>
-
 </html>
