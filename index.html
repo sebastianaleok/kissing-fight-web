@@ -290,7 +290,6 @@
         90px;
 
       position: relative;
-
       z-index: 2;
     }
 
@@ -977,12 +976,6 @@
        POPUP CONOCÉ EL JUEGO
        ========================================================= */
 
-    /*
-       IMPORTANTE:
-       En vista inicial el panel NO agrega un recuadro.
-       La imagen popup-juego-mundo.png ES el popup.
-    */
-
     .game-panel {
       --world-primary-rgb: 224,184,98;
       --world-secondary-rgb: 50,221,183;
@@ -1014,11 +1007,6 @@
        ========================================================= */
 
     .game-panel.overview-mode {
-      /*
-        La imagen es aproximadamente 1100 x 1350.
-        Esto hace que aproveche casi toda la altura disponible.
-      */
-
       width:
         min(
           94vw,
@@ -1069,9 +1057,254 @@
     }
 
 
+    /* =========================================================
+       NUEVO CIERRE DESTACADO DEL POPUP
+       ========================================================= */
+
+    .game-worlds-summary-note {
+      width: 94%;
+      max-width: 860px;
+
+      margin:
+        24px
+        auto
+        10px;
+
+      padding:
+        26px
+        30px
+        28px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 24px;
+
+      background:
+        radial-gradient(
+          circle at 5% 20%,
+          rgba(255,67,180,.18),
+          transparent 31%
+        ),
+        radial-gradient(
+          circle at 95% 15%,
+          rgba(50,221,183,.16),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 50% 115%,
+          rgba(224,184,98,.15),
+          transparent 37%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(25,12,42,.94),
+          rgba(7,7,18,.97)
+        );
+
+      border:
+        1px solid
+        rgba(224,184,98,.48);
+
+      box-shadow:
+        0 0 0 1px
+        rgba(255,255,255,.035)
+        inset,
+
+        0 0 28px
+        rgba(255,90,159,.14),
+
+        0 0 44px
+        rgba(50,221,183,.08),
+
+        0 20px 50px
+        rgba(0,0,0,.48);
+    }
+
+    .game-worlds-summary-note::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: .8;
+
+      background-image:
+        radial-gradient(
+          circle at 8% 22%,
+          rgba(255,255,255,.75) 0 1px,
+          transparent 2px
+        ),
+        radial-gradient(
+          circle at 18% 78%,
+          rgba(50,221,183,.75) 0 1px,
+          transparent 2px
+        ),
+        radial-gradient(
+          circle at 68% 16%,
+          rgba(255,90,159,.75) 0 1px,
+          transparent 2px
+        ),
+        radial-gradient(
+          circle at 91% 69%,
+          rgba(224,184,98,.85) 0 1px,
+          transparent 2px
+        );
+    }
+
+    .game-worlds-summary-note::after {
+      content: "";
+
+      position: absolute;
+
+      left: 10%;
+      right: 10%;
+      top: 0;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,90,159,.8),
+          rgba(224,184,98,.95),
+          rgba(50,221,183,.8),
+          transparent
+        );
+
+      box-shadow:
+        0 0 16px
+        rgba(224,184,98,.55);
+    }
+
+    .game-worlds-summary-note-title {
+      position: relative;
+
+      z-index: 2;
+
+      margin-bottom: 19px;
+
+      padding-bottom: 14px;
+
+      text-align: center;
+
+      font-family:
+        "Cinzel",
+        serif;
+
+      font-size:
+        clamp(
+          15px,
+          2vw,
+          20px
+        );
+
+      font-weight: 800;
+
+      letter-spacing: 4px;
+
+      color: var(--gold);
+
+      text-transform: uppercase;
+
+      text-shadow:
+        0 0 16px
+        rgba(224,184,98,.32);
+    }
+
+    .game-worlds-summary-note-title::after {
+      content: "✦";
+
+      display: block;
+
+      margin-top: 11px;
+
+      color: var(--teal);
+
+      font-size: 12px;
+
+      letter-spacing: 0;
+
+      text-shadow:
+        0 0 12px
+        rgba(50,221,183,.8);
+    }
+
+    .game-worlds-summary-note p {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 790px;
+
+      margin:
+        0
+        auto
+        15px;
+
+      text-align: center;
+
+      color:
+        rgba(255,248,238,.97);
+
+      font-size:
+        clamp(
+          15px,
+          1.7vw,
+          18px
+        );
+
+      line-height: 1.72;
+
+      text-shadow:
+        0 2px 10px
+        rgba(0,0,0,.5);
+    }
+
+    .game-worlds-summary-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    .game-worlds-summary-note strong {
+      color: #ffd36f;
+
+      font-family:
+        "Libre Baskerville",
+        serif;
+
+      font-weight: 700;
+
+      text-shadow:
+        0 0 12px
+        rgba(224,184,98,.24);
+    }
+
+    .game-worlds-summary-note .money-highlight {
+      display: inline-block;
+
+      padding:
+        1px
+        7px;
+
+      color: #fff1a6;
+
+      font-weight: 900;
+
+      white-space: nowrap;
+
+      text-shadow:
+        0 0 12px
+        rgba(255,213,89,.5);
+    }
+
+
     /*
        La X ya está dibujada dentro de la imagen.
-       El botón real queda transparente exactamente encima.
     */
 
     .game-panel.overview-mode .modal-close {
@@ -1102,7 +1335,8 @@
         rgba(255,255,255,.035);
 
       box-shadow:
-        0 0 25px rgba(255,197,54,.14);
+        0 0 25px
+        rgba(255,197,54,.14);
     }
 
 
@@ -1247,8 +1481,6 @@
     }
 
 
-    /* estrellas / partículas ambientales */
-
     .game-panel.board-mode::before {
       content: "";
 
@@ -1328,18 +1560,12 @@
        TEMAS DE CADA MUNDO
        ========================================================= */
 
-
-    /* SABANA */
-
     .game-panel.theme-sabana {
       --world-primary-rgb: 255,164,44;
       --world-secondary-rgb: 145,76,255;
       --world-accent-rgb: 34,221,255;
       --world-deep-rgb: 40,13,45;
     }
-
-
-    /* BABY ROOM */
 
     .game-panel.theme-bebe {
       --world-primary-rgb: 255,124,190;
@@ -1348,9 +1574,6 @@
       --world-deep-rgb: 52,25,65;
     }
 
-
-    /* UFO */
-
     .game-panel.theme-alien {
       --world-primary-rgb: 131,73,255;
       --world-secondary-rgb: 0,229,255;
@@ -1358,18 +1581,12 @@
       --world-deep-rgb: 17,5,58;
     }
 
-
-    /* MAGIC / CLASSIC */
-
     .game-panel.theme-classic {
       --world-primary-rgb: 255,176,43;
       --world-secondary-rgb: 212,25,48;
       --world-accent-rgb: 255,222,117;
       --world-deep-rgb: 47,5,10;
     }
-
-
-    /* ROOM 69 */
 
     .game-panel.theme-sexy {
       --world-primary-rgb: 255,45,76;
@@ -1437,9 +1654,6 @@
           rgba(0,0,0,.4)
         );
     }
-
-
-    /* línea ornamental bajo título */
 
     .game-board-title::after {
       content: "";
@@ -1549,10 +1763,6 @@
     }
 
 
-    /* =========================================================
-       X DE CIERRE EN VISTA TABLERO
-       ========================================================= */
-
     .game-panel.board-mode .modal-close {
       border-color:
         rgba(var(--world-primary-rgb),.6);
@@ -1615,9 +1825,6 @@
       isolation: isolate;
     }
 
-
-    /* halo detrás del tablero */
-
     .game-board-stage::before {
       content: "";
 
@@ -1647,9 +1854,6 @@
 
       filter: blur(35px);
     }
-
-
-    /* integración del borde */
 
     .game-board-stage::after {
       content: "";
@@ -2502,9 +2706,6 @@
           24px;
       }
 
-
-      /* popup general ocupa prácticamente toda la pantalla */
-
       .game-panel.overview-mode {
         width:
           min(
@@ -2514,7 +2715,37 @@
       }
 
 
-      /* tablero */
+      /* NUEVO BLOQUE FINAL EN CELULAR */
+
+      .game-worlds-summary-note {
+        width: 96%;
+
+        margin-top: 17px;
+
+        padding:
+          21px
+          16px
+          23px;
+
+        border-radius: 19px;
+      }
+
+      .game-worlds-summary-note-title {
+        margin-bottom: 15px;
+
+        font-size: 13px;
+
+        letter-spacing: 2.5px;
+      }
+
+      .game-worlds-summary-note p {
+        margin-bottom: 13px;
+
+        font-size: 14px;
+
+        line-height: 1.65;
+      }
+
 
       .game-panel.board-mode {
         width: 98vw;
@@ -2672,10 +2903,6 @@
 <body>
 
 
-  <!-- =========================================================
-       FONDO
-       ========================================================= -->
-
   <div
     class="space-background"
     aria-hidden="true"
@@ -2697,10 +2924,6 @@
 
   <main class="page">
 
-
-    <!-- =========================================================
-         HERO
-         ========================================================= -->
 
     <section class="hero">
 
@@ -2742,8 +2965,6 @@
       </p>
 
 
-
-      <!-- BOTONES -->
 
       <div class="main-buttons">
 
@@ -2813,10 +3034,6 @@
 
 
 
-    <!-- =========================================================
-         CUADROS
-         ========================================================= -->
-
     <section
       class="rendered-section"
       id="juego"
@@ -2867,10 +3084,6 @@
     </section>
 
 
-
-    <!-- =========================================================
-         REDES
-         ========================================================= -->
 
     <div class="social-title">
       ENTRÁ AL UNIVERSO
@@ -2992,11 +3205,6 @@
     >
 
 
-      <!--
-        EN LA PANTALLA INICIAL ESTA X ES INVISIBLE.
-        QUEDA EXACTAMENTE SOBRE LA X DIBUJADA EN LA IMAGEN.
-      -->
-
       <button
         type="button"
         class="modal-close"
@@ -3007,10 +3215,6 @@
       </button>
 
 
-
-      <!-- =====================================================
-           IMAGEN COMPLETA DEL POPUP
-           ===================================================== -->
 
       <div
         class="game-overview-view is-active"
@@ -3029,8 +3233,6 @@
           />
 
 
-          <!-- SABANA -->
-
           <button
             type="button"
             class="world-hotspot world-1"
@@ -3038,8 +3240,6 @@
             aria-label="Sabana — Reino Salvaje"
           ></button>
 
-
-          <!-- BABY -->
 
           <button
             type="button"
@@ -3049,8 +3249,6 @@
           ></button>
 
 
-          <!-- UFO -->
-
           <button
             type="button"
             class="world-hotspot world-3"
@@ -3058,8 +3256,6 @@
             aria-label="UFO Club"
           ></button>
 
-
-          <!-- MAGIC -->
 
           <button
             type="button"
@@ -3069,14 +3265,64 @@
           ></button>
 
 
-          <!-- ROOM 69 -->
-
           <button
             type="button"
             class="world-hotspot world-5"
             data-game-world="4"
             aria-label="Room 69"
           ></button>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             NUEVO BLOQUE FINAL DESTACADO
+             ===================================================== -->
+
+        <div class="game-worlds-summary-note">
+
+
+          <div class="game-worlds-summary-note-title">
+
+            MÁS QUE UN JUEGO, UN UNIVERSO
+
+          </div>
+
+
+          <p>
+
+            <strong>Kissing Fight</strong>
+
+            va más allá de un Match-3. Es una experiencia pensada para que los jugadores puedan
+            divertirse, competir y formar parte de una comunidad dinámica, con la posibilidad
+            de generar ingresos desde cualquier lugar.
+
+          </p>
+
+
+          <p>
+
+            Los jugadores con mejores resultados podrán alcanzar recompensas de hasta
+
+            <span class="money-highlight">
+              $100 USD diarios
+            </span>,
+
+            según su desempeño dentro del juego.
+
+          </p>
+
+
+          <p>
+
+            <strong>Kissing Fight</strong>
+
+            no busca ser únicamente entretenimiento: está diseñado para crear una economía propia
+            que también pueda beneficiar a quienes creen en el proyecto y forman parte de su crecimiento.
+
+          </p>
 
 
         </div>
@@ -4586,14 +4832,8 @@
 
 
 
-    /* =========================================================
-       LOS CINCO MUNDOS + SU TEMA VISUAL
-       ========================================================= */
-
     const gameWorlds = [
 
-
-      /* 1 — SABANA */
 
       {
         title:
@@ -4610,8 +4850,6 @@
       },
 
 
-      /* 2 — BEBÉ */
-
       {
         title:
           "BABY ROOM — DULCE CAOS",
@@ -4626,8 +4864,6 @@
           "theme-bebe"
       },
 
-
-      /* 3 — ALIEN */
 
       {
         title:
@@ -4644,8 +4880,6 @@
       },
 
 
-      /* 4 — CLASSIC */
-
       {
         title:
           "MAGIC CLUB — HACÉ MATCH. HACÉ MAGIA. GANÁ.",
@@ -4660,8 +4894,6 @@
           "theme-classic"
       },
 
-
-      /* 5 — SEXY */
 
       {
         title:
@@ -4693,10 +4925,6 @@
     ];
 
 
-
-    /* =========================================================
-       VOLVER A IMAGEN GENERAL
-       ========================================================= */
 
     function showGameOverview() {
 
@@ -4746,10 +4974,6 @@
     }
 
 
-
-    /* =========================================================
-       ABRIR MUNDO
-       ========================================================= */
 
     function showGameBoard(index) {
 
@@ -4809,11 +5033,6 @@
         world.alt;
 
 
-      /*
-        Al cambiar de la imagen general al tablero,
-        lleva el popup al inicio para que se vea título + tablero.
-      */
-
       const gameModal =
         document.getElementById(
           "gameModal"
@@ -4832,10 +5051,6 @@
     }
 
 
-
-    /* =========================================================
-       HOTSPOTS
-       ========================================================= */
 
     gameWorldTriggers.forEach(
       button => {
@@ -4860,10 +5075,6 @@
     );
 
 
-
-    /* =========================================================
-       BOTÓN VOLVER
-       ========================================================= */
 
     gameBackButtons.forEach(
       button => {
