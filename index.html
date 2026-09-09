@@ -1,3467 +1,3117 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8" />
+  <title>Kissing Fight</title>
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
-/>
+  <meta
+    name="description"
+    content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
+  />
 
-<title>
-  Kissing Fight
-</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<meta
-  name="description"
-  content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
-/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
-<link
-  rel="preconnect"
-  href="https://fonts.googleapis.com"
-/>
+  <style>
 
-<link
-  rel="preconnect"
-  href="https://fonts.gstatic.com"
-  crossorigin
-/>
+    :root {
+      --pink: #ff5a9f;
+      --teal: #32ddb7;
+      --gold: #e0b862;
+      --ivory: #f7f0d6;
+      --dark: #1b1a25;
+      --black: #000000;
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
-  rel="stylesheet"
-/>
+      --fund-teal: #269b87;
+      --fund-pink: #b94d78;
+      --fund-gold: #b38d46;
+      --fund-ivory: #b6ae91;
 
+      --text-soft: #d8d1c4;
+      --muted: #aaa295;
+    }
 
-<style>
 
-:root {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  --pink: #ff5a9f;
-  --teal: #32ddb7;
-  --gold: #e0b862;
-  --ivory: #f7f0d6;
-  --dark: #1b1a25;
-  --black: #000000;
 
-  --fund-teal: #269b87;
-  --fund-pink: #b94d78;
-  --fund-gold: #b38d46;
-  --fund-ivory: #b6ae91;
+    html {
+      scroll-behavior: smooth;
+      background: #020307;
+    }
 
-  --text-soft: #d8d1c4;
-  --muted: #aaa295;
 
-}
+    body {
+      min-height: 100vh;
 
+      font-family:
+        "Nunito Sans",
+        Arial,
+        Helvetica,
+        sans-serif;
 
-* {
+      color: var(--ivory);
 
-  margin: 0;
+      overflow-x: hidden;
 
-  padding: 0;
+      position: relative;
 
-  box-sizing: border-box;
+      background: transparent;
+    }
 
-}
 
+    body.modal-open {
+      overflow: hidden;
+    }
 
-html {
 
-  scroll-behavior: smooth;
+    /* =========================================================
+       FONDO
+       ========================================================= */
 
-  background: #020307;
+    .space-background {
+      position: fixed;
 
-}
+      inset: 0;
 
+      z-index: 0;
 
-body {
+      pointer-events: none;
 
-  min-height: 100vh;
+      background-image:
+        url("./fondo-universo-kf.png");
 
-  font-family:
-    "Nunito Sans",
-    Arial,
-    Helvetica,
-    sans-serif;
+      background-repeat:
+        no-repeat;
 
-  color:
-    var(--ivory);
+      background-position:
+        center center;
 
-  overflow-x: hidden;
+      background-size:
+        cover;
+    }
 
-  position: relative;
 
-  background: transparent;
+    /* =========================================================
+       ESTRELLAS
+       ========================================================= */
 
-}
+    .star-field,
+    .shooting-stars {
+      position: fixed;
 
+      inset: 0;
 
-body.modal-open {
+      z-index: 1;
 
-  overflow: hidden;
+      overflow: hidden;
 
-}
+      pointer-events: none;
+    }
 
 
-/* =========================================================
-   FONDO
-   ========================================================= */
+    .twinkle-star {
+      position: absolute;
 
-.space-background {
+      width:
+        var(--star-size);
 
-  position: fixed;
+      height:
+        var(--star-size);
 
-  inset: 0;
+      border-radius: 50%;
 
-  z-index: 0;
+      background:
+        rgba(255,255,255,.98);
 
-  pointer-events: none;
+      opacity: 0;
 
-  background-image:
-    url("./fondo-universo-kf.png");
+      box-shadow:
+        0 0 3px rgba(255,255,255,.95),
+        0 0 8px rgba(255,255,255,.58),
+        0 0 15px rgba(185,238,255,.24);
 
-  background-repeat:
-    no-repeat;
+      animation:
+        randomTwinkle
+        var(--twinkle-duration)
+        ease-in-out
+        forwards;
+    }
 
-  background-position:
-    center center;
 
-  background-size:
-    cover;
+    .twinkle-star::before,
+    .twinkle-star::after {
+      content: "";
 
-}
+      position: absolute;
 
+      left: 50%;
 
-/* =========================================================
-   ESTRELLAS
-   ========================================================= */
+      top: 50%;
 
-.star-field,
-.shooting-stars {
+      transform:
+        translate(
+          -50%,
+          -50%
+        );
 
-  position: fixed;
+      border-radius: 999px;
 
-  inset: 0;
+      opacity: .7;
+    }
 
-  z-index: 1;
 
-  overflow: hidden;
+    .twinkle-star::before {
+      width:
+        calc(
+          var(--star-size)
+          * 6
+        );
 
-  pointer-events: none;
+      height: 1px;
 
-}
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.92),
+          transparent
+        );
+    }
 
 
-.twinkle-star {
+    .twinkle-star::after {
+      width: 1px;
 
-  position: absolute;
+      height:
+        calc(
+          var(--star-size)
+          * 6
+        );
 
-  width:
-    var(--star-size);
+      background:
+        linear-gradient(
+          180deg,
+          transparent,
+          rgba(255,255,255,.92),
+          transparent
+        );
+    }
 
-  height:
-    var(--star-size);
 
-  border-radius: 50%;
+    @keyframes randomTwinkle {
 
-  background:
-    rgba(255,255,255,.98);
+      0% {
+        opacity: 0;
 
-  opacity: 0;
+        transform:
+          scale(.55);
+      }
 
-  box-shadow:
 
-    0 0 3px
-    rgba(255,255,255,.95),
+      34% {
+        opacity: .12;
+      }
 
-    0 0 8px
-    rgba(255,255,255,.58),
 
-    0 0 15px
-    rgba(185,238,255,.24);
+      50% {
+        opacity:
+          var(--star-opacity);
 
-  animation:
+        transform:
+          scale(1.28);
+      }
 
-    randomTwinkle
-    var(--twinkle-duration)
-    ease-in-out
-    forwards;
 
-}
+      68% {
+        opacity: .10;
+      }
 
 
-.twinkle-star::before,
-.twinkle-star::after {
+      100% {
+        opacity: 0;
 
-  content: "";
+        transform:
+          scale(.62);
+      }
 
-  position: absolute;
+    }
 
-  left: 50%;
 
-  top: 50%;
+    /* =========================================================
+       ESTRELLAS FUGACES
+       ========================================================= */
 
-  transform:
-    translate(
-      -50%,
-      -50%
-    );
+    .shooting-star {
+      position: absolute;
 
-  border-radius:
-    999px;
+      width: 2px;
 
-  opacity: .7;
+      height: 2px;
 
-}
+      border-radius: 50%;
 
+      background:
+        rgba(255,255,255,.95);
 
-.twinkle-star::before {
+      opacity: 0;
 
-  width:
-    calc(
-      var(--star-size)
-      * 6
-    );
+      filter:
+        drop-shadow(
+          0 0 3px
+          rgba(255,255,255,.9)
+        )
+        drop-shadow(
+          0 0 6px
+          rgba(185,238,255,.30)
+        );
 
-  height:
-    1px;
+      transform:
+        rotate(
+          var(--shoot-angle)
+        );
 
-  background:
+      animation:
+        tinyShootingStar
+        var(--shoot-duration)
+        linear
+        forwards;
+    }
 
-    linear-gradient(
 
-      90deg,
+    .shooting-star::before {
+      content: "";
 
-      transparent,
+      position: absolute;
 
-      rgba(255,255,255,.92),
+      right: 1px;
 
-      transparent
+      top: 50%;
 
-    );
+      width:
+        var(--shoot-tail);
 
-}
+      height: 1px;
 
+      transform:
+        translateY(-50%);
 
-.twinkle-star::after {
+      border-radius: 999px;
 
-  width: 1px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.12),
+          rgba(255,255,255,.75)
+        );
 
-  height:
-    calc(
-      var(--star-size)
-      * 6
-    );
+      opacity: .45;
+    }
 
-  background:
 
-    linear-gradient(
+    @keyframes tinyShootingStar {
 
-      180deg,
+      0% {
+        opacity: 0;
 
-      transparent,
+        transform:
+          translate3d(
+            0,
+            0,
+            0
+          )
+          rotate(
+            var(--shoot-angle)
+          );
+      }
 
-      rgba(255,255,255,.92),
 
-      transparent
+      14% {
+        opacity: .48;
+      }
 
-    );
 
-}
+      74% {
+        opacity: .48;
+      }
 
 
-@keyframes randomTwinkle {
+      100% {
+        opacity: 0;
 
-  0% {
+        transform:
+          translate3d(
+            var(--shoot-x),
+            var(--shoot-y),
+            0
+          )
+          rotate(
+            var(--shoot-angle)
+          );
+      }
 
-    opacity: 0;
+    }
 
-    transform:
-      scale(.55);
 
-  }
+    /* =========================================================
+       PÁGINA
+       ========================================================= */
 
+    .page {
+      width:
+        min(
+          100%,
+          1040px
+        );
 
-  34% {
+      margin:
+        0 auto;
 
-    opacity: .12;
+      padding:
+        38px
+        22px
+        90px;
 
-  }
+      position: relative;
 
+      z-index: 2;
+    }
 
-  50% {
 
-    opacity:
-      var(--star-opacity);
+    /* =========================================================
+       HERO
+       ========================================================= */
 
-    transform:
-      scale(1.28);
+    .hero {
+      display: flex;
 
-  }
+      flex-direction:
+        column;
 
+      align-items:
+        center;
 
-  68% {
+      text-align:
+        center;
 
-    opacity: .10;
+      position:
+        relative;
 
-  }
+      padding-top:
+        35px;
+    }
 
 
-  100% {
+    .eyebrow {
+      position: relative;
 
-    opacity: 0;
+      z-index: 6;
 
-    transform:
-      scale(.62);
+      margin-bottom:
+        15px;
 
-  }
+      font-family:
+        "Cinzel",
+        serif;
 
-}
+      font-size:
+        13px;
 
+      font-weight:
+        800;
 
-/* =========================================================
-   ESTRELLAS FUGACES
-   ========================================================= */
+      letter-spacing:
+        6px;
 
-.shooting-star {
+      color:
+        var(--gold);
 
-  position: absolute;
+      text-transform:
+        uppercase;
 
-  width: 2px;
+      text-shadow:
+        0 0 14px
+        rgba(224,184,98,.48);
 
-  height: 2px;
+      animation:
+        eyebrowGlow
+        4s
+        ease-in-out
+        infinite;
+    }
 
-  border-radius:
-    50%;
 
-  background:
-    rgba(255,255,255,.95);
+    @keyframes eyebrowGlow {
 
-  opacity: 0;
-
-  filter:
-
-    drop-shadow(
-      0 0 3px
-      rgba(255,255,255,.9)
-    )
-
-    drop-shadow(
-      0 0 6px
-      rgba(185,238,255,.30)
-    );
-
-  transform:
-    rotate(
-      var(--shoot-angle)
-    );
-
-  animation:
-
-    tinyShootingStar
-    var(--shoot-duration)
-    linear
-    forwards;
-
-}
-
-
-.shooting-star::before {
-
-  content: "";
-
-  position: absolute;
-
-  right: 1px;
-
-  top: 50%;
-
-  width:
-    var(--shoot-tail);
-
-  height: 1px;
-
-  transform:
-    translateY(-50%);
-
-  border-radius:
-    999px;
-
-  background:
-
-    linear-gradient(
-
-      90deg,
-
-      transparent,
-
-      rgba(255,255,255,.12),
-
-      rgba(255,255,255,.75)
-
-    );
-
-  opacity: .45;
-
-}
-
-
-@keyframes tinyShootingStar {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-
-      translate3d(
-        0,
-        0,
-        0
-      )
-
-      rotate(
-        var(--shoot-angle)
-      );
-
-  }
-
-
-  14% {
-
-    opacity: .48;
-
-  }
-
-
-  74% {
-
-    opacity: .48;
-
-  }
-
-
-  100% {
-
-    opacity: 0;
-
-    transform:
-
-      translate3d(
-
-        var(--shoot-x),
-
-        var(--shoot-y),
-
-        0
-
-      )
-
-      rotate(
-        var(--shoot-angle)
-      );
-
-  }
-
-}
-
-
-/* =========================================================
-   PÁGINA
-   ========================================================= */
-
-.page {
-
-  width:
-    min(
-      100%,
-      1040px
-    );
-
-  margin:
-    0 auto;
-
-  padding:
-    38px
-    22px
-    90px;
-
-  position:
-    relative;
-
-  z-index:
-    2;
-
-}
-
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero {
-
-  display: flex;
-
-  flex-direction:
-    column;
-
-  align-items:
-    center;
-
-  text-align:
-    center;
-
-  position:
-    relative;
-
-  padding-top:
-    35px;
-
-}
-
-
-.eyebrow {
-
-  position:
-    relative;
-
-  z-index:
-    6;
-
-  margin-bottom:
-    15px;
-
-  font-family:
-    "Cinzel",
-    serif;
-
-  font-size:
-    13px;
-
-  font-weight:
-    800;
-
-  letter-spacing:
-    6px;
-
-  color:
-    var(--gold);
-
-  text-transform:
-    uppercase;
-
-  text-shadow:
-
-    0 0 14px
-    rgba(224,184,98,.48);
-
-  animation:
-
-    eyebrowGlow
-    4s
-    ease-in-out
-    infinite;
-
-}
-
-
-@keyframes eyebrowGlow {
-
-  0%,
-  100% {
-
-    opacity: .82;
-
-  }
-
-
-  50% {
-
-    opacity: 1;
-
-  }
-
-}
-
-
-.portal {
-
-  position:
-    absolute;
-
-  top:
-    80px;
-
-  left:
-    50%;
-
-  transform:
-    translateX(-50%);
-
-  width:
-
-    clamp(
-      330px,
-      58vw,
-      650px
-    );
-
-  aspect-ratio:
-    1;
-
-  border-radius:
-    50%;
-
-  pointer-events:
-    none;
-
-  background:
-
-    radial-gradient(
-
-      circle,
-
-      rgba(247,240,214,.25)
       0%,
+      100% {
+        opacity: .82;
+      }
 
-      rgba(50,221,183,.27)
-      9%,
 
-      rgba(50,221,183,.10)
-      26%,
+      50% {
+        opacity: 1;
+      }
 
-      transparent
-      58%
+    }
 
-    );
 
-  opacity:
-    .88;
+    .portal {
+      position: absolute;
 
-  animation:
+      top: 80px;
 
-    portalPulse
-    5s
-    ease-in-out
-    infinite;
+      left: 50%;
 
-}
+      transform:
+        translateX(-50%);
 
+      width:
+        clamp(
+          330px,
+          58vw,
+          650px
+        );
 
-.portal::before {
+      aspect-ratio: 1;
 
-  content:
-    "";
+      border-radius: 50%;
 
-  position:
-    absolute;
+      pointer-events: none;
 
-  inset:
-    12%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(247,240,214,.25)
+          0%,
+          rgba(50,221,183,.27)
+          9%,
+          rgba(50,221,183,.10)
+          26%,
+          transparent
+          58%
+        );
 
-  border-radius:
-    50%;
+      opacity: .88;
 
-  border:
+      animation:
+        portalPulse
+        5s
+        ease-in-out
+        infinite;
+    }
 
-    2px solid
-    rgba(50,221,183,.22);
 
-  box-shadow:
+    .portal::before {
+      content: "";
 
-    0 0 28px
-    rgba(50,221,183,.23),
+      position: absolute;
 
-    inset
-    0 0 28px
-    rgba(50,221,183,.16);
+      inset: 12%;
 
-}
+      border-radius: 50%;
 
+      border:
+        2px solid
+        rgba(50,221,183,.22);
 
-.portal::after {
+      box-shadow:
+        0 0 28px rgba(50,221,183,.23),
+        inset 0 0 28px rgba(50,221,183,.16);
+    }
 
-  content:
-    "";
 
-  position:
-    absolute;
+    .portal::after {
+      content: "";
 
-  inset:
-    22%;
+      position: absolute;
 
-  border-radius:
-    50%;
+      inset: 22%;
 
-  border:
+      border-radius: 50%;
 
-    1px solid
-    rgba(224,184,98,.28);
+      border:
+        1px solid
+        rgba(224,184,98,.28);
 
-  box-shadow:
+      box-shadow:
+        0 0 38px
+        rgba(224,184,98,.15);
+    }
 
-    0 0 38px
-    rgba(224,184,98,.15);
 
-}
+    @keyframes portalPulse {
 
+      0%,
+      100% {
+        transform:
+          translateX(-50%)
+          scale(.96);
 
-@keyframes portalPulse {
+        opacity: .60;
+      }
 
-  0%,
-  100% {
 
-    transform:
+      50% {
+        transform:
+          translateX(-50%)
+          scale(1.06);
 
-      translateX(-50%)
-      scale(.96);
+        opacity: 1;
+      }
 
-    opacity:
-      .60;
+    }
 
-  }
 
+    .hero-logo-wrap {
+      width: 100%;
 
-  50% {
+      max-width: 930px;
 
-    transform:
+      min-height:
+        clamp(
+          290px,
+          46vw,
+          470px
+        );
 
-      translateX(-50%)
-      scale(1.06);
+      display: flex;
 
-    opacity:
-      1;
+      justify-content:
+        center;
 
-  }
+      align-items:
+        center;
 
-}
+      position: relative;
 
+      z-index: 6;
 
-.hero-logo-wrap {
+      margin:
+        0 auto;
+    }
 
-  width:
-    100%;
 
-  max-width:
-    930px;
+    .hero-logo-shadow {
+      position: absolute;
 
-  min-height:
+      bottom: 28px;
 
-    clamp(
-      290px,
-      46vw,
-      470px
-    );
+      left: 50%;
 
-  display:
-    flex;
+      transform:
+        translateX(-50%);
 
-  justify-content:
-    center;
+      width: 58%;
 
-  align-items:
-    center;
+      height: 30px;
 
-  position:
-    relative;
+      border-radius: 50%;
 
-  z-index:
-    6;
+      background:
+        rgba(0,0,0,.78);
 
-  margin:
-    0 auto;
+      filter:
+        blur(21px);
 
-}
+      animation:
+        shadowFloat
+        4s
+        ease-in-out
+        infinite;
+    }
 
 
-.hero-logo-shadow {
+    .hero-logo {
+      display: block;
 
-  position:
-    absolute;
+      width:
+        min(
+          100%,
+          920px
+        );
 
-  bottom:
-    28px;
+      height: auto;
 
-  left:
-    50%;
+      position: relative;
 
-  transform:
-    translateX(-50%);
+      z-index: 7;
 
-  width:
-    58%;
+      animation:
+        logoFloat
+        4s
+        ease-in-out
+        infinite;
 
-  height:
-    30px;
+      filter:
+        drop-shadow(
+          0 18px 15px
+          rgba(0,0,0,.55)
+        )
+        drop-shadow(
+          0 0 17px
+          rgba(255,90,159,.38)
+        )
+        drop-shadow(
+          0 0 27px
+          rgba(50,221,183,.34)
+        )
+        drop-shadow(
+          0 0 34px
+          rgba(224,184,98,.22)
+        );
+    }
 
-  border-radius:
-    50%;
 
-  background:
-    rgba(0,0,0,.78);
+    @keyframes logoFloat {
 
-  filter:
-    blur(21px);
+      0%,
+      100% {
+        transform:
+          translateY(0)
+          scale(1);
+      }
 
-  animation:
 
-    shadowFloat
-    4s
-    ease-in-out
-    infinite;
+      50% {
+        transform:
+          translateY(-17px)
+          scale(1.02);
+      }
 
-}
+    }
 
 
-.hero-logo {
+    @keyframes shadowFloat {
 
-  display:
-    block;
+      0%,
+      100% {
+        transform:
+          translateX(-50%)
+          scaleX(1);
 
-  width:
+        opacity: .56;
+      }
 
-    min(
-      100%,
-      920px
-    );
 
-  height:
-    auto;
+      50% {
+        transform:
+          translateX(-50%)
+          scaleX(.80);
 
-  position:
-    relative;
+        opacity: .27;
+      }
 
-  z-index:
-    7;
+    }
 
-  animation:
 
-    logoFloat
-    4s
-    ease-in-out
-    infinite;
+    .subtitle {
+      position: relative;
 
-  filter:
+      z-index: 6;
 
-    drop-shadow(
-      0 18px 15px
-      rgba(0,0,0,.55)
-    )
+      max-width: 760px;
 
-    drop-shadow(
-      0 0 17px
-      rgba(255,90,159,.38)
-    )
+      margin:
+        -15px
+        auto
+        0;
 
-    drop-shadow(
-      0 0 27px
-      rgba(50,221,183,.34)
-    )
+      padding:
+        0 18px;
 
-    drop-shadow(
-      0 0 34px
-      rgba(224,184,98,.22)
-    );
+      font-size:
+        clamp(
+          16px,
+          2.2vw,
+          20px
+        );
 
-}
+      line-height: 1.7;
 
+      color:
+        var(--text-soft);
+    }
 
-@keyframes logoFloat {
 
-  0%,
-  100% {
+    .subtitle strong {
+      color:
+        var(--ivory);
 
-    transform:
+      font-weight:
+        900;
+    }
 
-      translateY(0)
-      scale(1);
 
-  }
+    /* =========================================================
+       BOTONES PRINCIPALES
+       ========================================================= */
 
+    .main-buttons {
+      width: 100%;
 
-  50% {
+      display: grid;
 
-    transform:
+      gap: 15px;
 
-      translateY(-17px)
-      scale(1.02);
+      margin-top:
+        44px;
 
-  }
+      position: relative;
 
-}
+      z-index: 7;
+    }
 
 
-@keyframes shadowFloat {
+    .image-button {
+      width: 100%;
 
-  0%,
-  100% {
+      aspect-ratio:
+        7 / 1;
 
-    transform:
+      display: block;
 
-      translateX(-50%)
-      scaleX(1);
+      position: relative;
 
-    opacity:
-      .56;
+      overflow: hidden;
 
-  }
+      padding: 0;
 
+      margin: 0;
 
-  50% {
+      border: 0;
 
-    transform:
+      border-radius: 0;
 
-      translateX(-50%)
-      scaleX(.80);
+      background:
+        transparent;
 
-    opacity:
-      .27;
+      color: inherit;
 
-  }
+      text-decoration:
+        none;
 
-}
+      appearance:
+        none;
 
+      cursor:
+        pointer;
 
-.subtitle {
+      font:
+        inherit;
 
-  position:
-    relative;
+      line-height: 0;
 
-  z-index:
-    6;
+      transition:
+        transform
+        .24s
+        ease,
+        filter
+        .24s
+        ease;
 
-  max-width:
-    760px;
+      -webkit-tap-highlight-color:
+        transparent;
+    }
 
-  margin:
 
-    -15px
-    auto
-    0;
+    .image-button img {
+      position: absolute;
 
-  padding:
-    0 18px;
+      left: 0;
 
-  font-size:
+      width: 100%;
 
-    clamp(
-      16px,
-      2.2vw,
-      20px
-    );
+      max-width: none;
 
-  line-height:
-    1.7;
+      height: auto;
 
-  color:
-    var(--text-soft);
+      display: block;
 
-}
+      pointer-events: none;
 
+      user-select: none;
 
-.subtitle strong {
+      -webkit-user-drag:
+        none;
+    }
 
-  color:
-    var(--ivory);
 
-  font-weight:
-    900;
+    .image-button.button-1 img {
+      top: 50%;
 
-}
+      transform:
+        translateY(-46.5%);
+    }
 
 
-/* =========================================================
-   BOTONES PRINCIPALES
-   ========================================================= */
+    .image-button.button-2 img {
+      top: 50%;
 
-.main-buttons {
+      transform:
+        translateY(-48.7%);
+    }
 
-  width:
-    100%;
 
-  display:
-    grid;
+    .image-button.button-3 img {
+      top: 50%;
 
-  gap:
-    15px;
+      transform:
+        translateY(-49.2%);
+    }
 
-  margin-top:
-    44px;
 
-  position:
-    relative;
+    .image-button:hover,
+    .image-button:focus-visible {
+      transform:
+        translateY(-4px)
+        scale(1.006);
 
-  z-index:
-    7;
+      filter:
+        brightness(1.08)
+        saturate(1.06);
 
-}
+      outline:
+        none;
+    }
 
 
-.image-button {
+    .image-button:active {
+      transform:
+        translateY(-1px)
+        scale(.998);
+    }
 
-  width:
-    100%;
 
-  aspect-ratio:
-    7 / 1;
+    /* =========================================================
+       CUADROS
+       ========================================================= */
 
-  display:
-    block;
+    .rendered-section {
+      width: 100%;
 
-  position:
-    relative;
+      display: block;
 
-  overflow:
-    hidden;
+      position: relative;
 
-  padding:
-    0;
+      margin-top:
+        34px;
 
-  margin:
-    0;
+      padding: 0;
 
-  border:
-    0;
+      border: 0;
 
-  border-radius:
-    0;
+      background:
+        transparent;
 
-  background:
-    transparent;
+      overflow:
+        visible;
+    }
 
-  color:
-    inherit;
 
-  text-decoration:
-    none;
+    .rendered-section img {
+      display: block;
 
-  appearance:
-    none;
+      width: 100%;
 
-  cursor:
-    pointer;
+      height: auto;
 
-  font:
-    inherit;
+      max-width: none;
 
-  line-height:
-    0;
+      margin: 0;
 
-  transition:
+      padding: 0;
 
-    transform
-    .24s
-    ease,
+      user-select: none;
 
-    filter
-    .24s
-    ease;
+      -webkit-user-drag:
+        none;
+    }
 
-  -webkit-tap-highlight-color:
-    transparent;
 
-}
+    .rendered-section.clickable-render {
+      cursor: pointer;
 
+      transition:
+        transform
+        .25s
+        ease,
+        filter
+        .25s
+        ease;
 
-.image-button img {
+      -webkit-tap-highlight-color:
+        transparent;
+    }
 
-  position:
-    absolute;
 
-  left:
-    0;
+    .rendered-section.clickable-render:hover,
+    .rendered-section.clickable-render:focus-visible {
+      transform:
+        translateY(-4px);
 
-  width:
-    100%;
+      filter:
+        brightness(1.06)
+        saturate(1.03);
 
-  max-width:
-    none;
+      outline: none;
+    }
 
-  height:
-    auto;
 
-  display:
-    block;
+    .rendered-section.clickable-render:active {
+      transform:
+        translateY(-1px)
+        scale(.998);
+    }
 
-  pointer-events:
-    none;
 
-  user-select:
-    none;
+    /* =========================================================
+       REDES
+       ========================================================= */
 
-  -webkit-user-drag:
-    none;
+    .social-title {
+      margin:
+        48px
+        0
+        17px;
 
-}
+      text-align:
+        center;
 
+      font-family:
+        "Cinzel",
+        serif;
 
-.image-button.button-1 img {
+      font-size:
+        11px;
 
-  top:
-    50%;
+      font-weight:
+        800;
 
-  transform:
-    translateY(-46.5%);
+      letter-spacing:
+        4px;
 
-}
+      color:
+        var(--gold);
 
+      text-transform:
+        uppercase;
+    }
 
-.image-button.button-2 img {
 
-  top:
-    50%;
+    .socials {
+      display: grid;
 
-  transform:
-    translateY(-48.7%);
+      grid-template-columns:
+        repeat(
+          2,
+          1fr
+        );
 
-}
+      gap:
+        12px;
+    }
 
 
-.image-button.button-3 img {
+    .social-image-link {
+      display: block;
 
-  top:
-    50%;
+      width: 100%;
 
-  transform:
-    translateY(-49.2%);
+      line-height: 0;
 
-}
+      text-decoration:
+        none;
 
+      background:
+        transparent;
 
-.image-button:hover,
-.image-button:focus-visible {
+      border: 0;
 
-  transform:
+      overflow:
+        visible;
 
-    translateY(-4px)
-    scale(1.006);
+      transition:
+        transform
+        .22s
+        ease,
+        filter
+        .22s
+        ease;
 
-  filter:
+      -webkit-tap-highlight-color:
+        transparent;
+    }
 
-    brightness(1.08)
-    saturate(1.06);
 
-  outline:
-    none;
+    .social-image-link img {
+      display: block;
 
-}
+      width: 100%;
 
+      height: auto;
 
-.image-button:active {
+      max-width: none;
 
-  transform:
+      margin: 0;
 
-    translateY(-1px)
-    scale(.998);
+      padding: 0;
 
-}
+      pointer-events: none;
 
+      user-select: none;
 
-/* =========================================================
-   CUADROS
-   ========================================================= */
+      -webkit-user-drag:
+        none;
+    }
 
-.rendered-section {
 
-  width:
-    100%;
+    .social-image-link:hover,
+    .social-image-link:focus-visible {
+      transform:
+        translateY(-3px)
+        scale(1.006);
 
-  display:
-    block;
+      filter:
+        brightness(1.06)
+        saturate(1.04);
 
-  position:
-    relative;
+      outline:
+        none;
+    }
 
-  margin-top:
-    34px;
 
-  padding:
-    0;
+    footer {
+      margin-top:
+        34px;
 
-  border:
-    0;
+      text-align:
+        center;
 
-  background:
-    transparent;
+      color:
+        #b9b2a4;
 
-  overflow:
-    visible;
+      font-size:
+        13px;
 
-}
+      line-height:
+        1.8;
+    }
 
 
-.rendered-section img {
+    .status {
+      display:
+        inline-flex;
 
-  display:
-    block;
+      align-items:
+        center;
 
-  width:
-    100%;
+      gap: 8px;
 
-  height:
-    auto;
+      margin-top:
+        7px;
 
-  max-width:
-    none;
+      color:
+        var(--teal);
 
-  margin:
-    0;
+      font-size:
+        12px;
 
-  padding:
-    0;
+      font-weight:
+        800;
 
-  user-select:
-    none;
+      letter-spacing:
+        .6px;
+    }
 
-  -webkit-user-drag:
-    none;
 
-}
+    .dot {
+      width: 8px;
 
+      height: 8px;
 
-.rendered-section.clickable-render {
+      border-radius:
+        50%;
 
-  cursor:
-    pointer;
+      background:
+        var(--teal);
 
-  transition:
+      box-shadow:
+        0 0 12px
+        rgba(50,221,183,.55);
+    }
 
-    transform
-    .25s
-    ease,
 
-    filter
-    .25s
-    ease;
+    /* =========================================================
+       MODALES
+       ========================================================= */
 
-  -webkit-tap-highlight-color:
-    transparent;
+    .modal-backdrop {
+      position: fixed;
 
-}
+      inset: 0;
 
+      z-index: 40;
 
-.rendered-section.clickable-render:hover,
-.rendered-section.clickable-render:focus-visible {
+      display: none;
 
-  transform:
-    translateY(-4px);
+      padding:
+        22px;
 
-  filter:
+      background:
+        rgba(3,4,8,.82);
 
-    brightness(1.06)
-    saturate(1.03);
+      backdrop-filter:
+        blur(10px);
 
-  outline:
-    none;
+      overflow-y:
+        auto;
+    }
 
-}
 
+    .modal-backdrop.is-open {
+      display: block;
+    }
 
-.rendered-section.clickable-render:active {
 
-  transform:
+    .modal-panel {
+      width:
+        min(
+          1080px,
+          100%
+        );
 
-    translateY(-1px)
-    scale(.998);
+      margin:
+        auto;
 
-}
+      padding:
+        26px
+        22px
+        24px;
 
+      position:
+        relative;
 
-/* =========================================================
-   REDES — IMÁGENES RENDERIZADAS
-   ========================================================= */
+      border-radius:
+        30px;
 
-.social-title {
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(224,184,98,.08),
+          transparent 40%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(20,18,28,.97),
+          rgba(7,7,11,.98)
+        );
 
-  margin:
+      border:
+        1px solid
+        rgba(224,184,98,.22);
 
-    48px
-    0
-    17px;
+      box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.6),
+        inset 0 1px 0
+        rgba(255,255,255,.04);
+    }
 
-  text-align:
-    center;
 
-  font-family:
-    "Cinzel",
-    serif;
+    .modal-close {
+      position: absolute;
 
-  font-size:
-    11px;
+      top: 14px;
 
-  font-weight:
-    800;
+      right: 14px;
 
-  letter-spacing:
-    4px;
+      width: 44px;
 
-  color:
-    var(--gold);
+      height: 44px;
 
-  text-transform:
-    uppercase;
+      border:
+        1px solid
+        rgba(224,184,98,.22);
 
-}
+      border-radius:
+        50%;
 
+      background:
+        rgba(255,255,255,.03);
 
-.socials {
+      color:
+        var(--ivory);
 
-  display:
-    grid;
+      font-size:
+        28px;
 
-  grid-template-columns:
+      line-height:
+        1;
 
-    repeat(
-      2,
-      1fr
-    );
+      cursor:
+        pointer;
 
-  gap:
-    12px;
+      transition:
+        transform
+        .2s
+        ease,
+        border-color
+        .2s
+        ease,
+        background
+        .2s
+        ease;
+    }
 
-}
 
+    .modal-close:hover {
+      transform:
+        scale(1.05);
 
-.social-image-link {
+      border-color:
+        rgba(224,184,98,.52);
 
-  display:
-    block;
+      background:
+        rgba(255,255,255,.06);
+    }
 
-  width:
-    100%;
 
-  line-height:
-    0;
+    .modal-logo-wrap {
+      display: flex;
 
-  text-decoration:
-    none;
+      justify-content:
+        center;
 
-  background:
-    transparent;
+      margin-bottom:
+        14px;
+    }
 
-  border:
-    0;
 
-  overflow:
-    visible;
+    .modal-logo {
+      width:
+        min(
+          340px,
+          72%
+        );
 
-  transition:
+      height: auto;
 
-    transform
-    .22s
-    ease,
+      display: block;
+    }
 
-    filter
-    .22s
-    ease;
 
-  -webkit-tap-highlight-color:
-    transparent;
+    .modal-overline {
+      text-align:
+        center;
 
-}
+      color:
+        var(--gold);
 
+      font-size:
+        11px;
 
-.social-image-link img {
+      font-weight:
+        900;
 
-  display:
-    block;
+      letter-spacing:
+        4px;
 
-  width:
-    100%;
+      text-transform:
+        uppercase;
 
-  height:
-    auto;
+      margin-bottom:
+        12px;
+    }
 
-  max-width:
-    none;
 
-  margin:
-    0;
+    /* =========================================================
+       POPUP CONOCÉ EL JUEGO
+       ========================================================= */
 
-  padding:
-    0;
+    .game-panel {
+      width:
+        min(
+          1140px,
+          100%
+        );
+    }
 
-  pointer-events:
-    none;
 
-  user-select:
-    none;
+    .game-overview-view,
+    .game-board-view {
+      display:
+        none;
+    }
 
-  -webkit-user-drag:
-    none;
 
-}
+    .game-overview-view.is-active,
+    .game-board-view.is-active {
+      display:
+        block;
+    }
 
 
-.social-image-link:hover,
-.social-image-link:focus-visible {
+    .game-modal-title {
+      max-width:
+        860px;
 
-  transform:
+      margin:
+        0
+        auto
+        10px;
 
-    translateY(-3px)
-    scale(1.006);
+      text-align:
+        center;
 
-  filter:
+      font-family:
+        "Cinzel",
+        serif;
 
-    brightness(1.06)
-    saturate(1.04);
+      font-size:
+        clamp(
+          24px,
+          3.6vw,
+          40px
+        );
 
-  outline:
-    none;
+      line-height:
+        1.25;
 
-}
+      color:
+        var(--gold);
+    }
 
 
-.social-image-link:active {
+    .game-helper {
+      max-width:
+        760px;
 
-  transform:
+      margin:
+        0
+        auto
+        18px;
 
-    translateY(-1px)
-    scale(.998);
+      text-align:
+        center;
 
-}
+      color:
+        var(--text-soft);
 
+      font-size:
+        15px;
 
-footer {
+      line-height:
+        1.7;
+    }
 
-  margin-top:
-    58px;
 
-  text-align:
-    center;
+    .game-overview-stage {
+      position:
+        relative;
 
-  color:
-    #928b80;
+      width:
+        min(
+          100%,
+          900px
+        );
 
-  font-size:
-    11px;
+      margin:
+        0 auto;
+    }
 
-}
 
+    .game-overview-image,
+    .game-board-image {
+      display:
+        block;
 
-.status {
+      width:
+        100%;
 
-  display:
-    inline-flex;
+      height:
+        auto;
 
-  align-items:
-    center;
+      border-radius:
+        20px;
 
-  gap:
-    8px;
+      box-shadow:
+        0 22px 55px
+        rgba(0,0,0,.45),
+        0 0 24px
+        rgba(224,184,98,.08);
+    }
 
-  margin-top:
-    12px;
 
-}
+    .world-hotspot {
+      position:
+        absolute;
 
+      left:
+        4.2%;
 
-.dot {
+      width:
+        91.5%;
 
-  width:
-    8px;
+      border: 0;
 
-  height:
-    8px;
+      background:
+        transparent;
 
-  border-radius:
-    50%;
+      border-radius:
+        18px;
 
-  background:
-    var(--teal);
+      cursor:
+        pointer;
 
-  box-shadow:
+      transition:
+        box-shadow
+        .2s
+        ease,
+        background
+        .2s
+        ease,
+        transform
+        .2s
+        ease;
+    }
 
-    0 0 15px
-    var(--teal);
 
-}
+    .world-hotspot:hover,
+    .world-hotspot:focus-visible {
+      background:
+        rgba(255,255,255,.03);
 
+      box-shadow:
+        inset
+        0 0 0 2px
+        rgba(255,255,255,.14),
+        0 0 20px
+        rgba(224,184,98,.20);
 
-/* =========================================================
-   MODALES
-   ========================================================= */
+      outline: none;
 
-.modal-backdrop {
+      transform:
+        scale(1.003);
+    }
 
-  position:
-    fixed;
 
-  inset:
-    0;
+    .world-1 {
+      top: 27.8%;
 
-  z-index:
-    1000;
+      height: 9.3%;
+    }
 
-  display:
-    flex;
 
-  align-items:
-    center;
+    .world-2 {
+      top: 38.0%;
 
-  justify-content:
-    center;
+      height: 9.3%;
+    }
 
-  padding:
-    20px;
 
-  background:
-    rgba(0,0,0,.78);
+    .world-3 {
+      top: 48.3%;
 
-  backdrop-filter:
-    blur(9px);
+      height: 9.3%;
+    }
 
-  opacity:
-    0;
 
-  visibility:
-    hidden;
+    .world-4 {
+      top: 58.6%;
 
-  pointer-events:
-    none;
+      height: 9.3%;
+    }
 
-  transition:
-    .28s ease;
 
-}
+    .world-5 {
+      top: 68.9%;
 
+      height: 9.3%;
+    }
 
-.modal-backdrop.is-open {
 
-  opacity:
-    1;
+    .game-board-top {
+      display: flex;
 
-  visibility:
-    visible;
+      justify-content:
+        flex-start;
 
-  pointer-events:
-    auto;
+      margin-bottom:
+        10px;
+    }
 
-}
 
+    .game-back {
+      display:
+        inline-flex;
 
-.modal-panel {
+      align-items:
+        center;
 
-  width:
+      justify-content:
+        center;
 
-    min(
-      1080px,
-      100%
-    );
+      gap: 8px;
 
-  max-height:
-    92vh;
+      padding:
+        12px
+        18px;
 
-  overflow-y:
-    auto;
+      border-radius:
+        999px;
 
-  position:
-    relative;
+      border:
+        1px solid
+        rgba(224,184,98,.28);
 
-  padding:
-    28px;
+      background:
+        rgba(224,184,98,.06);
 
-  border-radius:
-    28px;
+      color:
+        var(--gold);
 
-  background:
+      font-size:
+        13px;
 
-    radial-gradient(
+      font-weight:
+        900;
 
-      circle at 10% 0%,
+      letter-spacing:
+        .5px;
 
-      rgba(50,221,183,.07),
+      cursor:
+        pointer;
 
-      transparent 28%
+      transition:
+        transform
+        .2s
+        ease,
+        border-color
+        .2s
+        ease,
+        background
+        .2s
+        ease;
+    }
 
-    ),
 
-    radial-gradient(
+    .game-back:hover {
+      transform:
+        translateY(-2px);
 
-      circle at 95% 8%,
+      border-color:
+        rgba(224,184,98,.55);
 
-      rgba(255,90,159,.07),
+      background:
+        rgba(224,184,98,.10);
+    }
 
-      transparent 30%
 
-    ),
+    .game-board-title {
+      max-width:
+        860px;
 
-    linear-gradient(
+      margin:
+        0
+        auto
+        16px;
 
-      180deg,
+      text-align:
+        center;
 
-      rgba(15,14,20,.99),
+      font-family:
+        "Cinzel",
+        serif;
 
-      rgba(7,7,10,.99)
+      font-size:
+        clamp(
+          22px,
+          3vw,
+          34px
+        );
 
-    );
+      line-height:
+        1.3;
 
-  border:
+      color:
+        var(--ivory);
+    }
 
-    1px solid
-    rgba(224,184,98,.27);
 
-  box-shadow:
+    .game-board-stage {
+      width:
+        min(
+          100%,
+          760px
+        );
 
-    0 35px 100px
-    rgba(0,0,0,.72),
+      margin:
+        0 auto;
+    }
 
-    0 0 24px
-    rgba(224,184,98,.06);
 
-}
+    .game-board-image {
+      max-height:
+        78vh;
 
+      object-fit:
+        contain;
 
-.modal-close {
+      background:
+        rgba(0,0,0,.25);
+    }
 
-  position:
-    absolute;
 
-  top:
-    16px;
+    .game-board-note {
+      max-width:
+        760px;
 
-  right:
-    16px;
+      margin:
+        14px
+        auto
+        0;
 
-  width:
-    46px;
+      text-align:
+        center;
 
-  height:
-    46px;
+      color:
+        #bfb7aa;
 
-  display:
-    grid;
+      font-size:
+        13px;
 
-  place-items:
-    center;
+      line-height:
+        1.6;
+    }
 
-  border-radius:
-    50%;
 
-  cursor:
-    pointer;
+    /* =========================================================
+       COMMUNITY
+       ========================================================= */
 
-  color:
-    var(--gold);
+    .community-panel {
+      width:
+        min(
+          980px,
+          100%
+        );
+    }
 
-  font-size:
-    28px;
 
-  background:
-    rgba(255,255,255,.03);
+    .community-title {
+      max-width:
+        800px;
 
-  border:
+      margin:
+        0
+        auto
+        8px;
 
-    1px solid
-    rgba(224,184,98,.24);
+      text-align:
+        center;
 
-}
+      font-family:
+        "Cinzel",
+        serif;
 
+      font-size:
+        clamp(
+          24px,
+          3.5vw,
+          38px
+        );
 
-.modal-logo-wrap {
+      line-height:
+        1.25;
 
-  display:
-    flex;
+      color:
+        var(--gold);
+    }
 
-  justify-content:
-    center;
 
-  margin:
+    .community-subtitle {
+      max-width:
+        720px;
 
-    4px
-    0
-    13px;
+      margin:
+        0
+        auto
+        18px;
 
-}
+      text-align:
+        center;
 
+      color:
+        var(--text-soft);
 
-.modal-logo {
+      font-size:
+        15px;
 
-  width:
+      line-height:
+        1.7;
+    }
 
-    min(
-      280px,
-      62vw
-    );
 
-  filter:
+    .community-note {
+      max-width:
+        780px;
 
-    drop-shadow(
-      0 10px 14px
-      rgba(0,0,0,.55)
-    )
+      margin:
+        0
+        auto
+        24px;
 
-    drop-shadow(
-      0 0 12px
-      rgba(224,184,98,.10)
-    );
+      padding:
+        14px
+        18px;
 
-}
+      text-align:
+        center;
 
+      border-radius:
+        16px;
 
-.modal-overline {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.10),
+          rgba(50,221,183,.08)
+        );
 
-  margin-bottom:
-    9px;
+      border:
+        1px solid
+        rgba(224,184,98,.28);
 
-  text-align:
-    center;
+      box-shadow:
+        0 14px 28px
+        rgba(0,0,0,.20),
+        inset
+        0 1px 0
+        rgba(255,255,255,.04);
 
-  color:
-    var(--gold);
+      color:
+        var(--ivory);
 
-  font-size:
-    11px;
+      font-weight:
+        800;
 
-  font-weight:
-    900;
+      line-height:
+        1.65;
+    }
 
-  letter-spacing:
-    3.5px;
 
-  text-transform:
-    uppercase;
+    .levels-list {
+      display: grid;
 
-}
+      gap:
+        14px;
+    }
 
 
-.modal-intro {
+    .level-card {
+      position:
+        relative;
 
-  max-width:
-    850px;
+      overflow:
+        hidden;
 
-  margin:
+      border-radius:
+        20px;
 
-    0
-    auto
-    9px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(24,23,31,.96),
+          rgba(9,9,13,.98)
+        );
 
-  text-align:
-    center;
+      border:
+        1px solid
+        rgba(224,184,98,.14);
 
-  font-family:
+      box-shadow:
+        0 16px 32px
+        rgba(0,0,0,.20),
+        inset
+        0 1px 0
+        rgba(255,255,255,.03);
 
-    "Libre Baskerville",
-    Georgia,
-    serif;
+      transition:
+        border-color
+        .22s
+        ease,
+        transform
+        .22s
+        ease,
+        box-shadow
+        .22s
+        ease;
+    }
 
-  font-size:
 
-    clamp(
-      18px,
-      2.3vw,
-      27px
-    );
+    .level-card:hover,
+    .level-card.is-active {
+      border-color:
+        rgba(224,184,98,.38);
 
-  font-weight:
-    700;
+      transform:
+        translateY(-2px);
 
-  line-height:
-    1.47;
+      box-shadow:
+        0 22px 40px
+        rgba(0,0,0,.28),
+        0 0 22px
+        rgba(50,221,183,.06);
+    }
 
-  color:
-    var(--ivory);
 
-}
+    .level-card.level-teal .level-number {
+      color:
+        var(--teal);
+    }
 
 
-.modal-subtitle {
+    .level-card.level-pink .level-number {
+      color:
+        var(--pink);
+    }
 
-  margin-bottom:
-    28px;
 
-  text-align:
-    center;
+    .level-card.level-gold .level-number {
+      color:
+        var(--gold);
+    }
 
-  color:
-    #aaa295;
 
-  font-size:
-    14px;
+    .level-card.level-ivory .level-number {
+      color:
+        var(--ivory);
+    }
 
-  letter-spacing:
-    .3px;
 
-}
+    .level-toggle {
+      width: 100%;
 
+      background:
+        transparent;
 
-/* =========================================================
-   INVERSORES
-   ========================================================= */
+      border: 0;
 
-.funds-chart-area {
+      color:
+        inherit;
 
-  display:
-    grid;
+      text-align:
+        left;
 
-  grid-template-columns:
+      cursor:
+        pointer;
 
-    minmax(
-      280px,
-      400px
-    )
+      padding:
+        18px
+        20px;
 
-    1fr;
+      display:
+        grid;
 
-  gap:
-    32px;
+      grid-template-columns:
+        58px
+        1fr
+        34px;
 
-  align-items:
-    center;
+      align-items:
+        center;
 
-  margin-bottom:
-    30px;
+      gap:
+        16px;
 
-}
+      font:
+        inherit;
+    }
 
 
-.donut-wrap {
+    .level-number {
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-  display:
-    flex;
+      font-size:
+        30px;
 
-  justify-content:
-    center;
+      font-weight:
+        700;
 
-}
+      line-height:
+        1;
 
+      text-align:
+        center;
+    }
 
-.donut {
 
-  width:
+    .level-text {
+      min-width:
+        0;
+    }
 
-    min(
-      390px,
-      80vw
-    );
 
-  aspect-ratio:
-    1;
+    .level-name {
+      display:
+        block;
 
-  position:
-    relative;
+      font-family:
+        "Cinzel",
+        serif;
 
-  border-radius:
-    50%;
+      font-size:
+        clamp(
+          18px,
+          2.2vw,
+          24px
+        );
 
-  background:
+      line-height:
+        1.2;
 
-    conic-gradient(
+      color:
+        var(--ivory);
+    }
 
-      var(--fund-teal)
-      0% 40%,
 
-      var(--fund-pink)
-      40% 65%,
+    .level-tagline {
+      display:
+        block;
 
-      var(--fund-gold)
-      65% 85%,
+      margin-top:
+        5px;
 
-      var(--fund-ivory)
-      85% 100%
+      color:
+        #bfb7aa;
 
-    );
+      font-size:
+        13px;
 
-  box-shadow:
+      font-weight:
+        700;
 
-    0 20px 45px
-    rgba(0,0,0,.40);
+      line-height:
+        1.45;
+    }
 
-}
 
+    .level-chevron {
+      font-size:
+        24px;
 
-.donut::after {
+      font-weight:
+        900;
 
-  content:
-    "";
+      color:
+        var(--gold);
 
-  position:
-    absolute;
+      text-align:
+        center;
 
-  inset:
-    28%;
+      transition:
+        transform
+        .25s
+        ease;
+    }
 
-  border-radius:
-    50%;
 
-  background:
+    .level-card.is-active .level-chevron,
+    .level-card:hover .level-chevron {
+      transform:
+        rotate(45deg);
+    }
 
-    linear-gradient(
 
-      180deg,
+    .level-body {
+      max-height:
+        0;
 
-      #17161e,
+      overflow:
+        hidden;
 
-      #09090d
+      transition:
+        max-height
+        .35s
+        ease,
+        opacity
+        .25s
+        ease,
+        padding
+        .25s
+        ease;
 
-    );
+      opacity:
+        0;
 
-  border:
+      padding:
+        0
+        20px;
 
-    1px solid
-    rgba(224,184,98,.16);
+      border-top:
+        1px solid
+        rgba(255,255,255,0);
+    }
 
-}
 
+    .level-card:hover .level-body,
+    .level-card.is-active .level-body {
+      max-height:
+        240px;
 
-.donut-center {
+      opacity:
+        1;
 
-  position:
-    absolute;
+      padding:
+        0
+        20px
+        20px;
 
-  inset:
-    0;
+      border-top:
+        1px solid
+        rgba(255,255,255,.06);
+    }
 
-  z-index:
-    3;
 
-  display:
-    flex;
+    .level-body p {
+      padding-top:
+        16px;
 
-  flex-direction:
-    column;
+      color:
+        var(--text-soft);
 
-  align-items:
-    center;
+      font-size:
+        14px;
 
-  justify-content:
-    center;
+      line-height:
+        1.75;
+    }
 
-  text-align:
-    center;
 
-  pointer-events:
-    none;
+    .community-contact {
+      display:
+        flex;
 
-}
+      justify-content:
+        center;
 
+      margin-top:
+        24px;
+    }
 
-.donut-center strong {
 
-  font-family:
+    .community-contact-button,
+    .investor-contact-button {
+      min-width:
+        min(
+          100%,
+          430px
+        );
 
-    "Libre Baskerville",
-    serif;
+      display:
+        inline-flex;
 
-  font-size:
+      align-items:
+        center;
 
-    clamp(
-      26px,
-      4vw,
-      44px
-    );
+      justify-content:
+        center;
 
-  color:
-    var(--ivory);
+      gap:
+        11px;
 
-}
+      padding:
+        17px
+        28px;
 
+      border-radius:
+        17px;
 
-.donut-center span {
+      text-decoration:
+        none;
 
-  max-width:
-    125px;
+      color:
+        var(--ivory);
 
-  margin-top:
-    5px;
+      font-size:
+        14px;
 
-  color:
-    #aaa295;
+      font-weight:
+        900;
 
-  font-size:
-    11px;
+      letter-spacing:
+        .7px;
 
-  font-weight:
-    800;
+      background:
+        linear-gradient(
+          105deg,
+          rgba(50,221,183,.24),
+          rgba(13,24,22,.98)
+        );
 
-  letter-spacing:
-    1.4px;
+      border:
+        1px solid
+        rgba(50,221,183,.54);
 
-}
+      box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.35),
+        0 0 18px
+        rgba(50,221,183,.10);
 
+      transition:
+        .22s ease;
+    }
 
-.donut-percent {
 
-  position:
-    absolute;
+    .community-contact-button:hover,
+    .investor-contact-button:hover {
+      transform:
+        translateY(-3px);
 
-  z-index:
-    4;
+      border-color:
+        var(--teal);
 
-  font-family:
+      box-shadow:
+        0 20px 42px
+        rgba(0,0,0,.46),
+        0 0 28px
+        rgba(50,221,183,.18);
+    }
 
-    "Nunito Sans",
-    sans-serif;
 
-  font-size:
+    /* =========================================================
+       INVERSORES
+       ========================================================= */
 
-    clamp(
-      15px,
-      2vw,
-      21px
-    );
+    .modal-intro {
+      max-width:
+        920px;
 
-  font-weight:
-    900;
+      margin:
+        0
+        auto
+        15px;
 
-  color:
-    #f4eee1;
+      text-align:
+        center;
 
-  text-shadow:
+      color:
+        var(--ivory);
 
-    0 2px 5px
-    rgba(0,0,0,.75);
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-}
+      font-size:
+        clamp(
+          20px,
+          2.8vw,
+          30px
+        );
 
+      line-height:
+        1.55;
+    }
 
-.donut-percent.p40 {
 
-  top:
-    28%;
+    .modal-subtitle {
+      text-align:
+        center;
 
-  right:
-    11%;
+      color:
+        var(--text-soft);
 
-}
+      font-size:
+        15px;
 
+      line-height:
+        1.7;
 
-.donut-percent.p25 {
+      margin-bottom:
+        20px;
+    }
 
-  bottom:
-    15%;
 
-  right:
-    28%;
+    .funds-chart-area {
+      display:
+        grid;
 
-}
+      grid-template-columns:
+        340px
+        1fr;
 
+      gap:
+        24px;
 
-.donut-percent.p20 {
+      align-items:
+        center;
 
-  bottom:
-    26%;
+      margin-bottom:
+        24px;
+    }
 
-  left:
-    8%;
 
-}
+    .donut-wrap {
+      display:
+        flex;
 
+      justify-content:
+        center;
+    }
 
-.donut-percent.p15 {
 
-  top:
-    21%;
+    .donut {
+      width:
+        300px;
 
-  left:
-    17%;
+      height:
+        300px;
 
-}
+      border-radius:
+        50%;
 
+      position:
+        relative;
 
-.fund-summary {
+      background:
+        conic-gradient(
+          var(--fund-teal)
+          0deg
+          144deg,
+          var(--fund-pink)
+          144deg
+          234deg,
+          var(--fund-gold)
+          234deg
+          306deg,
+          var(--fund-ivory)
+          306deg
+          360deg
+        );
 
-  display:
-    grid;
+      box-shadow:
+        0 22px 45px
+        rgba(0,0,0,.34);
+    }
 
-  gap:
-    11px;
 
-}
+    .donut::after {
+      content: "";
 
+      position:
+        absolute;
 
-.summary-row {
+      inset:
+        62px;
 
-  display:
-    flex;
+      border-radius:
+        50%;
 
-  align-items:
-    center;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15,13,18,.98),
+          rgba(7,7,12,.98)
+        );
 
-  gap:
-    13px;
+      box-shadow:
+        inset
+        0 0 0 1px
+        rgba(255,255,255,.04);
+    }
 
-  padding:
 
-    12px
-    14px;
+    .donut-center {
+      position:
+        absolute;
 
-  border-radius:
-    14px;
+      inset:
+        62px;
 
-  background:
-    rgba(255,255,255,.025);
+      z-index:
+        2;
 
-  border:
+      display:
+        grid;
 
-    1px solid
-    rgba(255,255,255,.055);
+      place-items:
+        center;
 
-}
+      text-align:
+        center;
 
+      padding:
+        22px;
+    }
 
-.summary-dot {
 
-  width:
-    13px;
+    .donut-center strong {
+      display:
+        block;
 
-  height:
-    13px;
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-  flex-shrink:
-    0;
+      font-size:
+        42px;
 
-  border-radius:
-    50%;
+      line-height:
+        1;
 
-}
+      color:
+        var(--ivory);
 
+      margin-bottom:
+        8px;
+    }
 
-.summary-number {
 
-  min-width:
-    58px;
+    .donut-center span {
+      display:
+        block;
 
-  font-family:
+      color:
+        #d7d0c4;
 
-    "Libre Baskerville",
-    serif;
+      font-size:
+        12px;
 
-  font-size:
-    23px;
+      line-height:
+        1.4;
 
-  font-weight:
-    700;
+      letter-spacing:
+        1px;
 
-  color:
-    var(--ivory);
+      font-weight:
+        800;
+    }
 
-}
 
+    .donut-percent {
+      position:
+        absolute;
 
-.summary-name {
+      z-index:
+        2;
 
-  color:
-    #d4ccbf;
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-  font-size:
-    14px;
+      font-size:
+        24px;
 
-  font-weight:
-    700;
+      font-weight:
+        700;
 
-}
+      color:
+        #ffffff;
 
+      text-shadow:
+        0 2px 12px
+        rgba(0,0,0,.25);
+    }
 
-.fund-allocation-list {
 
-  display:
-    grid;
+    .p40 {
+      top:
+        48px;
 
-  gap:
-    16px;
+      right:
+        72px;
+    }
 
-}
 
+    .p25 {
+      bottom:
+        66px;
 
-.allocation {
+      right:
+        54px;
+    }
 
-  border-radius:
-    21px;
 
-  overflow:
-    hidden;
+    .p20 {
+      bottom:
+        82px;
 
-  background:
+      left:
+        42px;
+    }
 
-    linear-gradient(
 
-      145deg,
+    .p15 {
+      top:
+        72px;
 
-      rgba(24,23,31,.96),
+      left:
+        68px;
+    }
 
-      rgba(9,9,13,.98)
 
-    );
+    .fund-summary {
+      display:
+        grid;
 
-  border:
+      gap:
+        13px;
+    }
 
-    1px solid
-    rgba(224,184,98,.14);
 
-}
+    .summary-row {
+      display:
+        grid;
 
+      grid-template-columns:
+        18px
+        70px
+        1fr;
 
-.allocation-head {
+      align-items:
+        center;
 
-  display:
-    flex;
+      gap:
+        12px;
 
-  align-items:
-    center;
+      padding:
+        12px
+        14px;
 
-  gap:
-    15px;
+      border-radius:
+        16px;
 
-  padding:
+      background:
+        rgba(255,255,255,.02);
 
-    17px
-    20px;
+      border:
+        1px solid
+        rgba(255,255,255,.05);
+    }
 
-  border-bottom:
 
-    1px solid
-    rgba(255,255,255,.055);
+    .summary-dot {
+      width:
+        18px;
 
-}
+      height:
+        18px;
 
+      border-radius:
+        50%;
 
-.allocation-color {
+      box-shadow:
+        0 0 14px
+        rgba(255,255,255,.08);
+    }
 
-  width:
-    10px;
 
-  align-self:
-    stretch;
+    .summary-number {
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-  min-height:
-    48px;
+      font-size:
+        26px;
 
-  border-radius:
-    999px;
+      color:
+        var(--ivory);
+    }
 
-}
 
+    .summary-name {
+      color:
+        var(--text-soft);
 
-.allocation-percent {
+      font-size:
+        15px;
 
-  min-width:
-    75px;
+      font-weight:
+        800;
 
-  font-family:
+      line-height:
+        1.4;
+    }
 
-    "Libre Baskerville",
-    serif;
 
-  font-size:
-    28px;
+    .fund-allocation-list {
+      display:
+        grid;
 
-  font-weight:
-    700;
+      gap:
+        14px;
 
-  color:
-    var(--ivory);
+      margin-top:
+        8px;
+    }
 
-}
 
+    .allocation {
+      border-radius:
+        22px;
 
-.allocation-category {
+      padding:
+        18px
+        18px
+        16px;
 
-  font-family:
+      background:
+        linear-gradient(
+          145deg,
+          rgba(26,24,34,.96),
+          rgba(10,10,15,.98)
+        );
 
-    "Libre Baskerville",
-    serif;
+      border:
+        1px solid
+        rgba(255,255,255,.06);
 
-  font-size:
+      box-shadow:
+        0 16px 35px
+        rgba(0,0,0,.18);
+    }
 
-    clamp(
-      17px,
-      2vw,
-      22px
-    );
 
-  line-height:
-    1.35;
+    .allocation-head {
+      display:
+        grid;
 
-  color:
-    var(--ivory);
+      grid-template-columns:
+        18px
+        82px
+        1fr;
 
-}
+      align-items:
+        center;
 
+      gap:
+        12px;
 
-.allocation-detail {
+      margin-bottom:
+        14px;
+    }
 
-  display:
-    grid;
 
-  grid-template-columns:
+    .allocation-color {
+      width:
+        18px;
 
-    55px
-    1fr;
+      height:
+        18px;
 
-  gap:
-    15px;
+      border-radius:
+        50%;
+    }
 
-  padding:
 
-    18px
-    20px
-    20px;
+    .allocation.teal .allocation-color {
+      background:
+        var(--fund-teal);
+    }
 
-}
 
+    .allocation.pink .allocation-color {
+      background:
+        var(--fund-pink);
+    }
 
-.allocation-number {
 
-  font-family:
+    .allocation.gold .allocation-color {
+      background:
+        var(--fund-gold);
+    }
 
-    "Libre Baskerville",
-    serif;
 
-  font-size:
-    22px;
+    .allocation.ivory .allocation-color {
+      background:
+        var(--fund-ivory);
+    }
 
-  font-weight:
-    700;
 
-  opacity:
-    .85;
+    .allocation-percent {
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-}
+      font-size:
+        30px;
 
+      color:
+        var(--ivory);
+    }
 
-.allocation-description strong {
 
-  display:
-    block;
+    .allocation-category {
+      color:
+        var(--text-soft);
 
-  margin-bottom:
-    6px;
+      font-size:
+        15px;
 
-  color:
-    #e5ded1;
+      font-weight:
+        800;
 
-  font-family:
+      line-height:
+        1.4;
+    }
 
-    "Libre Baskerville",
-    serif;
 
-  font-size:
-    15px;
+    .allocation-detail {
+      display:
+        grid;
 
-  line-height:
-    1.45;
+      grid-template-columns:
+        52px
+        1fr;
 
-}
+      gap:
+        12px;
 
+      align-items:
+        start;
+    }
 
-.allocation-description p {
 
-  color:
-    #aaa295;
+    .allocation-number {
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-  font-size:
-    14px;
+      font-size:
+        28px;
 
-  line-height:
-    1.65;
+      color:
+        var(--gold);
 
-}
+      line-height:
+        1;
 
+      text-align:
+        center;
+    }
 
-.allocation.teal
-.allocation-color {
 
-  background:
-    var(--fund-teal);
+    .allocation-description strong {
+      display:
+        block;
 
-}
+      color:
+        var(--ivory);
 
+      font-size:
+        18px;
 
-.allocation.teal
-.allocation-number {
+      line-height:
+        1.45;
 
-  color:
-    #54b5a2;
+      margin-bottom:
+        6px;
+    }
 
-}
 
+    .allocation-description p {
+      color:
+        var(--text-soft);
 
-.allocation.pink
-.allocation-color {
+      font-size:
+        14px;
 
-  background:
-    var(--fund-pink);
+      line-height:
+        1.7;
+    }
 
-}
 
+    .contract-note {
+      margin-top:
+        24px;
 
-.allocation.pink
-.allocation-number {
+      padding:
+        28px
+        25px;
 
-  color:
-    #cf698e;
+      overflow:
+        hidden;
 
-}
+      border-radius:
+        24px;
 
+      text-align:
+        center;
 
-.allocation.gold
-.allocation-color {
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(224,184,98,.17),
+          transparent 45%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(38,31,20,.78),
+          rgba(15,13,17,.98)
+        );
 
-  background:
-    var(--fund-gold);
+      border:
+        1px solid
+        rgba(224,184,98,.48);
 
-}
+      box-shadow:
+        0 22px 45px
+        rgba(0,0,0,.40),
+        0 0 28px
+        rgba(224,184,98,.10),
+        inset
+        0 1px 0
+        rgba(255,255,255,.05);
+    }
 
 
-.allocation.gold
-.allocation-number {
+    .contract-shield {
+      width:
+        72px;
 
-  color:
-    #c5a05a;
+      height:
+        72px;
 
-}
+      display:
+        grid;
 
+      place-items:
+        center;
 
-.allocation.ivory
-.allocation-color {
+      margin:
+        0
+        auto
+        14px;
 
-  background:
-    var(--fund-ivory);
+      border-radius:
+        22px;
 
-}
+      font-size:
+        38px;
 
+      color:
+        var(--gold);
 
-.allocation.ivory
-.allocation-number {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(224,184,98,.20),
+          rgba(224,184,98,.05)
+        );
 
-  color:
-    #c9c0a3;
+      border:
+        1px solid
+        rgba(224,184,98,.44);
 
-}
+      box-shadow:
+        0 0 28px
+        rgba(224,184,98,.14);
+    }
 
 
-.contract-note {
+    .contract-overline {
+      margin-bottom:
+        8px;
 
-  position:
-    relative;
+      color:
+        var(--gold);
 
-  margin-top:
-    25px;
+      font-size:
+        11px;
 
-  padding:
+      font-weight:
+        900;
 
-    28px
-    25px;
+      letter-spacing:
+        3px;
 
-  overflow:
-    hidden;
+      text-transform:
+        uppercase;
+    }
 
-  border-radius:
-    24px;
 
-  text-align:
-    center;
+    .contract-title {
+      max-width:
+        720px;
 
-  background:
+      margin:
+        0
+        auto
+        11px;
 
-    radial-gradient(
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-      circle at 50% 0%,
+      font-size:
+        clamp(
+          22px,
+          3vw,
+          32px
+        );
 
-      rgba(224,184,98,.17),
+      line-height:
+        1.3;
 
-      transparent 45%
+      color:
+        var(--ivory);
+    }
 
-    ),
 
-    linear-gradient(
+    .contract-copy {
+      max-width:
+        850px;
 
-      135deg,
+      margin:
+        0 auto;
 
-      rgba(38,31,20,.78),
+      color:
+        #d1c8ba;
 
-      rgba(15,13,17,.98)
+      font-size:
+        14px;
 
-    );
+      line-height:
+        1.75;
+    }
 
-  border:
 
-    1px solid
-    rgba(224,184,98,.48);
+    .investor-contact {
+      display:
+        flex;
 
-  box-shadow:
+      justify-content:
+        center;
 
-    0 22px 45px
-    rgba(0,0,0,.40),
+      margin-top:
+        22px;
+    }
 
-    0 0 28px
-    rgba(224,184,98,.10),
 
-    inset
-    0 1px 0
-    rgba(255,255,255,.05);
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
 
-}
+    @media (max-width: 760px) {
 
+      .page {
+        padding:
+          23px
+          14px
+          70px;
+      }
 
-.contract-shield {
 
-  width:
-    72px;
+      .hero-logo-wrap {
+        min-height:
+          260px;
+      }
 
-  height:
-    72px;
 
-  display:
-    grid;
+      .hero-logo {
+        width:
+          112%;
+      }
 
-  place-items:
-    center;
 
-  margin:
+      .portal {
+        width:
+          360px;
+      }
 
-    0
-    auto
-    14px;
 
-  border-radius:
-    22px;
+      .socials,
+      .funds-chart-area {
+        grid-template-columns:
+          1fr;
+      }
 
-  font-size:
-    38px;
 
-  color:
-    var(--gold);
+      .modal-panel {
+        padding:
+          22px
+          15px;
+      }
 
-  background:
 
-    linear-gradient(
+      .donut {
+        width:
+          260px;
 
-      145deg,
+        height:
+          260px;
+      }
 
-      rgba(224,184,98,.20),
 
-      rgba(224,184,98,.05)
+      .donut::after,
+      .donut-center {
+        inset:
+          54px;
+      }
 
-    );
 
-  border:
+      .p40 {
+        top:
+          39px;
 
-    1px solid
-    rgba(224,184,98,.44);
+        right:
+          57px;
+      }
 
-  box-shadow:
 
-    0 0 28px
-    rgba(224,184,98,.14);
+      .p25 {
+        bottom:
+          55px;
 
-}
+        right:
+          45px;
+      }
 
 
-.contract-overline {
+      .p20 {
+        bottom:
+          70px;
 
-  margin-bottom:
-    8px;
+        left:
+          36px;
+      }
 
-  color:
-    var(--gold);
 
-  font-size:
-    11px;
+      .p15 {
+        top:
+          59px;
 
-  font-weight:
-    900;
+        left:
+          54px;
+      }
 
-  letter-spacing:
-    3px;
 
-  text-transform:
-    uppercase;
+      .allocation-head {
+        align-items:
+          flex-start;
+      }
 
-}
 
+      .allocation-percent {
+        min-width:
+          66px;
 
-.contract-title {
+        font-size:
+          23px;
+      }
 
-  max-width:
-    720px;
 
-  margin:
+      .allocation-detail {
+        grid-template-columns:
+          42px
+          1fr;
+      }
 
-    0
-    auto
-    11px;
 
-  font-family:
+      .contract-note {
+        padding:
+          24px
+          17px;
+      }
 
-    "Libre Baskerville",
-    serif;
 
-  font-size:
+      .level-toggle {
+        grid-template-columns:
+          44px
+          1fr
+          26px;
 
-    clamp(
-      22px,
-      3vw,
-      32px
-    );
+        padding:
+          16px
+          16px;
 
-  line-height:
-    1.3;
+        gap:
+          12px;
+      }
 
-  color:
-    var(--ivory);
 
-}
+      .level-number {
+        font-size:
+          24px;
+      }
 
 
-.contract-copy {
+      .level-name {
+        font-size:
+          19px;
+      }
 
-  max-width:
-    850px;
 
-  margin:
-    0 auto;
+      .level-tagline {
+        font-size:
+          12px;
+      }
 
-  color:
-    #d1c8ba;
 
-  font-size:
-    14px;
+      .community-note {
+        padding:
+          12px
+          14px;
 
-  line-height:
-    1.75;
+        font-size:
+          14px;
+      }
 
-}
 
+      .game-panel {
+        width:
+          100%;
+      }
 
-.investor-contact {
 
-  display:
-    flex;
+      .game-helper {
+        font-size:
+          14px;
+      }
 
-  justify-content:
-    center;
 
-  margin-top:
-    22px;
+      .game-board-image {
+        max-height:
+          none;
+      }
 
-}
+    }
 
 
-.investor-contact-button,
-.community-contact-button {
+    @media (prefers-reduced-motion: reduce) {
 
-  min-width:
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          .01ms !important;
 
-    min(
-      100%,
-      390px
-    );
+        animation-iteration-count:
+          1 !important;
 
-  display:
-    inline-flex;
+        transition-duration:
+          .01ms !important;
+      }
 
-  align-items:
-    center;
+    }
 
-  justify-content:
-    center;
-
-  gap:
-    11px;
-
-  padding:
-
-    17px
-    28px;
-
-  border-radius:
-    17px;
-
-  text-decoration:
-    none;
-
-  color:
-    var(--ivory);
-
-  font-size:
-    14px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    .7px;
-
-  background:
-
-    linear-gradient(
-
-      105deg,
-
-      rgba(50,221,183,.24),
-
-      rgba(13,24,22,.98)
-
-    );
-
-  border:
-
-    1px solid
-    rgba(50,221,183,.54);
-
-  box-shadow:
-
-    0 15px 35px
-    rgba(0,0,0,.35),
-
-    0 0 18px
-    rgba(50,221,183,.10);
-
-  transition:
-    .22s ease;
-
-}
-
-
-.investor-contact-button:hover,
-.community-contact-button:hover {
-
-  transform:
-    translateY(-3px);
-
-  border-color:
-    var(--teal);
-
-  box-shadow:
-
-    0 20px 42px
-    rgba(0,0,0,.46),
-
-    0 0 28px
-    rgba(50,221,183,.18);
-
-}
-
-
-/* =========================================================
-   COMUNIDAD
-   ========================================================= */
-
-.community-panel {
-
-  width:
-
-    min(
-      980px,
-      100%
-    );
-
-}
-
-
-.community-title {
-
-  max-width:
-    800px;
-
-  margin:
-
-    0
-    auto
-    8px;
-
-  text-align:
-    center;
-
-  font-family:
-
-    "Cinzel",
-    serif;
-
-  font-size:
-
-    clamp(
-      24px,
-      3.5vw,
-      38px
-    );
-
-  line-height:
-    1.25;
-
-  color:
-    var(--gold);
-
-}
-
-
-.community-subtitle {
-
-  max-width:
-    720px;
-
-  margin:
-
-    0
-    auto
-    18px;
-
-  text-align:
-    center;
-
-  color:
-    var(--text-soft);
-
-  font-size:
-    15px;
-
-  line-height:
-    1.7;
-
-}
-
-
-.community-note {
-
-  max-width:
-    780px;
-
-  margin:
-
-    0
-    auto
-    24px;
-
-  padding:
-
-    14px
-    18px;
-
-  text-align:
-    center;
-
-  border-radius:
-    16px;
-
-  background:
-
-    linear-gradient(
-
-      145deg,
-
-      rgba(224,184,98,.10),
-
-      rgba(50,221,183,.08)
-
-    );
-
-  border:
-
-    1px solid
-    rgba(224,184,98,.28);
-
-  box-shadow:
-
-    0 14px 28px
-    rgba(0,0,0,.20),
-
-    inset
-    0 1px 0
-    rgba(255,255,255,.04);
-
-  color:
-    var(--ivory);
-
-  font-weight:
-    800;
-
-  line-height:
-    1.65;
-
-}
-
-
-.levels-list {
-
-  display:
-    grid;
-
-  gap:
-    14px;
-
-}
-
-
-.level-card {
-
-  position:
-    relative;
-
-  overflow:
-    hidden;
-
-  border-radius:
-    20px;
-
-  background:
-
-    linear-gradient(
-
-      145deg,
-
-      rgba(24,23,31,.96),
-
-      rgba(9,9,13,.98)
-
-    );
-
-  border:
-
-    1px solid
-    rgba(224,184,98,.14);
-
-  box-shadow:
-
-    0 16px 32px
-    rgba(0,0,0,.20),
-
-    inset
-    0 1px 0
-    rgba(255,255,255,.03);
-
-  transition:
-
-    border-color
-    .22s
-    ease,
-
-    transform
-    .22s
-    ease,
-
-    box-shadow
-    .22s
-    ease;
-
-}
-
-
-.level-card:hover,
-.level-card.is-active {
-
-  border-color:
-    rgba(224,184,98,.38);
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-
-    0 22px 40px
-    rgba(0,0,0,.28),
-
-    0 0 22px
-    rgba(50,221,183,.06);
-
-}
-
-
-.level-card.level-teal
-.level-number {
-
-  color:
-    var(--teal);
-
-}
-
-
-.level-card.level-pink
-.level-number {
-
-  color:
-    var(--pink);
-
-}
-
-
-.level-card.level-gold
-.level-number {
-
-  color:
-    var(--gold);
-
-}
-
-
-.level-card.level-ivory
-.level-number {
-
-  color:
-    var(--ivory);
-
-}
-
-
-.level-toggle {
-
-  width:
-    100%;
-
-  background:
-    transparent;
-
-  border:
-    0;
-
-  color:
-    inherit;
-
-  text-align:
-    left;
-
-  cursor:
-    pointer;
-
-  padding:
-
-    18px
-    20px;
-
-  display:
-    grid;
-
-  grid-template-columns:
-
-    58px
-    1fr
-    34px;
-
-  align-items:
-    center;
-
-  gap:
-    16px;
-
-  font:
-    inherit;
-
-}
-
-
-.level-number {
-
-  font-family:
-
-    "Libre Baskerville",
-    serif;
-
-  font-size:
-    30px;
-
-  font-weight:
-    700;
-
-  line-height:
-    1;
-
-  text-align:
-    center;
-
-}
-
-
-.level-text {
-
-  min-width:
-    0;
-
-}
-
-
-.level-name {
-
-  display:
-    block;
-
-  font-family:
-
-    "Cinzel",
-    serif;
-
-  font-size:
-
-    clamp(
-      18px,
-      2.2vw,
-      24px
-    );
-
-  line-height:
-    1.2;
-
-  color:
-    var(--ivory);
-
-}
-
-
-.level-tagline {
-
-  display:
-    block;
-
-  margin-top:
-    5px;
-
-  color:
-    #bfb7aa;
-
-  font-size:
-    13px;
-
-  font-weight:
-    700;
-
-  line-height:
-    1.45;
-
-}
-
-
-.level-chevron {
-
-  font-size:
-    24px;
-
-  font-weight:
-    900;
-
-  color:
-    var(--gold);
-
-  text-align:
-    center;
-
-  transition:
-
-    transform
-    .25s
-    ease;
-
-}
-
-
-.level-card.is-active
-.level-chevron,
-.level-card:hover
-.level-chevron {
-
-  transform:
-    rotate(45deg);
-
-}
-
-
-.level-body {
-
-  max-height:
-    0;
-
-  overflow:
-    hidden;
-
-  transition:
-
-    max-height
-    .35s
-    ease,
-
-    opacity
-    .25s
-    ease,
-
-    padding
-    .25s
-    ease;
-
-  opacity:
-    0;
-
-  padding:
-
-    0
-    20px;
-
-  border-top:
-
-    1px solid
-    rgba(255,255,255,0);
-
-}
-
-
-.level-card:hover
-.level-body,
-.level-card.is-active
-.level-body {
-
-  max-height:
-    240px;
-
-  opacity:
-    1;
-
-  padding:
-
-    0
-    20px
-    20px;
-
-  border-top:
-
-    1px solid
-    rgba(255,255,255,.06);
-
-}
-
-
-.level-body p {
-
-  padding-top:
-    16px;
-
-  color:
-    var(--text-soft);
-
-  font-size:
-    14px;
-
-  line-height:
-    1.75;
-
-}
-
-
-.community-contact {
-
-  display:
-    flex;
-
-  justify-content:
-    center;
-
-  margin-top:
-    24px;
-
-}
-
-
-.community-contact-button {
-
-  min-width:
-
-    min(
-      100%,
-      430px
-    );
-
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 760px) {
-
-
-  .page {
-
-    padding:
-
-      23px
-      14px
-      70px;
-
-  }
-
-
-  .hero-logo-wrap {
-
-    min-height:
-      260px;
-
-  }
-
-
-  .hero-logo {
-
-    width:
-      112%;
-
-  }
-
-
-  .portal {
-
-    width:
-      360px;
-
-  }
-
-
-  .socials {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .funds-chart-area {
-
-    grid-template-columns:
-      1fr;
-
-  }
-
-
-  .fund-summary {
-
-    max-width:
-      520px;
-
-    width:
-      100%;
-
-    margin:
-      0 auto;
-
-  }
-
-
-  .modal-panel {
-
-    padding:
-
-      22px
-      15px;
-
-  }
-
-
-  .allocation-head {
-
-    align-items:
-      flex-start;
-
-  }
-
-
-  .allocation-percent {
-
-    min-width:
-      66px;
-
-    font-size:
-      23px;
-
-  }
-
-
-  .allocation-detail {
-
-    grid-template-columns:
-
-      42px
-      1fr;
-
-  }
-
-
-  .contract-note {
-
-    padding:
-
-      24px
-      17px;
-
-  }
-
-
-  .level-toggle {
-
-    grid-template-columns:
-
-      44px
-      1fr
-      26px;
-
-    padding:
-      16px;
-
-    gap:
-      12px;
-
-  }
-
-
-  .level-number {
-
-    font-size:
-      24px;
-
-  }
-
-
-  .level-name {
-
-    font-size:
-      19px;
-
-  }
-
-
-  .level-tagline {
-
-    font-size:
-      12px;
-
-  }
-
-
-  .community-note {
-
-    padding:
-
-      12px
-      14px;
-
-    font-size:
-      14px;
-
-  }
-
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-
-    animation-duration:
-      .01ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      .01ms !important;
-
-  }
-
-}
-
-</style>
+  </style>
 
 </head>
 
@@ -3469,2312 +3119,2121 @@ footer {
 <body>
 
 
-<!-- =========================================================
-     FONDO
-     ========================================================= -->
+  <!-- =========================================================
+       FONDO
+       ========================================================= -->
 
-<div
-  class="space-background"
-  aria-hidden="true"
-></div>
+  <div
+    class="space-background"
+    aria-hidden="true"
+  ></div>
 
 
-<div
-  class="star-field"
-  id="starField"
-  aria-hidden="true"
-></div>
+  <div
+    class="star-field"
+    id="starField"
+    aria-hidden="true"
+  ></div>
 
 
-<div
-  class="shooting-stars"
-  id="shootingStars"
-  aria-hidden="true"
-></div>
+  <div
+    class="shooting-stars"
+    id="shootingStars"
+    aria-hidden="true"
+  ></div>
 
 
 
-<main class="page">
+  <main class="page">
 
 
-<!-- =========================================================
-     HERO
-     ========================================================= -->
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
 
-<section class="hero">
+    <section class="hero">
 
 
-<div class="eyebrow">
+      <div class="eyebrow">
 
-  WELCOME TO THE UNIVERSE
+        WELCOME TO THE UNIVERSE
 
-</div>
+      </div>
 
 
-<div class="portal"></div>
+      <div class="portal"></div>
 
 
-<div class="hero-logo-wrap">
+      <div class="hero-logo-wrap">
 
 
-<div class="hero-logo-shadow"></div>
+        <div class="hero-logo-shadow"></div>
 
 
-<img
-  src="./logo-kissing-fight.jpg.png"
-  alt="Kissing Fight"
-  class="hero-logo"
-/>
+        <img
+          src="./logo-kissing-fight.jpg.png"
+          alt="Kissing Fight"
+          class="hero-logo"
+        />
 
 
-</div>
+      </div>
 
 
 
-<p class="subtitle">
+      <p class="subtitle">
 
-  Un
+        Un
 
-  <strong>
+        <strong>
+          Match-3 competitivo
+        </strong>
 
-    Match-3 competitivo
+        con ranking, comunidad y una identidad propia.
 
-  </strong>
+        Un universo con
 
-  con ranking, comunidad y una identidad propia.
+        <strong>
+          más de un mundo por descubrir.
+        </strong>
 
-  Un universo con
+      </p>
 
-  <strong>
 
-    más de un mundo por descubrir.
 
-  </strong>
+      <!-- =========================================================
+           BOTONES PRINCIPALES
+           ========================================================= -->
 
-</p>
+      <div class="main-buttons">
 
 
+        <!-- CONOCÉ EL JUEGO -->
 
-<!-- =========================================================
-     BOTONES SUPERIORES
-     ========================================================= -->
+        <button
+          type="button"
+          class="image-button button-1"
+          data-modal-target="gameModal"
+          aria-controls="gameModal"
+          aria-haspopup="dialog"
+          aria-label="Conocé el juego — Descubrí el universo Kissing Fight"
+        >
 
-<div class="main-buttons">
+          <img
+            src="./boton%201.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          />
 
+        </button>
 
-<a
-  class="image-button button-1"
-  href="#juego"
-  aria-label="Conocé el juego — Descubrí el universo Kissing Fight"
->
 
-<img
-  src="./boton%201.png"
-  alt="Conocé el juego — Descubrí el universo Kissing Fight"
-  draggable="false"
-/>
 
-</a>
+        <!-- COMUNIDAD -->
 
+        <button
+          type="button"
+          class="image-button button-2"
+          data-modal-target="communityModal"
+          aria-controls="communityModal"
+          aria-haspopup="dialog"
+          aria-label="Sumate al Universo Kissing Fight — Conocé los niveles y beneficios"
+        >
 
+          <img
+            src="./boton%202.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          />
 
-<button
-  type="button"
-  class="image-button button-2"
-  data-modal-target="communityModal"
-  aria-controls="communityModal"
-  aria-haspopup="dialog"
-  aria-label="Sumate al Universo Kissing Fight — Conocé los niveles y beneficios"
->
+        </button>
 
-<img
-  src="./boton%202.png"
-  alt=""
-  aria-hidden="true"
-  draggable="false"
-/>
 
-</button>
 
+        <!-- INVERSORES -->
 
+        <button
+          type="button"
+          class="image-button button-3"
+          data-modal-target="investorsModal"
+          aria-controls="investorsModal"
+          aria-haspopup="dialog"
+          aria-label="Inversores y colaboradores — Conocé el destino de los fondos"
+        >
 
-<button
-  type="button"
-  class="image-button button-3"
-  data-modal-target="investorsModal"
-  aria-controls="investorsModal"
-  aria-haspopup="dialog"
-  aria-label="Inversores y colaboradores — Conocé el destino de los fondos"
->
+          <img
+            src="./boton%203.png"
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+          />
 
-<img
-  src="./boton%203.png"
-  alt=""
-  aria-hidden="true"
-  draggable="false"
-/>
+        </button>
 
-</button>
 
+      </div>
 
-</div>
 
+    </section>
 
-</section>
 
 
+    <!-- =========================================================
+         CUADRO 1
+         ========================================================= -->
 
-<!-- =========================================================
-     CUADRO 1
-     ========================================================= -->
+    <section
+      class="rendered-section"
+      id="juego"
+      aria-label="Mucho más que un Match-3"
+    >
 
-<section
-  class="rendered-section"
-  id="juego"
-  aria-label="Mucho más que un Match-3"
->
+      <img
+        src="./cuadro%201.png"
+        alt="Mucho más que un Match-3. Kissing Fight combina competencia, progresión y comunidad dentro de un universo en expansión."
+        draggable="false"
+      />
 
-<img
-  src="./cuadro%201.png"
-  alt="Mucho más que un Match-3. Kissing Fight combina competencia, progresión y comunidad dentro de un universo en expansión. Competí, descubrí y conectá."
-  draggable="false"
-/>
+    </section>
 
-</section>
 
 
+    <!-- =========================================================
+         CUADRO 2
+         ========================================================= -->
 
-<!-- =========================================================
-     CUADRO 2
-     ========================================================= -->
+    <section
+      class="rendered-section clickable-render"
+      id="comunidad"
+      role="button"
+      tabindex="0"
+      data-modal-target="communityModal"
+      aria-controls="communityModal"
+      aria-haspopup="dialog"
+      aria-label="Kissing Fight está llegando. Ver niveles del universo"
+    >
 
-<section
-  class="rendered-section clickable-render"
-  id="comunidad"
-  role="button"
-  tabindex="0"
-  data-modal-target="communityModal"
-  aria-controls="communityModal"
-  aria-haspopup="dialog"
-  aria-label="Kissing Fight está llegando. Ver niveles del universo"
->
+      <img
+        src="./cuadro%202.png"
+        alt="Kissing Fight está llegando. Ver niveles del universo."
+        draggable="false"
+      />
 
-<img
-  src="./cuadro%202.png"
-  alt="Kissing Fight está llegando. Ser de los primeros en la comunidad significa conocer el juego antes de su lanzamiento y acceder a beneficios exclusivos desde el comienzo. Ver niveles del universo."
-  draggable="false"
-/>
+    </section>
 
-</section>
 
 
+    <!-- =========================================================
+         CUADRO 3
+         ========================================================= -->
 
-<!-- =========================================================
-     CUADRO 3
-     ========================================================= -->
+    <section
+      class="rendered-section clickable-render"
+      id="inversores"
+      role="button"
+      tabindex="0"
+      data-modal-target="investorsModal"
+      aria-controls="investorsModal"
+      aria-haspopup="dialog"
+      aria-label="Formá parte desde el inicio. Ver propuesta para inversores"
+    >
 
-<section
-  class="rendered-section clickable-render"
-  id="inversores"
-  role="button"
-  tabindex="0"
-  data-modal-target="investorsModal"
-  aria-controls="investorsModal"
-  aria-haspopup="dialog"
-  aria-label="Formá parte desde el inicio. Ver propuesta para inversores"
->
+      <img
+        src="./cuadro%203.png"
+        alt="Formá parte desde el inicio. Ver propuesta para inversores."
+        draggable="false"
+      />
 
-<img
-  src="./cuadro%203.png"
-  alt="Formá parte desde el inicio. Kissing Fight está en una etapa clave de crecimiento. Ver propuesta para inversores."
-  draggable="false"
-/>
+    </section>
 
-</section>
 
 
+    <!-- =========================================================
+         REDES
+         ========================================================= -->
 
-<!-- =========================================================
-     REDES — NUEVAS IMÁGENES
-     ========================================================= -->
+    <div class="social-title">
 
-<div class="social-title">
+      ENTRÁ AL UNIVERSO
 
-  ENTRÁ AL UNIVERSO
+    </div>
 
-</div>
 
 
+    <div class="socials">
 
-<div class="socials">
 
+      <a
+        class="social-image-link"
+        href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram English"
+      >
 
-<!-- INSTAGRAM ENGLISH -->
+        <img
+          src="./instagram-ingles.png"
+          alt="Instagram English — International community"
+          draggable="false"
+        />
 
-<a
-  class="social-image-link"
-  href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram English — International community"
->
+      </a>
 
-<img
-  src="./instagram-ingles.png"
-  alt="Instagram English — International community"
-  draggable="false"
-/>
 
-</a>
 
+      <a
+        class="social-image-link"
+        href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram Español"
+      >
 
+        <img
+          src="./instagram-español.png"
+          alt="Instagram Español — Comunidad en español"
+          draggable="false"
+        />
 
-<!-- INSTAGRAM ESPAÑOL -->
+      </a>
 
-<a
-  class="social-image-link"
-  href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram Español — Comunidad en español"
->
 
-<img
-  src="./instagram-español.png"
-  alt="Instagram Español — Comunidad en español"
-  draggable="false"
-/>
 
-</a>
+      <a
+        class="social-image-link"
+        href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Canal de WhatsApp"
+      >
 
+        <img
+          src="./whatsapp-canal.png"
+          alt="Canal de WhatsApp — Novedades y anuncios"
+          draggable="false"
+        />
 
+      </a>
 
-<!-- CANAL DE WHATSAPP -->
 
-<a
-  class="social-image-link"
-  href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Canal de WhatsApp — Novedades y anuncios"
->
 
-<img
-  src="./whatsapp-canal.png"
-  alt="Canal de WhatsApp — Novedades y anuncios"
-  draggable="false"
-/>
+      <a
+        class="social-image-link"
+        href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactanos por WhatsApp"
+      >
 
-</a>
+        <img
+          src="./whatsapp-contacto.png"
+          alt="Contactanos — Hablemos por WhatsApp"
+          draggable="false"
+        />
 
+      </a>
 
 
-<!-- CONTACTO WHATSAPP -->
+    </div>
 
-<a
-  class="social-image-link"
-  href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Contactanos — Hablemos por WhatsApp"
->
 
-<img
-  src="./whatsapp-contacto.png"
-  alt="Contactanos — Hablemos por WhatsApp"
-  draggable="false"
-/>
 
-</a>
+    <footer>
 
+      © 2026 KISSING FIGHT
 
-</div>
+      <br />
 
 
+      <div class="status">
 
-<footer>
+        <span class="dot"></span>
 
-© 2026 KISSING FIGHT
+        Proyecto en desarrollo
 
-<br />
+      </div>
 
 
-<div class="status">
+    </footer>
 
-<span class="dot"></span>
 
-Proyecto en desarrollo
+  </main>
 
-</div>
 
 
-</footer>
+  <!-- =========================================================
+       POPUP CONOCÉ EL JUEGO
+       ========================================================= -->
 
+  <div
+    class="modal-backdrop"
+    id="gameModal"
+    aria-hidden="true"
+  >
 
-</main>
 
+    <div
+      class="modal-panel game-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="gameModalTitle"
+    >
 
 
-<!-- =========================================================
-     POPUP COMUNIDAD
-     ========================================================= -->
+      <button
+        type="button"
+        class="modal-close"
+        data-modal-close
+        aria-label="Cerrar"
+      >
 
-<div
-  class="modal-backdrop"
-  id="communityModal"
-  aria-hidden="true"
->
+        ×
 
+      </button>
 
-<div
-  class="modal-panel community-panel"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="communityTitle"
->
 
 
-<button
-  type="button"
-  class="modal-close"
-  data-modal-close
-  aria-label="Cerrar"
->
+      <div class="modal-logo-wrap">
 
-×
+        <img
+          src="./logo-kissing-fight.jpg.png"
+          alt="Kissing Fight"
+          class="modal-logo"
+        />
 
-</button>
+      </div>
 
 
 
-<div class="modal-logo-wrap">
+      <div class="modal-overline">
 
+        CONOCÉ EL JUEGO
 
-<img
-  src="./logo-kissing-fight.jpg.png"
-  alt="Kissing Fight"
-  class="modal-logo"
-/>
+      </div>
 
 
-</div>
 
+      <!-- =====================================================
+           VISTA PRINCIPAL — LOS 5 MUNDOS
+           ===================================================== -->
 
+      <div
+        class="game-overview-view is-active"
+        id="gameOverviewView"
+      >
 
-<div class="modal-overline">
 
-COMUNIDAD
+        <h2
+          class="game-modal-title"
+          id="gameModalTitle"
+        >
 
-</div>
+          Los primeros 5 mundos del universo Kissing Fight
 
+        </h2>
 
 
-<h2
-  class="community-title"
-  id="communityTitle"
->
 
-Niveles del Universo Kissing Fight
+        <p class="game-helper">
 
-</h2>
+          Tocá cualquiera de los universos para ver el tablero completo.
 
+        </p>
 
 
-<p class="community-subtitle">
 
-7 niveles para formar parte del universo Kissing Fight.
+        <div class="game-overview-stage">
 
-</p>
 
+          <img
+            src="./popup-juego-mundos.png"
+            alt="Los primeros cinco mundos del universo Kissing Fight"
+            class="game-overview-image"
+            draggable="false"
+          />
 
 
-<div class="community-note">
 
-Cada nivel conserva las ventajas anteriores
-y suma nuevas recompensas.
+          <!-- SABANA -->
 
-</div>
+          <button
+            type="button"
+            class="world-hotspot world-1"
+            data-game-world="0"
+            aria-label="Abrir tablero completo de Sabana — Reino Salvaje"
+          ></button>
 
 
 
-<div class="levels-list">
+          <!-- BEBÉ -->
 
+          <button
+            type="button"
+            class="world-hotspot world-2"
+            data-game-world="1"
+            aria-label="Abrir tablero completo de Baby Room — Dulce Caos"
+          ></button>
 
 
-<!-- NIVEL 1 -->
 
-<div class="level-card level-teal">
+          <!-- ALIEN -->
 
+          <button
+            type="button"
+            class="world-hotspot world-3"
+            data-game-world="2"
+            aria-label="Abrir tablero completo de UFO Club"
+          ></button>
 
-<button
-  type="button"
-  class="level-toggle"
->
 
 
-<div class="level-number">
+          <!-- CLASSIC -->
 
-1
+          <button
+            type="button"
+            class="world-hotspot world-4"
+            data-game-world="3"
+            aria-label="Abrir tablero completo de Magic Club"
+          ></button>
 
-</div>
 
 
-<div class="level-text">
+          <!-- SEXY -->
 
+          <button
+            type="button"
+            class="world-hotspot world-5"
+            data-game-world="4"
+            aria-label="Abrir tablero completo de Room 69"
+          ></button>
 
-<span class="level-name">
 
-Pueblo
+        </div>
 
-</span>
 
+      </div>
 
-<span class="level-tagline">
 
-El comienzo de todo.
 
-</span>
+      <!-- =====================================================
+           VISTA TABLERO COMPLETO
+           ===================================================== -->
 
+      <div
+        class="game-board-view"
+        id="gameBoardView"
+      >
 
-</div>
 
+        <div class="game-board-top">
 
-<div class="level-chevron">
 
-+
+          <button
+            type="button"
+            class="game-back"
+            data-game-back
+          >
 
-</div>
+            ← Volver a los 5 mundos
 
+          </button>
 
-</button>
 
+        </div>
 
 
-<div class="level-body">
 
+        <h3
+          class="game-board-title"
+          id="gameBoardTitle"
+        ></h3>
 
-<p>
 
-Todo quien se sume al Universo Kissing Fight
-forma parte de este nivel inicial.
 
-</p>
+        <div class="game-board-stage">
 
 
-</div>
+          <img
+            id="gameBoardImage"
+            class="game-board-image"
+            src=""
+            alt=""
+            draggable="false"
+          />
 
 
-</div>
+        </div>
 
 
 
-<!-- NIVEL 2 -->
+        <p class="game-board-note">
 
-<div class="level-card level-pink">
+          Volvé atrás para elegir otro universo.
 
+        </p>
 
-<button
-  type="button"
-  class="level-toggle"
->
 
+      </div>
 
-<div class="level-number">
 
-2
+    </div>
 
-</div>
 
+  </div>
 
-<div class="level-text">
 
 
-<span class="level-name">
+  <!-- =========================================================
+       POPUP COMUNIDAD
+       ========================================================= -->
 
-Pueblo Fundador
+  <div
+    class="modal-backdrop"
+    id="communityModal"
+    aria-hidden="true"
+  >
 
-</span>
 
+    <div
+      class="modal-panel community-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="communityTitle"
+    >
 
-<span class="level-tagline">
 
-Los que están desde el día 1.
+      <button
+        type="button"
+        class="modal-close"
+        data-modal-close
+        aria-label="Cerrar"
+      >
 
-</span>
+        ×
 
+      </button>
 
-</div>
 
 
-<div class="level-chevron">
+      <div class="modal-logo-wrap">
 
-+
 
-</div>
+        <img
+          src="./logo-kissing-fight.jpg.png"
+          alt="Kissing Fight"
+          class="modal-logo"
+        />
 
 
-</button>
+      </div>
 
 
 
-<div class="level-body">
+      <div class="modal-overline">
 
+        COMUNIDAD
 
-<p>
+      </div>
 
-Todo quien se sume desde el día 1 recibirá la
 
-<strong>
 
-insignia de Pueblo Fundador
+      <h2
+        class="community-title"
+        id="communityTitle"
+      >
 
-</strong>,
+        Niveles del Universo Kissing Fight
 
-que le permitirá participar en las salas de chat.
+      </h2>
 
-</p>
 
 
-</div>
+      <p class="community-subtitle">
 
+        7 niveles para formar parte del universo Kissing Fight.
 
-</div>
+      </p>
 
 
 
-<!-- NIVEL 3 -->
+      <div class="community-note">
 
-<div class="level-card level-gold">
+        Cada nivel conserva las ventajas anteriores
+        y suma nuevas recompensas.
 
+      </div>
 
-<button
-  type="button"
-  class="level-toggle"
->
 
 
-<div class="level-number">
+      <div class="levels-list">
 
-3
 
-</div>
 
+        <!-- NIVEL 1 -->
 
-<div class="level-text">
+        <div class="level-card level-teal">
 
 
-<span class="level-name">
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
-Fundador
 
-</span>
+            <div class="level-number">
+              1
+            </div>
 
 
-<span class="level-tagline">
+            <div class="level-text">
 
-Construye el futuro.
+              <span class="level-name">
+                Pueblo
+              </span>
 
-</span>
+              <span class="level-tagline">
+                El comienzo de todo.
+              </span>
 
+            </div>
 
-</div>
 
+            <div class="level-chevron">
+              +
+            </div>
 
-<div class="level-chevron">
 
-+
+          </button>
 
-</div>
 
 
-</button>
+          <div class="level-body">
 
+            <p>
 
+              Todo quien se sume al Universo Kissing Fight
+              forma parte de este nivel inicial.
 
-<div class="level-body">
+            </p>
 
+          </div>
 
-<p>
 
-Todo quien llegue a este nivel podrá competir en el
+        </div>
 
-<strong>
 
-ranking mundial
 
-</strong>,
+        <!-- NIVEL 2 -->
 
-donde el
+        <div class="level-card level-pink">
 
-<strong>
 
-número 1 de la semana ganará el pozo
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
-</strong>.
 
-</p>
+            <div class="level-number">
+              2
+            </div>
 
 
-</div>
+            <div class="level-text">
 
+              <span class="level-name">
+                Pueblo Fundador
+              </span>
 
-</div>
+              <span class="level-tagline">
+                Los que están desde el día 1.
+              </span>
 
+            </div>
 
 
-<!-- NIVEL 4 -->
+            <div class="level-chevron">
+              +
+            </div>
 
-<div class="level-card level-teal">
 
+          </button>
 
-<button
-  type="button"
-  class="level-toggle"
->
 
 
-<div class="level-number">
+          <div class="level-body">
 
-4
+            <p>
 
-</div>
+              Todo quien se sume desde el día 1 recibirá la
 
+              <strong>
+                insignia de Pueblo Fundador
+              </strong>,
 
-<div class="level-text">
+              que le permitirá participar en las salas de chat.
 
+            </p>
 
-<span class="level-name">
+          </div>
 
-Rey
 
-</span>
+        </div>
 
 
-<span class="level-tagline">
 
-Impulsá tu lugar en la comunidad.
+        <!-- NIVEL 3 -->
 
-</span>
+        <div class="level-card level-gold">
 
 
-</div>
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
 
-<div class="level-chevron">
+            <div class="level-number">
+              3
+            </div>
 
-+
 
-</div>
+            <div class="level-text">
 
+              <span class="level-name">
+                Fundador
+              </span>
 
-</button>
+              <span class="level-tagline">
+                Construye el futuro.
+              </span>
 
+            </div>
 
 
-<div class="level-body">
+            <div class="level-chevron">
+              +
+            </div>
 
 
-<p>
+          </button>
 
-Todo quien cuente con la suscripción
 
-<strong>
 
-BRONZE
+          <div class="level-body">
 
-</strong>,
+            <p>
 
-sea competidor activo y participe en la comunidad,
+              Todo quien llegue a este nivel podrá competir en el
 
-tendrá
+              <strong>
+                ranking mundial
+              </strong>,
 
-<strong>
+              donde el
 
-50% de descuento en cualquier suscripción superior
+              <strong>
+                número 1 de la semana ganará el pozo
+              </strong>.
 
-</strong>.
+            </p>
 
-</p>
+          </div>
 
 
-</div>
+        </div>
 
 
-</div>
 
+        <!-- NIVEL 4 -->
 
+        <div class="level-card level-teal">
 
-<!-- NIVEL 5 -->
 
-<div class="level-card level-pink">
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
 
-<button
-  type="button"
-  class="level-toggle"
->
+            <div class="level-number">
+              4
+            </div>
 
 
-<div class="level-number">
+            <div class="level-text">
 
-5
+              <span class="level-name">
+                Rey
+              </span>
 
-</div>
+              <span class="level-tagline">
+                Impulsá tu lugar en la comunidad.
+              </span>
 
+            </div>
 
-<div class="level-text">
 
+            <div class="level-chevron">
+              +
+            </div>
 
-<span class="level-name">
 
-Héroe
+          </button>
 
-</span>
 
 
-<span class="level-tagline">
+          <div class="level-body">
 
-Llevá tu identidad al siguiente nivel.
+            <p>
 
-</span>
+              Todo quien cuente con la suscripción
 
+              <strong>
+                BRONZE
+              </strong>,
 
-</div>
+              sea competidor activo y participe en la comunidad,
 
+              tendrá
 
-<div class="level-chevron">
+              <strong>
+                50% de descuento en cualquier suscripción superior
+              </strong>.
 
-+
+            </p>
 
-</div>
+          </div>
 
 
-</button>
+        </div>
 
 
 
-<div class="level-body">
+        <!-- NIVEL 5 -->
 
+        <div class="level-card level-pink">
 
-<p>
 
-Todo quien cuente con la suscripción
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
-<strong>
 
-SILVER
+            <div class="level-number">
+              5
+            </div>
 
-</strong>,
 
-sea competidor activo y participe en la comunidad,
+            <div class="level-text">
 
-podrá tener su
+              <span class="level-name">
+                Héroe
+              </span>
 
-<strong>
+              <span class="level-tagline">
+                Llevá tu identidad al siguiente nivel.
+              </span>
 
-avatar 100% personalizado
+            </div>
 
-</strong>.
 
-</p>
+            <div class="level-chevron">
+              +
+            </div>
 
 
-</div>
+          </button>
 
 
-</div>
 
+          <div class="level-body">
 
+            <p>
 
-<!-- NIVEL 6 -->
+              Todo quien cuente con la suscripción
 
-<div class="level-card level-gold">
+              <strong>
+                SILVER
+              </strong>,
 
+              sea competidor activo y participe en la comunidad,
 
-<button
-  type="button"
-  class="level-toggle"
->
+              podrá tener su
 
+              <strong>
+                avatar 100% personalizado
+              </strong>.
 
-<div class="level-number">
+            </p>
 
-6
+          </div>
 
-</div>
 
+        </div>
 
-<div class="level-text">
 
 
-<span class="level-name">
+        <!-- NIVEL 6 -->
 
-Dios
+        <div class="level-card level-gold">
 
-</span>
 
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
-<span class="level-tagline">
 
-Más poder dentro del universo.
+            <div class="level-number">
+              6
+            </div>
 
-</span>
 
+            <div class="level-text">
 
-</div>
+              <span class="level-name">
+                Dios
+              </span>
 
+              <span class="level-tagline">
+                Más poder dentro del universo.
+              </span>
 
-<div class="level-chevron">
+            </div>
 
-+
 
-</div>
+            <div class="level-chevron">
+              +
+            </div>
 
 
-</button>
+          </button>
 
 
 
-<div class="level-body">
+          <div class="level-body">
 
+            <p>
 
-<p>
+              Todo quien cuente con la suscripción
 
-Todo quien cuente con la suscripción
+              <strong>
+                Premium GOLD
+              </strong>,
 
-<strong>
+              sea competidor activo y participe en la comunidad,
 
-Premium GOLD
+              podrá solicitar participar como
 
-</strong>,
+              <strong>
+                moderador de una sala preexistente
+              </strong>
 
-sea competidor activo y participe en la comunidad,
+              que lo requiera.
 
-podrá solicitar participar como
+            </p>
 
-<strong>
+          </div>
 
-moderador de una sala preexistente
 
-</strong>
+        </div>
 
-que lo requiera.
 
-</p>
 
+        <!-- NIVEL 7 -->
 
-</div>
+        <div class="level-card level-ivory">
 
 
-</div>
+          <button
+            type="button"
+            class="level-toggle"
+          >
 
 
+            <div class="level-number">
+              7
+            </div>
 
-<!-- NIVEL 7 -->
 
-<div class="level-card level-ivory">
+            <div class="level-text">
 
+              <span class="level-name">
+                Creador
+              </span>
 
-<button
-  type="button"
-  class="level-toggle"
->
+              <span class="level-tagline">
+                Da forma a lo legendario.
+              </span>
 
+            </div>
 
-<div class="level-number">
 
-7
+            <div class="level-chevron">
+              +
+            </div>
 
-</div>
 
+          </button>
 
-<div class="level-text">
 
 
-<span class="level-name">
+          <div class="level-body">
 
-Creador
+            <p>
 
-</span>
+              Todo quien cuente con la suscripción
 
+              <strong>
+                Premium BLACK
+              </strong>,
 
-<span class="level-tagline">
+              sea competidor activo y participe en la comunidad,
 
-Da forma a lo legendario.
+              podrá solicitar la
 
-</span>
+              <strong>
+                creación de una sala personalizada
+              </strong>
 
+              y convertirse en su
 
-</div>
+              <strong>
+                moderador
+              </strong>.
 
+            </p>
 
-<div class="level-chevron">
+          </div>
 
-+
 
-</div>
+        </div>
 
 
-</button>
+      </div>
 
 
 
-<div class="level-body">
+      <div class="community-contact">
 
 
-<p>
+        <a
+          class="community-contact-button"
+          href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
 
-Todo quien cuente con la suscripción
+          ✦ SUMATE AL UNIVERSO KISSING FIGHT
 
-<strong>
+        </a>
 
-Premium BLACK
 
-</strong>,
+      </div>
 
-sea competidor activo y participe en la comunidad,
 
-podrá solicitar la
+    </div>
 
-<strong>
 
-creación de una sala personalizada
+  </div>
 
-</strong>
 
-y convertirse en su
 
-<strong>
+  <!-- =========================================================
+       POPUP INVERSORES
+       ========================================================= -->
 
-moderador
+  <div
+    class="modal-backdrop"
+    id="investorsModal"
+    aria-hidden="true"
+  >
 
-</strong>.
 
-</p>
+    <div
+      class="modal-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="investorTitle"
+    >
 
 
-</div>
+      <button
+        type="button"
+        class="modal-close"
+        data-modal-close
+        aria-label="Cerrar"
+      >
 
+        ×
 
-</div>
+      </button>
 
 
-</div>
 
+      <div class="modal-logo-wrap">
 
 
-<div class="community-contact">
+        <img
+          src="./logo-kissing-fight.jpg.png"
+          alt="Kissing Fight"
+          class="modal-logo"
+        />
 
 
-<a
-  class="community-contact-button"
-  href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
-  target="_blank"
-  rel="noopener noreferrer"
->
+      </div>
 
-✦ SUMATE AL UNIVERSO KISSING FIGHT
 
-</a>
 
+      <div class="modal-overline">
 
-</div>
+        DESTINO DE LOS FONDOS
 
+      </div>
 
-</div>
 
 
-</div>
+      <h2
+        class="modal-intro"
+        id="investorTitle"
+      >
 
+        El capital recaudado será destinado principalmente al desarrollo
+        tecnológico de Kissing Fight, infraestructura y seguridad,
+        adquisición de usuarios, estrategia de lanzamiento y estructura
+        legal necesaria para escalar el proyecto internacionalmente.
 
+      </h2>
 
-<!-- =========================================================
-     POPUP INVERSORES
-     ========================================================= -->
 
-<div
-  class="modal-backdrop"
-  id="investorsModal"
-  aria-hidden="true"
->
 
+      <div class="modal-subtitle">
 
-<div
-  class="modal-panel"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="investorTitle"
->
+        Asignación estimada del capital recaudado
 
+      </div>
 
-<button
-  type="button"
-  class="modal-close"
-  data-modal-close
-  aria-label="Cerrar"
->
 
-×
 
-</button>
+      <div class="funds-chart-area">
 
 
+        <div class="donut-wrap">
 
-<div class="modal-logo-wrap">
 
+          <div class="donut">
 
-<img
-  src="./logo-kissing-fight.jpg.png"
-  alt="Kissing Fight"
-  class="modal-logo"
-/>
 
+            <span class="donut-percent p40">
+              40%
+            </span>
 
-</div>
 
+            <span class="donut-percent p25">
+              25%
+            </span>
 
 
-<div class="modal-overline">
+            <span class="donut-percent p20">
+              20%
+            </span>
 
-DESTINO DE LOS FONDOS
 
-</div>
+            <span class="donut-percent p15">
+              15%
+            </span>
 
 
 
-<h2
-  class="modal-intro"
-  id="investorTitle"
->
+            <div class="donut-center">
 
-El capital recaudado será destinado principalmente al desarrollo
-tecnológico de Kissing Fight, infraestructura y seguridad,
-adquisición de usuarios, estrategia de lanzamiento y estructura
-legal necesaria para escalar el proyecto internacionalmente.
 
-</h2>
+              <strong>
+                100%
+              </strong>
 
 
+              <span>
+                DEL CAPITAL RECAUDADO
+              </span>
 
-<div class="modal-subtitle">
 
-Asignación estimada del capital recaudado
+            </div>
 
-</div>
 
+          </div>
 
 
-<div class="funds-chart-area">
+        </div>
 
 
 
-<div class="donut-wrap">
+        <div class="fund-summary">
 
 
-<div class="donut">
+          <div class="summary-row">
 
+            <span
+              class="summary-dot"
+              style="background:#269B87"
+            ></span>
 
-<span class="donut-percent p40">
+            <span class="summary-number">
+              40%
+            </span>
 
-40%
+            <span class="summary-name">
+              Producto y tecnología
+            </span>
 
-</span>
+          </div>
 
 
-<span class="donut-percent p25">
 
-25%
+          <div class="summary-row">
 
-</span>
+            <span
+              class="summary-dot"
+              style="background:#B94D78"
+            ></span>
 
+            <span class="summary-number">
+              25%
+            </span>
 
-<span class="donut-percent p20">
+            <span class="summary-name">
+              Marketing y crecimiento
+            </span>
 
-20%
+          </div>
 
-</span>
 
 
-<span class="donut-percent p15">
+          <div class="summary-row">
 
-15%
+            <span
+              class="summary-dot"
+              style="background:#B38D46"
+            ></span>
 
-</span>
+            <span class="summary-number">
+              20%
+            </span>
 
+            <span class="summary-name">
+              Infraestructura y seguridad
+            </span>
 
+          </div>
 
-<div class="donut-center">
 
 
-<strong>
+          <div class="summary-row">
 
-100%
+            <span
+              class="summary-dot"
+              style="background:#B6AE91"
+            ></span>
 
-</strong>
+            <span class="summary-number">
+              15%
+            </span>
 
+            <span class="summary-name">
+              Legal y operaciones
+            </span>
 
-<span>
+          </div>
 
-DEL CAPITAL RECAUDADO
 
-</span>
+        </div>
 
 
-</div>
+      </div>
 
 
-</div>
 
+      <div class="fund-allocation-list">
 
-</div>
 
 
+        <div class="allocation teal">
 
-<div class="fund-summary">
 
+          <div class="allocation-head">
 
+            <div class="allocation-color"></div>
 
-<div class="summary-row">
+            <div class="allocation-percent">
+              40%
+            </div>
 
+            <div class="allocation-category">
+              Producto y tecnología
+            </div>
 
-<span
-  class="summary-dot"
-  style="background:#269B87"
-></span>
+          </div>
 
 
-<span class="summary-number">
 
-40%
+          <div class="allocation-detail">
 
-</span>
 
+            <div class="allocation-number">
+              01
+            </div>
 
-<span class="summary-name">
 
-Producto y tecnología
+            <div class="allocation-description">
 
-</span>
+              <strong>
+                Desarrollo y evolución del producto
+              </strong>
 
+              <p>
 
-</div>
+                Programación, backend, sistema de cuentas,
+                ranking, salas, economía interna, UX/UI y contenido.
 
+              </p>
 
+            </div>
 
-<div class="summary-row">
 
+          </div>
 
-<span
-  class="summary-dot"
-  style="background:#B94D78"
-></span>
 
+        </div>
 
-<span class="summary-number">
 
-25%
 
-</span>
+        <div class="allocation pink">
 
 
-<span class="summary-name">
+          <div class="allocation-head">
 
-Marketing y crecimiento
+            <div class="allocation-color"></div>
 
-</span>
+            <div class="allocation-percent">
+              25%
+            </div>
 
+            <div class="allocation-category">
+              Marketing y crecimiento
+            </div>
 
-</div>
+          </div>
 
 
 
-<div class="summary-row">
+          <div class="allocation-detail">
 
 
-<span
-  class="summary-dot"
-  style="background:#B38D46"
-></span>
+            <div class="allocation-number">
+              02
+            </div>
 
 
-<span class="summary-number">
+            <div class="allocation-description">
 
-20%
+              <strong>
+                Lanzamiento, marketing y adquisición de usuarios
+              </strong>
 
-</span>
+              <p>
 
+                Campañas, creadores de contenido, redes sociales,
+                comunidad y expansión internacional.
 
-<span class="summary-name">
+              </p>
 
-Infraestructura y seguridad
+            </div>
 
-</span>
 
+          </div>
 
-</div>
 
+        </div>
 
 
-<div class="summary-row">
 
+        <div class="allocation gold">
 
-<span
-  class="summary-dot"
-  style="background:#B6AE91"
-></span>
 
+          <div class="allocation-head">
 
-<span class="summary-number">
+            <div class="allocation-color"></div>
 
-15%
+            <div class="allocation-percent">
+              20%
+            </div>
 
-</span>
+            <div class="allocation-category">
+              Infraestructura y seguridad
+            </div>
 
+          </div>
 
-<span class="summary-name">
 
-Legal y operaciones
 
-</span>
+          <div class="allocation-detail">
 
 
-</div>
+            <div class="allocation-number">
+              03
+            </div>
 
 
-</div>
+            <div class="allocation-description">
 
+              <strong>
+                Infraestructura, seguridad y escalabilidad
+              </strong>
 
-</div>
+              <p>
 
+                Servidores, bases de datos, anti-fraude,
+                anti-cheat, protección de usuarios y capacidad para crecer.
 
+              </p>
 
-<div class="fund-allocation-list">
+            </div>
 
 
+          </div>
 
-<div class="allocation teal">
 
+        </div>
 
-<div class="allocation-head">
 
 
-<div class="allocation-color"></div>
+        <div class="allocation ivory">
 
 
-<div class="allocation-percent">
+          <div class="allocation-head">
 
-40%
+            <div class="allocation-color"></div>
 
-</div>
+            <div class="allocation-percent">
+              15%
+            </div>
 
+            <div class="allocation-category">
+              Legal y operaciones
+            </div>
 
-<div class="allocation-category">
+          </div>
 
-Producto y tecnología
 
-</div>
 
+          <div class="allocation-detail">
 
-</div>
 
+            <div class="allocation-number">
+              04
+            </div>
 
 
-<div class="allocation-detail">
+            <div class="allocation-description">
 
+              <strong>
+                Estructura legal, financiera y compliance
+              </strong>
 
-<div class="allocation-number">
+              <p>
 
-01
+                Propiedad intelectual, contratos, medios de pago
+                y adecuación regulatoria del modelo económico.
 
-</div>
+              </p>
 
+            </div>
 
-<div class="allocation-description">
 
+          </div>
 
-<strong>
 
-Desarrollo y evolución del producto
+        </div>
 
-</strong>
 
+      </div>
 
-<p>
 
-Programación, backend, sistema de cuentas,
-ranking, salas, economía interna, UX/UI y contenido.
 
-</p>
+      <div class="contract-note">
 
 
-</div>
+        <div class="contract-shield">
+          🛡
+        </div>
 
 
-</div>
+        <div class="contract-overline">
+          RESPALDO CONTRACTUAL
+        </div>
 
 
-</div>
+        <h3 class="contract-title">
+          Inversión respaldada contractualmente
+        </h3>
 
 
+        <p class="contract-copy">
 
-<div class="allocation pink">
+          Cada inversor contará con un contrato individual que documentará
+          y respaldará su participación y los activos que le correspondan
+          dentro del proyecto, estableciendo de forma clara las condiciones,
+          derechos y obligaciones de las partes.
 
+        </p>
 
-<div class="allocation-head">
 
+      </div>
 
-<div class="allocation-color"></div>
 
 
-<div class="allocation-percent">
+      <div class="investor-contact">
 
-25%
 
-</div>
+        <a
+          class="investor-contact-button"
+          href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
 
+          ✦ CONTACTANOS
 
-<div class="allocation-category">
+        </a>
 
-Marketing y crecimiento
 
-</div>
+      </div>
 
 
-</div>
+    </div>
 
 
+  </div>
 
-<div class="allocation-detail">
 
 
-<div class="allocation-number">
+  <script>
 
-02
 
-</div>
+    /* =========================================================
+       DESTELLOS
+       ========================================================= */
 
+    const starField =
+      document.getElementById(
+        "starField"
+      );
 
-<div class="allocation-description">
 
+    function spawnTwinkleStar() {
 
-<strong>
 
-Lanzamiento, marketing y adquisición de usuarios
+      if (!starField) {
+        return;
+      }
 
-</strong>
 
+      const star =
+        document.createElement(
+          "span"
+        );
 
-<p>
 
-Campañas, creadores de contenido, redes sociales,
-comunidad y expansión internacional.
+      star.className =
+        "twinkle-star";
 
-</p>
 
+      const size =
+        (
+          Math.random()
+          * 1.4
+          + .7
+        )
+        .toFixed(2);
 
-</div>
 
+      const opacity =
+        (
+          Math.random()
+          * .42
+          + .28
+        )
+        .toFixed(2);
 
-</div>
 
+      const duration =
+        (
+          Math.random()
+          * 1.5
+          + 1.4
+        )
+        .toFixed(2);
 
-</div>
 
 
+      star.style.left =
+        `${
+          Math.random()
+          * 96
+          + 2
+        }%`;
 
-<div class="allocation gold">
 
+      star.style.top =
+        `${
+          Math.random()
+          * 94
+          + 3
+        }%`;
 
-<div class="allocation-head">
 
+      star.style.setProperty(
+        "--star-size",
+        `${size}px`
+      );
 
-<div class="allocation-color"></div>
 
+      star.style.setProperty(
+        "--star-opacity",
+        opacity
+      );
 
-<div class="allocation-percent">
 
-20%
+      star.style.setProperty(
+        "--twinkle-duration",
+        `${duration}s`
+      );
 
-</div>
 
+      starField.appendChild(
+        star
+      );
 
-<div class="allocation-category">
 
-Infraestructura y seguridad
+      window.setTimeout(
 
-</div>
+        () => {
 
+          star.remove();
 
-</div>
+        },
 
+        (
+          Number(duration)
+          + .3
+        )
+        * 1000
 
+      );
 
-<div class="allocation-detail">
 
+    }
 
-<div class="allocation-number">
 
-03
 
-</div>
+    function scheduleNextTwinkle() {
 
 
-<div class="allocation-description">
+      const mobile =
+        window.innerWidth
+        < 700;
 
 
-<strong>
+      const nextDelay =
+        mobile
 
-Infraestructura, seguridad y escalabilidad
+          ? Math.random()
+            * 8000
+            + 5000
 
-</strong>
+          : Math.random()
+            * 6500
+            + 3500;
 
 
-<p>
+      window.setTimeout(
 
-Servidores, bases de datos, anti-fraude,
-anti-cheat, protección de usuarios y capacidad para crecer.
+        () => {
 
-</p>
 
+          spawnTwinkleStar();
 
-</div>
 
+          if (
+            Math.random()
+            < .10
+          ) {
 
-</div>
 
+            window.setTimeout(
 
-</div>
+              spawnTwinkleStar,
 
+              Math.random()
+              * 600
+              + 250
 
+            );
 
-<div class="allocation ivory">
 
+          }
 
-<div class="allocation-head">
 
+          scheduleNextTwinkle();
 
-<div class="allocation-color"></div>
 
+        },
 
-<div class="allocation-percent">
+        nextDelay
 
-15%
+      );
 
-</div>
 
+    }
 
-<div class="allocation-category">
 
-Legal y operaciones
-
-</div>
-
-
-</div>
-
-
-
-<div class="allocation-detail">
-
-
-<div class="allocation-number">
-
-04
-
-</div>
-
-
-<div class="allocation-description">
-
-
-<strong>
-
-Estructura legal, financiera y compliance
-
-</strong>
-
-
-<p>
-
-Propiedad intelectual, contratos, medios de pago
-y adecuación regulatoria del modelo económico.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-<div class="contract-note">
-
-
-<div class="contract-shield">
-
-🛡
-
-</div>
-
-
-<div class="contract-overline">
-
-RESPALDO CONTRACTUAL
-
-</div>
-
-
-<h3 class="contract-title">
-
-Inversión respaldada contractualmente
-
-</h3>
-
-
-<p class="contract-copy">
-
-Cada inversor contará con un contrato individual que documentará
-y respaldará su participación y los activos que le correspondan
-dentro del proyecto, estableciendo de forma clara las condiciones,
-derechos y obligaciones de las partes.
-
-</p>
-
-
-</div>
-
-
-
-<div class="investor-contact">
-
-
-<a
-  class="investor-contact-button"
-  href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-✦ CONTACTANOS
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-<script>
-
-
-/* =========================================================
-   DESTELLOS
-   ========================================================= */
-
-const starField =
-  document.getElementById(
-    "starField"
-  );
-
-
-function spawnTwinkleStar() {
-
-
-  if (!starField) {
-
-    return;
-
-  }
-
-
-  const star =
-    document.createElement(
-      "span"
+    window.setTimeout(
+      scheduleNextTwinkle,
+      1800
     );
 
 
-  star.className =
-    "twinkle-star";
+
+    /* =========================================================
+       ESTRELLAS FUGACES
+       ========================================================= */
+
+    const shootingStars =
+      document.getElementById(
+        "shootingStars"
+      );
 
 
-  const size =
-    (
-      Math.random()
-      * 1.4
-      + .7
-    )
-    .toFixed(2);
+    function spawnShootingStar() {
 
 
-  const opacity =
-    (
-      Math.random()
-      * .42
-      + .28
-    )
-    .toFixed(2);
+      if (!shootingStars) {
+        return;
+      }
 
 
-  const duration =
-    (
-      Math.random()
-      * 1.5
-      + 1.4
-    )
-    .toFixed(2);
+      const star =
+        document.createElement(
+          "span"
+        );
 
 
-
-  star.style.left =
-    `${
-      Math.random()
-      * 96
-      + 2
-    }%`;
+      star.className =
+        "shooting-star";
 
 
-  star.style.top =
-    `${
-      Math.random()
-      * 94
-      + 3
-    }%`;
-
-
-
-  star.style.setProperty(
-    "--star-size",
-    `${size}px`
-  );
-
-
-  star.style.setProperty(
-    "--star-opacity",
-    opacity
-  );
-
-
-  star.style.setProperty(
-    "--twinkle-duration",
-    `${duration}s`
-  );
-
-
-
-  starField.appendChild(
-    star
-  );
-
-
-
-  window.setTimeout(
-
-    () => {
-
-      star.remove();
-
-    },
-
-    (
-      Number(duration)
-      + .3
-    )
-    * 1000
-
-  );
-
-
-}
-
-
-
-function scheduleNextTwinkle() {
-
-
-  const mobile =
-    window.innerWidth
-    < 700;
-
-
-  const nextDelay =
-    mobile
-
-      ? Math.random()
-        * 8000
-        + 5000
-
-      : Math.random()
-        * 6500
-        + 3500;
-
-
-
-  window.setTimeout(
-
-    () => {
-
-
-      spawnTwinkleStar();
-
-
-
-      if (
+      const fromLeft =
         Math.random()
-        < .10
-      ) {
+        > .5;
 
 
-        window.setTimeout(
+      const startY =
+        Math.random()
+        * 68
+        + 8;
 
-          spawnTwinkleStar,
 
-          Math.random()
-          * 600
-          + 250
+      const travelY =
+        Math.random()
+        * 5
+        + 2;
 
+
+      const duration =
+        Math.random()
+        * .8
+        + 1.2;
+
+
+      const tail =
+        Math.random()
+        * 20
+        + 22;
+
+
+      star.style.top =
+        `${startY}vh`;
+
+
+      star.style.left =
+        fromLeft
+          ? "-3vw"
+          : "103vw";
+
+
+      star.style.setProperty(
+        "--shoot-duration",
+        `${duration}s`
+      );
+
+
+      star.style.setProperty(
+        "--shoot-tail",
+        `${tail}px`
+      );
+
+
+      if (fromLeft) {
+
+
+        star.style.setProperty(
+          "--shoot-angle",
+          "17deg"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-x",
+          "24vw"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-y",
+          `${travelY}vh`
+        );
+
+
+      } else {
+
+
+        star.style.setProperty(
+          "--shoot-angle",
+          "197deg"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-x",
+          "-24vw"
+        );
+
+
+        star.style.setProperty(
+          "--shoot-y",
+          `${travelY}vh`
         );
 
 
       }
 
 
+      shootingStars.appendChild(
+        star
+      );
 
-      scheduleNextTwinkle();
 
+      window.setTimeout(
 
-    },
+        () => {
 
-    nextDelay
+          star.remove();
 
-  );
+        },
 
+        (
+          duration
+          + .4
+        )
+        * 1000
 
-}
+      );
 
 
+    }
 
-window.setTimeout(
 
-  scheduleNextTwinkle,
 
-  1800
+    function scheduleNextShootingStar() {
 
-);
 
-
-
-/* =========================================================
-   ESTRELLAS FUGACES
-   ========================================================= */
-
-const shootingStars =
-  document.getElementById(
-    "shootingStars"
-  );
-
-
-function spawnShootingStar() {
-
-
-  if (!shootingStars) {
-
-    return;
-
-  }
-
-
-  const star =
-    document.createElement(
-      "span"
-    );
-
-
-  star.className =
-    "shooting-star";
-
-
-  const fromLeft =
-    Math.random()
-    > .5;
-
-
-  const startY =
-    Math.random()
-    * 68
-    + 8;
-
-
-  const travelY =
-    Math.random()
-    * 5
-    + 2;
-
-
-  const duration =
-    Math.random()
-    * .8
-    + 1.2;
-
-
-  const tail =
-    Math.random()
-    * 20
-    + 22;
-
-
-
-  star.style.top =
-    `${startY}vh`;
-
-
-  star.style.left =
-    fromLeft
-      ? "-3vw"
-      : "103vw";
-
-
-  star.style.setProperty(
-    "--shoot-duration",
-    `${duration}s`
-  );
-
-
-  star.style.setProperty(
-    "--shoot-tail",
-    `${tail}px`
-  );
-
-
-
-  if (fromLeft) {
-
-
-    star.style.setProperty(
-      "--shoot-angle",
-      "17deg"
-    );
-
-
-    star.style.setProperty(
-      "--shoot-x",
-      "24vw"
-    );
-
-
-    star.style.setProperty(
-      "--shoot-y",
-      `${travelY}vh`
-    );
-
-
-  } else {
-
-
-    star.style.setProperty(
-      "--shoot-angle",
-      "197deg"
-    );
-
-
-    star.style.setProperty(
-      "--shoot-x",
-      "-24vw"
-    );
-
-
-    star.style.setProperty(
-      "--shoot-y",
-      `${travelY}vh`
-    );
-
-
-  }
-
-
-
-  shootingStars.appendChild(
-    star
-  );
-
-
-
-  window.setTimeout(
-
-    () => {
-
-      star.remove();
-
-    },
-
-    (
-      duration
-      + .4
-    )
-    * 1000
-
-  );
-
-
-}
-
-
-
-function scheduleNextShootingStar() {
-
-
-  const nextDelay =
-    Math.random()
-    * 32000
-    + 28000;
-
-
-
-  window.setTimeout(
-
-    () => {
-
-
-      if (
+      const nextDelay =
         Math.random()
-        < .45
-      ) {
+        * 32000
+        + 28000;
 
 
-        spawnShootingStar();
+      window.setTimeout(
+
+        () => {
 
 
+          if (
+            Math.random()
+            < .45
+          ) {
+
+            spawnShootingStar();
+
+          }
+
+
+          scheduleNextShootingStar();
+
+
+        },
+
+        nextDelay
+
+      );
+
+
+    }
+
+
+    window.setTimeout(
+      scheduleNextShootingStar,
+      20000
+    );
+
+
+
+    /* =========================================================
+       MODALES
+       ========================================================= */
+
+    const modalTriggers =
+      document.querySelectorAll(
+        "[data-modal-target]"
+      );
+
+
+    const modalCloseButtons =
+      document.querySelectorAll(
+        "[data-modal-close]"
+      );
+
+
+    const modals =
+      document.querySelectorAll(
+        ".modal-backdrop"
+      );
+
+
+
+    function openModalById(
+      modalId
+    ) {
+
+
+      const modal =
+        document.getElementById(
+          modalId
+        );
+
+
+      if (!modal) {
+        return;
       }
 
 
+      modals.forEach(
 
-      scheduleNextShootingStar();
-
-
-    },
-
-    nextDelay
-
-  );
+        item => {
 
 
-}
+          item.classList.remove(
+            "is-open"
+          );
 
 
-
-window.setTimeout(
-
-  scheduleNextShootingStar,
-
-  20000
-
-);
+          item.setAttribute(
+            "aria-hidden",
+            "true"
+          );
 
 
+        }
 
-/* =========================================================
-   MODALES
-   ========================================================= */
-
-const modalTriggers =
-  document.querySelectorAll(
-    "[data-modal-target]"
-  );
+      );
 
 
-const modalCloseButtons =
-  document.querySelectorAll(
-    "[data-modal-close]"
-  );
-
-
-const modals =
-  document.querySelectorAll(
-    ".modal-backdrop"
-  );
-
-
-
-function openModalById(
-  modalId
-) {
-
-
-  const modal =
-    document.getElementById(
-      modalId
-    );
-
-
-  if (!modal) {
-
-    return;
-
-  }
-
-
-
-  modals.forEach(
-
-    item => {
-
-
-      item.classList.remove(
+      modal.classList.add(
         "is-open"
       );
 
 
-      item.setAttribute(
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.classList.add(
+        "modal-open"
+      );
+
+
+      if (
+        modalId
+        === "gameModal"
+      ) {
+
+        showGameOverview();
+
+      }
+
+
+    }
+
+
+
+    function closeModal(
+      modal
+    ) {
+
+
+      if (!modal) {
+        return;
+      }
+
+
+      modal.classList.remove(
+        "is-open"
+      );
+
+
+      modal.setAttribute(
         "aria-hidden",
         "true"
       );
 
 
-    }
+      if (
+        modal.id
+        === "gameModal"
+      ) {
 
-  );
-
-
-
-  modal.classList.add(
-    "is-open"
-  );
-
-
-  modal.setAttribute(
-    "aria-hidden",
-    "false"
-  );
-
-
-  document.body.classList.add(
-    "modal-open"
-  );
-
-
-}
-
-
-
-function closeModal(
-  modal
-) {
-
-
-  if (!modal) {
-
-    return;
-
-  }
-
-
-  modal.classList.remove(
-    "is-open"
-  );
-
-
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-
-
-  if (
-    !document.querySelector(
-      ".modal-backdrop.is-open"
-    )
-  ) {
-
-
-    document.body.classList.remove(
-      "modal-open"
-    );
-
-
-  }
-
-
-}
-
-
-
-modalTriggers.forEach(
-
-  trigger => {
-
-
-    trigger.addEventListener(
-
-      "click",
-
-      function(event) {
-
-
-        event.preventDefault();
-
-
-        openModalById(
-
-          this.getAttribute(
-            "data-modal-target"
-          )
-
-        );
-
+        showGameOverview();
 
       }
 
-    );
 
-
-
-    trigger.addEventListener(
-
-      "keydown",
-
-      function(event) {
-
-
-        if (
-          event.key === "Enter"
-          ||
-          event.key === " "
-        ) {
-
-
-          event.preventDefault();
-
-
-          openModalById(
-
-            this.getAttribute(
-              "data-modal-target"
-            )
-
-          );
-
-
-        }
-
-
-      }
-
-    );
-
-
-  }
-
-);
-
-
-
-modalCloseButtons.forEach(
-
-  button => {
-
-
-    button.addEventListener(
-
-      "click",
-
-      function() {
-
-
-        closeModal(
-
-          this.closest(
-            ".modal-backdrop"
-          )
-
-        );
-
-
-      }
-
-    );
-
-
-  }
-
-);
-
-
-
-modals.forEach(
-
-  modal => {
-
-
-    modal.addEventListener(
-
-      "click",
-
-      function(event) {
-
-
-        if (
-          event.target
-          === modal
-        ) {
-
-
-          closeModal(
-            modal
-          );
-
-
-        }
-
-
-      }
-
-    );
-
-
-  }
-
-);
-
-
-
-document.addEventListener(
-
-  "keydown",
-
-  function(event) {
-
-
-    if (
-      event.key
-      === "Escape"
-    ) {
-
-
-      const openModal =
+      const someOpen =
         document.querySelector(
           ".modal-backdrop.is-open"
         );
 
 
-      if (openModal) {
+      if (!someOpen) {
 
 
-        closeModal(
-          openModal
+        document.body.classList.remove(
+          "modal-open"
         );
 
 
@@ -5784,56 +5243,30 @@ document.addEventListener(
     }
 
 
-  }
 
-);
+    modalTriggers.forEach(
 
-
-
-/* =========================================================
-   NIVELES
-   ========================================================= */
-
-const levelCards =
-  document.querySelectorAll(
-    ".level-card"
-  );
+      trigger => {
 
 
+        trigger.addEventListener(
 
-levelCards.forEach(
+          "click",
 
-  card => {
-
-
-    const toggle =
-      card.querySelector(
-        ".level-toggle"
-      );
+          function(event) {
 
 
-
-    toggle.addEventListener(
-
-      "click",
-
-      function() {
+            event.preventDefault();
 
 
-        const isActive =
-          card.classList.contains(
-            "is-active"
-          );
+            const modalId =
+              this.getAttribute(
+                "data-modal-target"
+              );
 
 
-
-        levelCards.forEach(
-
-          item => {
-
-
-            item.classList.remove(
-              "is-active"
+            openModalById(
+              modalId
             );
 
 
@@ -5842,13 +5275,147 @@ levelCards.forEach(
         );
 
 
+        trigger.addEventListener(
 
-        if (!isActive) {
+          "keydown",
+
+          function(event) {
 
 
-          card.classList.add(
-            "is-active"
-          );
+            if (
+              event.key === "Enter"
+              ||
+              event.key === " "
+            ) {
+
+
+              event.preventDefault();
+
+
+              const modalId =
+                this.getAttribute(
+                  "data-modal-target"
+                );
+
+
+              openModalById(
+                modalId
+              );
+
+
+            }
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+
+    modalCloseButtons.forEach(
+
+      button => {
+
+
+        button.addEventListener(
+
+          "click",
+
+          function() {
+
+
+            const modal =
+              this.closest(
+                ".modal-backdrop"
+              );
+
+
+            closeModal(
+              modal
+            );
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+
+    modals.forEach(
+
+      modal => {
+
+
+        modal.addEventListener(
+
+          "click",
+
+          function(event) {
+
+
+            if (
+              event.target
+              === modal
+            ) {
+
+
+              closeModal(
+                modal
+              );
+
+
+            }
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+
+    document.addEventListener(
+
+      "keydown",
+
+      function(event) {
+
+
+        if (
+          event.key
+          === "Escape"
+        ) {
+
+
+          const openModal =
+            document.querySelector(
+              ".modal-backdrop.is-open"
+            );
+
+
+          if (openModal) {
+
+
+            closeModal(
+              openModal
+            );
+
+
+          }
 
 
         }
@@ -5859,12 +5426,322 @@ levelCards.forEach(
     );
 
 
-  }
 
-);
+    /* =========================================================
+       NIVELES
+       ========================================================= */
+
+    const levelCards =
+      document.querySelectorAll(
+        ".level-card"
+      );
 
 
-</script>
+
+    levelCards.forEach(
+
+      card => {
+
+
+        const toggle =
+          card.querySelector(
+            ".level-toggle"
+          );
+
+
+        toggle.addEventListener(
+
+          "click",
+
+          function() {
+
+
+            const isActive =
+              card.classList.contains(
+                "is-active"
+              );
+
+
+            levelCards.forEach(
+
+              item => {
+
+
+                item.classList.remove(
+                  "is-active"
+                );
+
+
+              }
+
+            );
+
+
+            if (!isActive) {
+
+
+              card.classList.add(
+                "is-active"
+              );
+
+
+            }
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+
+    /* =========================================================
+       POPUP CONOCÉ EL JUEGO
+       ========================================================= */
+
+    const gameOverviewView =
+      document.getElementById(
+        "gameOverviewView"
+      );
+
+
+    const gameBoardView =
+      document.getElementById(
+        "gameBoardView"
+      );
+
+
+    const gameBoardTitle =
+      document.getElementById(
+        "gameBoardTitle"
+      );
+
+
+    const gameBoardImage =
+      document.getElementById(
+        "gameBoardImage"
+      );
+
+
+    const gameBackButtons =
+      document.querySelectorAll(
+        "[data-game-back]"
+      );
+
+
+    const gameWorldTriggers =
+      document.querySelectorAll(
+        "[data-game-world]"
+      );
+
+
+
+    /*
+      ORDEN EXACTO:
+
+      1 - SABANA
+      2 - BEBÉ
+      3 - ALIEN
+      4 - CLASSIC
+      5 - SEXY
+    */
+
+    const gameWorlds = [
+
+
+      {
+        title:
+          "SABANA — REINO SALVAJE",
+
+        image:
+          "./tablero-sabana.png",
+
+        alt:
+          "Tablero completo del mundo Sabana — Reino Salvaje."
+      },
+
+
+      {
+        title:
+          "BABY ROOM — DULCE CAOS",
+
+        image:
+          "./tablero-bebe.png",
+
+        alt:
+          "Tablero completo del mundo Baby Room — Dulce Caos."
+      },
+
+
+      {
+        title:
+          "UFO CLUB — HACÉ CONTACTO. HACÉ MATCH. GANÁ.",
+
+        image:
+          "./tablero-alien.png",
+
+        alt:
+          "Tablero completo del mundo UFO Club."
+      },
+
+
+      {
+        title:
+          "MAGIC CLUB — HACÉ MATCH. HACÉ MAGIA. GANÁ.",
+
+        image:
+          "./tablero-classic.png",
+
+        alt:
+          "Tablero completo del mundo Magic Club."
+      },
+
+
+      {
+        title:
+          "ROOM 69 — EL PLACER DE GANAR",
+
+        image:
+          "./tablero-sexy.png",
+
+        alt:
+          "Tablero completo del mundo Room 69."
+      }
+
+
+    ];
+
+
+
+    function showGameOverview() {
+
+
+      gameBoardView.classList.remove(
+        "is-active"
+      );
+
+
+      gameOverviewView.classList.add(
+        "is-active"
+      );
+
+
+      gameBoardImage.src =
+        "";
+
+
+      gameBoardImage.alt =
+        "";
+
+
+      gameBoardTitle.textContent =
+        "";
+
+
+    }
+
+
+
+    function showGameBoard(
+      index
+    ) {
+
+
+      const world =
+        gameWorlds[index];
+
+
+      if (!world) {
+        return;
+      }
+
+
+      gameOverviewView.classList.remove(
+        "is-active"
+      );
+
+
+      gameBoardView.classList.add(
+        "is-active"
+      );
+
+
+      gameBoardTitle.textContent =
+        world.title;
+
+
+      gameBoardImage.src =
+        world.image;
+
+
+      gameBoardImage.alt =
+        world.alt;
+
+
+    }
+
+
+
+    gameWorldTriggers.forEach(
+
+      button => {
+
+
+        button.addEventListener(
+
+          "click",
+
+          function() {
+
+
+            const index =
+              Number(
+                this.getAttribute(
+                  "data-game-world"
+                )
+              );
+
+
+            showGameBoard(
+              index
+            );
+
+
+          }
+
+        );
+
+
+      }
+
+    );
+
+
+
+    gameBackButtons.forEach(
+
+      button => {
+
+
+        button.addEventListener(
+
+          "click",
+
+          showGameOverview
+
+        );
+
+
+      }
+
+    );
+
+
+  </script>
 
 
 </body>
