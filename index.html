@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Kissing Fight</title>
 
   <meta
     name="description"
     content="Kissing Fight. Un Match-3 competitivo con ranking, comunidad y un universo en expansión."
-  />
+  >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:wght@400;700&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
-  />
+  >
 
   <style>
 
@@ -27,7 +27,6 @@
       --gold: #e0b862;
       --ivory: #f7f0d6;
       --dark: #1b1a25;
-      --black: #000;
 
       --fund-teal: #269b87;
       --fund-pink: #b94d78;
@@ -35,7 +34,6 @@
       --fund-ivory: #b6ae91;
 
       --text-soft: #d8d1c4;
-      --muted: #aaa295;
     }
 
     * {
@@ -51,18 +49,17 @@
 
     body {
       min-height: 100vh;
+      overflow-x: hidden;
+
+      position: relative;
+
+      color: var(--ivory);
 
       font-family:
         "Nunito Sans",
         Arial,
         Helvetica,
         sans-serif;
-
-      color: var(--ivory);
-
-      overflow-x: hidden;
-
-      position: relative;
 
       background: transparent;
     }
@@ -73,7 +70,7 @@
 
 
     /* =========================================================
-       FONDO PRINCIPAL
+       FONDO
        ========================================================= */
 
     .space-background {
@@ -94,7 +91,7 @@
 
 
     /* =========================================================
-       DESTELLOS FONDO
+       ESTRELLAS
        ========================================================= */
 
     .star-field,
@@ -102,11 +99,11 @@
       position: fixed;
       inset: 0;
 
-      z-index: 1;
-
       overflow: hidden;
 
       pointer-events: none;
+
+      z-index: 1;
     }
 
     .twinkle-star {
@@ -117,15 +114,14 @@
 
       border-radius: 50%;
 
-      background:
-        rgba(255,255,255,.98);
-
       opacity: 0;
 
+      background: white;
+
       box-shadow:
-        0 0 3px rgba(255,255,255,.95),
-        0 0 8px rgba(255,255,255,.58),
-        0 0 15px rgba(185,238,255,.24);
+        0 0 3px white,
+        0 0 8px rgba(255,255,255,.6),
+        0 0 15px rgba(185,238,255,.3);
 
       animation:
         randomTwinkle
@@ -146,9 +142,13 @@
       transform:
         translate(-50%,-50%);
 
-      border-radius: 999px;
-
-      opacity: .7;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          white,
+          transparent
+        );
     }
 
     .twinkle-star::before {
@@ -156,14 +156,6 @@
         calc(var(--star-size) * 6);
 
       height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.92),
-          transparent
-        );
     }
 
     .twinkle-star::after {
@@ -171,25 +163,13 @@
 
       height:
         calc(var(--star-size) * 6);
-
-      background:
-        linear-gradient(
-          180deg,
-          transparent,
-          rgba(255,255,255,.92),
-          transparent
-        );
     }
 
     @keyframes randomTwinkle {
 
       0% {
         opacity: 0;
-        transform: scale(.55);
-      }
-
-      34% {
-        opacity: .12;
+        transform: scale(.4);
       }
 
       50% {
@@ -197,18 +177,13 @@
           var(--star-opacity);
 
         transform:
-          scale(1.28);
-      }
-
-      68% {
-        opacity: .1;
+          scale(1.3);
       }
 
       100% {
         opacity: 0;
-        transform: scale(.62);
+        transform: scale(.4);
       }
-
     }
 
 
@@ -224,26 +199,15 @@
 
       border-radius: 50%;
 
-      background:
-        rgba(255,255,255,.95);
-
       opacity: 0;
 
-      filter:
-        drop-shadow(
-          0 0 3px
-          rgba(255,255,255,.9)
-        )
-        drop-shadow(
-          0 0 6px
-          rgba(185,238,255,.3)
-        );
+      background: white;
 
-      transform:
-        rotate(var(--shoot-angle));
+      filter:
+        drop-shadow(0 0 4px white);
 
       animation:
-        tinyShootingStar
+        shootingStar
         var(--shoot-duration)
         linear
         forwards;
@@ -257,57 +221,48 @@
       right: 1px;
       top: 50%;
 
-      width:
-        var(--shoot-tail);
-
+      width: var(--shoot-tail);
       height: 1px;
 
       transform:
         translateY(-50%);
 
-      border-radius: 999px;
-
       background:
         linear-gradient(
           90deg,
           transparent,
-          rgba(255,255,255,.12),
-          rgba(255,255,255,.75)
+          rgba(255,255,255,.8)
         );
-
-      opacity: .45;
     }
 
-    @keyframes tinyShootingStar {
+    @keyframes shootingStar {
 
       0% {
         opacity: 0;
 
         transform:
-          translate3d(0,0,0)
+          translate(0,0)
           rotate(var(--shoot-angle));
       }
 
-      14% {
-        opacity: .48;
+      20% {
+        opacity: .6;
       }
 
-      74% {
-        opacity: .48;
+      80% {
+        opacity: .5;
       }
 
       100% {
         opacity: 0;
 
         transform:
-          translate3d(
+          translate(
             var(--shoot-x),
-            var(--shoot-y),
-            0
+            var(--shoot-y)
           )
           rotate(var(--shoot-angle));
       }
-
     }
 
 
@@ -322,7 +277,7 @@
           1040px
         );
 
-      margin: 0 auto;
+      margin: auto;
 
       padding:
         38px
@@ -340,15 +295,14 @@
        ========================================================= */
 
     .hero {
-      display: flex;
+      position: relative;
 
+      display: flex;
       flex-direction: column;
 
       align-items: center;
 
       text-align: center;
-
-      position: relative;
 
       padding-top: 35px;
     }
@@ -377,25 +331,6 @@
       text-shadow:
         0 0 14px
         rgba(224,184,98,.48);
-
-      animation:
-        eyebrowGlow
-        4s
-        ease-in-out
-        infinite;
-    }
-
-    @keyframes eyebrowGlow {
-
-      0%,
-      100% {
-        opacity: .82;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
     }
 
     .portal {
@@ -423,13 +358,10 @@
       background:
         radial-gradient(
           circle,
-          rgba(247,240,214,.25) 0%,
-          rgba(50,221,183,.27) 9%,
-          rgba(50,221,183,.10) 26%,
-          transparent 58%
+          rgba(247,240,214,.25),
+          rgba(50,221,183,.20) 15%,
+          transparent 60%
         );
-
-      opacity: .88;
 
       animation:
         portalPulse
@@ -438,71 +370,25 @@
         infinite;
     }
 
-    .portal::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 12%;
-
-      border-radius: 50%;
-
-      border:
-        2px solid
-        rgba(50,221,183,.22);
-
-      box-shadow:
-        0 0 28px
-        rgba(50,221,183,.23),
-
-        inset
-        0 0 28px
-        rgba(50,221,183,.16);
-    }
-
-    .portal::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 22%;
-
-      border-radius: 50%;
-
-      border:
-        1px solid
-        rgba(224,184,98,.28);
-
-      box-shadow:
-        0 0 38px
-        rgba(224,184,98,.15);
-    }
-
     @keyframes portalPulse {
 
       0%,
       100% {
-
         transform:
           translateX(-50%)
           scale(.96);
 
-        opacity: .60;
-
+        opacity: .6;
       }
 
       50% {
-
         transform:
           translateX(-50%)
           scale(1.06);
 
         opacity: 1;
-
       }
-
     }
-
 
     .hero-logo-wrap {
       width: 100%;
@@ -518,48 +404,15 @@
 
       display: flex;
 
-      justify-content: center;
-
       align-items: center;
+      justify-content: center;
 
       position: relative;
 
       z-index: 6;
-
-      margin: 0 auto;
-    }
-
-    .hero-logo-shadow {
-      position: absolute;
-
-      bottom: 28px;
-      left: 50%;
-
-      transform:
-        translateX(-50%);
-
-      width: 58%;
-
-      height: 30px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(0,0,0,.78);
-
-      filter:
-        blur(21px);
-
-      animation:
-        shadowFloat
-        4s
-        ease-in-out
-        infinite;
     }
 
     .hero-logo {
-      display: block;
-
       width:
         min(
           100%,
@@ -571,12 +424,6 @@
       position: relative;
 
       z-index: 7;
-
-      animation:
-        logoFloat
-        4s
-        ease-in-out
-        infinite;
 
       filter:
         drop-shadow(
@@ -592,72 +439,37 @@
         drop-shadow(
           0 0 27px
           rgba(50,221,183,.34)
-        )
-
-        drop-shadow(
-          0 0 34px
-          rgba(224,184,98,.22)
         );
+
+      animation:
+        logoFloat
+        4s
+        ease-in-out
+        infinite;
     }
 
     @keyframes logoFloat {
 
       0%,
       100% {
-
         transform:
-          translateY(0)
-          scale(1);
-
+          translateY(0);
       }
 
       50% {
-
         transform:
-          translateY(-17px)
-          scale(1.02);
-
+          translateY(-17px);
       }
-
     }
-
-    @keyframes shadowFloat {
-
-      0%,
-      100% {
-
-        transform:
-          translateX(-50%)
-          scaleX(1);
-
-        opacity: .56;
-
-      }
-
-      50% {
-
-        transform:
-          translateX(-50%)
-          scaleX(.8);
-
-        opacity: .27;
-
-      }
-
-    }
-
 
     .subtitle {
+      max-width: 760px;
+
       position: relative;
 
       z-index: 6;
 
-      max-width: 760px;
-
-      margin:
-        -15px
-        auto
-        0;
+      margin-top: -15px;
 
       padding:
         0 18px;
@@ -678,8 +490,6 @@
     .subtitle strong {
       color:
         var(--ivory);
-
-      font-weight: 900;
     }
 
 
@@ -707,35 +517,26 @@
       aspect-ratio:
         7 / 1;
 
-      display: block;
-
       position: relative;
+
+      display: block;
 
       overflow: hidden;
 
       padding: 0;
-
-      margin: 0;
 
       border: 0;
 
       background:
         transparent;
 
-      color: inherit;
-
-      appearance: none;
-
       cursor: pointer;
 
       line-height: 0;
 
       transition:
-        transform .24s ease,
-        filter .24s ease;
-
-      -webkit-tap-highlight-color:
-        transparent;
+        transform .25s ease,
+        filter .25s ease;
     }
 
     .image-button img {
@@ -747,52 +548,36 @@
 
       height: auto;
 
-      max-width: none;
-
-      display: block;
-
       pointer-events: none;
-
-      user-select: none;
-
-      -webkit-user-drag:
-        none;
     }
 
-    .image-button.button-1 img {
+    .button-1 img {
       top: 50%;
 
       transform:
         translateY(-46.5%);
     }
 
-    .image-button.button-2 img {
+    .button-2 img {
       top: 50%;
 
       transform:
         translateY(-48.7%);
     }
 
-    .image-button.button-3 img {
+    .button-3 img {
       top: 50%;
 
       transform:
         translateY(-49.2%);
     }
 
-    .image-button:hover,
-    .image-button:focus-visible {
-
+    .image-button:hover {
       transform:
-        translateY(-4px)
-        scale(1.006);
+        translateY(-4px);
 
       filter:
-        brightness(1.08)
-        saturate(1.06);
-
-      outline: none;
-
+        brightness(1.07);
     }
 
 
@@ -803,11 +588,9 @@
     .rendered-section {
       width: 100%;
 
-      display: block;
+      margin-top: 34px;
 
       position: relative;
-
-      margin-top: 34px;
     }
 
     .rendered-section img {
@@ -816,36 +599,22 @@
       width: 100%;
 
       height: auto;
-
-      user-select: none;
-
-      -webkit-user-drag:
-        none;
     }
 
-    .rendered-section.clickable-render {
+    .clickable-render {
       cursor: pointer;
 
       transition:
         transform .25s ease,
         filter .25s ease;
-
-      -webkit-tap-highlight-color:
-        transparent;
     }
 
-    .rendered-section.clickable-render:hover,
-    .rendered-section.clickable-render:focus-visible {
-
+    .clickable-render:hover {
       transform:
         translateY(-4px);
 
       filter:
-        brightness(1.06)
-        saturate(1.03);
-
-      outline: none;
-
+        brightness(1.06);
     }
 
 
@@ -873,9 +642,6 @@
 
       color:
         var(--gold);
-
-      text-transform:
-        uppercase;
     }
 
     .socials {
@@ -890,15 +656,13 @@
     .social-image-link {
       display: block;
 
-      width: 100%;
-
-      line-height: 0;
-
-      text-decoration: none;
-
       transition:
-        transform .22s ease,
-        filter .22s ease;
+        transform .2s ease;
+    }
+
+    .social-image-link:hover {
+      transform:
+        translateY(-3px);
     }
 
     .social-image-link img {
@@ -907,38 +671,16 @@
       width: 100%;
 
       height: auto;
-
-      pointer-events: none;
-
-      user-select: none;
-
-      -webkit-user-drag:
-        none;
     }
-
-    .social-image-link:hover {
-
-      transform:
-        translateY(-3px)
-        scale(1.006);
-
-      filter:
-        brightness(1.06)
-        saturate(1.04);
-
-    }
-
 
     footer {
       margin-top: 34px;
 
       text-align: center;
 
-      color: #b9b2a4;
-
       font-size: 13px;
 
-      line-height: 1.8;
+      color: #b9b2a4;
     }
 
     .status {
@@ -952,17 +694,10 @@
 
       color:
         var(--teal);
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      letter-spacing: .6px;
     }
 
     .dot {
       width: 8px;
-
       height: 8px;
 
       border-radius: 50%;
@@ -972,12 +707,12 @@
 
       box-shadow:
         0 0 12px
-        rgba(50,221,183,.55);
+        var(--teal);
     }
 
 
     /* =========================================================
-       MODALES GENERALES
+       MODALES
        ========================================================= */
 
     .modal-backdrop {
@@ -989,26 +724,22 @@
 
       display: none;
 
-      padding: 18px;
-
       overflow-y: auto;
+
+      padding: 18px;
 
       background:
         rgba(1,3,8,.68);
 
       backdrop-filter:
         blur(8px);
-
-      -webkit-backdrop-filter:
-        blur(8px);
     }
 
     .modal-backdrop.is-open {
       display: flex;
 
-      justify-content: center;
-
       align-items: flex-start;
+      justify-content: center;
     }
 
     .modal-panel {
@@ -1020,14 +751,18 @@
 
       margin: auto;
 
+      position: relative;
+
       padding:
         26px
         22px
         30px;
 
-      position: relative;
-
       border-radius: 30px;
+
+      border:
+        1px solid
+        rgba(224,184,98,.22);
 
       background:
         linear-gradient(
@@ -1036,117 +771,45 @@
           rgba(7,7,11,.98)
         );
 
-      border:
-        1px solid
-        rgba(224,184,98,.22);
-
       box-shadow:
         0 30px 90px
-        rgba(0,0,0,.55);
+        rgba(0,0,0,.6);
     }
 
     .modal-close {
       position: absolute;
 
       top: 14px;
-
       right: 14px;
 
-      z-index: 50;
+      z-index: 100;
 
       width: 44px;
-
       height: 44px;
-
-      border:
-        1px solid
-        rgba(224,184,98,.35);
 
       border-radius: 50%;
 
+      border:
+        1px solid
+        rgba(224,184,98,.5);
+
       background:
-        rgba(10,8,13,.75);
+        rgba(10,8,13,.8);
 
       color:
         var(--ivory);
 
       font-size: 28px;
 
-      line-height: 1;
-
       cursor: pointer;
-
-      transition:
-        transform .2s ease,
-        background .2s ease;
-    }
-
-    .modal-close:hover {
-
-      transform:
-        scale(1.08);
-
-      background:
-        rgba(80,20,35,.85);
-
-    }
-
-    .modal-logo-wrap {
-      display: flex;
-
-      justify-content: center;
-
-      margin-bottom: 14px;
-    }
-
-    .modal-logo {
-      display: block;
-
-      width:
-        min(
-          340px,
-          72%
-        );
-
-      height: auto;
-    }
-
-    .modal-overline {
-      margin-bottom: 12px;
-
-      text-align: center;
-
-      color:
-        var(--gold);
-
-      font-size: 11px;
-
-      font-weight: 900;
-
-      letter-spacing: 4px;
-
-      text-transform:
-        uppercase;
     }
 
 
     /* =========================================================
-       POPUP CONOCÉ EL JUEGO
+       CONOCÉ EL JUEGO
        ========================================================= */
 
     .game-panel {
-      --world-primary-rgb:
-        224,184,98;
-
-      --world-secondary-rgb:
-        50,221,183;
-
-      --world-accent-rgb:
-        255,90,159;
-
-      --world-deep-rgb:
-        7,7,12;
-
       padding: 0;
 
       border: 0;
@@ -1155,16 +818,6 @@
         transparent;
 
       box-shadow: none;
-
-      overflow: visible;
-
-      transition:
-        width .35s ease,
-        min-height .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
-
-      isolation: isolate;
     }
 
     .game-panel.overview-mode {
@@ -1174,13 +827,6 @@
           75vh,
           900px
         );
-
-      min-height: 0;
-
-      border-radius: 0;
-
-      background:
-        transparent;
     }
 
     .game-overview-view,
@@ -1193,124 +839,38 @@
       display: block;
     }
 
-    .game-overview-stack {
-      width: 100%;
-
-      display: block;
-
-      margin: 0;
-
-      padding: 0;
-
-      line-height: 0;
-
-      filter:
-        drop-shadow(
-          0 30px 65px
-          rgba(0,0,0,.58)
-        );
-    }
-
     .game-overview-stage {
-      width: 100%;
-
       position: relative;
 
-      margin: 0;
-
-      padding: 0;
-
-      line-height: 0;
-    }
-
-    .game-overview-image {
-      display: block;
-
       width: 100%;
-
-      height: auto;
-
-      margin: 0;
-
-      padding: 0;
-
-      border: 0;
-
-      border-radius: 0;
-
-      vertical-align: bottom;
     }
 
+    .game-overview-image,
     .game-announcement-image {
       display: block;
 
       width: 100%;
 
       height: auto;
-
-      margin:
-        -1px
-        0
-        0;
-
-      padding: 0;
-
-      border: 0;
-
-      border-radius: 0;
-
-      vertical-align: top;
-
-      user-select: none;
-
-      -webkit-user-drag:
-        none;
     }
 
-    .game-panel.overview-mode .modal-close {
+    .game-announcement-image {
+      margin-top: -1px;
+    }
+
+    .game-panel.overview-mode
+    .modal-close {
       top: 1.8%;
-
-      right: 2.1%;
-
-      width: 8.5%;
-
-      height: 7%;
-
-      min-width: 42px;
-
-      min-height: 42px;
+      right: 2%;
 
       border: 0;
-
-      border-radius: 50%;
 
       background:
         transparent;
 
       color:
         transparent;
-
-      box-shadow: none;
     }
-
-    .game-panel.overview-mode .modal-close:hover {
-
-      transform:
-        scale(1.04);
-
-      background:
-        rgba(255,255,255,.035);
-
-      box-shadow:
-        0 0 25px
-        rgba(255,197,54,.14);
-
-    }
-
-
-    /* =========================================================
-       HOTSPOTS MUNDOS
-       ========================================================= */
 
     .world-hotspot {
       position: absolute;
@@ -1321,41 +881,10 @@
 
       border: 0;
 
-      border-radius: 14px;
-
       background:
         transparent;
 
       cursor: pointer;
-
-      transition:
-        background .2s ease,
-        box-shadow .2s ease,
-        transform .2s ease;
-
-      -webkit-tap-highlight-color:
-        transparent;
-    }
-
-    .world-hotspot:hover,
-    .world-hotspot:focus-visible {
-
-      outline: none;
-
-      transform:
-        scale(1.006);
-
-      background:
-        rgba(255,255,255,.035);
-
-      box-shadow:
-        inset
-        0 0 0 2px
-        rgba(255,225,155,.32),
-
-        0 0 28px
-        rgba(255,163,48,.18);
-
     }
 
     .world-1 {
@@ -1383,11 +912,6 @@
       height: 9.6%;
     }
 
-
-    /* =========================================================
-       TABLEROS JUEGO
-       ========================================================= */
-
     .game-panel.board-mode {
       width:
         min(
@@ -1395,268 +919,46 @@
           96vw
         );
 
-      min-height:
-        calc(100vh - 36px);
-
       padding:
         30px
         28px
         35px;
 
-      border-radius: 32px;
+      background:
+        rgba(7,7,13,.96);
 
-      overflow: hidden;
+      border-radius: 30px;
+    }
+
+    .game-board-top {
+      margin-bottom: 10px;
+    }
+
+    .game-back {
+      padding:
+        10px
+        16px;
+
+      border-radius: 999px;
 
       border:
         1px solid
-        rgba(
-          var(--world-primary-rgb),
-          .38
-        );
+        var(--gold);
 
       background:
+        rgba(20,15,10,.7);
 
-        radial-gradient(
-          circle at 10% 15%,
-          rgba(
-            var(--world-primary-rgb),
-            .35
-          ),
-          transparent 32%
-        ),
+      color:
+        white;
 
-        radial-gradient(
-          circle at 88% 20%,
-          rgba(
-            var(--world-secondary-rgb),
-            .31
-          ),
-          transparent 35%
-        ),
-
-        radial-gradient(
-          circle at 50% 92%,
-          rgba(
-            var(--world-accent-rgb),
-            .25
-          ),
-          transparent 38%
-        ),
-
-        radial-gradient(
-          circle at 50% 48%,
-          rgba(
-            var(--world-primary-rgb),
-            .11
-          ),
-          transparent 48%
-        ),
-
-        linear-gradient(
-          145deg,
-          rgba(
-            var(--world-deep-rgb),
-            .90
-          ),
-          rgba(4,5,12,.80)
-        );
-
-      box-shadow:
-        0 35px 100px
-        rgba(0,0,0,.48),
-
-        0 0 75px
-        rgba(
-          var(--world-primary-rgb),
-          .16
-        ),
-
-        inset
-        0 0 90px
-        rgba(
-          var(--world-secondary-rgb),
-          .09
-        );
+      cursor: pointer;
     }
-
-    .game-panel.board-mode::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: -1;
-
-      pointer-events: none;
-
-      opacity: .55;
-
-      background-image:
-
-        radial-gradient(
-          circle at 8% 20%,
-          rgba(255,255,255,.75)
-          0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 21% 75%,
-          rgba(
-            var(--world-secondary-rgb),
-            .8
-          )
-          0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 35% 12%,
-          rgba(
-            var(--world-primary-rgb),
-            .75
-          )
-          0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 74% 77%,
-          rgba(255,255,255,.6)
-          0 1px,
-          transparent 2px
-        ),
-
-        radial-gradient(
-          circle at 93% 38%,
-          rgba(
-            var(--world-accent-rgb),
-            .75
-          )
-          0 1px,
-          transparent 2px
-        );
-    }
-
-    .game-panel.board-mode::after {
-      content: "";
-
-      position: absolute;
-
-      inset: -15%;
-
-      z-index: -2;
-
-      pointer-events: none;
-
-      background:
-
-        radial-gradient(
-          ellipse at 20% 40%,
-          rgba(
-            var(--world-primary-rgb),
-            .28
-          ),
-          transparent 44%
-        ),
-
-        radial-gradient(
-          ellipse at 80% 55%,
-          rgba(
-            var(--world-secondary-rgb),
-            .22
-          ),
-          transparent 44%
-        );
-
-      filter:
-        blur(40px);
-    }
-
-
-    .game-panel.theme-sabana {
-      --world-primary-rgb:
-        255,164,44;
-
-      --world-secondary-rgb:
-        145,76,255;
-
-      --world-accent-rgb:
-        34,221,255;
-
-      --world-deep-rgb:
-        40,13,45;
-    }
-
-    .game-panel.theme-bebe {
-      --world-primary-rgb:
-        255,124,190;
-
-      --world-secondary-rgb:
-        114,201,255;
-
-      --world-accent-rgb:
-        255,218,119;
-
-      --world-deep-rgb:
-        52,25,65;
-    }
-
-    .game-panel.theme-alien {
-      --world-primary-rgb:
-        131,73,255;
-
-      --world-secondary-rgb:
-        0,229,255;
-
-      --world-accent-rgb:
-        255,53,210;
-
-      --world-deep-rgb:
-        17,5,58;
-    }
-
-    .game-panel.theme-classic {
-      --world-primary-rgb:
-        255,176,43;
-
-      --world-secondary-rgb:
-        212,25,48;
-
-      --world-accent-rgb:
-        255,222,117;
-
-      --world-deep-rgb:
-        47,5,10;
-    }
-
-    .game-panel.theme-sexy {
-      --world-primary-rgb:
-        255,45,76;
-
-      --world-secondary-rgb:
-        255,45,164;
-
-      --world-accent-rgb:
-        255,172,43;
-
-      --world-deep-rgb:
-        67,3,25;
-    }
-
 
     .game-board-title {
-      max-width: 950px;
-
       margin:
-        4px
+        10px
         auto
-        19px;
-
-      padding:
-        0
-        65px;
+        20px;
 
       text-align: center;
 
@@ -1664,145 +966,9 @@
         "Cinzel",
         serif;
 
-      font-size:
-        clamp(
-          24px,
-          3vw,
-          42px
-        );
-
-      font-weight: 800;
-
-      line-height: 1.18;
-
-      letter-spacing: .4px;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgb(
-            var(--world-primary-rgb)
-          ),
-          #fff4d8 48%,
-          rgb(
-            var(--world-secondary-rgb)
-          )
-        );
-
-      -webkit-background-clip:
-        text;
-
-      background-clip:
-        text;
-
       color:
-        transparent;
-
-      filter:
-        drop-shadow(
-          0 4px 4px
-          rgba(0,0,0,.4)
-        );
+        var(--gold);
     }
-
-    .game-board-title::after {
-      content: "";
-
-      display: block;
-
-      width:
-        min(
-          430px,
-          70%
-        );
-
-      height: 2px;
-
-      margin:
-        13px
-        auto
-        0;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgb(
-            var(--world-primary-rgb)
-          ),
-          #fff,
-          rgb(
-            var(--world-secondary-rgb)
-          ),
-          transparent
-        );
-
-      box-shadow:
-        0 0 14px
-        rgba(
-          var(--world-primary-rgb),
-          .45
-        );
-    }
-
-    .game-board-top {
-      display: flex;
-
-      justify-content:
-        flex-start;
-
-      margin-bottom: 3px;
-    }
-
-    .game-back {
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      padding:
-        11px
-        17px;
-
-      border-radius: 999px;
-
-      border:
-        1px solid
-        rgba(
-          var(--world-primary-rgb),
-          .5
-        );
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(
-            var(--world-primary-rgb),
-            .18
-          ),
-          rgba(
-            var(--world-secondary-rgb),
-            .10
-          )
-        );
-
-      color:
-        #fff7e6;
-
-      font-size: 13px;
-
-      font-weight: 900;
-
-      letter-spacing: .4px;
-
-      cursor: pointer;
-    }
-
 
     .game-board-stage {
       width:
@@ -1812,49 +978,7 @@
           760px
         );
 
-      margin:
-        0 auto;
-
-      position: relative;
-
-      padding: 6px;
-
-      border-radius: 30px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(
-            var(--world-primary-rgb),
-            .66
-          ),
-          rgba(
-            var(--world-secondary-rgb),
-            .38
-          ),
-          rgba(
-            var(--world-accent-rgb),
-            .52
-          )
-        );
-
-      box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.42),
-
-        0 0 55px
-        rgba(
-          var(--world-primary-rgb),
-          .28
-        ),
-
-        0 0 95px
-        rgba(
-          var(--world-secondary-rgb),
-          .15
-        );
-
-      isolation: isolate;
+      margin: auto;
     }
 
     .game-board-image {
@@ -1864,56 +988,36 @@
 
       height: auto;
 
-      max-height: 82vh;
-
-      object-fit: contain;
-
       border-radius: 24px;
-
-      position: relative;
-
-      z-index: 2;
     }
 
     .game-board-note {
-      max-width: 760px;
-
-      margin:
-        15px
-        auto
-        0;
+      margin-top: 15px;
 
       text-align: center;
 
-      color:
-        rgba(255,255,255,.72);
-
       font-size: 12px;
 
-      line-height: 1.6;
+      color:
+        rgba(255,255,255,.7);
     }
 
 
     /* =========================================================
        COMUNIDAD
-       AHORA ES LA IMAGEN niveles-universo-kf.png
        ========================================================= */
 
     .community-image-panel {
       width:
         min(
           94vw,
-          76vh,
-          820px
+          78vh,
+          850px
         );
-
-      margin: auto;
 
       padding: 0;
 
       border: 0;
-
-      border-radius: 0;
 
       background:
         transparent;
@@ -1921,132 +1025,276 @@
       box-shadow: none;
 
       overflow: visible;
-
-      isolation: isolate;
     }
 
 
-    .community-image-wrap {
+    /*
+       TODA LA COMPOSICIÓN.
+       La imagen se puede dividir en 2 partes
+       cuando se abre un nivel.
+    */
+
+    .community-accordion {
+      position: relative;
+
       width: 100%;
+
+      margin: auto;
+
+      filter:
+        drop-shadow(
+          0 30px 70px
+          rgba(0,0,0,.7)
+        );
+    }
+
+
+    .community-fragment {
+      width: 100%;
+
+      overflow: hidden;
 
       position: relative;
 
       line-height: 0;
-
-      overflow: hidden;
-
-      isolation: isolate;
-
-      border-radius: 22px;
-
-      filter:
-        drop-shadow(
-          0 25px 55px
-          rgba(0,0,0,.65)
-        )
-
-        drop-shadow(
-          0 0 24px
-          rgba(50,221,183,.12)
-        )
-
-        drop-shadow(
-          0 0 30px
-          rgba(255,90,159,.08)
-        );
     }
 
 
-    .community-main-image {
+    .community-fragment img {
+      display: block;
+
       width: 100%;
 
       height: auto;
 
-      display: block;
-
-      position: relative;
-
-      z-index: 1;
+      max-width: none;
 
       user-select: none;
 
       pointer-events: none;
+    }
 
-      -webkit-user-drag:
-        none;
+
+    /*
+       Parte de arriba.
+    */
+
+    #communityTopFragment {
+      height: auto;
+    }
+
+
+    /*
+       Parte de abajo.
+       JS la mueve hacia arriba para continuar
+       exactamente desde donde termina
+       el nivel seleccionado.
+    */
+
+    #communityBottomFragment {
+      height: 0;
+    }
+
+    #communityBottomImage {
+      transform:
+        translateY(0);
     }
 
 
     /* =========================================================
-       CERRAR COMUNIDAD
+       DESCRIPCIÓN QUE SALE DEL PROPIO NIVEL
        ========================================================= */
 
-    .community-image-panel .modal-close {
-      position: absolute;
+    .community-inline-detail {
+      --level-main: 50,221,183;
+      --level-second: 224,184,98;
 
-      top: 1.4%;
+      display: none;
 
-      right: 2.4%;
+      width: 89.2%;
 
-      z-index: 30;
+      margin:
+        -1px
+        auto
+        0;
 
-      width: 46px;
+      position: relative;
 
-      height: 46px;
+      z-index: 8;
 
-      border-radius: 50%;
+      padding:
+        20px
+        26px
+        22px;
 
-      border:
+      line-height: normal;
+
+      border-left:
         2px solid
-        rgba(255,215,115,.82);
+        rgba(
+          var(--level-main),
+          .72
+        );
+
+      border-right:
+        2px solid
+        rgba(
+          var(--level-main),
+          .72
+        );
+
+      border-bottom:
+        2px solid
+        rgba(
+          var(--level-second),
+          .75
+        );
+
+      border-radius:
+        0
+        0
+        18px
+        18px;
 
       background:
+
         radial-gradient(
-          circle,
-          rgba(85,16,20,.94),
-          rgba(22,7,12,.94)
+          circle at 15% 0%,
+          rgba(
+            var(--level-main),
+            .22
+          ),
+          transparent 45%
+        ),
+
+        radial-gradient(
+          circle at 90% 100%,
+          rgba(
+            var(--level-second),
+            .15
+          ),
+          transparent 40%
+        ),
+
+        linear-gradient(
+          110deg,
+          rgba(8,13,22,.98),
+          rgba(20,7,22,.98)
+        );
+
+      box-shadow:
+
+        inset
+        0 15px 30px
+        rgba(
+          var(--level-main),
+          .04
+        ),
+
+        0 9px 22px
+        rgba(0,0,0,.28);
+
+      animation:
+        openLevelDetail
+        .28s
+        ease
+        both;
+    }
+
+
+    .community-inline-detail.is-visible {
+      display: block;
+    }
+
+
+    @keyframes openLevelDetail {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(-8px);
+
+        max-height: 0;
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+
+        max-height: 300px;
+      }
+
+    }
+
+
+    .community-inline-detail
+    .detail-label {
+      display: block;
+
+      margin-bottom: 5px;
+
+      font-size: 9px;
+
+      font-weight: 900;
+
+      letter-spacing: 2.5px;
+
+      color:
+        rgb(
+          var(--level-main)
+        );
+
+      text-transform: uppercase;
+    }
+
+
+    .community-inline-detail h3 {
+      margin-bottom: 7px;
+
+      font-family:
+        "Cinzel",
+        serif;
+
+      font-size:
+        clamp(
+          17px,
+          2.4vw,
+          25px
         );
 
       color:
-        #fff1bc;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 28px;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 0 10px
-        rgba(255,195,55,.40),
-
-        inset
-        0 0 12px
-        rgba(255,208,94,.14);
-
-      transition:
-        transform .2s ease,
-        box-shadow .2s ease;
+        #fff0cf;
     }
 
-    .community-image-panel .modal-close:hover {
-      transform:
-        scale(1.08);
 
-      box-shadow:
-        0 0 18px
-        rgba(255,204,69,.65),
+    .community-inline-detail p {
+      font-size:
+        clamp(
+          13px,
+          1.7vw,
+          16px
+        );
 
-        inset
-        0 0 12px
-        rgba(255,208,94,.22);
+      line-height: 1.62;
+
+      color:
+        rgba(255,250,238,.9);
+    }
+
+
+    .community-inline-detail strong {
+      color:
+        rgb(
+          var(--level-main)
+        );
     }
 
 
     /* =========================================================
-       HOTSPOTS INVISIBLES
+       HOTSPOTS
        ========================================================= */
 
     .community-hotspot {
@@ -2056,11 +1304,11 @@
 
       width: 89.2%;
 
-      z-index: 15;
+      z-index: 25;
 
       border: 0;
 
-      border-radius: 18px;
+      border-radius: 15px;
 
       background:
         transparent;
@@ -2069,24 +1317,34 @@
 
       -webkit-tap-highlight-color:
         transparent;
+
+      transition:
+        box-shadow .2s ease,
+        background .2s ease;
     }
 
-    .community-hotspot:focus-visible {
-      outline:
-        2px solid
-        rgba(255,236,166,.74);
 
-      outline-offset:
-        -3px;
+    .community-hotspot:hover,
+    .community-hotspot:focus-visible {
+      outline: none;
+
+      background:
+        rgba(255,255,255,.02);
+
+      box-shadow:
+        inset
+        0 0 0 2px
+        rgba(255,225,145,.16);
     }
 
 
     /*
-       Las zonas coinciden con cada fila de la imagen
+       Estos valores son los mismos que ya
+       estábamos usando sobre tu imagen.
     */
 
     .community-level-1 {
-      top: 23.0%;
+      top: 23%;
       height: 6.6%;
     }
 
@@ -2122,583 +1380,250 @@
 
 
     /* =========================================================
-       DESTELLOS DENTRO DEL POPUP
+       X CERRAR
        ========================================================= */
 
-    .community-sparkles {
+    .community-image-panel
+    .modal-close {
+      position: absolute;
+
+      top: 1.5%;
+
+      right: 2%;
+
+      z-index: 50;
+
+      background:
+        rgba(30,9,13,.88);
+
+      border:
+        2px solid
+        rgba(255,211,94,.8);
+
+      color:
+        #ffe7a4;
+
+      box-shadow:
+        0 0 15px
+        rgba(255,190,55,.35);
+    }
+
+
+    /* =========================================================
+       DESTELLOS SOBRE LA IMAGEN
+       ========================================================= */
+
+    .community-effects {
       position: absolute;
 
       inset: 0;
 
-      z-index: 6;
-
-      overflow: hidden;
+      z-index: 10;
 
       pointer-events: none;
+
+      overflow: hidden;
     }
 
-
-    .community-sparkle {
+    .community-spark {
       position: absolute;
 
-      left:
-        var(--spark-x);
+      left: var(--x);
+      top: var(--y);
 
-      top:
-        var(--spark-y);
-
-      width:
-        var(--spark-size);
-
-      height:
-        var(--spark-size);
+      width: var(--size);
+      height: var(--size);
 
       border-radius: 50%;
 
-      background:
-        rgba(255,255,255,.98);
-
       opacity: 0;
 
+      background:
+        white;
+
       box-shadow:
-        0 0 5px
-        rgba(255,255,255,.98),
-
-        0 0 12px
-        rgba(127,234,255,.8),
-
-        0 0 23px
-        rgba(255,170,222,.34);
+        0 0 5px white,
+        0 0 13px
+        rgba(80,235,255,.9),
+        0 0 22px
+        rgba(255,120,210,.5);
 
       animation:
-        communitySpark
-        var(--spark-duration)
+        popupSpark
+        var(--duration)
         ease-in-out
         forwards;
     }
 
-
-    .community-sparkle::before,
-    .community-sparkle::after {
+    .community-spark::before,
+    .community-spark::after {
       content: "";
 
       position: absolute;
 
       left: 50%;
-
       top: 50%;
 
       transform:
         translate(-50%,-50%);
 
-      border-radius:
-        999px;
-    }
-
-
-    .community-sparkle::before {
-      width:
-        calc(
-          var(--spark-size) * 8
-        );
-
-      height: 1px;
-
       background:
         linear-gradient(
           90deg,
           transparent,
-          rgba(255,255,255,.92),
+          white,
           transparent
         );
     }
 
+    .community-spark::before {
+      width:
+        calc(var(--size) * 8);
 
-    .community-sparkle::after {
-      width: 1px;
+      height: 1px;
+    }
 
+    .community-spark::after {
       height:
-        calc(
-          var(--spark-size) * 8
-        );
+        calc(var(--size) * 8);
 
-      background:
-        linear-gradient(
-          180deg,
-          transparent,
-          rgba(255,255,255,.92),
-          transparent
-        );
+      width: 1px;
     }
 
-
-    @keyframes communitySpark {
+    @keyframes popupSpark {
 
       0% {
         opacity: 0;
         transform: scale(.3);
       }
 
-      25% {
-        opacity: .25;
-      }
-
       50% {
-        opacity: 1;
+        opacity: .9;
         transform: scale(1.25);
       }
 
-      72% {
-        opacity: .25;
-      }
-
       100% {
         opacity: 0;
-        transform: scale(.35);
+        transform: scale(.3);
       }
-
     }
 
 
     /* =========================================================
-       BRILLO QUE RECORRE LA IMAGEN
+       BRILLO / MOVIMIENTO DE AGUA
        ========================================================= */
 
-    .community-light-sweep {
+    .community-water {
       position: absolute;
-
-      z-index: 5;
-
-      top: -30%;
-
-      left: -45%;
-
-      width: 25%;
-
-      height: 160%;
-
-      pointer-events: none;
-
-      opacity: .16;
-
-      transform:
-        rotate(15deg);
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.10),
-          rgba(184,248,255,.28),
-          rgba(255,255,255,.10),
-          transparent
-        );
-
-      filter:
-        blur(2px);
-
-      animation:
-        communitySweep
-        11s
-        ease-in-out
-        infinite;
-    }
-
-
-    @keyframes communitySweep {
-
-      0%,
-      20% {
-        left: -45%;
-        opacity: 0;
-      }
-
-      30% {
-        opacity: .13;
-      }
-
-      62% {
-        opacity: .20;
-      }
-
-      78% {
-        left: 125%;
-        opacity: 0;
-      }
-
-      100% {
-        left: 125%;
-        opacity: 0;
-      }
-
-    }
-
-
-    /* =========================================================
-       MOVIMIENTO / REFLEJO SIMULADO EN EL AGUA
-       Parte inferior de la imagen
-       ========================================================= */
-
-    .community-water-shimmer {
-      position: absolute;
-
-      z-index: 7;
 
       left: 4%;
-
       right: 4%;
 
-      bottom: 0;
+      bottom: 1%;
 
-      height: 17.5%;
+      height: 14%;
+
+      z-index: 11;
 
       pointer-events: none;
 
       overflow: hidden;
 
-      opacity: .62;
+      opacity: .55;
 
       mix-blend-mode: screen;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          transparent,
-          rgba(0,0,0,.32) 15%,
-          #000 45%,
-          #000
-        );
 
       -webkit-mask-image:
         linear-gradient(
           to bottom,
           transparent,
-          rgba(0,0,0,.32) 15%,
-          #000 45%,
-          #000
+          black 45%
+        );
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          transparent,
+          black 45%
         );
     }
 
-
-    .community-water-shimmer::before {
+    .community-water::before {
       content: "";
 
       position: absolute;
 
-      inset: 10% -15% 0;
+      inset:
+        15%
+        -15%
+        0;
 
       background:
-
         repeating-radial-gradient(
           ellipse at 50% 100%,
-          transparent 0 8px,
-          rgba(91,219,255,.15) 9px 10px,
-          transparent 11px 20px
+          transparent 0 10px,
+          rgba(80,220,255,.20)
+          11px 12px,
+          transparent 13px 23px
         );
 
-      filter:
-        blur(.6px);
-
-      transform:
-        scaleX(1.08);
-
       animation:
-        waterRipple
-        5.8s
+        ripple
+        5s
         ease-in-out
         infinite alternate;
     }
 
+    @keyframes ripple {
 
-    .community-water-shimmer::after {
-      content: "";
-
-      position: absolute;
-
-      width: 42%;
-
-      height: 120%;
-
-      top: -10%;
-
-      left: -45%;
-
-      transform:
-        skewX(-15deg);
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(83,228,255,.08),
-          rgba(255,255,255,.30),
-          rgba(78,208,255,.10),
-          transparent
-        );
-
-      filter:
-        blur(6px);
-
-      animation:
-        waterLight
-        7.5s
-        ease-in-out
-        infinite;
-    }
-
-
-    @keyframes waterRipple {
-
-      0% {
+      from {
         transform:
           scaleX(1.04)
-          translateY(1px);
-
-        opacity: .40;
+          translateY(2px);
       }
 
-      50% {
+      to {
         transform:
           scaleX(1.12)
           translateY(-2px);
-
-        opacity: .72;
       }
-
-      100% {
-        transform:
-          scaleX(1.07)
-          translateY(1px);
-
-        opacity: .48;
-      }
-
-    }
-
-
-    @keyframes waterLight {
-
-      0%,
-      8% {
-        left: -50%;
-        opacity: 0;
-      }
-
-      26% {
-        opacity: .58;
-      }
-
-      66% {
-        opacity: .45;
-      }
-
-      78% {
-        left: 115%;
-        opacity: 0;
-      }
-
-      100% {
-        left: 115%;
-        opacity: 0;
-      }
-
-    }
-
-
-    /* =========================================================
-       DESCRIPCIÓN FLOTANTE DEL NIVEL
-       ========================================================= */
-
-    .community-level-popover {
-      --community-level-main:
-        50,221,183;
-
-      --community-level-second:
-        224,184,98;
-
-      position: absolute;
-
-      left: 50%;
-
-      bottom: 2.2%;
-
-      z-index: 22;
-
-      width: 84%;
-
-      transform:
-        translateX(-50%)
-        translateY(14px)
-        scale(.98);
-
-      opacity: 0;
-
-      pointer-events: none;
-
-      line-height: normal;
-
-      padding:
-        17px
-        20px
-        18px;
-
-      border-radius: 18px;
-
-      color: #fff7e5;
-
-      background:
-
-        radial-gradient(
-          circle at 5% 0%,
-          rgba(
-            var(--community-level-main),
-            .20
-          ),
-          transparent 32%
-        ),
-
-        radial-gradient(
-          circle at 95% 100%,
-          rgba(
-            var(--community-level-second),
-            .17
-          ),
-          transparent 32%
-        ),
-
-        rgba(5,8,17,.87);
-
-      border:
-        1px solid
-        rgba(
-          var(--community-level-main),
-          .72
-        );
-
-      backdrop-filter:
-        blur(14px);
-
-      -webkit-backdrop-filter:
-        blur(14px);
-
-      box-shadow:
-        0 16px 45px
-        rgba(0,0,0,.52),
-
-        0 0 26px
-        rgba(
-          var(--community-level-main),
-          .18
-        ),
-
-        inset
-        0 0 22px
-        rgba(
-          var(--community-level-main),
-          .06
-        );
-
-      transition:
-        opacity .24s ease,
-        transform .24s ease,
-        border-color .24s ease,
-        box-shadow .24s ease;
-    }
-
-
-    .community-level-popover.is-visible {
-      opacity: 1;
-
-      transform:
-        translateX(-50%)
-        translateY(0)
-        scale(1);
-
-      pointer-events: auto;
-    }
-
-
-    .community-benefit-label {
-      display: block;
-
-      margin-bottom: 5px;
-
-      font-size: 9px;
-
-      font-weight: 900;
-
-      letter-spacing: 2.7px;
-
-      text-transform:
-        uppercase;
-
-      color:
-        rgb(
-          var(--community-level-main)
-        );
-
-      text-shadow:
-        0 0 10px
-        rgba(
-          var(--community-level-main),
-          .42
-        );
-    }
-
-
-    .community-level-popover h3 {
-      margin-bottom: 7px;
-
-      font-family:
-        "Cinzel",
-        serif;
-
-      font-size:
-        clamp(
-          16px,
-          2.6vw,
-          24px
-        );
-
-      line-height: 1.18;
-
-      color:
-        #fff1d0;
-
-      text-shadow:
-        0 3px 6px
-        rgba(0,0,0,.72);
-    }
-
-
-    .community-level-popover p {
-      font-size:
-        clamp(
-          12px,
-          1.6vw,
-          15px
-        );
-
-      line-height: 1.58;
-
-      color:
-        rgba(255,248,232,.91);
-    }
-
-
-    .community-level-popover strong {
-      color:
-        rgb(
-          var(--community-level-main)
-        );
-
-      font-weight: 900;
     }
 
 
     /* =========================================================
        INVERSORES
        ========================================================= */
+
+    .modal-logo-wrap {
+      display: flex;
+
+      justify-content: center;
+
+      margin-bottom: 14px;
+    }
+
+    .modal-logo {
+      width:
+        min(
+          340px,
+          72%
+        );
+    }
+
+    .modal-overline {
+      margin-bottom: 12px;
+
+      text-align: center;
+
+      color:
+        var(--gold);
+
+      letter-spacing: 4px;
+
+      font-size: 11px;
+
+      font-weight: 900;
+    }
 
     .modal-intro {
       max-width: 920px;
@@ -2709,9 +1634,6 @@
         15px;
 
       text-align: center;
-
-      color:
-        var(--ivory);
 
       font-family:
         "Libre Baskerville",
@@ -2734,10 +1656,6 @@
 
       color:
         var(--text-soft);
-
-      font-size: 15px;
-
-      line-height: 1.7;
     }
 
     .funds-chart-area {
@@ -2762,26 +1680,25 @@
 
     .donut {
       width: 300px;
-
       height: 300px;
 
-      border-radius: 50%;
-
       position: relative;
+
+      border-radius: 50%;
 
       background:
         conic-gradient(
           var(--fund-teal)
-          0deg 144deg,
+          0% 40%,
 
           var(--fund-pink)
-          144deg 234deg,
+          40% 65%,
 
           var(--fund-gold)
-          234deg 306deg,
+          65% 85%,
 
           var(--fund-ivory)
-          306deg 360deg
+          85% 100%
         );
     }
 
@@ -2794,12 +1711,7 @@
 
       border-radius: 50%;
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(15,13,18,.98),
-          rgba(7,7,12,.98)
-        );
+      background: #0c0b10;
     }
 
     .donut-center {
@@ -2809,52 +1721,37 @@
 
       z-index: 2;
 
-      display: grid;
+      display: flex;
+      flex-direction: column;
 
-      place-items: center;
+      justify-content: center;
+      align-items: center;
 
       text-align: center;
-
-      padding: 22px;
     }
 
     .donut-center strong {
-      display: block;
-
       font-family:
         "Libre Baskerville",
         serif;
 
       font-size: 42px;
-
-      color:
-        var(--ivory);
     }
 
     .donut-center span {
-      display: block;
-
-      color: #d7d0c4;
-
       font-size: 12px;
-
-      font-weight: 800;
     }
 
     .donut-percent {
       position: absolute;
 
-      z-index: 2;
+      z-index: 3;
+
+      font-size: 24px;
 
       font-family:
         "Libre Baskerville",
         serif;
-
-      font-size: 24px;
-
-      font-weight: 700;
-
-      color: white;
     }
 
     .p40 {
@@ -2891,49 +1788,37 @@
         70px
         1fr;
 
-      align-items: center;
-
       gap: 12px;
+
+      align-items: center;
 
       padding:
         12px
         14px;
 
-      border-radius: 16px;
-
-      background:
-        rgba(255,255,255,.02);
-
       border:
         1px solid
-        rgba(255,255,255,.05);
+        rgba(255,255,255,.06);
+
+      border-radius: 16px;
     }
 
     .summary-dot {
       width: 18px;
-
       height: 18px;
 
       border-radius: 50%;
     }
 
     .summary-number {
+      font-size: 26px;
+
       font-family:
         "Libre Baskerville",
         serif;
-
-      font-size: 26px;
-
-      color:
-        var(--ivory);
     }
 
     .summary-name {
-      color:
-        var(--text-soft);
-
-      font-size: 15px;
-
       font-weight: 800;
     }
 
@@ -2941,28 +1826,19 @@
       display: grid;
 
       gap: 14px;
-
-      margin-top: 8px;
     }
 
     .allocation {
-      border-radius: 22px;
-
-      padding:
-        18px
-        18px
-        16px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(26,24,34,.96),
-          rgba(10,10,15,.98)
-        );
+      padding: 18px;
 
       border:
         1px solid
-        rgba(255,255,255,.06);
+        rgba(255,255,255,.07);
+
+      border-radius: 22px;
+
+      background:
+        rgba(15,14,20,.9);
     }
 
     .allocation-head {
@@ -2973,63 +1849,46 @@
         82px
         1fr;
 
-      align-items: center;
-
       gap: 12px;
+
+      align-items: center;
 
       margin-bottom: 14px;
     }
 
     .allocation-color {
       width: 18px;
-
       height: 18px;
 
       border-radius: 50%;
     }
 
-    .allocation.teal
-    .allocation-color {
+    .teal .allocation-color {
       background:
         var(--fund-teal);
     }
 
-    .allocation.pink
-    .allocation-color {
+    .pink .allocation-color {
       background:
         var(--fund-pink);
     }
 
-    .allocation.gold
-    .allocation-color {
+    .gold .allocation-color {
       background:
         var(--fund-gold);
     }
 
-    .allocation.ivory
-    .allocation-color {
+    .ivory .allocation-color {
       background:
         var(--fund-ivory);
     }
 
     .allocation-percent {
+      font-size: 30px;
+
       font-family:
         "Libre Baskerville",
         serif;
-
-      font-size: 30px;
-
-      color:
-        var(--ivory);
-    }
-
-    .allocation-category {
-      color:
-        var(--text-soft);
-
-      font-size: 15px;
-
-      font-weight: 800;
     }
 
     .allocation-detail {
@@ -3043,141 +1902,79 @@
     }
 
     .allocation-number {
-      font-family:
-        "Libre Baskerville",
-        serif;
-
-      font-size: 28px;
-
       color:
         var(--gold);
 
       text-align: center;
+
+      font-size: 28px;
+
+      font-family:
+        "Libre Baskerville",
+        serif;
     }
 
     .allocation-description strong {
       display: block;
 
       margin-bottom: 6px;
-
-      color:
-        var(--ivory);
-
-      font-size: 18px;
     }
 
     .allocation-description p {
+      line-height: 1.7;
+
       color:
         var(--text-soft);
-
-      font-size: 14px;
-
-      line-height: 1.7;
     }
 
     .contract-note {
       margin-top: 24px;
 
-      padding:
-        28px
-        25px;
+      padding: 28px;
 
       border-radius: 24px;
 
-      text-align: center;
-
-      background:
-
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(224,184,98,.17),
-          transparent 45%
-        ),
-
-        linear-gradient(
-          135deg,
-          rgba(38,31,20,.78),
-          rgba(15,13,17,.98)
-        );
-
       border:
         1px solid
-        rgba(224,184,98,.48);
+        rgba(224,184,98,.5);
+
+      text-align: center;
     }
 
     .contract-shield {
-      width: 72px;
-
-      height: 72px;
-
-      display: grid;
-
-      place-items: center;
-
-      margin:
-        0
-        auto
-        14px;
-
-      border-radius: 22px;
-
       font-size: 38px;
 
-      color:
-        var(--gold);
-
-      border:
-        1px solid
-        rgba(224,184,98,.44);
+      margin-bottom: 12px;
     }
 
     .contract-overline {
-      margin-bottom: 8px;
-
       color:
         var(--gold);
 
       font-size: 11px;
 
-      font-weight: 900;
-
       letter-spacing: 3px;
     }
 
     .contract-title {
-      max-width: 720px;
-
       margin:
-        0
-        auto
-        11px;
+        10px
+        auto;
 
       font-family:
         "Libre Baskerville",
         serif;
-
-      font-size:
-        clamp(
-          22px,
-          3vw,
-          32px
-        );
-
-      color:
-        var(--ivory);
     }
 
     .contract-copy {
       max-width: 850px;
 
-      margin:
-        0 auto;
-
-      color: #d1c8ba;
-
-      font-size: 14px;
+      margin: auto;
 
       line-height: 1.75;
+
+      color:
+        var(--text-soft);
     }
 
     .investor-contact {
@@ -3189,53 +1986,31 @@
     }
 
     .investor-contact-button {
-      min-width:
-        min(
-          100%,
-          430px
-        );
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 11px;
-
       padding:
         17px
         28px;
 
-      border-radius: 17px;
+      color:
+        white;
 
       text-decoration: none;
 
-      color:
-        var(--ivory);
-
-      font-size: 14px;
-
-      font-weight: 900;
-
-      background:
-        linear-gradient(
-          105deg,
-          rgba(50,221,183,.24),
-          rgba(13,24,22,.98)
-        );
-
       border:
         1px solid
-        rgba(50,221,183,.54);
+        var(--teal);
+
+      border-radius: 17px;
+
+      background:
+        rgba(50,221,183,.15);
     }
 
 
     /* =========================================================
-       RESPONSIVE
+       MOBILE
        ========================================================= */
 
-    @media (max-width:760px) {
+    @media(max-width:760px) {
 
       .page {
         padding:
@@ -3244,16 +2019,8 @@
           70px;
       }
 
-      .hero-logo-wrap {
-        min-height: 260px;
-      }
-
       .hero-logo {
         width: 112%;
-      }
-
-      .portal {
-        width: 360px;
       }
 
       .socials,
@@ -3263,163 +2030,66 @@
       }
 
       .modal-backdrop {
-        padding: 7px;
+        padding: 6px;
       }
-
-
-      /* COMUNIDAD MOBILE */
 
       .community-image-panel {
         width:
           min(
             98vw,
-            81vh
+            84vh
           );
       }
 
-      .community-image-wrap {
-        border-radius: 13px;
+      .community-inline-detail {
+        width: 90%;
+
+        padding:
+          13px
+          15px
+          15px;
+      }
+
+      .community-inline-detail h3 {
+        font-size:
+          15px;
+      }
+
+      .community-inline-detail p {
+        font-size:
+          12px;
+
+        line-height: 1.5;
+      }
+
+      .community-inline-detail
+      .detail-label {
+        font-size: 7px;
       }
 
       .community-image-panel
       .modal-close {
-        width: 38px;
+        width: 37px;
+        height: 37px;
 
-        height: 38px;
-
-        top: 1%;
-
-        right: 2.4%;
-
-        font-size: 24px;
-      }
-
-      .community-level-popover {
-        width: 89%;
-
-        bottom: 1.4%;
-
-        padding:
-          12px
-          14px
-          13px;
-
-        border-radius: 14px;
-      }
-
-      .community-benefit-label {
-        font-size: 7px;
-
-        letter-spacing: 2px;
-      }
-
-      .community-level-popover h3 {
-        font-size:
-          clamp(
-            13px,
-            4vw,
-            18px
-          );
-
-        margin-bottom: 5px;
-      }
-
-      .community-level-popover p {
-        font-size:
-          clamp(
-            10px,
-            3vw,
-            13px
-          );
-
-        line-height: 1.48;
-      }
-
-
-      /* JUEGO MOBILE */
-
-      .game-panel.overview-mode {
-        width:
-          min(
-            98vw,
-            76vh
-          );
+        font-size: 23px;
       }
 
       .game-panel.board-mode {
         width: 98vw;
 
-        min-height:
-          calc(100vh - 16px);
-
         padding:
           18px
           9px
           25px;
-
-        border-radius: 22px;
-      }
-
-      .game-board-title {
-        padding:
-          0
-          42px;
-
-        margin-bottom: 14px;
-
-        font-size:
-          clamp(
-            20px,
-            6vw,
-            29px
-          );
       }
 
       .game-board-stage {
-        width:
-          min(
-            94vw,
-            55vh
-          );
-
-        padding: 4px;
-
-        border-radius: 22px;
+        width: 94vw;
       }
-
-      .game-board-image {
-        max-height: none;
-
-        border-radius: 19px;
-      }
-
-      .game-back {
-        font-size: 11px;
-
-        padding:
-          9px
-          12px;
-      }
-
-      .game-panel.board-mode
-      .modal-close {
-        width: 38px;
-
-        height: 38px;
-
-        top: 10px;
-
-        right: 10px;
-
-        font-size: 24px;
-      }
-
-
-      /* INVERSORES MOBILE */
 
       .donut {
         width: 260px;
-
         height: 260px;
       }
 
@@ -3427,56 +2097,17 @@
       .donut-center {
         inset: 54px;
       }
-
-      .p40 {
-        top: 39px;
-        right: 57px;
-      }
-
-      .p25 {
-        bottom: 55px;
-        right: 45px;
-      }
-
-      .p20 {
-        bottom: 70px;
-        left: 36px;
-      }
-
-      .p15 {
-        top: 59px;
-        left: 54px;
-      }
-
-      .allocation-detail {
-        grid-template-columns:
-          42px
-          1fr;
-      }
-
     }
 
 
-    @media (
-      prefers-reduced-motion:
-      reduce
-    ) {
+    @media(prefers-reduced-motion: reduce) {
 
       *,
       *::before,
       *::after {
-
-        animation-duration:
-          .01ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          .01ms !important;
-
+        animation: none !important;
+        transition: none !important;
       }
-
     }
 
   </style>
@@ -3510,10 +2141,6 @@
   <main class="page">
 
 
-    <!-- ======================================================
-         HERO
-         ====================================================== -->
-
     <section class="hero">
 
 
@@ -3527,18 +2154,11 @@
 
       <div class="hero-logo-wrap">
 
-
-        <div
-          class="hero-logo-shadow"
-        ></div>
-
-
         <img
           src="./logo-kissing-fight.jpg.png"
           alt="Kissing Fight"
           class="hero-logo"
-        />
-
+        >
 
       </div>
 
@@ -3551,8 +2171,7 @@
           Match-3 competitivo
         </strong>
 
-        con ranking, comunidad y una
-        identidad propia.
+        con ranking, comunidad y una identidad propia.
 
         Un universo con
 
@@ -3564,10 +2183,6 @@
 
 
 
-      <!-- ====================================================
-           TRES BOTONES
-           ==================================================== -->
-
       <div class="main-buttons">
 
 
@@ -3575,17 +2190,12 @@
           type="button"
           class="image-button button-1"
           data-modal-target="gameModal"
-          aria-controls="gameModal"
-          aria-haspopup="dialog"
-          aria-label="Conocé el juego"
         >
 
           <img
             src="./boton%201.png"
-            alt=""
-            aria-hidden="true"
-            draggable="false"
-          />
+            alt="Conocé el juego"
+          >
 
         </button>
 
@@ -3595,17 +2205,12 @@
           type="button"
           class="image-button button-2"
           data-modal-target="communityModal"
-          aria-controls="communityModal"
-          aria-haspopup="dialog"
-          aria-label="Sumate al Universo Kissing Fight"
         >
 
           <img
             src="./boton%202.png"
-            alt=""
-            aria-hidden="true"
-            draggable="false"
-          />
+            alt="Sumate al Universo Kissing Fight"
+          >
 
         </button>
 
@@ -3615,17 +2220,12 @@
           type="button"
           class="image-button button-3"
           data-modal-target="investorsModal"
-          aria-controls="investorsModal"
-          aria-haspopup="dialog"
-          aria-label="Inversores y colaboradores"
         >
 
           <img
             src="./boton%203.png"
-            alt=""
-            aria-hidden="true"
-            draggable="false"
-          />
+            alt="Inversores y colaboradores"
+          >
 
         </button>
 
@@ -3637,35 +2237,22 @@
 
 
 
-    <!-- ======================================================
-         CUADRO 1
-         TAMBIÉN ABRE CONOCÉ EL JUEGO
-         ====================================================== -->
-
     <section
       class="rendered-section clickable-render"
       id="juego"
       role="button"
       tabindex="0"
       data-modal-target="gameModal"
-      aria-controls="gameModal"
-      aria-haspopup="dialog"
-      aria-label="Conocé el juego"
     >
 
       <img
         src="./cuadro%201.png"
         alt="Mucho más que un Match-3"
-        draggable="false"
-      />
+      >
 
     </section>
 
 
-
-    <!-- ======================================================
-         CUADRO 2
-         ====================================================== -->
 
     <section
       class="rendered-section clickable-render"
@@ -3673,24 +2260,16 @@
       role="button"
       tabindex="0"
       data-modal-target="communityModal"
-      aria-controls="communityModal"
-      aria-haspopup="dialog"
-      aria-label="Niveles del Universo Kissing Fight"
     >
 
       <img
         src="./cuadro%202.png"
         alt="Kissing Fight está llegando"
-        draggable="false"
-      />
+      >
 
     </section>
 
 
-
-    <!-- ======================================================
-         CUADRO 3
-         ====================================================== -->
 
     <section
       class="rendered-section clickable-render"
@@ -3698,24 +2277,16 @@
       role="button"
       tabindex="0"
       data-modal-target="investorsModal"
-      aria-controls="investorsModal"
-      aria-haspopup="dialog"
-      aria-label="Inversores y colaboradores"
     >
 
       <img
         src="./cuadro%203.png"
         alt="Formá parte desde el inicio"
-        draggable="false"
-      />
+      >
 
     </section>
 
 
-
-    <!-- ======================================================
-         REDES
-         ====================================================== -->
 
     <div class="social-title">
       ENTRÁ AL UNIVERSO
@@ -3729,65 +2300,54 @@
         class="social-image-link"
         href="https://www.instagram.com/kissingfight_2026?stkn=bTNnNmp6emNmMnpj"
         target="_blank"
-        rel="noopener noreferrer"
       >
 
         <img
           src="./instagram-ingles.png"
           alt="Instagram English"
-          draggable="false"
-        />
+        >
 
       </a>
-
 
 
       <a
         class="social-image-link"
         href="https://www.instagram.com/kissingfight2026?stkn=MTNweHdkc2J0c2FsdQ=="
         target="_blank"
-        rel="noopener noreferrer"
       >
 
         <img
           src="./instagram-español.png"
           alt="Instagram Español"
-          draggable="false"
-        />
+        >
 
       </a>
-
 
 
       <a
         class="social-image-link"
         href="https://whatsapp.com/channel/0029VbAXZhT5vKA8ew7UHe3f"
         target="_blank"
-        rel="noopener noreferrer"
       >
 
         <img
           src="./whatsapp-canal.png"
           alt="Canal de WhatsApp"
-          draggable="false"
-        />
+        >
 
       </a>
-
 
 
       <a
         class="social-image-link"
         href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20saber%20m%C3%A1s%20sobre%20Kissing%20Fight."
         target="_blank"
-        rel="noopener noreferrer"
       >
 
         <img
           src="./whatsapp-contacto.png"
-          alt="Contactanos por WhatsApp"
-          draggable="false"
-        />
+          alt="Contactanos"
+        >
 
       </a>
 
@@ -3800,7 +2360,7 @@
 
       © 2026 KISSING FIGHT
 
-      <br />
+      <br>
 
       <div class="status">
 
@@ -3818,7 +2378,7 @@
 
 
   <!-- =========================================================
-       POPUP CONOCÉ EL JUEGO
+       CONOCÉ EL JUEGO
        ========================================================= -->
 
   <div
@@ -3831,17 +2391,12 @@
     <div
       class="modal-panel game-panel overview-mode"
       id="gamePanel"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Conocé el universo Kissing Fight"
     >
 
 
       <button
-        type="button"
         class="modal-close"
         data-modal-close
-        aria-label="Cerrar"
       >
         ×
       </button>
@@ -3854,73 +2409,54 @@
       >
 
 
-        <div class="game-overview-stack">
-
-
-          <div class="game-overview-stage">
-
-
-            <img
-              src="./popup-juego-mundo.png"
-              alt="Los primeros cinco mundos del universo Kissing Fight"
-              class="game-overview-image"
-              draggable="false"
-            />
-
-
-            <button
-              type="button"
-              class="world-hotspot world-1"
-              data-game-world="0"
-              aria-label="Sabana — Reino Salvaje"
-            ></button>
-
-
-            <button
-              type="button"
-              class="world-hotspot world-2"
-              data-game-world="1"
-              aria-label="Baby Room — Dulce Caos"
-            ></button>
-
-
-            <button
-              type="button"
-              class="world-hotspot world-3"
-              data-game-world="2"
-              aria-label="UFO Club"
-            ></button>
-
-
-            <button
-              type="button"
-              class="world-hotspot world-4"
-              data-game-world="3"
-              aria-label="Magic Club"
-            ></button>
-
-
-            <button
-              type="button"
-              class="world-hotspot world-5"
-              data-game-world="4"
-              aria-label="Room 69"
-            ></button>
-
-
-          </div>
-
+        <div class="game-overview-stage">
 
 
           <img
-            src="./cuadro-anuncio.png"
-            alt="Kissing Fight — Más que un Match-3"
-            class="game-announcement-image"
-            draggable="false"
-          />
+            src="./popup-juego-mundo.png"
+            class="game-overview-image"
+            alt="Los primeros cinco mundos"
+          >
+
+
+          <button
+            class="world-hotspot world-1"
+            data-game-world="0"
+          ></button>
+
+
+          <button
+            class="world-hotspot world-2"
+            data-game-world="1"
+          ></button>
+
+
+          <button
+            class="world-hotspot world-3"
+            data-game-world="2"
+          ></button>
+
+
+          <button
+            class="world-hotspot world-4"
+            data-game-world="3"
+          ></button>
+
+
+          <button
+            class="world-hotspot world-5"
+            data-game-world="4"
+          ></button>
 
 
         </div>
+
+
+        <img
+          src="./cuadro-anuncio.png"
+          class="game-announcement-image"
+          alt=""
+        >
 
 
       </div>
@@ -3936,13 +2472,10 @@
         <div class="game-board-top">
 
           <button
-            type="button"
             class="game-back"
             data-game-back
           >
-
             ← VOLVER A LOS 5 MUNDOS
-
           </button>
 
         </div>
@@ -3961,17 +2494,13 @@
             class="game-board-image"
             src=""
             alt=""
-            draggable="false"
-          />
+          >
 
         </div>
 
 
         <p class="game-board-note">
-
-          Elegí otro universo volviendo
-          al mapa de los primeros cinco mundos.
-
+          Volvé para elegir otro universo.
         </p>
 
 
@@ -3986,8 +2515,7 @@
 
 
   <!-- =========================================================
-       POPUP COMUNIDAD
-       NUEVA IMAGEN niveles-universo-kf.png
+       COMUNIDAD
        ========================================================= -->
 
   <div
@@ -3999,160 +2527,148 @@
 
     <div
       class="modal-panel community-image-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Niveles del Universo Kissing Fight"
     >
 
 
       <div
-        class="community-image-wrap"
-        id="communityImageWrap"
+        class="community-accordion"
+        id="communityAccordion"
       >
 
 
-        <!--
-          IMAGEN PRINCIPAL
-          NO SE MODIFICA
-        -->
-
-        <img
-          src="./niveles-universo-kf.png"
-          alt="Los siete niveles del Universo Kissing Fight"
-          class="community-main-image"
-          draggable="false"
-        />
-
-
-        <!--
-          EFECTOS DE LUZ
-        -->
+        <!-- PARTE SUPERIOR DE LA MISMA IMAGEN -->
 
         <div
-          class="community-sparkles"
-          id="communitySparkles"
-          aria-hidden="true"
-        ></div>
+          class="community-fragment"
+          id="communityTopFragment"
+        >
 
+          <img
+            id="communityTopImage"
+            src="./niveles-universo-kf.png"
+            alt="Niveles del Universo Kissing Fight"
+          >
 
-        <div
-          class="community-light-sweep"
-          aria-hidden="true"
-        ></div>
-
-
-        <div
-          class="community-water-shimmer"
-          aria-hidden="true"
-        ></div>
+        </div>
 
 
 
         <!--
-          BOTÓN CERRAR
+          ESTE ES EL TEXTO QUE SALE DIRECTAMENTE
+          DEL NIVEL.
+
+          NO ES UN POPOVER.
+          NO ESTÁ ARRIBA NI ABAJO DEL POPUP.
         -->
+
+        <div
+          class="community-inline-detail"
+          id="communityInlineDetail"
+        >
+
+          <span class="detail-label">
+            BENEFICIO DEL NIVEL
+          </span>
+
+          <h3
+            id="communityDetailTitle"
+          ></h3>
+
+          <p
+            id="communityDetailText"
+          ></p>
+
+        </div>
+
+
+
+        <!-- CONTINUACIÓN DE LA MISMA IMAGEN -->
+
+        <div
+          class="community-fragment"
+          id="communityBottomFragment"
+        >
+
+          <img
+            id="communityBottomImage"
+            src="./niveles-universo-kf.png"
+            alt=""
+          >
+
+        </div>
+
+
+
+        <!-- DESTELLOS -->
+
+        <div
+          class="community-effects"
+          id="communityEffects"
+        ></div>
+
+
+
+        <!-- AGUA -->
+
+        <div
+          class="community-water"
+        ></div>
+
+
+
+        <!-- CERRAR -->
 
         <button
-          type="button"
           class="modal-close"
           data-modal-close
-          aria-label="Cerrar"
         >
           ×
         </button>
 
 
 
-        <!-- ==================================================
-             ZONAS CLICKEABLES INVISIBLES
-             ================================================== -->
-
+        <!-- NIVELES -->
 
         <button
-          type="button"
           class="community-hotspot community-level-1"
           data-community-level="0"
-          aria-label="Nivel 1 Pueblo"
         ></button>
 
 
         <button
-          type="button"
           class="community-hotspot community-level-2"
           data-community-level="1"
-          aria-label="Nivel 2 Pueblo Fundador"
         ></button>
 
 
         <button
-          type="button"
           class="community-hotspot community-level-3"
           data-community-level="2"
-          aria-label="Nivel 3 Fundador"
         ></button>
 
 
         <button
-          type="button"
           class="community-hotspot community-level-4"
           data-community-level="3"
-          aria-label="Nivel 4 Rey"
         ></button>
 
 
         <button
-          type="button"
           class="community-hotspot community-level-5"
           data-community-level="4"
-          aria-label="Nivel 5 Héroe"
         ></button>
 
 
         <button
-          type="button"
           class="community-hotspot community-level-6"
           data-community-level="5"
-          aria-label="Nivel 6 Dios"
         ></button>
 
 
         <button
-          type="button"
           class="community-hotspot community-level-7"
           data-community-level="6"
-          aria-label="Nivel 7 Creador"
         ></button>
-
-
-
-        <!-- ==================================================
-             BENEFICIO FLOTANTE
-             ================================================== -->
-
-        <div
-          class="community-level-popover"
-          id="communityLevelPopover"
-        >
-
-
-          <span
-            class="community-benefit-label"
-          >
-            BENEFICIO DEL NIVEL
-          </span>
-
-
-          <h3
-            id="communityLevelTitle"
-          ></h3>
-
-
-          <p
-            id="communityLevelDescription"
-          ></p>
-
-
-        </div>
 
 
       </div>
@@ -4166,7 +2682,7 @@
 
 
   <!-- =========================================================
-       POPUP INVERSORES
+       INVERSORES
        ========================================================= -->
 
   <div
@@ -4176,19 +2692,12 @@
   >
 
 
-    <div
-      class="modal-panel"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="investorTitle"
-    >
+    <div class="modal-panel">
 
 
       <button
-        type="button"
         class="modal-close"
         data-modal-close
-        aria-label="Cerrar"
       >
         ×
       </button>
@@ -4198,9 +2707,9 @@
 
         <img
           src="./logo-kissing-fight.jpg.png"
-          alt="Kissing Fight"
           class="modal-logo"
-        />
+          alt="Kissing Fight"
+        >
 
       </div>
 
@@ -4210,10 +2719,7 @@
       </div>
 
 
-      <h2
-        class="modal-intro"
-        id="investorTitle"
-      >
+      <h2 class="modal-intro">
 
         El capital recaudado será destinado
         principalmente al desarrollo tecnológico
@@ -4226,10 +2732,7 @@
 
 
       <div class="modal-subtitle">
-
-        Asignación estimada
-        del capital recaudado
-
+        Asignación estimada del capital recaudado
       </div>
 
 
@@ -4239,33 +2742,26 @@
 
         <div class="donut-wrap">
 
+
           <div class="donut">
 
 
-            <span
-              class="donut-percent p40"
-            >
+            <span class="donut-percent p40">
               40%
             </span>
 
 
-            <span
-              class="donut-percent p25"
-            >
+            <span class="donut-percent p25">
               25%
             </span>
 
 
-            <span
-              class="donut-percent p20"
-            >
+            <span class="donut-percent p20">
               20%
             </span>
 
 
-            <span
-              class="donut-percent p15"
-            >
+            <span class="donut-percent p15">
               15%
             </span>
 
@@ -4284,6 +2780,7 @@
 
 
           </div>
+
 
         </div>
 
@@ -4376,59 +2873,42 @@
 
         <div class="allocation teal">
 
-
           <div class="allocation-head">
 
-            <div
-              class="allocation-color"
-            ></div>
+            <span class="allocation-color"></span>
 
-            <div
-              class="allocation-percent"
-            >
+            <span class="allocation-percent">
               40%
-            </div>
+            </span>
 
-            <div
-              class="allocation-category"
-            >
+            <strong>
               Producto y tecnología
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="allocation-detail">
 
-            <div
-              class="allocation-number"
-            >
+            <div class="allocation-number">
               01
             </div>
 
-
-            <div
-              class="allocation-description"
-            >
+            <div class="allocation-description">
 
               <strong>
-                Desarrollo y evolución
-                del producto
+                Desarrollo y evolución del producto
               </strong>
 
               <p>
-                Programación, backend,
-                sistema de cuentas,
-                ranking, salas,
-                economía interna,
+                Programación, backend, sistema de cuentas,
+                ranking, salas, economía interna,
                 UX/UI y contenido.
               </p>
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -4436,40 +2916,28 @@
 
         <div class="allocation pink">
 
-
           <div class="allocation-head">
 
-            <div
-              class="allocation-color"
-            ></div>
+            <span class="allocation-color"></span>
 
-            <div
-              class="allocation-percent"
-            >
+            <span class="allocation-percent">
               25%
-            </div>
+            </span>
 
-            <div
-              class="allocation-category"
-            >
+            <strong>
               Marketing y crecimiento
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="allocation-detail">
 
-            <div
-              class="allocation-number"
-            >
+            <div class="allocation-number">
               02
             </div>
 
-
-            <div
-              class="allocation-description"
-            >
+            <div class="allocation-description">
 
               <strong>
                 Lanzamiento, marketing
@@ -4477,17 +2945,14 @@
               </strong>
 
               <p>
-                Campañas, creadores
-                de contenido, redes sociales,
-                comunidad y expansión
-                internacional.
+                Campañas, creadores de contenido,
+                redes sociales, comunidad
+                y expansión internacional.
               </p>
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -4495,44 +2960,32 @@
 
         <div class="allocation gold">
 
-
           <div class="allocation-head">
 
-            <div
-              class="allocation-color"
-            ></div>
+            <span class="allocation-color"></span>
 
-            <div
-              class="allocation-percent"
-            >
+            <span class="allocation-percent">
               20%
-            </div>
+            </span>
 
-            <div
-              class="allocation-category"
-            >
+            <strong>
               Infraestructura y seguridad
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="allocation-detail">
 
-            <div
-              class="allocation-number"
-            >
+            <div class="allocation-number">
               03
             </div>
 
-
-            <div
-              class="allocation-description"
-            >
+            <div class="allocation-description">
 
               <strong>
-                Infraestructura,
-                seguridad y escalabilidad
+                Infraestructura, seguridad
+                y escalabilidad
               </strong>
 
               <p>
@@ -4544,9 +2997,7 @@
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -4554,40 +3005,28 @@
 
         <div class="allocation ivory">
 
-
           <div class="allocation-head">
 
-            <div
-              class="allocation-color"
-            ></div>
+            <span class="allocation-color"></span>
 
-            <div
-              class="allocation-percent"
-            >
+            <span class="allocation-percent">
               15%
-            </div>
+            </span>
 
-            <div
-              class="allocation-category"
-            >
+            <strong>
               Legal y operaciones
-            </div>
+            </strong>
 
           </div>
 
 
           <div class="allocation-detail">
 
-            <div
-              class="allocation-number"
-            >
+            <div class="allocation-number">
               04
             </div>
 
-
-            <div
-              class="allocation-description"
-            >
+            <div class="allocation-description">
 
               <strong>
                 Estructura legal,
@@ -4603,9 +3042,7 @@
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -4628,22 +3065,17 @@
 
 
         <h3 class="contract-title">
-
-          Inversión respaldada
-          contractualmente
-
+          Inversión respaldada contractualmente
         </h3>
 
 
         <p class="contract-copy">
 
-          Cada inversor contará con un contrato
-          individual que documentará y respaldará
-          su participación y los activos que le
-          correspondan dentro del proyecto,
-          estableciendo de forma clara las
-          condiciones, derechos y obligaciones
-          de las partes.
+          Cada inversor contará con un contrato individual
+          que documentará y respaldará su participación
+          y los activos que le correspondan dentro del proyecto,
+          estableciendo de forma clara las condiciones,
+          derechos y obligaciones de las partes.
 
         </p>
 
@@ -4654,18 +3086,13 @@
 
       <div class="investor-contact">
 
-
         <a
           class="investor-contact-button"
           href="https://wa.me/5491165352742?text=Hola%21%20Estoy%20interesado%20en%20conocer%20m%C3%A1s%20sobre%20la%20propuesta%20de%20inversi%C3%B3n%20de%20Kissing%20Fight."
           target="_blank"
-          rel="noopener noreferrer"
         >
-
           ✦ CONTACTANOS
-
         </a>
-
 
       </div>
 
@@ -4681,7 +3108,7 @@
 
 
     /* =========================================================
-       ESTRELLAS DEL FONDO
+       FONDO - DESTELLOS
        ========================================================= */
 
     const starField =
@@ -4690,72 +3117,36 @@
       );
 
 
-    function spawnTwinkleStar() {
-
-      if (!starField) return;
-
+    function createStar() {
 
       const star =
         document.createElement(
           "span"
         );
 
-
       star.className =
         "twinkle-star";
 
 
-      const size =
-        (
-          Math.random() *
-          1.4 +
-          .7
-        ).toFixed(2);
-
-
-      const opacity =
-        (
-          Math.random() *
-          .42 +
-          .28
-        ).toFixed(2);
-
-
-      const duration =
-        (
-          Math.random() *
-          1.5 +
-          1.4
-        ).toFixed(2);
-
-
       star.style.left =
-        `${
-          Math.random() *
-          96 +
-          2
-        }%`;
-
+        `${Math.random() * 100}%`;
 
       star.style.top =
-        `${
-          Math.random() *
-          94 +
-          3
-        }%`;
+        `${Math.random() * 100}%`;
 
 
       star.style.setProperty(
         "--star-size",
-        `${size}px`
+        `${Math.random() * 1.5 + .7}px`
       );
-
 
       star.style.setProperty(
         "--star-opacity",
-        opacity
+        Math.random() * .5 + .3
       );
 
+      const duration =
+        Math.random() * 1.5 + 1.3;
 
       star.style.setProperty(
         "--twinkle-duration",
@@ -4768,79 +3159,35 @@
       );
 
 
-      window.setTimeout(
+      setTimeout(
         () => star.remove(),
-        (
-          Number(duration) +
-          .3
-        ) * 1000
+        duration * 1000 + 300
       );
 
     }
 
 
-    function scheduleNextTwinkle() {
+    function scheduleStar() {
 
-      const mobile =
-        window.innerWidth <
-        700;
-
-
-      const nextDelay =
-        mobile
-          ?
-          Math.random() *
-          8000 +
-          5000
-
-          :
-
-          Math.random() *
-          6500 +
-          3500;
-
-
-      window.setTimeout(
+      setTimeout(
         () => {
 
+          createStar();
 
-          spawnTwinkleStar();
-
-
-          if (
-            Math.random() <
-            .10
-          ) {
-
-            window.setTimeout(
-              spawnTwinkleStar,
-              Math.random() *
-              600 +
-              250
-            );
-
-          }
-
-
-          scheduleNextTwinkle();
-
+          scheduleStar();
 
         },
-        nextDelay
+        Math.random() * 5000 + 3000
       );
-
     }
 
 
-    window.setTimeout(
-      scheduleNextTwinkle,
-      1800
-    );
+    scheduleStar();
 
 
 
     /* =========================================================
-       ESTRELLAS FUGACES
+       FUGACES
        ========================================================= */
 
     const shootingStars =
@@ -4849,111 +3196,71 @@
       );
 
 
-    function spawnShootingStar() {
-
-      if (!shootingStars) {
-        return;
-      }
-
+    function createShootingStar() {
 
       const star =
         document.createElement(
           "span"
         );
 
-
       star.className =
         "shooting-star";
 
 
-      const fromLeft =
-        Math.random() >
-        .5;
-
-
-      const startY =
-        Math.random() *
-        68 +
-        8;
-
-
-      const travelY =
-        Math.random() *
-        5 +
-        2;
-
-
-      const duration =
-        Math.random() *
-        .8 +
-        1.2;
-
-
-      const tail =
-        Math.random() *
-        20 +
-        22;
-
-
-      star.style.top =
-        `${startY}vh`;
+      const left =
+        Math.random() > .5;
 
 
       star.style.left =
-        fromLeft
-          ? "-3vw"
-          : "103vw";
+        left
+          ? "-2%"
+          : "102%";
+
+      star.style.top =
+        `${Math.random() * 70}%`;
 
 
       star.style.setProperty(
         "--shoot-duration",
-        `${duration}s`
+        "1.5s"
       );
-
 
       star.style.setProperty(
         "--shoot-tail",
-        `${tail}px`
+        "35px"
       );
 
 
-      if (fromLeft) {
+      if (left) {
 
         star.style.setProperty(
           "--shoot-angle",
-          "17deg"
+          "18deg"
         );
 
         star.style.setProperty(
           "--shoot-x",
-          "24vw"
+          "25vw"
         );
 
-        star.style.setProperty(
-          "--shoot-y",
-          `${travelY}vh`
-        );
-
-      }
-
-      else {
+      } else {
 
         star.style.setProperty(
           "--shoot-angle",
-          "197deg"
+          "198deg"
         );
 
         star.style.setProperty(
           "--shoot-x",
-          "-24vw"
+          "-25vw"
         );
-
-        star.style.setProperty(
-          "--shoot-y",
-          `${travelY}vh`
-        );
-
       }
+
+
+      star.style.setProperty(
+        "--shoot-y",
+        "5vh"
+      );
 
 
       shootingStars.appendChild(
@@ -4961,52 +3268,25 @@
       );
 
 
-      window.setTimeout(
+      setTimeout(
         () => star.remove(),
-        (
-          duration +
-          .4
-        ) * 1000
+        1900
       );
-
     }
 
 
-    function scheduleNextShootingStar() {
+    setInterval(
+      () => {
 
-      const nextDelay =
-        Math.random() *
-        32000 +
-        28000;
+        if (
+          Math.random() <
+          .15
+        ) {
+          createShootingStar();
+        }
 
-
-      window.setTimeout(
-        () => {
-
-
-          if (
-            Math.random() <
-            .45
-          ) {
-
-            spawnShootingStar();
-
-          }
-
-
-          scheduleNextShootingStar();
-
-
-        },
-        nextDelay
-      );
-
-    }
-
-
-    window.setTimeout(
-      scheduleNextShootingStar,
-      20000
+      },
+      12000
     );
 
 
@@ -5020,12 +3300,10 @@
         "[data-modal-target]"
       );
 
-
     const modalCloseButtons =
       document.querySelectorAll(
         "[data-modal-close]"
       );
-
 
     const modals =
       document.querySelectorAll(
@@ -5033,47 +3311,26 @@
       );
 
 
-    function openModalById(
-      modalId
+    function openModal(
+      id
     ) {
 
       const modal =
         document.getElementById(
-          modalId
+          id
         );
 
-
-      if (!modal) {
-        return;
-      }
-
-
-      modals.forEach(
-        item => {
-
-          item.classList.remove(
-            "is-open"
-          );
-
-          item.setAttribute(
-            "aria-hidden",
-            "true"
-          );
-
-        }
-      );
+      if (!modal) return;
 
 
       modal.classList.add(
         "is-open"
       );
 
-
       modal.setAttribute(
         "aria-hidden",
         "false"
       );
-
 
       document.body.classList.add(
         "modal-open"
@@ -5081,24 +3338,23 @@
 
 
       if (
-        modalId ===
+        id ===
+        "communityModal"
+      ) {
+
+        resetCommunityAccordion();
+
+      }
+
+
+      if (
+        id ===
         "gameModal"
       ) {
 
         showGameOverview();
 
       }
-
-
-      if (
-        modalId ===
-        "communityModal"
-      ) {
-
-        resetCommunityLevel();
-
-      }
-
     }
 
 
@@ -5106,30 +3362,18 @@
       modal
     ) {
 
-      if (!modal) {
-        return;
-      }
-
-
       modal.classList.remove(
         "is-open"
       );
-
 
       modal.setAttribute(
         "aria-hidden",
         "true"
       );
 
-
-      if (
-        modal.id ===
-        "gameModal"
-      ) {
-
-        showGameOverview();
-
-      }
+      document.body.classList.remove(
+        "modal-open"
+      );
 
 
       if (
@@ -5137,44 +3381,23 @@
         "communityModal"
       ) {
 
-        resetCommunityLevel();
+        resetCommunityAccordion();
 
       }
-
-
-      if (
-        !document.querySelector(
-          ".modal-backdrop.is-open"
-        )
-      ) {
-
-        document.body.classList.remove(
-          "modal-open"
-        );
-
-      }
-
     }
 
 
     modalTriggers.forEach(
       trigger => {
 
-
         trigger.addEventListener(
           "click",
-          function(event) {
+          () => {
 
-
-            event.preventDefault();
-
-
-            openModalById(
-              this.getAttribute(
-                "data-modal-target"
-              )
+            openModal(
+              trigger.dataset
+                .modalTarget
             );
-
 
           }
         );
@@ -5182,34 +3405,23 @@
 
         trigger.addEventListener(
           "keydown",
-          function(event) {
-
+          event => {
 
             if (
-              event.key ===
-              "Enter"
+              event.key === "Enter"
               ||
-              event.key ===
-              " "
+              event.key === " "
             ) {
-
 
               event.preventDefault();
 
-
-              openModalById(
-                this.getAttribute(
-                  "data-modal-target"
-                )
+              openModal(
+                trigger.dataset
+                  .modalTarget
               );
-
-
             }
-
-
           }
         );
-
 
       }
     );
@@ -5218,22 +3430,18 @@
     modalCloseButtons.forEach(
       button => {
 
-
         button.addEventListener(
           "click",
-          function() {
-
+          () => {
 
             closeModal(
-              this.closest(
+              button.closest(
                 ".modal-backdrop"
               )
             );
 
-
           }
         );
-
 
       }
     );
@@ -5242,11 +3450,9 @@
     modals.forEach(
       modal => {
 
-
         modal.addEventListener(
           "click",
-          function(event) {
-
+          event => {
 
             if (
               event.target ===
@@ -5256,13 +3462,10 @@
               closeModal(
                 modal
               );
-
             }
-
 
           }
         );
-
 
       }
     );
@@ -5270,74 +3473,140 @@
 
     document.addEventListener(
       "keydown",
-      function(event) {
-
+      event => {
 
         if (
           event.key ===
           "Escape"
         ) {
 
-
-          const openModal =
+          const active =
             document.querySelector(
               ".modal-backdrop.is-open"
             );
 
-
-          if (openModal) {
+          if (active) {
 
             closeModal(
-              openModal
+              active
             );
-
           }
-
-
         }
-
-
       }
     );
 
 
 
     /* =========================================================
-       POPUP COMUNIDAD
+       COMUNIDAD
        ========================================================= */
 
-    const communityModal =
+
+    const communityAccordion =
       document.getElementById(
-        "communityModal"
+        "communityAccordion"
       );
 
+    const communityTopFragment =
+      document.getElementById(
+        "communityTopFragment"
+      );
+
+    const communityBottomFragment =
+      document.getElementById(
+        "communityBottomFragment"
+      );
+
+    const communityTopImage =
+      document.getElementById(
+        "communityTopImage"
+      );
+
+    const communityBottomImage =
+      document.getElementById(
+        "communityBottomImage"
+      );
+
+    const communityInlineDetail =
+      document.getElementById(
+        "communityInlineDetail"
+      );
+
+    const communityDetailTitle =
+      document.getElementById(
+        "communityDetailTitle"
+      );
+
+    const communityDetailText =
+      document.getElementById(
+        "communityDetailText"
+      );
 
     const communityHotspots =
-      document.querySelectorAll(
-        "[data-community-level]"
-      );
+      [
+        ...document.querySelectorAll(
+          "[data-community-level]"
+        )
+      ];
 
 
-    const communityPopover =
-      document.getElementById(
-        "communityLevelPopover"
-      );
-
-
-    const communityLevelTitle =
-      document.getElementById(
-        "communityLevelTitle"
-      );
-
-
-    const communityLevelDescription =
-      document.getElementById(
-        "communityLevelDescription"
-      );
-
-
-    let lockedCommunityLevel =
+    let activeCommunityLevel =
       null;
+
+
+    /*
+       Punto en el que termina cada nivel
+       dentro de la imagen.
+
+       Es ahí donde "abrimos" la imagen
+       y metemos el texto.
+    */
+
+    const communityRows = [
+
+      {
+        top: .230,
+        height: .066,
+        split: .296
+      },
+
+      {
+        top: .296,
+        height: .122,
+        split: .418
+      },
+
+      {
+        top: .425,
+        height: .067,
+        split: .492
+      },
+
+      {
+        top: .495,
+        height: .066,
+        split: .561
+      },
+
+      {
+        top: .566,
+        height: .066,
+        split: .632
+      },
+
+      {
+        top: .637,
+        height: .067,
+        split: .704
+      },
+
+      {
+        top: .709,
+        height: .068,
+        split: .777
+      }
+
+    ];
 
 
 
@@ -5345,131 +3614,304 @@
 
 
       {
-
         title:
-          "NIVEL 1 · PUEBLO",
+          "1 · PUEBLO",
 
-        description:
-          'Todo quien se sume al <strong>Universo Kissing Fight</strong> forma parte de este nivel inicial.',
+        text:
+          'Todo quien se sume al <strong>Universo Kissing Fight</strong>.',
 
         main:
           "50,221,183",
 
-        second:
-          "32,235,255"
-
+        secondary:
+          "75,238,255"
       },
 
 
       {
-
         title:
-          "NIVEL 2 · PUEBLO FUNDADOR",
+          "2 · PUEBLO FUNDADOR",
 
-        description:
+        text:
           'Todo quien se sume desde el día 1 recibirá la <strong>insignia de Pueblo Fundador</strong>, que le permitirá participar en las salas de chat.',
 
         main:
-          "255,72,165",
+          "255,75,168",
 
-        second:
-          "255,118,214"
-
+        secondary:
+          "255,176,220"
       },
 
 
       {
-
         title:
-          "NIVEL 3 · FUNDADOR",
+          "3 · FUNDADOR",
 
-        description:
+        text:
           'Todo quien llegue a este nivel ya podrá competir en el <strong>ranking mundial</strong>, donde el número 1 de la semana ganará el pozo.',
 
         main:
-          "64,150,255",
+          "50,158,255",
 
-        second:
-          "64,222,255"
-
+        secondary:
+          "93,225,255"
       },
 
 
       {
-
         title:
-          "NIVEL 4 · REY",
+          "4 · REY",
 
-        description:
+        text:
           'Todo quien cuente con la suscripción <strong>BRONZE</strong>, sea competidor activo y participe en la comunidad, tendrá <strong>50% de descuento en cualquier suscripción superior</strong>.',
 
         main:
-          "185,74,255",
+          "184,79,255",
 
-        second:
-          "128,71,255"
-
+        secondary:
+          "213,148,255"
       },
 
 
       {
-
         title:
-          "NIVEL 5 · HÉROE",
+          "5 · HÉROE",
 
-        description:
-          'Todo quien cuente con la suscripción <strong>SILVER</strong>, sea competidor activo y participe en la comunidad, podrá tener su <strong>AVATAR 100% personalizado</strong>.',
+        text:
+          'Todo quien cuente con la suscripción <strong>SILVER</strong>, sea competidor activo y participe en la comunidad podrá tener su <strong>AVATAR 100% personalizado</strong>.',
 
         main:
-          "255,76,159",
+          "255,72,158",
 
-        second:
-          "255,40,106"
-
+        secondary:
+          "255,137,199"
       },
 
 
       {
-
         title:
-          "NIVEL 6 · DIOS",
+          "6 · DIOS",
 
-        description:
-          'Todo quien cuente con la suscripción <strong>Premium GOLD</strong>, sea competidor activo y participe en la comunidad, podrá solicitar participar como <strong>moderador de alguna sala preexistente</strong> que lo requiera.',
+        text:
+          'Todo quien cuente con la suscripción <strong>Premium GOLD</strong>, sea competidor activo y participe en la comunidad podrá solicitar participar como <strong>moderador de alguna sala preexistente</strong> que lo requiera.',
 
         main:
-          "255,187,54",
+          "255,184,54",
 
-        second:
-          "255,229,108"
-
+        secondary:
+          "255,226,118"
       },
 
 
       {
-
         title:
-          "NIVEL 7 · CREADOR",
+          "7 · CREADOR",
 
-        description:
-          'Todo quien cuente con la suscripción <strong>Premium BLACK</strong>, sea competidor activo y participe en la comunidad, podrá solicitar la <strong>creación de una SALA PERSONALIZADA</strong> y ser el moderador.',
+        text:
+          'Todo quien cuente con la suscripción <strong>Premium BLACK</strong>, sea competidor activo y participe en la comunidad podrá solicitar la <strong>creación de una SALA PERSONALIZADA</strong> y ser el moderador.',
 
         main:
-          "255,222,128",
+          "255,222,118",
 
-        second:
-          "114,218,255"
-
+        secondary:
+          "106,221,255"
       }
-
 
     ];
 
 
 
-    function showCommunityLevel(
+    function getCommunityImageHeight() {
+
+      const naturalWidth =
+        communityTopImage
+          .naturalWidth;
+
+      const naturalHeight =
+        communityTopImage
+          .naturalHeight;
+
+
+      if (
+        !naturalWidth
+        ||
+        !naturalHeight
+      ) {
+
+        return 0;
+      }
+
+
+      return (
+        communityAccordion
+          .clientWidth
+        *
+        naturalHeight
+        /
+        naturalWidth
+      );
+    }
+
+
+
+    /*
+       PONE LAS ÁREAS CLICKEABLES
+       EXACTAMENTE SOBRE CADA NIVEL.
+
+       Los niveles que quedan debajo
+       del texto abierto bajan también.
+    */
+
+    function updateCommunityHotspots() {
+
+      const imageHeight =
+        getCommunityImageHeight();
+
+
+      if (!imageHeight) {
+        return;
+      }
+
+
+      let detailHeight = 0;
+      let split = 1;
+
+
+      if (
+        activeCommunityLevel !==
+        null
+      ) {
+
+        detailHeight =
+          communityInlineDetail
+            .offsetHeight;
+
+        split =
+          communityRows[
+            activeCommunityLevel
+          ].split;
+      }
+
+
+      communityHotspots.forEach(
+        (
+          button,
+          index
+        ) => {
+
+          const row =
+            communityRows[
+              index
+            ];
+
+
+          let top =
+            imageHeight *
+            row.top;
+
+
+          /*
+             Si está debajo
+             del nivel abierto,
+             baja junto a la imagen.
+          */
+
+          if (
+            activeCommunityLevel !==
+            null
+            &&
+            row.top >= split
+          ) {
+
+            top +=
+              detailHeight;
+          }
+
+
+          button.style.top =
+            `${top}px`;
+
+
+          button.style.height =
+            `${
+              imageHeight *
+              row.height
+            }px`;
+
+        }
+      );
+    }
+
+
+
+    /*
+       CIERRA TODO.
+       Se vuelve a ver la imagen normal.
+    */
+
+    function resetCommunityAccordion() {
+
+      activeCommunityLevel =
+        null;
+
+
+      communityInlineDetail
+        .classList
+        .remove(
+          "is-visible"
+        );
+
+
+      communityTopFragment
+        .style
+        .height =
+        "auto";
+
+
+      communityBottomFragment
+        .style
+        .height =
+        "0px";
+
+
+      communityBottomImage
+        .style
+        .transform =
+        "translateY(0px)";
+
+
+      communityTopImage
+        .style
+        .height =
+        "auto";
+
+
+      updateCommunityHotspots();
+    }
+
+
+
+    /*
+       ABRE EL NIVEL.
+    */
+
+    function openCommunityLevel(
       index
     ) {
+
+      if (
+        activeCommunityLevel ===
+        index
+      ) {
+
+        resetCommunityAccordion();
+
+        return;
+      }
+
+
+      activeCommunityLevel =
+        index;
 
 
       const level =
@@ -5478,340 +3920,364 @@
         ];
 
 
-      if (!level) {
+      const row =
+        communityRows[
+          index
+        ];
+
+
+      const imageHeight =
+        getCommunityImageHeight();
+
+
+      if (!imageHeight) {
         return;
       }
 
 
-      communityLevelTitle.textContent =
+      const splitPx =
+        imageHeight *
+        row.split;
+
+
+      const bottomHeight =
+        imageHeight -
+        splitPx;
+
+
+
+      /*
+         TÍTULO Y TEXTO
+      */
+
+      communityDetailTitle
+        .textContent =
         level.title;
 
 
-      communityLevelDescription.innerHTML =
-        level.description;
+      communityDetailText
+        .innerHTML =
+        level.text;
 
 
-      communityPopover.style.setProperty(
-        "--community-level-main",
-        level.main
+
+      /*
+         COLOR DEL PROPIO NIVEL
+      */
+
+      communityInlineDetail
+        .style
+        .setProperty(
+          "--level-main",
+          level.main
+        );
+
+
+      communityInlineDetail
+        .style
+        .setProperty(
+          "--level-second",
+          level.secondary
+        );
+
+
+
+      /*
+         CORTAMOS LA IMAGEN
+         JUSTO DEBAJO DEL NIVEL.
+      */
+
+      communityTopFragment
+        .style
+        .height =
+        `${splitPx}px`;
+
+
+      communityTopImage
+        .style
+        .width =
+        "100%";
+
+
+      /*
+         MOSTRAMOS TEXTO
+      */
+
+      communityInlineDetail
+        .classList
+        .add(
+          "is-visible"
+        );
+
+
+
+      /*
+         CONTINUACIÓN DE LA IMAGEN
+         DEBAJO DEL TEXTO.
+      */
+
+      communityBottomFragment
+        .style
+        .height =
+        `${bottomHeight}px`;
+
+
+      communityBottomImage
+        .style
+        .width =
+        "100%";
+
+
+      communityBottomImage
+        .style
+        .transform =
+        `translateY(-${splitPx}px)`;
+
+
+
+      /*
+         Esperamos a que el panel
+         tenga su altura real.
+      */
+
+      requestAnimationFrame(
+        () => {
+
+          updateCommunityHotspots();
+
+        }
       );
-
-
-      communityPopover.style.setProperty(
-        "--community-level-second",
-        level.second
-      );
-
-
-      communityPopover.classList.add(
-        "is-visible"
-      );
-
     }
 
 
 
-    function hideCommunityLevel() {
-
-      communityPopover.classList.remove(
-        "is-visible"
-      );
-
-    }
-
-
-
-    function resetCommunityLevel() {
-
-      lockedCommunityLevel =
-        null;
-
-      hideCommunityLevel();
-
-    }
-
-
+    /*
+       CLICK / TOUCH
+    */
 
     communityHotspots.forEach(
-      hotspot => {
+      button => {
 
-
-        const index =
-          Number(
-            hotspot.getAttribute(
-              "data-community-level"
-            )
-          );
-
-
-        /*
-          PC:
-          PASAR EL MOUSE MUESTRA
-        */
-
-        hotspot.addEventListener(
-          "mouseenter",
-          function() {
-
-
-            if (
-              lockedCommunityLevel ===
-              null
-            ) {
-
-              showCommunityLevel(
-                index
-              );
-
-            }
-
-
-          }
-        );
-
-
-        hotspot.addEventListener(
-          "mouseleave",
-          function() {
-
-
-            if (
-              lockedCommunityLevel ===
-              null
-            ) {
-
-              hideCommunityLevel();
-
-            }
-
-
-          }
-        );
-
-
-        /*
-          CLICK / TOUCH:
-          LO DEJA ABIERTO
-        */
-
-        hotspot.addEventListener(
+        button.addEventListener(
           "click",
-          function() {
+          () => {
 
-
-            if (
-              lockedCommunityLevel ===
-              index
-            ) {
-
-              lockedCommunityLevel =
-                null;
-
-              hideCommunityLevel();
-
-              return;
-
-            }
-
-
-            lockedCommunityLevel =
-              index;
-
-
-            showCommunityLevel(
-              index
+            openCommunityLevel(
+              Number(
+                button.dataset
+                  .communityLevel
+              )
             );
 
-
           }
         );
-
 
       }
     );
 
 
 
-    /* =========================================================
-       DESTELLOS DEL POPUP COMUNIDAD
-       ========================================================= */
+    /*
+       AL REDIMENSIONAR,
+       SE RECALCULA TODO.
+    */
 
-    const communitySparkles =
-      document.getElementById(
-        "communitySparkles"
+    window.addEventListener(
+      "resize",
+      () => {
+
+        if (
+          activeCommunityLevel ===
+          null
+        ) {
+
+          updateCommunityHotspots();
+
+        }
+
+        else {
+
+          const index =
+            activeCommunityLevel;
+
+
+          /*
+             Lo recalculamos sin cerrar
+             visualmente.
+          */
+
+          const row =
+            communityRows[
+              index
+            ];
+
+
+          const imageHeight =
+            getCommunityImageHeight();
+
+
+          const splitPx =
+            imageHeight *
+            row.split;
+
+
+          communityTopFragment
+            .style
+            .height =
+            `${splitPx}px`;
+
+
+          communityBottomFragment
+            .style
+            .height =
+            `${
+              imageHeight -
+              splitPx
+            }px`;
+
+
+          communityBottomImage
+            .style
+            .transform =
+            `translateY(-${splitPx}px)`;
+
+
+          requestAnimationFrame(
+            updateCommunityHotspots
+          );
+        }
+
+      }
+    );
+
+
+    communityTopImage
+      .addEventListener(
+        "load",
+        updateCommunityHotspots
       );
 
 
-    function spawnCommunitySparkle() {
 
+    /* =========================================================
+       DESTELLOS COMUNIDAD
+       ========================================================= */
+
+    const communityEffects =
+      document.getElementById(
+        "communityEffects"
+      );
+
+
+    const communityModal =
+      document.getElementById(
+        "communityModal"
+      );
+
+
+    function createCommunitySpark() {
 
       if (
-        !communitySparkles
-        ||
         !communityModal
-        ||
-        !communityModal.classList.contains(
-          "is-open"
-        )
+          .classList
+          .contains(
+            "is-open"
+          )
       ) {
 
         return;
-
       }
 
 
-      const sparkle =
+      const spark =
         document.createElement(
           "span"
         );
 
 
-      sparkle.className =
-        "community-sparkle";
+      spark.className =
+        "community-spark";
 
 
-      const size =
-        (
-          Math.random() *
-          2.4 +
-          1.2
-        ).toFixed(2);
+      spark.style
+        .setProperty(
+          "--x",
+          `${
+            Math.random() *
+            90 +
+            5
+          }%`
+        );
+
+
+      spark.style
+        .setProperty(
+          "--y",
+          `${
+            Math.random() *
+            90 +
+            4
+          }%`
+        );
+
+
+      spark.style
+        .setProperty(
+          "--size",
+          `${
+            Math.random() *
+            2.2 +
+            1.1
+          }px`
+        );
 
 
       const duration =
-        (
-          Math.random() *
-          1.5 +
-          1.1
-        ).toFixed(2);
-
-
-      const x =
-        (
-          Math.random() *
-          92 +
-          4
-        ).toFixed(2);
-
-
-      /*
-        Mayor concentración
-        en la parte ilustrada,
-        pero puede aparecer
-        en casi toda la imagen
-      */
-
-      const y =
-        (
-          Math.random() *
-          88 +
-          3
-        ).toFixed(2);
-
-
-      sparkle.style.setProperty(
-        "--spark-size",
-        `${size}px`
-      );
-
-
-      sparkle.style.setProperty(
-        "--spark-duration",
-        `${duration}s`
-      );
-
-
-      sparkle.style.setProperty(
-        "--spark-x",
-        `${x}%`
-      );
-
-
-      sparkle.style.setProperty(
-        "--spark-y",
-        `${y}%`
-      );
-
-
-      communitySparkles.appendChild(
-        sparkle
-      );
-
-
-      window.setTimeout(
-        () => sparkle.remove(),
-        (
-          Number(duration) +
-          .4
-        ) * 1000
-      );
-
-
-    }
-
-
-
-    function scheduleCommunitySparkles() {
-
-
-      const delay =
         Math.random() *
-        1600 +
-        700;
+        1.4 +
+        1.2;
 
 
-      window.setTimeout(
-        () => {
+      spark.style
+        .setProperty(
+          "--duration",
+          `${duration}s`
+        );
 
 
-          if (
-            communityModal &&
-            communityModal.classList.contains(
-              "is-open"
-            )
-          ) {
+      communityEffects
+        .appendChild(
+          spark
+        );
 
 
-            spawnCommunitySparkle();
-
-
-            if (
-              Math.random() <
-              .24
-            ) {
-
-
-              window.setTimeout(
-                spawnCommunitySparkle,
-                Math.random() *
-                450 +
-                120
-              );
-
-
-            }
-
-
-          }
-
-
-          scheduleCommunitySparkles();
-
-
-        },
-        delay
+      setTimeout(
+        () => spark.remove(),
+        duration * 1000 + 300
       );
-
-
     }
 
 
-    scheduleCommunitySparkles();
+    setInterval(
+      () => {
+
+        if (
+          Math.random() <
+          .7
+        ) {
+
+          createCommunitySpark();
+
+        }
+
+      },
+      1600
+    );
 
 
 
     /* =========================================================
-       POPUP CONOCÉ EL JUEGO
+       CONOCÉ EL JUEGO
        ========================================================= */
 
     const gamePanel =
@@ -5844,338 +4310,172 @@
       );
 
 
-    const gameWorldTriggers =
-      document.querySelectorAll(
-        "[data-game-world]"
-      );
-
-
-    const gameBackButtons =
-      document.querySelectorAll(
-        "[data-game-back]"
-      );
-
-
-
-    const gameWorlds = [
-
+    const worlds = [
 
       {
-
         title:
           "SABANA — REINO SALVAJE",
 
         image:
-          "./tablero-sabana.png",
-
-        alt:
-          "Tablero completo de Sabana — Reino Salvaje.",
-
-        theme:
-          "theme-sabana"
-
+          "./tablero-sabana.png"
       },
 
-
       {
-
         title:
           "BABY ROOM — DULCE CAOS",
 
         image:
-          "./tablero-bebe.png",
-
-        alt:
-          "Tablero completo de Baby Room — Dulce Caos.",
-
-        theme:
-          "theme-bebe"
-
+          "./tablero-bebe.png"
       },
 
-
       {
-
         title:
           "UFO CLUB — HACÉ CONTACTO. HACÉ MATCH. GANÁ.",
 
         image:
-          "./tablero-alien.png",
-
-        alt:
-          "Tablero completo de UFO Club.",
-
-        theme:
-          "theme-alien"
-
+          "./tablero-alien.png"
       },
 
-
       {
-
         title:
           "MAGIC CLUB — HACÉ MATCH. HACÉ MAGIA. GANÁ.",
 
         image:
-          "./tablero-classic.png",
-
-        alt:
-          "Tablero completo de Magic Club.",
-
-        theme:
-          "theme-classic"
-
+          "./tablero-classic.png"
       },
 
-
       {
-
         title:
           "ROOM 69 — EL PLACER DE GANAR",
 
         image:
-          "./tablero-sexy.png",
-
-        alt:
-          "Tablero completo de Room 69.",
-
-        theme:
-          "theme-sexy"
-
+          "./tablero-sexy.png"
       }
 
-
     ];
-
-
-
-    const gameThemeClasses = [
-
-      "theme-sabana",
-      "theme-bebe",
-      "theme-alien",
-      "theme-classic",
-      "theme-sexy"
-
-    ];
-
 
 
     function showGameOverview() {
 
-
-      gameThemeClasses.forEach(
-        className => {
-
-
-          gamePanel.classList.remove(
-            className
-          );
+      gamePanel
+        .classList
+        .remove(
+          "board-mode"
+        );
 
 
-        }
-      );
+      gamePanel
+        .classList
+        .add(
+          "overview-mode"
+        );
 
 
-      gamePanel.classList.remove(
-        "board-mode"
-      );
+      gameBoardView
+        .classList
+        .remove(
+          "is-active"
+        );
 
 
-      gamePanel.classList.add(
-        "overview-mode"
-      );
-
-
-      gameBoardView.classList.remove(
-        "is-active"
-      );
-
-
-      gameOverviewView.classList.add(
-        "is-active"
-      );
-
-
-      gameBoardImage.removeAttribute(
-        "src"
-      );
-
-
-      gameBoardImage.alt =
-        "";
-
-
-      gameBoardTitle.textContent =
-        "";
-
+      gameOverviewView
+        .classList
+        .add(
+          "is-active"
+        );
     }
-
 
 
     function showGameBoard(
       index
     ) {
 
-
       const world =
-        gameWorlds[
+        worlds[
           index
         ];
 
 
-      if (!world) {
-        return;
-      }
+      gamePanel
+        .classList
+        .remove(
+          "overview-mode"
+        );
 
 
-      gameThemeClasses.forEach(
-        className => {
+      gamePanel
+        .classList
+        .add(
+          "board-mode"
+        );
 
 
-          gamePanel.classList.remove(
-            className
-          );
+      gameOverviewView
+        .classList
+        .remove(
+          "is-active"
+        );
 
+
+      gameBoardView
+        .classList
+        .add(
+          "is-active"
+        );
+
+
+      gameBoardTitle
+        .textContent =
+        world.title;
+
+
+      gameBoardImage
+        .src =
+        world.image;
+    }
+
+
+    document
+      .querySelectorAll(
+        "[data-game-world]"
+      )
+      .forEach(
+        button => {
+
+          button
+            .addEventListener(
+              "click",
+              () => {
+
+                showGameBoard(
+                  Number(
+                    button.dataset
+                      .gameWorld
+                  )
+                );
+
+              }
+            );
 
         }
       );
 
 
-      gamePanel.classList.remove(
-        "overview-mode"
-      );
+    document
+      .querySelectorAll(
+        "[data-game-back]"
+      )
+      .forEach(
+        button => {
 
-
-      gamePanel.classList.add(
-        "board-mode"
-      );
-
-
-      gamePanel.classList.add(
-        world.theme
-      );
-
-
-      gameOverviewView.classList.remove(
-        "is-active"
-      );
-
-
-      gameBoardView.classList.add(
-        "is-active"
-      );
-
-
-      gameBoardTitle.textContent =
-        world.title;
-
-
-      gameBoardImage.src =
-        world.image;
-
-
-      gameBoardImage.alt =
-        world.alt;
-
-
-      const gameModal =
-        document.getElementById(
-          "gameModal"
-        );
-
-
-      if (gameModal) {
-
-
-        gameModal.scrollTo({
-
-          top: 0,
-
-          behavior:
-            "smooth"
-
-        });
-
-
-      }
-
-
-    }
-
-
-
-    gameWorldTriggers.forEach(
-      button => {
-
-
-        button.addEventListener(
-          "click",
-          function() {
-
-
-            const index =
-              Number(
-                this.getAttribute(
-                  "data-game-world"
-                )
-              );
-
-
-            showGameBoard(
-              index
+          button
+            .addEventListener(
+              "click",
+              showGameOverview
             );
 
-
-          }
-        );
-
-
-      }
-    );
-
-
-
-    gameBackButtons.forEach(
-      button => {
-
-
-        button.addEventListener(
-          "click",
-          function() {
-
-
-            showGameOverview();
-
-
-            const gameModal =
-              document.getElementById(
-                "gameModal"
-              );
-
-
-            if (gameModal) {
-
-
-              gameModal.scrollTo({
-
-                top: 0,
-
-                behavior:
-                  "smooth"
-
-              });
-
-
-            }
-
-
-          }
-        );
-
-
-      }
-    );
+        }
+      );
 
 
   </script>
