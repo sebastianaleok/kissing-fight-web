@@ -1620,11 +1620,6 @@
         rgba(0,0,0,.68);
     }
 
-
-    /*
-      Bruma cósmica decorativa
-    */
-
     .community-panel::before {
       content: "";
 
@@ -1683,11 +1678,6 @@
         );
     }
 
-
-    /*
-      Halo inferior
-    */
-
     .community-panel::after {
       content: "";
 
@@ -1721,7 +1711,6 @@
 
     .community-panel .modal-logo-wrap {
       position: relative;
-
       margin-bottom: 7px;
     }
 
@@ -1930,11 +1919,6 @@
       z-index: 2;
     }
 
-
-    /*
-      Variables individuales por nivel
-    */
-
     .level-card.level-1 {
       --level-main: 50,221,183;
       --level-second: 32,235,255;
@@ -1986,7 +1970,7 @@
 
 
     /* =========================================================
-       TARJETA
+       TARJETAS NIVEL
        ========================================================= */
 
     .level-card {
@@ -2035,11 +2019,6 @@
         background .26s ease;
     }
 
-
-    /*
-      Marco metálico / gema
-    */
-
     .level-card::before {
       content: "";
 
@@ -2078,11 +2057,6 @@
       transition:
         opacity .26s ease;
     }
-
-
-    /*
-      Brillo diagonal
-    */
 
     .level-card::after {
       content: "";
@@ -2606,11 +2580,6 @@
         24px;
     }
 
-
-    /*
-      Línea interior brillante
-    */
-
     .level-benefit {
       position: relative;
 
@@ -2644,11 +2613,6 @@
         inset 0 0 20px
         rgba(var(--level-main),.025);
     }
-
-
-    /*
-      Mini gema en beneficio
-    */
 
     .level-benefit::before {
       content: "";
@@ -2687,11 +2651,6 @@
         0 0 12px
         rgba(var(--level-main),.72);
     }
-
-
-    /*
-      Línea vertical
-    */
 
     .level-benefit::after {
       content: "";
@@ -2756,7 +2715,7 @@
 
 
     /* =========================================================
-       NIVEL 7 MÁS PREMIUM
+       NIVEL 7 PREMIUM
        ========================================================= */
 
     .level-card.level-7 {
@@ -2943,11 +2902,8 @@
 
     .modal-subtitle {
       margin-bottom: 20px;
-
       text-align: center;
-
       color: var(--text-soft);
-
       font-size: 15px;
       line-height: 1.7;
     }
@@ -3870,9 +3826,20 @@
 
 
 
+    <!-- ======================================================
+         MODIFICADO:
+         AHORA TODO CUADRO 1 ABRE EL POPUP CONOCÉ EL JUEGO
+         ====================================================== -->
+
     <section
-      class="rendered-section"
+      class="rendered-section clickable-render"
       id="juego"
+      role="button"
+      tabindex="0"
+      data-modal-target="gameModal"
+      aria-controls="gameModal"
+      aria-haspopup="dialog"
+      aria-label="Conocé el juego"
     >
 
       <img
@@ -5660,7 +5627,6 @@
 
     /* =========================================================
        NIVELES DE COMUNIDAD
-       MISMO FUNCIONAMIENTO
        ========================================================= */
 
     const levelCards =
