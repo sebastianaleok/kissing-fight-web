@@ -97,14 +97,10 @@
 
     .twinkle-star {
       position: absolute;
-
       width: var(--star-size);
       height: var(--star-size);
-
       border-radius: 50%;
-
       background: rgba(255,255,255,.98);
-
       opacity: 0;
 
       box-shadow:
@@ -157,7 +153,6 @@
     }
 
     @keyframes randomTwinkle {
-
       0% {
         opacity: 0;
         transform: scale(.55);
@@ -180,7 +175,6 @@
         opacity: 0;
         transform: scale(.62);
       }
-
     }
 
 
@@ -190,14 +184,10 @@
 
     .shooting-star {
       position: absolute;
-
       width: 2px;
       height: 2px;
-
       border-radius: 50%;
-
       background: rgba(255,255,255,.95);
-
       opacity: 0;
 
       filter:
@@ -215,17 +205,12 @@
 
     .shooting-star::before {
       content: "";
-
       position: absolute;
-
       right: 1px;
       top: 50%;
-
       width: var(--shoot-tail);
       height: 1px;
-
       transform: translateY(-50%);
-
       border-radius: 999px;
 
       background:
@@ -240,7 +225,6 @@
     }
 
     @keyframes tinyShootingStar {
-
       0% {
         opacity: 0;
 
@@ -268,7 +252,6 @@
           )
           rotate(var(--shoot-angle));
       }
-
     }
 
 
@@ -298,30 +281,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-
       text-align: center;
-
       position: relative;
-
       padding-top: 35px;
     }
 
     .eyebrow {
       position: relative;
-
       z-index: 6;
-
       margin-bottom: 15px;
 
       font-family: "Cinzel",serif;
-
       font-size: 13px;
       font-weight: 800;
-
       letter-spacing: 6px;
 
       color: var(--gold);
-
       text-transform: uppercase;
 
       text-shadow:
@@ -335,7 +310,6 @@
     }
 
     @keyframes eyebrowGlow {
-
       0%,
       100% {
         opacity: .82;
@@ -344,15 +318,12 @@
       50% {
         opacity: 1;
       }
-
     }
 
     .portal {
       position: absolute;
-
       top: 80px;
       left: 50%;
-
       transform: translateX(-50%);
 
       width:
@@ -363,9 +334,7 @@
         );
 
       aspect-ratio: 1;
-
       border-radius: 50%;
-
       pointer-events: none;
 
       background:
@@ -388,15 +357,10 @@
 
     .portal::before {
       content: "";
-
       position: absolute;
-
       inset: 12%;
-
       border-radius: 50%;
-
-      border:
-        2px solid rgba(50,221,183,.22);
+      border: 2px solid rgba(50,221,183,.22);
 
       box-shadow:
         0 0 28px rgba(50,221,183,.23),
@@ -405,22 +369,16 @@
 
     .portal::after {
       content: "";
-
       position: absolute;
-
       inset: 22%;
-
       border-radius: 50%;
-
-      border:
-        1px solid rgba(224,184,98,.28);
+      border: 1px solid rgba(224,184,98,.28);
 
       box-shadow:
         0 0 38px rgba(224,184,98,.15);
     }
 
     @keyframes portalPulse {
-
       0%,
       100% {
         transform:
@@ -437,7 +395,6 @@
 
         opacity: 1;
       }
-
     }
 
     .hero-logo-wrap {
@@ -456,25 +413,20 @@
       align-items: center;
 
       position: relative;
-
       z-index: 6;
-
       margin: 0 auto;
     }
 
     .hero-logo-shadow {
       position: absolute;
-
       bottom: 28px;
       left: 50%;
-
       transform: translateX(-50%);
 
       width: 58%;
       height: 30px;
 
       border-radius: 50%;
-
       background: rgba(0,0,0,.78);
 
       filter: blur(21px);
@@ -488,12 +440,10 @@
 
     .hero-logo {
       display: block;
-
       width: min(100%,920px);
       height: auto;
 
       position: relative;
-
       z-index: 7;
 
       animation:
@@ -510,7 +460,6 @@
     }
 
     @keyframes logoFloat {
-
       0%,
       100% {
         transform:
@@ -523,11 +472,9 @@
           translateY(-17px)
           scale(1.02);
       }
-
     }
 
     @keyframes shadowFloat {
-
       0%,
       100% {
         transform:
@@ -544,12 +491,10 @@
 
         opacity: .27;
       }
-
     }
 
     .subtitle {
       position: relative;
-
       z-index: 6;
 
       max-width: 760px;
@@ -569,7 +514,6 @@
         );
 
       line-height: 1.7;
-
       color: var(--text-soft);
     }
 
@@ -585,42 +529,30 @@
 
     .main-buttons {
       width: 100%;
-
       display: grid;
-
       gap: 15px;
-
       margin-top: 44px;
-
       position: relative;
-
       z-index: 7;
     }
 
     .image-button {
       width: 100%;
-
       aspect-ratio: 7 / 1;
 
       display: block;
-
       position: relative;
-
       overflow: hidden;
 
       padding: 0;
       margin: 0;
-
       border: 0;
 
       background: transparent;
-
       color: inherit;
-
       appearance: none;
 
       cursor: pointer;
-
       line-height: 0;
 
       transition:
@@ -633,20 +565,15 @@
 
     .image-button img {
       position: absolute;
-
       left: 0;
 
       width: 100%;
       height: auto;
-
       max-width: none;
 
       display: block;
-
       pointer-events: none;
-
       user-select: none;
-
       -webkit-user-drag: none;
     }
 
@@ -685,22 +612,16 @@
 
     .rendered-section {
       width: 100%;
-
       display: block;
-
       position: relative;
-
       margin-top: 34px;
     }
 
     .rendered-section img {
       display: block;
-
       width: 100%;
       height: auto;
-
       user-select: none;
-
       -webkit-user-drag: none;
     }
 
@@ -740,33 +661,25 @@
       text-align: center;
 
       font-family: "Cinzel",serif;
-
       font-size: 11px;
       font-weight: 800;
-
       letter-spacing: 4px;
 
       color: var(--gold);
-
       text-transform: uppercase;
     }
 
     .socials {
       display: grid;
-
       grid-template-columns:
         repeat(2,1fr);
-
       gap: 12px;
     }
 
     .social-image-link {
       display: block;
-
       width: 100%;
-
       line-height: 0;
-
       text-decoration: none;
 
       transition:
@@ -776,14 +689,10 @@
 
     .social-image-link img {
       display: block;
-
       width: 100%;
       height: auto;
-
       pointer-events: none;
-
       user-select: none;
-
       -webkit-user-drag: none;
     }
 
@@ -799,21 +708,15 @@
 
     footer {
       margin-top: 34px;
-
       text-align: center;
-
       color: #b9b2a4;
-
       font-size: 13px;
-
       line-height: 1.8;
     }
 
     .status {
       display: inline-flex;
-
       align-items: center;
-
       gap: 8px;
 
       margin-top: 7px;
@@ -822,14 +725,12 @@
 
       font-size: 12px;
       font-weight: 800;
-
       letter-spacing: .6px;
     }
 
     .dot {
       width: 8px;
       height: 8px;
-
       border-radius: 50%;
 
       background: var(--teal);
@@ -845,35 +746,28 @@
 
     .modal-backdrop {
       position: fixed;
-
       inset: 0;
-
       z-index: 40;
 
       display: none;
 
       padding: 18px;
-
       overflow-y: auto;
 
       background: rgba(1,3,8,.68);
 
       backdrop-filter: blur(8px);
-
       -webkit-backdrop-filter: blur(8px);
     }
 
     .modal-backdrop.is-open {
       display: flex;
-
       justify-content: center;
-
       align-items: flex-start;
     }
 
     .modal-panel {
       width: min(1080px,100%);
-
       margin: auto;
 
       padding:
@@ -901,10 +795,8 @@
 
     .modal-close {
       position: absolute;
-
       top: 14px;
       right: 14px;
-
       z-index: 50;
 
       width: 44px;
@@ -916,11 +808,9 @@
       border-radius: 50%;
 
       background: rgba(10,8,13,.75);
-
       color: var(--ivory);
 
       font-size: 28px;
-
       line-height: 1;
 
       cursor: pointer;
@@ -939,15 +829,12 @@
 
     .modal-logo-wrap {
       display: flex;
-
       justify-content: center;
-
       margin-bottom: 14px;
     }
 
     .modal-logo {
       display: block;
-
       width: min(340px,72%);
       height: auto;
     }
@@ -961,7 +848,6 @@
 
       font-size: 11px;
       font-weight: 900;
-
       letter-spacing: 4px;
 
       text-transform: uppercase;
@@ -979,11 +865,9 @@
       --world-deep-rgb: 7,7,12;
 
       padding: 0;
-
       border: 0;
 
       background: transparent;
-
       box-shadow: none;
 
       overflow: visible;
@@ -997,11 +881,6 @@
       isolation: isolate;
     }
 
-
-    /* =========================================================
-       VISTA GENERAL
-       ========================================================= */
-
     .game-panel.overview-mode {
       width:
         min(
@@ -1013,7 +892,6 @@
       min-height: 0;
 
       border-radius: 0;
-
       background: transparent;
     }
 
@@ -1027,20 +905,11 @@
       display: block;
     }
 
-
-    /*
-      CONTENEDOR DE LAS DOS IMÁGENES.
-      NO HAY GAP NI MÁRGENES ENTRE ELLAS.
-    */
-
     .game-overview-stack {
       width: 100%;
-
       display: block;
-
       margin: 0;
       padding: 0;
-
       line-height: 0;
 
       filter:
@@ -1050,23 +919,13 @@
         );
     }
 
-
-    /*
-      PRIMERA IMAGEN:
-      acá están los 5 mundos y los hotspots.
-    */
-
     .game-overview-stage {
       width: 100%;
-
       position: relative;
-
       margin: 0;
       padding: 0;
-
       line-height: 0;
     }
-
 
     .game-overview-image {
       display: block;
@@ -1076,18 +935,11 @@
 
       margin: 0;
       padding: 0;
-
       border: 0;
       border-radius: 0;
 
       vertical-align: bottom;
     }
-
-
-    /*
-      SEGUNDA IMAGEN:
-      continuación directa de popup-juego-mundo.png
-    */
 
     .game-announcement-image {
       display: block;
@@ -1101,21 +953,14 @@
         0;
 
       padding: 0;
-
       border: 0;
       border-radius: 0;
 
       vertical-align: top;
 
       user-select: none;
-
       -webkit-user-drag: none;
     }
-
-
-    /*
-       La X ya está dibujada dentro de popup-juego-mundo.png.
-    */
 
     .game-panel.overview-mode .modal-close {
       top: 1.8%;
@@ -1128,11 +973,9 @@
       min-height: 42px;
 
       border: 0;
-
       border-radius: 50%;
 
       background: transparent;
-
       color: transparent;
 
       box-shadow: none;
@@ -1151,18 +994,15 @@
 
 
     /* =========================================================
-       ZONAS CLICKEABLES DE LOS CINCO MUNDOS
+       HOTSPOTS MUNDOS
        ========================================================= */
 
     .world-hotspot {
       position: absolute;
-
       left: 4.3%;
-
       width: 91.5%;
 
       border: 0;
-
       border-radius: 14px;
 
       background: transparent;
@@ -1181,7 +1021,6 @@
     .world-hotspot:hover,
     .world-hotspot:focus-visible {
       outline: none;
-
       transform: scale(1.006);
 
       background:
@@ -1223,7 +1062,7 @@
 
 
     /* =========================================================
-       VISTA DE UN MUNDO
+       VISTA TABLERO
        ========================================================= */
 
     .game-panel.board-mode {
@@ -1294,9 +1133,7 @@
       content: "";
 
       position: absolute;
-
       inset: 0;
-
       z-index: -1;
 
       pointer-events: none;
@@ -1340,7 +1177,6 @@
       content: "";
 
       position: absolute;
-
       inset: -15%;
 
       z-index: -2;
@@ -1366,7 +1202,7 @@
 
 
     /* =========================================================
-       TEMAS DE CADA MUNDO
+       TEMAS MUNDOS
        ========================================================= */
 
     .game-panel.theme-sabana {
@@ -1406,7 +1242,7 @@
 
 
     /* =========================================================
-       TÍTULO DEL MUNDO
+       TÍTULO TABLERO
        ========================================================= */
 
     .game-board-title {
@@ -1437,7 +1273,6 @@
       font-weight: 800;
 
       line-height: 1.18;
-
       letter-spacing: .4px;
 
       background:
@@ -1466,7 +1301,6 @@
 
     .game-board-title::after {
       content: "";
-
       display: block;
 
       width:
@@ -1512,10 +1346,8 @@
 
     .game-back {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
-
       gap: 8px;
 
       padding:
@@ -1539,7 +1371,6 @@
 
       font-size: 13px;
       font-weight: 900;
-
       letter-spacing: .4px;
 
       cursor: pointer;
@@ -1635,9 +1466,7 @@
       content: "";
 
       position: absolute;
-
       inset: -10%;
-
       z-index: -1;
 
       border-radius: 35%;
@@ -1665,9 +1494,7 @@
       content: "";
 
       position: absolute;
-
       inset: 5px;
-
       z-index: 4;
 
       pointer-events: none;
@@ -1690,7 +1517,6 @@
 
       width: 100%;
       height: auto;
-
       max-height: 82vh;
 
       object-fit: contain;
@@ -1698,7 +1524,6 @@
       border-radius: 24px;
 
       position: relative;
-
       z-index: 2;
 
       background: transparent;
@@ -1726,21 +1551,204 @@
         rgba(255,255,255,.72);
 
       font-size: 12px;
-
       line-height: 1.6;
     }
 
 
     /* =========================================================
        COMUNIDAD
+       NUEVA ESTÉTICA RELIQUIA DE REINOS
        ========================================================= */
 
     .community-panel {
-      width: min(980px,100%);
+      width: min(1040px,100%);
+
+      padding:
+        34px
+        30px
+        36px;
+
+      overflow: hidden;
+
+      isolation: isolate;
+
+      border:
+        1px solid rgba(224,184,98,.50);
+
+      border-radius: 34px;
+
+      background:
+
+        radial-gradient(
+          circle at 13% 13%,
+          rgba(50,221,183,.19),
+          transparent 31%
+        ),
+
+        radial-gradient(
+          circle at 88% 18%,
+          rgba(255,90,159,.20),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 52% 100%,
+          rgba(224,184,98,.15),
+          transparent 36%
+        ),
+
+        linear-gradient(
+          145deg,
+          rgba(7,14,23,.98),
+          rgba(17,8,24,.98) 54%,
+          rgba(6,7,14,.99)
+        );
+
+      box-shadow:
+
+        0 0 0 1px
+        rgba(255,255,255,.035)
+        inset,
+
+        0 0 45px
+        rgba(50,221,183,.10),
+
+        0 0 60px
+        rgba(255,90,159,.08),
+
+        0 35px 110px
+        rgba(0,0,0,.68);
+    }
+
+
+    /*
+      Bruma cósmica decorativa
+    */
+
+    .community-panel::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: -2;
+
+      pointer-events: none;
+
+      opacity: .85;
+
+      background:
+
+        radial-gradient(
+          ellipse at 2% 48%,
+          rgba(50,221,183,.12),
+          transparent 24%
+        ),
+
+        radial-gradient(
+          ellipse at 99% 60%,
+          rgba(255,90,159,.13),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 10% 18%,
+          rgba(255,255,255,.9) 0 1px,
+          transparent 2px
+        ),
+
+        radial-gradient(
+          circle at 19% 71%,
+          rgba(50,221,183,.9) 0 1px,
+          transparent 2px
+        ),
+
+        radial-gradient(
+          circle at 41% 8%,
+          rgba(255,255,255,.65) 0 1px,
+          transparent 2px
+        ),
+
+        radial-gradient(
+          circle at 72% 24%,
+          rgba(255,90,159,.75) 0 1px,
+          transparent 2px
+        ),
+
+        radial-gradient(
+          circle at 90% 79%,
+          rgba(224,184,98,.8) 0 1px,
+          transparent 2px
+        );
+    }
+
+
+    /*
+      Halo inferior
+    */
+
+    .community-panel::after {
+      content: "";
+
+      position: absolute;
+
+      left: 13%;
+      right: 13%;
+      bottom: -70px;
+
+      height: 130px;
+
+      z-index: -1;
+
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          ellipse,
+          rgba(224,184,98,.20),
+          rgba(255,90,159,.08) 38%,
+          transparent 72%
+        );
+
+      filter: blur(25px);
+    }
+
+
+    /* =========================================================
+       HEADER COMUNIDAD
+       ========================================================= */
+
+    .community-panel .modal-logo-wrap {
+      position: relative;
+
+      margin-bottom: 7px;
+    }
+
+    .community-panel .modal-logo {
+      width: min(400px,72%);
+
+      filter:
+        drop-shadow(0 10px 12px rgba(0,0,0,.5))
+        drop-shadow(0 0 18px rgba(255,90,159,.30))
+        drop-shadow(0 0 24px rgba(50,221,183,.24));
+    }
+
+    .community-panel .modal-overline {
+      margin-top: 4px;
+      margin-bottom: 8px;
+
+      color: #62f4de;
+
+      font-size: 11px;
+      letter-spacing: 6px;
+
+      text-shadow:
+        0 0 13px rgba(50,221,183,.55);
     }
 
     .community-title {
-      max-width: 800px;
+      max-width: 850px;
 
       margin:
         0
@@ -1749,18 +1757,43 @@
 
       text-align: center;
 
-      font-family: "Cinzel",serif;
+      font-family:
+        "Cinzel",
+        serif;
 
       font-size:
         clamp(
-          24px,
-          3.5vw,
-          38px
+          30px,
+          4.2vw,
+          50px
         );
 
-      line-height: 1.25;
+      font-weight: 800;
 
-      color: var(--gold);
+      line-height: 1.15;
+
+      letter-spacing: .6px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #59ead8 0%,
+          #fff4cf 27%,
+          #ffd071 50%,
+          #ff92c6 73%,
+          #5debdc 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      filter:
+        drop-shadow(0 3px 3px rgba(0,0,0,.60));
+
+      text-shadow:
+        0 0 22px rgba(224,184,98,.16);
     }
 
     .community-subtitle {
@@ -1769,97 +1802,382 @@
       margin:
         0
         auto
-        18px;
+        24px;
 
       text-align: center;
 
-      color: var(--text-soft);
+      color: rgba(247,240,214,.83);
 
-      font-size: 15px;
+      font-size:
+        clamp(
+          14px,
+          1.7vw,
+          17px
+        );
 
       line-height: 1.7;
     }
 
+
+    /* =========================================================
+       AVISO ACUMULACIÓN BENEFICIOS
+       ========================================================= */
+
     .community-note {
-      max-width: 780px;
+      max-width: 900px;
 
       margin:
         0
         auto
-        24px;
+        30px;
 
       padding:
-        14px
-        18px;
+        18px
+        25px;
+
+      position: relative;
+
+      overflow: hidden;
 
       text-align: center;
 
-      border-radius: 16px;
+      border-radius: 20px;
 
       background:
+
+        radial-gradient(
+          circle at 3% 50%,
+          rgba(50,221,183,.22),
+          transparent 25%
+        ),
+
+        radial-gradient(
+          circle at 97% 50%,
+          rgba(255,90,159,.18),
+          transparent 25%
+        ),
+
         linear-gradient(
-          145deg,
-          rgba(224,184,98,.10),
-          rgba(50,221,183,.08)
+          110deg,
+          rgba(25,22,29,.96),
+          rgba(8,25,28,.96)
         );
 
       border:
-        1px solid rgba(224,184,98,.28);
+        1px solid rgba(224,184,98,.48);
 
-      color: var(--ivory);
+      color: #fff4d8;
 
-      font-weight: 800;
+      font-family:
+        "Libre Baskerville",
+        serif;
 
-      line-height: 1.65;
+      font-size:
+        clamp(
+          14px,
+          1.6vw,
+          17px
+        );
+
+      font-weight: 700;
+
+      line-height: 1.55;
+
+      text-shadow:
+        0 2px 6px rgba(0,0,0,.75);
+
+      box-shadow:
+        0 0 25px rgba(224,184,98,.07),
+        inset 0 0 25px rgba(50,221,183,.035);
     }
+
+    .community-note::before,
+    .community-note::after {
+      content: "✦";
+
+      position: absolute;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: var(--gold);
+
+      font-size: 13px;
+
+      text-shadow:
+        0 0 12px rgba(224,184,98,.8);
+    }
+
+    .community-note::before {
+      left: 18px;
+    }
+
+    .community-note::after {
+      right: 18px;
+    }
+
+
+    /* =========================================================
+       LISTA DE NIVELES
+       ========================================================= */
 
     .levels-list {
       display: grid;
-      gap: 14px;
+      gap: 18px;
+
+      position: relative;
+      z-index: 2;
     }
+
+
+    /*
+      Variables individuales por nivel
+    */
+
+    .level-card.level-1 {
+      --level-main: 50,221,183;
+      --level-second: 32,235,255;
+      --level-light: 184,255,244;
+      --level-dark: 3,45,48;
+    }
+
+    .level-card.level-2 {
+      --level-main: 31,211,255;
+      --level-second: 89,151,255;
+      --level-light: 210,248,255;
+      --level-dark: 8,30,66;
+    }
+
+    .level-card.level-3 {
+      --level-main: 63,126,255;
+      --level-second: 88,74,255;
+      --level-light: 212,225,255;
+      --level-dark: 16,19,68;
+    }
+
+    .level-card.level-4 {
+      --level-main: 177,81,255;
+      --level-second: 118,63,255;
+      --level-light: 237,211,255;
+      --level-dark: 39,14,70;
+    }
+
+    .level-card.level-5 {
+      --level-main: 255,79,165;
+      --level-second: 255,52,207;
+      --level-light: 255,221,240;
+      --level-dark: 68,8,43;
+    }
+
+    .level-card.level-6 {
+      --level-main: 255,180,59;
+      --level-second: 255,220,101;
+      --level-light: 255,246,197;
+      --level-dark: 72,43,5;
+    }
+
+    .level-card.level-7 {
+      --level-main: 255,218,105;
+      --level-second: 255,250,205;
+      --level-light: 255,255,245;
+      --level-dark: 78,52,4;
+    }
+
+
+    /* =========================================================
+       TARJETA
+       ========================================================= */
 
     .level-card {
       position: relative;
 
       overflow: hidden;
 
-      border-radius: 20px;
+      border-radius: 24px;
 
       background:
+
+        radial-gradient(
+          circle at 7% 25%,
+          rgba(var(--level-main),.14),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 94% 70%,
+          rgba(var(--level-second),.10),
+          transparent 28%
+        ),
+
         linear-gradient(
-          145deg,
-          rgba(24,23,31,.96),
-          rgba(9,9,13,.98)
+          120deg,
+          rgba(13,16,25,.98),
+          rgba(7,7,14,.99)
         );
 
       border:
-        1px solid rgba(224,184,98,.14);
+        1px solid rgba(var(--level-main),.50);
+
+      box-shadow:
+
+        0 14px 32px
+        rgba(0,0,0,.26),
+
+        inset
+        0 0 28px
+        rgba(var(--level-main),.025);
+
+      transition:
+        transform .26s ease,
+        border-color .26s ease,
+        box-shadow .26s ease,
+        background .26s ease;
+    }
+
+
+    /*
+      Marco metálico / gema
+    */
+
+    .level-card::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 1;
+
+      pointer-events: none;
+
+      border-radius: inherit;
+
+      padding: 1px;
+
+      background:
+        linear-gradient(
+          115deg,
+          rgba(var(--level-main),.86),
+          rgba(224,184,98,.48) 20%,
+          rgba(var(--level-light),.68) 48%,
+          rgba(var(--level-second),.68) 74%,
+          rgba(224,184,98,.48)
+        );
+
+      -webkit-mask:
+        linear-gradient(#fff 0 0)
+        content-box,
+        linear-gradient(#fff 0 0);
+
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+
+      opacity: .48;
+
+      transition:
+        opacity .26s ease;
+    }
+
+
+    /*
+      Brillo diagonal
+    */
+
+    .level-card::after {
+      content: "";
+
+      position: absolute;
+
+      top: -110%;
+      left: -16%;
+
+      width: 35%;
+      height: 330%;
+
+      z-index: 1;
+
+      pointer-events: none;
+
+      transform: rotate(18deg);
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(var(--level-light),.12),
+          rgba(255,255,255,.16),
+          transparent
+        );
+
+      opacity: 0;
+
+      transition:
+        left .65s ease,
+        opacity .25s ease;
     }
 
     .level-card:hover,
     .level-card.is-active {
+      transform:
+        translateY(-2px)
+        scale(1.003);
+
       border-color:
-        rgba(224,184,98,.38);
+        rgba(var(--level-main),.90);
+
+      box-shadow:
+
+        0 0 24px
+        rgba(var(--level-main),.18),
+
+        0 0 52px
+        rgba(var(--level-second),.09),
+
+        0 18px 38px
+        rgba(0,0,0,.36),
+
+        inset
+        0 0 34px
+        rgba(var(--level-main),.05);
     }
 
-    .level-card.level-teal .level-number {
-      color: var(--teal);
+    .level-card:hover::before,
+    .level-card.is-active::before {
+      opacity: 1;
     }
 
-    .level-card.level-pink .level-number {
-      color: var(--pink);
+    .level-card:hover::after {
+      left: 108%;
+      opacity: 1;
     }
 
-    .level-card.level-gold .level-number {
-      color: var(--gold);
-    }
 
-    .level-card.level-ivory .level-number {
-      color: var(--ivory);
-    }
+    /* =========================================================
+       BOTÓN NIVEL
+       ========================================================= */
 
     .level-toggle {
       width: 100%;
+
+      position: relative;
+      z-index: 3;
+
+      display: grid;
+
+      grid-template-columns:
+        74px
+        62px
+        1fr
+        48px;
+
+      align-items: center;
+
+      gap: 19px;
+
+      padding:
+        22px
+        25px;
 
       background: transparent;
 
@@ -1871,77 +2189,390 @@
 
       cursor: pointer;
 
-      padding:
-        18px
-        20px;
-
-      display: grid;
-
-      grid-template-columns:
-        58px
-        1fr
-        34px;
-
-      align-items: center;
-
-      gap: 16px;
-
       font: inherit;
+
+      -webkit-tap-highlight-color:
+        transparent;
     }
 
+
+    /* =========================================================
+       NÚMERO
+       ========================================================= */
+
     .level-number {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 62px;
+
       font-family:
         "Libre Baskerville",
         serif;
 
-      font-size: 30px;
+      font-size:
+        clamp(
+          31px,
+          4vw,
+          42px
+        );
+
       font-weight: 700;
 
+      color:
+        rgb(var(--level-main));
+
       text-align: center;
+
+      text-shadow:
+        0 0 13px rgba(var(--level-main),.48),
+        0 4px 6px rgba(0,0,0,.65);
+
+      transition:
+        transform .25s ease,
+        text-shadow .25s ease;
+    }
+
+    .level-card:hover .level-number,
+    .level-card.is-active .level-number {
+      transform: scale(1.08);
+
+      text-shadow:
+        0 0 17px rgba(var(--level-main),.85),
+        0 4px 6px rgba(0,0,0,.70);
+    }
+
+
+    /* =========================================================
+       GEMA DEL NIVEL
+       ========================================================= */
+
+    .level-gem-wrap {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      position: relative;
+    }
+
+    .level-gem-wrap::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 1px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(var(--level-main),.18),
+          transparent 66%
+        );
+
+      box-shadow:
+        0 0 18px
+        rgba(var(--level-main),.30);
+    }
+
+    .level-gem-wrap::after {
+      content: "";
+
+      position: absolute;
+
+      width: 48px;
+      height: 48px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(var(--level-main),.32);
+
+      box-shadow:
+        inset 0 0 9px
+        rgba(var(--level-main),.12);
+    }
+
+    .level-gem {
+      width: 26px;
+      height: 26px;
+
+      position: relative;
+      z-index: 2;
+
+      transform: rotate(45deg);
+
+      border-radius: 5px 12px 5px 12px;
+
+      background:
+
+        linear-gradient(
+          135deg,
+          rgba(var(--level-light),1) 0%,
+          rgba(var(--level-main),1) 33%,
+          rgba(var(--level-second),1) 68%,
+          rgba(var(--level-dark),1) 100%
+        );
+
+      border:
+        1px solid
+        rgba(var(--level-light),.95);
+
+      box-shadow:
+
+        0 0 10px
+        rgba(var(--level-main),.8),
+
+        0 0 22px
+        rgba(var(--level-main),.46),
+
+        inset
+        4px
+        4px
+        6px
+        rgba(255,255,255,.34),
+
+        inset
+        -5px
+        -5px
+        7px
+        rgba(0,0,0,.30);
+
+      transition:
+        transform .32s ease,
+        box-shadow .32s ease;
+    }
+
+    .level-gem::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 5px;
+
+      border-radius:
+        2px
+        7px
+        2px
+        7px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.52);
+    }
+
+    .level-gem::after {
+      content: "";
+
+      position: absolute;
+
+      width: 7px;
+      height: 7px;
+
+      top: 3px;
+      left: 3px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      opacity: .85;
+
+      filter: blur(.4px);
+
+      box-shadow:
+        0 0 8px white;
+    }
+
+    .level-card:hover .level-gem,
+    .level-card.is-active .level-gem {
+      transform:
+        rotate(45deg)
+        scale(1.16);
+
+      box-shadow:
+
+        0 0 13px
+        rgba(var(--level-main),1),
+
+        0 0 31px
+        rgba(var(--level-main),.72),
+
+        0 0 50px
+        rgba(var(--level-second),.26),
+
+        inset
+        4px
+        4px
+        6px
+        rgba(255,255,255,.42),
+
+        inset
+        -5px
+        -5px
+        7px
+        rgba(0,0,0,.30);
+    }
+
+
+    /* =========================================================
+       NOMBRE Y FRASE
+       ========================================================= */
+
+    .level-copy {
+      min-width: 0;
     }
 
     .level-name {
       display: block;
 
-      font-family: "Cinzel",serif;
+      font-family:
+        "Cinzel",
+        serif;
 
       font-size:
         clamp(
-          18px,
-          2.2vw,
-          24px
+          22px,
+          2.8vw,
+          31px
         );
 
-      color: var(--ivory);
+      line-height: 1.14;
+
+      font-weight: 700;
+
+      letter-spacing: .2px;
+
+      color: #fff3dc;
+
+      text-shadow:
+        0 3px 4px rgba(0,0,0,.75),
+        0 0 11px rgba(var(--level-main),.14);
+
+      transition:
+        color .25s ease,
+        text-shadow .25s ease;
+    }
+
+    .level-card:hover .level-name,
+    .level-card.is-active .level-name {
+      color:
+        rgb(var(--level-light));
+
+      text-shadow:
+        0 3px 4px rgba(0,0,0,.75),
+        0 0 15px rgba(var(--level-main),.38);
     }
 
     .level-tagline {
       display: block;
 
-      margin-top: 5px;
+      margin-top: 7px;
 
-      color: #bfb7aa;
+      color:
+        rgba(247,240,214,.68);
 
-      font-size: 13px;
-      font-weight: 700;
+      font-size:
+        clamp(
+          12px,
+          1.5vw,
+          14px
+        );
+
+      font-weight: 800;
+
+      letter-spacing: .15px;
     }
 
+
+    /* =========================================================
+       BOTÓN +
+       ========================================================= */
+
     .level-chevron {
-      font-size: 24px;
-      font-weight: 900;
+      width: 43px;
+      height: 43px;
 
-      color: var(--gold);
+      display: grid;
+      place-items: center;
 
-      text-align: center;
+      position: relative;
+
+      border-radius: 50%;
+
+      font-family: Arial,sans-serif;
+
+      font-size: 28px;
+      font-weight: 400;
+
+      line-height: 1;
+
+      color:
+        rgb(var(--level-light));
+
+      background:
+
+        radial-gradient(
+          circle,
+          rgba(var(--level-main),.13),
+          rgba(4,6,12,.78) 66%
+        );
+
+      border:
+        1px solid
+        rgba(var(--level-main),.55);
+
+      box-shadow:
+        inset 0 0 10px
+        rgba(var(--level-main),.11),
+
+        0 0 14px
+        rgba(var(--level-main),.15);
 
       transition:
-        transform .25s ease;
+        transform .30s ease,
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+    }
+
+    .level-card:hover .level-chevron,
+    .level-card.is-active .level-chevron {
+      border-color:
+        rgba(var(--level-main),.95);
+
+      background:
+
+        radial-gradient(
+          circle,
+          rgba(var(--level-main),.26),
+          rgba(5,7,14,.87) 70%
+        );
+
+      box-shadow:
+        0 0 17px
+        rgba(var(--level-main),.40),
+
+        inset
+        0 0 13px
+        rgba(var(--level-main),.14);
     }
 
     .level-card.is-active .level-chevron,
     .level-card:hover .level-chevron {
       transform: rotate(45deg);
     }
+
+
+    /* =========================================================
+       CUERPO DESPLEGABLE
+       ========================================================= */
 
     .level-body {
       max-height: 0;
@@ -1950,84 +2581,333 @@
 
       opacity: 0;
 
+      position: relative;
+      z-index: 3;
+
       padding:
         0
-        20px;
+        26px;
 
       transition:
-        max-height .35s ease,
-        opacity .25s ease,
-        padding .25s ease;
+        max-height .38s ease,
+        opacity .28s ease,
+        padding .30s ease;
     }
 
     .level-card:hover .level-body,
     .level-card.is-active .level-body {
-      max-height: 240px;
+      max-height: 340px;
 
       opacity: 1;
 
       padding:
         0
-        20px
-        20px;
+        26px
+        24px;
+    }
+
+
+    /*
+      Línea interior brillante
+    */
+
+    .level-benefit {
+      position: relative;
+
+      padding:
+        18px
+        22px
+        18px
+        94px;
+
+      border-radius: 17px;
+
+      background:
+
+        radial-gradient(
+          circle at 5% 50%,
+          rgba(var(--level-main),.18),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          110deg,
+          rgba(var(--level-dark),.30),
+          rgba(255,255,255,.022)
+        );
+
+      border:
+        1px solid
+        rgba(var(--level-main),.24);
+
+      box-shadow:
+        inset 0 0 20px
+        rgba(var(--level-main),.025);
+    }
+
+
+    /*
+      Mini gema en beneficio
+    */
+
+    .level-benefit::before {
+      content: "";
+
+      position: absolute;
+
+      left: 31px;
+      top: 50%;
+
+      width: 25px;
+      height: 25px;
+
+      transform:
+        translateY(-50%)
+        rotate(45deg);
+
+      border-radius:
+        4px
+        10px
+        4px
+        10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgb(var(--level-light)),
+          rgb(var(--level-main)) 45%,
+          rgb(var(--level-second))
+        );
+
+      border:
+        1px solid
+        rgba(255,255,255,.72);
+
+      box-shadow:
+        0 0 12px
+        rgba(var(--level-main),.72);
+    }
+
+
+    /*
+      Línea vertical
+    */
+
+    .level-benefit::after {
+      content: "";
+
+      position: absolute;
+
+      top: 13px;
+      bottom: 13px;
+      left: 72px;
+
+      width: 1px;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(var(--level-main),.65),
+          transparent
+        );
+    }
+
+    .benefit-label {
+      display: block;
+
+      margin-bottom: 6px;
+
+      color:
+        rgb(var(--level-main));
+
+      font-size: 10px;
+      font-weight: 900;
+
+      letter-spacing: 2.6px;
+
+      text-transform: uppercase;
+
+      text-shadow:
+        0 0 8px
+        rgba(var(--level-main),.30);
     }
 
     .level-body p {
-      padding-top: 16px;
+      color:
+        rgba(247,240,214,.84);
 
-      color: var(--text-soft);
+      font-size:
+        clamp(
+          14px,
+          1.6vw,
+          16px
+        );
 
-      font-size: 14px;
+      line-height: 1.7;
 
-      line-height: 1.75;
+      text-shadow:
+        0 2px 4px rgba(0,0,0,.65);
     }
+
+    .level-body strong {
+      color: #fff1d1;
+      font-weight: 900;
+    }
+
+
+    /* =========================================================
+       NIVEL 7 MÁS PREMIUM
+       ========================================================= */
+
+    .level-card.level-7 {
+      border-color:
+        rgba(255,222,111,.72);
+
+      background:
+
+        radial-gradient(
+          circle at 7% 25%,
+          rgba(255,218,105,.20),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 94% 70%,
+          rgba(255,255,235,.10),
+          transparent 28%
+        ),
+
+        linear-gradient(
+          120deg,
+          rgba(38,24,5,.95),
+          rgba(8,8,13,.99)
+        );
+
+      box-shadow:
+
+        0 0 28px
+        rgba(255,205,70,.10),
+
+        0 14px 32px
+        rgba(0,0,0,.34),
+
+        inset
+        0 0 32px
+        rgba(255,218,105,.04);
+    }
+
+    .level-card.level-7:hover,
+    .level-card.level-7.is-active {
+      box-shadow:
+
+        0 0 27px
+        rgba(255,220,113,.33),
+
+        0 0 60px
+        rgba(255,180,48,.13),
+
+        0 20px 40px
+        rgba(0,0,0,.40),
+
+        inset
+        0 0 38px
+        rgba(255,225,110,.07);
+    }
+
+
+    /* =========================================================
+       BOTÓN COMUNIDAD
+       ========================================================= */
 
     .community-contact,
     .investor-contact {
       display: flex;
-
       justify-content: center;
-
-      margin-top: 24px;
+      margin-top: 28px;
     }
 
-    .community-contact-button,
-    .investor-contact-button {
+    .community-contact-button {
       min-width:
         min(
           100%,
-          430px
+          490px
         );
 
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
 
       gap: 11px;
 
       padding:
-        17px
-        28px;
+        18px
+        30px;
 
-      border-radius: 17px;
+      border-radius: 18px;
 
       text-decoration: none;
 
-      color: var(--ivory);
+      color: #fff2cf;
 
-      font-size: 14px;
-      font-weight: 900;
+      font-family:
+        "Cinzel",
+        serif;
+
+      font-size:
+        clamp(
+          13px,
+          1.6vw,
+          16px
+        );
+
+      font-weight: 800;
+
+      letter-spacing: .7px;
 
       background:
+
+        radial-gradient(
+          circle at 10% 50%,
+          rgba(50,221,183,.21),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 90% 50%,
+          rgba(255,90,159,.18),
+          transparent 30%
+        ),
+
         linear-gradient(
           105deg,
-          rgba(50,221,183,.24),
-          rgba(13,24,22,.98)
+          rgba(15,21,30,.97),
+          rgba(19,10,25,.98)
         );
 
       border:
-        1px solid rgba(50,221,183,.54);
+        1px solid rgba(224,184,98,.65);
+
+      box-shadow:
+        0 0 21px rgba(224,184,98,.08),
+        inset 0 0 17px rgba(50,221,183,.035);
+
+      transition:
+        transform .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+    }
+
+    .community-contact-button:hover {
+      transform:
+        translateY(-3px)
+        scale(1.01);
+
+      border-color: rgba(255,222,120,.95);
+
+      box-shadow:
+        0 0 21px rgba(224,184,98,.20),
+        0 0 38px rgba(50,221,183,.08),
+        0 10px 28px rgba(0,0,0,.30);
     }
 
 
@@ -2069,7 +2949,6 @@
       color: var(--text-soft);
 
       font-size: 15px;
-
       line-height: 1.7;
     }
 
@@ -2089,7 +2968,6 @@
 
     .donut-wrap {
       display: flex;
-
       justify-content: center;
     }
 
@@ -2129,17 +3007,13 @@
 
     .donut-center {
       position: absolute;
-
       inset: 62px;
-
       z-index: 2;
 
       display: grid;
-
       place-items: center;
 
       text-align: center;
-
       padding: 22px;
     }
 
@@ -2166,7 +3040,6 @@
 
     .donut-percent {
       position: absolute;
-
       z-index: 2;
 
       font-family:
@@ -2232,7 +3105,6 @@
     .summary-dot {
       width: 18px;
       height: 18px;
-
       border-radius: 50%;
     }
 
@@ -2255,9 +3127,7 @@
 
     .fund-allocation-list {
       display: grid;
-
       gap: 14px;
-
       margin-top: 8px;
     }
 
@@ -2298,7 +3168,6 @@
     .allocation-color {
       width: 18px;
       height: 18px;
-
       border-radius: 50%;
     }
 
@@ -2371,7 +3240,6 @@
       color: var(--text-soft);
 
       font-size: 14px;
-
       line-height: 1.7;
     }
 
@@ -2407,7 +3275,6 @@
       height: 72px;
 
       display: grid;
-
       place-items: center;
 
       margin:
@@ -2432,7 +3299,6 @@
 
       font-size: 11px;
       font-weight: 900;
-
       letter-spacing: 3px;
     }
 
@@ -2460,14 +3326,50 @@
 
     .contract-copy {
       max-width: 850px;
-
       margin: 0 auto;
 
       color: #d1c8ba;
 
       font-size: 14px;
-
       line-height: 1.75;
+    }
+
+    .investor-contact-button {
+      min-width:
+        min(
+          100%,
+          430px
+        );
+
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 11px;
+
+      padding:
+        17px
+        28px;
+
+      border-radius: 17px;
+
+      text-decoration: none;
+
+      color: var(--ivory);
+
+      font-size: 14px;
+      font-weight: 900;
+
+      background:
+        linear-gradient(
+          105deg,
+          rgba(50,221,183,.24),
+          rgba(13,24,22,.98)
+        );
+
+      border:
+        1px solid rgba(50,221,183,.54);
     }
 
 
@@ -2563,13 +3465,11 @@
 
       .game-board-image {
         max-height: none;
-
         border-radius: 19px;
       }
 
       .game-board-stage::after {
         inset: 4px;
-
         border-radius: 19px;
       }
 
@@ -2590,6 +3490,192 @@
 
         font-size: 24px;
       }
+
+
+      /* =====================================================
+         COMUNIDAD MOBILE
+         ===================================================== */
+
+      .community-panel {
+        padding:
+          25px
+          10px
+          28px;
+
+        border-radius: 24px;
+      }
+
+      .community-panel .modal-logo {
+        width: min(300px,72%);
+      }
+
+      .community-panel .modal-overline {
+        letter-spacing: 4px;
+      }
+
+      .community-title {
+        padding:
+          0
+          30px;
+
+        font-size:
+          clamp(
+            26px,
+            8vw,
+            37px
+          );
+      }
+
+      .community-subtitle {
+        padding:
+          0
+          20px;
+
+        margin-bottom: 19px;
+      }
+
+      .community-note {
+        width: calc(100% - 12px);
+
+        padding:
+          15px
+          34px;
+
+        margin-bottom: 21px;
+
+        font-size: 13px;
+      }
+
+      .community-note::before {
+        left: 13px;
+      }
+
+      .community-note::after {
+        right: 13px;
+      }
+
+      .levels-list {
+        gap: 12px;
+      }
+
+      .level-card {
+        border-radius: 20px;
+      }
+
+      .level-toggle {
+        grid-template-columns:
+          47px
+          45px
+          1fr
+          38px;
+
+        gap: 9px;
+
+        padding:
+          16px
+          12px;
+      }
+
+      .level-number {
+        min-height: 48px;
+        font-size: 27px;
+      }
+
+      .level-gem-wrap {
+        width: 44px;
+        height: 44px;
+      }
+
+      .level-gem-wrap::after {
+        width: 39px;
+        height: 39px;
+      }
+
+      .level-gem {
+        width: 21px;
+        height: 21px;
+      }
+
+      .level-name {
+        font-size:
+          clamp(
+            17px,
+            5vw,
+            22px
+          );
+      }
+
+      .level-tagline {
+        margin-top: 4px;
+
+        font-size:
+          11px;
+
+        line-height: 1.35;
+      }
+
+      .level-chevron {
+        width: 34px;
+        height: 34px;
+
+        font-size: 23px;
+      }
+
+      .level-card:hover .level-body,
+      .level-card.is-active .level-body {
+        max-height: 420px;
+
+        padding:
+          0
+          11px
+          14px;
+      }
+
+      .level-benefit {
+        padding:
+          15px
+          15px
+          15px
+          60px;
+
+        border-radius: 14px;
+      }
+
+      .level-benefit::before {
+        left: 20px;
+
+        width: 19px;
+        height: 19px;
+      }
+
+      .level-benefit::after {
+        left: 49px;
+      }
+
+      .benefit-label {
+        font-size: 9px;
+        letter-spacing: 1.7px;
+      }
+
+      .level-body p {
+        font-size: 13px;
+        line-height: 1.62;
+      }
+
+      .community-contact-button {
+        width: calc(100% - 14px);
+
+        min-width: 0;
+
+        padding:
+          16px
+          14px;
+
+        text-align: center;
+
+        font-size: 12px;
+      }
+
 
       .donut {
         width: 260px;
@@ -2625,29 +3711,6 @@
         grid-template-columns:
           42px
           1fr;
-      }
-
-      .level-toggle {
-        grid-template-columns:
-          44px
-          1fr
-          26px;
-
-        padding: 16px;
-
-        gap: 12px;
-      }
-
-      .level-number {
-        font-size: 24px;
-      }
-
-      .level-name {
-        font-size: 19px;
-      }
-
-      .level-tagline {
-        font-size: 12px;
       }
 
     }
@@ -2989,12 +4052,6 @@
 
 
 
-      <!-- =====================================================
-           VISTA GENERAL
-           popup-juego-mundo + cuadro-anuncio
-           funcionan como UNA SOLA PIEZA VISUAL
-           ===================================================== -->
-
       <div
         class="game-overview-view is-active"
         id="gameOverviewView"
@@ -3003,10 +4060,6 @@
 
         <div class="game-overview-stack">
 
-
-          <!-- =================================================
-               PRIMERA PARTE
-               ================================================= -->
 
           <div class="game-overview-stage">
 
@@ -3063,10 +4116,6 @@
 
 
 
-          <!-- =================================================
-               CONTINUACIÓN DIRECTA
-               ================================================= -->
-
           <img
             src="./cuadro-anuncio.png"
             alt="Kissing Fight — Más que un Match-3"
@@ -3082,10 +4131,6 @@
 
 
 
-      <!-- =====================================================
-           TABLERO INDIVIDUAL
-           ===================================================== -->
-
       <div
         class="game-board-view"
         id="gameBoardView"
@@ -3093,7 +4138,6 @@
 
 
         <div class="game-board-top">
-
 
           <button
             type="button"
@@ -3104,7 +4148,6 @@
             ← VOLVER A LOS 5 MUNDOS
 
           </button>
-
 
         </div>
 
@@ -3119,7 +4162,6 @@
 
         <div class="game-board-stage">
 
-
           <img
             id="gameBoardImage"
             class="game-board-image"
@@ -3127,7 +4169,6 @@
             alt=""
             draggable="false"
           />
-
 
         </div>
 
@@ -3207,23 +4248,25 @@
 
       <p class="community-subtitle">
 
-        7 niveles para formar parte del universo Kissing Fight.
+        Un recorrido de 7 niveles dentro del universo Kissing Fight.
 
       </p>
 
 
       <div class="community-note">
 
-        Cada nivel conserva las ventajas anteriores
-        y suma nuevas recompensas.
+        Cada nivel conserva las ventajas anteriores y suma nuevas recompensas.
 
       </div>
+
 
 
       <div class="levels-list">
 
 
-        <div class="level-card level-teal">
+        <!-- NIVEL 1 -->
+
+        <div class="level-card level-1">
 
           <button
             type="button"
@@ -3234,7 +4277,13 @@
               1
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Pueblo
@@ -3246,18 +4295,35 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
 
           </button>
 
+
           <div class="level-body">
 
-            <p>
-              Todo quien se sume al Universo Kissing Fight
-              forma parte de este nivel inicial.
-            </p>
+            <div class="level-benefit">
+
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
+
+              <p>
+
+                Todo quien se sume al
+
+                <strong>
+                  Universo Kissing Fight
+                </strong>
+
+                forma parte de este nivel inicial.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3265,7 +4331,9 @@
 
 
 
-        <div class="level-card level-pink">
+        <!-- NIVEL 2 -->
+
+        <div class="level-card level-2">
 
           <button
             type="button"
@@ -3276,7 +4344,13 @@
               2
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Pueblo Fundador
@@ -3288,6 +4362,7 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
@@ -3297,17 +4372,25 @@
 
           <div class="level-body">
 
-            <p>
+            <div class="level-benefit">
 
-              Todo quien se sume desde el día 1 recibirá la
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
 
-              <strong>
-                insignia de Pueblo Fundador
-              </strong>,
+              <p>
 
-              que le permitirá participar en las salas de chat.
+                Todo quien se sume desde el día 1 recibirá la
 
-            </p>
+                <strong>
+                  insignia de Pueblo Fundador
+                </strong>,
+
+                que le permitirá participar en las salas de chat.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3315,7 +4398,9 @@
 
 
 
-        <div class="level-card level-gold">
+        <!-- NIVEL 3 -->
+
+        <div class="level-card level-3">
 
           <button
             type="button"
@@ -3326,7 +4411,13 @@
               3
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Fundador
@@ -3338,6 +4429,7 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
@@ -3347,21 +4439,29 @@
 
           <div class="level-body">
 
-            <p>
+            <div class="level-benefit">
 
-              Todo quien llegue a este nivel podrá competir en el
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
 
-              <strong>
-                ranking mundial
-              </strong>,
+              <p>
 
-              donde el
+                Todo quien llegue a este nivel podrá competir en el
 
-              <strong>
-                número 1 de la semana ganará el pozo
-              </strong>.
+                <strong>
+                  ranking mundial
+                </strong>,
 
-            </p>
+                donde el
+
+                <strong>
+                  número 1 de la semana ganará el pozo
+                </strong>.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3369,7 +4469,9 @@
 
 
 
-        <div class="level-card level-teal">
+        <!-- NIVEL 4 -->
+
+        <div class="level-card level-4">
 
           <button
             type="button"
@@ -3380,7 +4482,13 @@
               4
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Rey
@@ -3392,6 +4500,7 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
@@ -3401,23 +4510,31 @@
 
           <div class="level-body">
 
-            <p>
+            <div class="level-benefit">
 
-              Todo quien cuente con la suscripción
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
 
-              <strong>
-                BRONZE
-              </strong>,
+              <p>
 
-              sea competidor activo y participe en la comunidad,
+                Todo quien cuente con la suscripción
 
-              tendrá
+                <strong>
+                  BRONZE
+                </strong>,
 
-              <strong>
-                50% de descuento en cualquier suscripción superior
-              </strong>.
+                sea competidor activo y participe en la comunidad,
 
-            </p>
+                tendrá
+
+                <strong>
+                  50% de descuento en cualquier suscripción superior
+                </strong>.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3425,7 +4542,9 @@
 
 
 
-        <div class="level-card level-pink">
+        <!-- NIVEL 5 -->
+
+        <div class="level-card level-5">
 
           <button
             type="button"
@@ -3436,7 +4555,13 @@
               5
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Héroe
@@ -3448,6 +4573,7 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
@@ -3457,23 +4583,31 @@
 
           <div class="level-body">
 
-            <p>
+            <div class="level-benefit">
 
-              Todo quien cuente con la suscripción
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
 
-              <strong>
-                SILVER
-              </strong>,
+              <p>
 
-              sea competidor activo y participe en la comunidad,
+                Todo quien cuente con la suscripción
 
-              podrá tener su
+                <strong>
+                  SILVER
+                </strong>,
 
-              <strong>
-                avatar 100% personalizado
-              </strong>.
+                sea competidor activo y participe en la comunidad,
 
-            </p>
+                podrá tener su
+
+                <strong>
+                  avatar 100% personalizado
+                </strong>.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3481,7 +4615,9 @@
 
 
 
-        <div class="level-card level-gold">
+        <!-- NIVEL 6 -->
+
+        <div class="level-card level-6">
 
           <button
             type="button"
@@ -3492,7 +4628,13 @@
               6
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Dios
@@ -3504,6 +4646,7 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
@@ -3513,25 +4656,33 @@
 
           <div class="level-body">
 
-            <p>
+            <div class="level-benefit">
 
-              Todo quien cuente con la suscripción
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
 
-              <strong>
-                Premium GOLD
-              </strong>,
+              <p>
 
-              sea competidor activo y participe en la comunidad,
+                Todo quien cuente con la suscripción
 
-              podrá solicitar participar como
+                <strong>
+                  Premium GOLD
+                </strong>,
 
-              <strong>
-                moderador de una sala preexistente
-              </strong>
+                sea competidor activo y participe en la comunidad,
 
-              que lo requiera.
+                podrá solicitar participar como
 
-            </p>
+                <strong>
+                  moderador de una sala preexistente
+                </strong>
+
+                que lo requiera.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3539,7 +4690,9 @@
 
 
 
-        <div class="level-card level-ivory">
+        <!-- NIVEL 7 -->
+
+        <div class="level-card level-7">
 
           <button
             type="button"
@@ -3550,7 +4703,13 @@
               7
             </div>
 
-            <div>
+
+            <div class="level-gem-wrap">
+              <span class="level-gem"></span>
+            </div>
+
+
+            <div class="level-copy">
 
               <span class="level-name">
                 Creador
@@ -3562,6 +4721,7 @@
 
             </div>
 
+
             <div class="level-chevron">
               +
             </div>
@@ -3571,29 +4731,37 @@
 
           <div class="level-body">
 
-            <p>
+            <div class="level-benefit">
 
-              Todo quien cuente con la suscripción
+              <span class="benefit-label">
+                Beneficio del nivel
+              </span>
 
-              <strong>
-                Premium BLACK
-              </strong>,
+              <p>
 
-              sea competidor activo y participe en la comunidad,
+                Todo quien cuente con la suscripción
 
-              podrá solicitar la
+                <strong>
+                  Premium BLACK
+                </strong>,
 
-              <strong>
-                creación de una sala personalizada
-              </strong>
+                sea competidor activo y participe en la comunidad,
 
-              y convertirse en su
+                podrá solicitar la
 
-              <strong>
-                moderador
-              </strong>.
+                <strong>
+                  creación de una sala personalizada
+                </strong>
 
-            </p>
+                y convertirse en su
+
+                <strong>
+                  moderador
+                </strong>.
+
+              </p>
+
+            </div>
 
           </div>
 
@@ -3606,7 +4774,6 @@
 
       <div class="community-contact">
 
-
         <a
           class="community-contact-button"
           href="https://wa.me/5491165352742?text=Hola%21%20Quiero%20sumarme%20al%20Universo%20Kissing%20Fight."
@@ -3617,7 +4784,6 @@
           ✦ SUMATE AL UNIVERSO KISSING FIGHT
 
         </a>
-
 
       </div>
 
@@ -4494,6 +5660,7 @@
 
     /* =========================================================
        NIVELES DE COMUNIDAD
+       MISMO FUNCIONAMIENTO
        ========================================================= */
 
     const levelCards =
@@ -4681,9 +5848,11 @@
 
       gameThemeClasses.forEach(
         className => {
+
           gamePanel.classList.remove(
             className
           );
+
         }
       );
 
@@ -4719,7 +5888,6 @@
 
       gameBoardTitle.textContent =
         "";
-
 
     }
 
@@ -4796,7 +5964,6 @@
         });
 
       }
-
 
     }
 
